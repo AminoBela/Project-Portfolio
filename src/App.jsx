@@ -8,6 +8,9 @@ function App() {
   const [theme, setTheme] = useState('terminal');
   const [activeSection, setActiveSection] = useState('accueil');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isTerminalOpen, setIsTerminalOpen] = useState(false);
+  const [isTerminalMaximized, setIsTerminalMaximized] = useState(false);
+  const [showInteractionText, setShowInteractionText] = useState(false);
 
   // Récupérer les projets GitHub
   useEffect(() => {
@@ -22,6 +25,14 @@ function App() {
     document.documentElement.classList.remove('light', 'terminal');
     document.documentElement.classList.add(theme);
   }, [theme]);
+
+  // Afficher le texte interactif après 2 secondes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowInteractionText(true);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   // Scrollspy pour section active
   useEffect(() => {
@@ -48,6 +59,15 @@ function App() {
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const toggleTerminal = () => {
+    setIsTerminalOpen(!isTerminalOpen);
+    if (!isTerminalOpen) setIsTerminalMaximized(false);
+  };
+
+  const maximizeTerminal = () => {
+    setIsTerminalMaximized(!isTerminalMaximized);
   };
 
   // Animations
@@ -89,7 +109,24 @@ function App() {
     },
   };
 
-  // Données des compétences avec niveaux et logos
+  const terminalWindowVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.3, ease: 'easeOut' },
+    },
+  };
+
+  const interactionTextVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: 'easeOut' },
+    },
+  };
+
   const skills = [
     { name: 'HTML', level: 90, icon: 'https://cdn.simpleicons.org/html5/66ff99' },
     { name: 'CSS', level: 85, icon: 'https://cdn.simpleicons.org/css3/66ff99' },
@@ -103,20 +140,24 @@ function App() {
     { name: 'VBA', level: 55, icon: 'https://cdn.simpleicons.org/microsoft/66ff99' },
   ];
 
-  // Données pour le terminal "À propos de moi"
   const aboutLines = [
     "user@amin-belalia:~$ whoami",
     "Amin Belalia",
     "user@amin-belalia:~$ cat about.txt",
-    "Étudiant en 2ème année de BUT Informatique à l'IUT de [ta ville].",
-    "Spécialisé dans le déploiement d'applications communicantes et sécurisées.",
-    "Passionné par le développement web, la cybersécurité et les technologies modernes.",
-    "Projets disponibles sur GitHub : https://github.com/AminoBela",
+    "Étudiant en 2ème année de BUT Informatique à l'IUT Nancy-Charlemagne.",
+    "Spécialisé dans le déploiement, administration système et réseaux ainsi que le Cloud.",
+    "Passionné par le développement, la cybersécurité et les tech modernes.",
+    "user@amin-belalia:~$ hobbies",
+    "- Cybersécurité",
+    "- Sport mécanique et mécanique auto.",
+    "user@amin-belalia:~$ cat education.txt",
+    "2023-2026 : BUT Informatique, IUT Nancy-Charlemagne",
+    "2022-2023 : Prépa integrée Peip, Polytech Nancy",
+    "2019-2022 : Baccalauréat general, Lycée Alfred Mézières (Longwy)",
     "user@amin-belalia:~$ exit",
   ];
 
-  // Animation de texte qui se tape
-  const typedText = "Bonjour, je suis Amin Belalia";
+  const typedText = "C'est moi, Amin Belalia";
   const typedVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -131,20 +172,13 @@ function App() {
     visible: { opacity: 1 },
   };
 
-  // Animation pour les lignes du terminal
-  const terminalVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.5,
-      },
-    },
-  };
-
   const lineVariants = {
-    hidden: { opacity: 0, y: 10 },
-    visible: { opacity: 1, y: 0 },
+    hidden: { opacity: 0, x: -20 },
+    visible: { 
+      opacity: 1, 
+      x: 0,
+      transition: { duration: 0.3, ease: 'easeOut' }
+    },
   };
 
   return (
@@ -185,11 +219,6 @@ function App() {
             <li>
               <a href="#projets" className={`nav-link ${activeSection === 'projets' ? 'active' : ''}`}>
                 > projets
-              </a>
-            </li>
-            <li>
-              <a href="#contact" className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}>
-                > contact
               </a>
             </li>
             <li>
@@ -250,37 +279,55 @@ function App() {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        className="terminal-section"
+        className="terminal-section about-section"
       >
         <div className="container">
           <motion.h2 variants={childVariants} className="terminal-command about-title">
             > À propos de moi
           </motion.h2>
-          <motion.div
-            variants={terminalVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="terminal-window"
-          >
-            <div className="terminal-header">
-              <span className="terminal-button red"></span>
-              <span className="terminal-button yellow"></span>
-              <span className="terminal-button green"></span>
-              <span className="terminal-title">bash -- Amin Belalia</span>
-            </div>
-            <div className="terminal-body">
-              {aboutLines.map((line, index) => (
-                <motion.p
-                  key={index}
-                  variants={lineVariants}
-                  className={line.startsWith('user@') ? 'terminal-command' : 'terminal-text'}
-                >
-                  {line}
-                </motion.p>
-              ))}
-              <span className="terminal-cursor">|</span> {/* Curseur ajouté ici */}
-            </div>
+          <motion.p variants={childVariants} className="terminal-text about-subtitle">
+            Dossier personnel : Amin Belalia
+          </motion.p>
+          <motion.div variants={childVariants} className="desktop-background">
+            <motion.div
+              className="desktop-icon"
+              onClick={toggleTerminal}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <i className="fas fa-terminal desktop-icon-symbol"></i>
+              <span className="desktop-icon-label">Terminal</span>
+            </motion.div>
+            {isTerminalOpen && (
+              <motion.div
+                variants={terminalWindowVariants}
+                initial="hidden"
+                animate="visible"
+                exit="hidden"
+                className={`terminal-window ${isTerminalMaximized ? 'maximized' : ''}`}
+              >
+                <div className="terminal-header">
+                  <span className="terminal-button red" onClick={toggleTerminal}></span>
+                  <span className="terminal-button yellow"></span>
+                  <span className="terminal-button green" onClick={maximizeTerminal}></span>
+                  <span className="terminal-title">bash -- Amin Belalia</span>
+                </div>
+                <div className="terminal-body">
+                  {aboutLines.map((line, index) => (
+                    <motion.p
+                      key={index}
+                      variants={lineVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className={line.startsWith('user@') ? 'terminal-command' : 'terminal-text'}
+                    >
+                      {line}
+                    </motion.p>
+                  ))}
+                  <span className="terminal-cursor">|</span>
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </motion.section>
@@ -334,7 +381,7 @@ function App() {
       >
         <div className="container">
           <motion.h2 variants={childVariants} className="terminal-command">
-            > Mes Projets
+            > Mes projets
           </motion.h2>
           <motion.div
             variants={sectionVariants}
@@ -361,49 +408,6 @@ function App() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
-      </motion.section>
-
-      {/* Section Contact */}
-      <motion.section
-        id="contact"
-        variants={sectionVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        className="terminal-section"
-      >
-        <div className="container">
-          <motion.h2 variants={childVariants} className="terminal-command">
-            > Contact
-          </motion.h2>
-          <motion.p variants={childVariants} className="terminal-text">
-            Envie de collaborer ou de discuter d'un projet ? Contactez-moi !
-          </motion.p>
-          <motion.div variants={childVariants} className="contact-links">
-            <a href="mailto:abelaliabendjafar@gmail.com" title="Email" className="terminal-icon">
-              <i className="fas fa-envelope"></i>
-            </a>
-            <a href="https://github.com/AminoBela" target="_blank" rel="noopener noreferrer" title="GitHub" className="terminal-icon">
-              <i className="fab fa-github"></i>
-            </a>
-            <a href="https://linkedin.com/in/amin-belalia-bendjafar-8b340a227" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="terminal-icon">
-              <i className="fab fa-linkedin"></i>
-            </a>
-          </motion.div>
-          <motion.form
-            variants={childVariants}
-            action="https://formspree.io/f/TON_ID_FORMSPREE"
-            method="POST"
-            className="terminal-form"
-          >
-            <input type="text" name="name" placeholder="> Nom" required />
-            <input type="email" name="email" placeholder="> Email" required />
-            <textarea name="message" placeholder="> Message" rows="4" required />
-            <button type="submit" className="button">
-              > Envoyer
-            </button>
-          </motion.form>
         </div>
       </motion.section>
     </div>
