@@ -1,0 +1,56 @@
+/* src/styles/_layout.css */
+section {
+  min-height: 100vh; /* Garde cela pour les grands écrans */
+  display: flex;
+  align-items: center;
+  padding: 6rem 0;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary);
+}
+
+section:first-of-type {
+  padding-top: 10rem; /* Ajuste pour la navigation fixe */
+}
+
+/* Desktop background pour la section A Propos */
+.desktop-background {
+  position: relative;
+  width: 100%;
+  height: 80vh; /* OK pour les grands écrans */
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  max-width: 1200px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  section {
+    padding: 4rem 0;
+    min-height: unset; /* Retire la hauteur minimale sur mobile pour éviter un défilement excessif si le contenu est court */
+  }
+  
+  .desktop-background {
+    height: 70vh; /* Ajuste pour les tablettes */
+  }
+}
+
+@media screen and (max-width: 480px) { /* Nouveau point de rupture pour les très petits mobiles */
+  section {
+    padding: 3rem 0; /* Encore moins de padding pour les très petits écrans */
+  }
+
+  .desktop-background {
+    height: 60vh; /* Ajuste encore plus pour les téléphones */
+  }
+
+  /* Ajustements pour les titres et textes si nécessaire */
+  .terminal-command {
+    font-size: 1.5rem; /* Réduit la taille des titres de commande */
+  }
+  .hero-subtitle {
+    font-size: 1rem; /* Réduit la taille du sous-titre de l'accueil */
+  }
+}

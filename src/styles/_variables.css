@@ -1,0 +1,24 @@
+/* src/styles/_variables.css */
+:root {
+  --font-primary: 'Fira Code', 'Consolas', monospace;
+  --font-secondary: 'Fira Code', 'Consolas', monospace;
+  
+  /* Palette de couleurs - Mode clair */
+  --bg-primary: #f5f7fa;
+  --bg-secondary: #edf2f7;
+  --text-primary: #1a202c; /* Gris très foncé */
+  --text-secondary: #718096; /* Gris moyen */
+  --accent: #2a6df4; /* Bleu vif */
+  --accent-hover: #1e4ed8;
+  --card-bg: #ffffff; /* Blanc */
+  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  --nav-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --gradient-start: #2a6df4;
+  --gradient-end: #9333ea;
+  --button-text: #ffffff; /* Texte des boutons clair */
+  --progress-bg: #e0e7ff;
+  --progress-fill: var(--accent);
+  --nav-link-hover-bg: rgba(42, 109, 244, 0.1);
+  --icon-link-bg: rgba(42, 109, 244, 0.1);
+}

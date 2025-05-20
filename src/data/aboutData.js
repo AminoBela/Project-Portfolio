@@ -1,0 +1,16 @@
+export const aboutLines = [
+  "user@amin-belalia:~$ whoami",
+  "Amin Belalia",
+  "user@amin-belalia:~$ cat about.txt",
+  "Étudiant en 2ème année de BUT Informatique à l'IUT Nancy-Charlemagne.",
+  "Spécialisé dans le déploiement, administration système et réseaux ainsi que le Cloud.",
+  "Passionné par le développement, la cybersécurité et les tech modernes.",
+  "user@amin-belalia:~$ hobbies",
+  "- Cybersécurité",
+  "- Sport mécanique et mécanique auto.",
+  "user@amin-belalia:~$ cat education.txt",
+  "2023-2026 : BUT Informatique, IUT Nancy-Charlemagne",
+  "2022-2023 : Prépa integrée Peip, Polytech Nancy",
+  "2019-2022 : Baccalauréat general, Lycée Alfred Mézières (Longwy)",
+  "user@amin-belalia:~$ exit",
+];

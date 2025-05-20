@@ -1,0 +1,19 @@
+:root.light .terminal-body {
+  background: #2d3748; /* Fond sombre pour le terminal même en mode clair */
+  color: #ffffff; /* Texte en BLANC pur pour le terminal en mode clair */
+}
+
+/* Ajustement pour les lignes de commande spécifiques si elles utilisent --text-primary */
+:root.light .terminal-command-line {
+    color: #66ff99; /* Vert fluo pour les commandes en mode clair aussi, pour un look cohérent avec le terminal */
+}
+
+:root.light .terminal-text-line {
+    color: #cccccc; /* Un gris clair pour le texte de réponse en mode clair */
+}
+
+
+/* Ajustement pour l'icône de compétence en mode clair */
+:root.light .skill-icon {
+  filter: brightness(0); /* Noir pur en mode clair */
+}

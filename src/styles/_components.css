@@ -1,0 +1,178 @@
+.button {
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  color: var(--button-text);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
+
+.button--primary { /* Style pour le bouton principal */
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
+
+.button--primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(90deg, var(--accent-hover), var(--gradient-end));
+}
+
+.button--secondary { /* Style pour le bouton secondaire */
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.button--secondary:hover {
+  background: var(--accent);
+  color: var(--button-text);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Groupe de boutons */
+.button-group {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Skill Item */
+.skill-item {
+  margin-bottom: 1rem;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-icon {
+  width: 24px;
+  height: 24px;
+  /* La couleur sera gérée par les thèmes */
+}
+
+.skill-name {
+  flex-grow: 1;
+  font-weight: 600;
+}
+
+.skill-level {
+  color: var(--text-secondary);
+  font-weight: 500;
+  min-width: 50px;
+  text-align: right;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background-color: var(--progress-bg);
+  border-radius: 0;
+  overflow: hidden;
+  position: relative;
+  border: 1px solid var(--border-color);
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--progress-fill), #7b5af0); /* Une couleur secondaire pour le dégradé */
+  border-radius: 0;
+  transition: width 1.5s ease-out;
+}
+
+/* Project Card */
+.project-card {
+  background-color: var(--card-bg); /* Doit être bien défini dans les deux thèmes */
+  border-radius: 0.25rem;
+  /* overflow: hidden; -> On va tester en le commentant temporairement pour voir si ça débloque quelque chose */
+  padding: 1.5rem;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color);
+  position: relative;
+  
+  /* Pour s'assurer que les cartes ont une taille et que le contenu s'organise */
+  min-height: 200px; /* Augmenté encore, pour être sûr qu'elles ont une taille */
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  
+  /* Ajout crucial pour la visibilité si Framer Motion ou autre cause un souci */
+  opacity: 1 !important; /* Force l'opacité à 1 */
+  color: var(--text-primary) !important; /* Force la couleur du texte principal à être visible */
+  z-index: 1; /* Assure qu'elles sont au-dessus d'éventuels fonds */
+}
+
+/* Style spécifique au thème terminal pour la Project Card */
+/* Ces styles s'appliquent seulement quand :root.terminal est actif */
+.project-card.terminal-card { 
+  background-color: var(--card-bg); /* Sera sombre en mode terminal */
+  border: 1px dashed var(--accent); /* Bordure en pointillé, accent fluo */
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Texte des titres de projets */
+.project-card__title {
+  margin-bottom: 0.75rem;
+  color: var(--accent) !important; /* Force la couleur du titre */
+  font-size: 1.35rem; /* Augmenté un peu la taille */
+  line-height: 1.2;
+}
+
+/* Texte des descriptions de projets */
+.project-card__description {
+  margin-bottom: 1.5rem;
+  font-size: 1rem; /* Augmenté la taille de la description */
+  color: var(--text-secondary) !important; /* Force la couleur de la description */
+  word-wrap: break-word;
+  overflow: hidden; /* Garde l'overflow: hidden pour tronquer le texte */
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  flex-grow: 1;
+  line-height: 1.4;
+}
+
+.project-card .button {
+  margin-top: auto; 
+  font-size: 0.9rem;
+  padding: 0.5rem 1rem;
+}
+
+/* Responsive pour les composants */
+@media screen and (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .button {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  /* Ajustement pour les cartes de projets sur mobile */
+  .project-card {
+    padding: 1.2rem; /* Légèrement moins de padding */
+  }
+
+  .project-card__title {
+    font-size: 1.1rem; /* Réduit la taille du titre du projet */
+  }
+}
