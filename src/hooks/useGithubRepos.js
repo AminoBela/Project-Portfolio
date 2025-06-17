@@ -11,10 +11,10 @@ export function useGithubRepos(username) {
     const fetchRepos = async () => {
       setLoading(true); // Assure-toi que loading est toujours à true au début
       setError(null); // Réinitialise l'erreur
-      console.log(`Tentative de récupération des repos pour l'utilisateur : ${username}`);
+      console.log(`Tentative de récupération des repos pour l'utilisateur : AminoBela`);
 
       try {
-        const response = await axios.get(`https://api.github.com/users/${username}/repos`);
+        const response = await axios.get(`https://api.github.com/users/AminoBela/repos`);
         console.log('Projets GitHub récupérés :', response.data);
         setProjects(response.data);
       } catch (err) {

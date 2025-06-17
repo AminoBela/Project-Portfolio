@@ -35,6 +35,99 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
+/* Style pour les boutons de navigation */
+.vut-skills-table {
+  width: 100%;
+  table-layout: auto;
+  margin: 0 auto;
+}
+
+.vut-skills-table .button {
+  font-size: 0.85rem;
+  padding: 0.3rem 0.8rem;
+}
+
+.skills-section .terminal-command {
+  margin-top: 2.5rem;
+}
+
+/* Ajoute ceci dans _components.css */
+.vut-skills-table td span {
+  text-shadow: 0 0 2px #222, 0 0 1px #fff;
+}
+:root.light .vut-skills-table td span {
+  color: #FFD700; /* Jaune vif */
+  text-shadow: 0 0 2px #333, 0 0 1px #fff;
+}
+
+.vut-skills-table th, .vut-skills-table td {
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.vut-skills-table th {
+  background: var(--bg-primary);
+  color: var(--accent);
+}
+
+.vut-skills-table td {
+  vertical-align: middle;
+}
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.skills-table-wrapper {
+  width: 100%;
+  margin-bottom: 2.5rem;
+}
+
+.skills-grid-wide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.skills-category {
+  flex: 1 1 250px;
+  min-width: 220px;
+}
+
+
+.skills-category-title {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.tech-card {
+  background: var(--card-bg);
+  border: 1.5px dashed var(--accent);
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 12px rgba(102,255,153,0.07);
+  padding: 1.5rem 1.2rem;
+  margin-bottom: 0.5rem;
+  transition: box-shadow 0.3s;
+}
+
+.tech-card:hover {
+  box-shadow: 0 6px 24px rgba(102,255,153,0.15);
+  border-color: var(--accent-hover);
+}
+
+.skills-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
 /* Groupe de boutons */
 .button-group {
   display: flex;
@@ -174,5 +267,15 @@
 
   .project-card__title {
     font-size: 1.1rem; /* Réduit la taille du titre du projet */
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .vut-skills-table td span {
+    font-size: 0.9rem;
+  }
+  .vut-skills-table th, .vut-skills-table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.95rem;
   }
 }

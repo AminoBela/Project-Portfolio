@@ -1,33 +1,84 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import SkillBar from '../UI/SkillBar';
-import { skills } from '../../data/skillsData';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+                import { vutSkills } from '../../data/vutSkills';
+                import { skills } from '../../data/skillsData';
+                import SkillBar from '../UI/SkillBar';
+                import Button from '../UI/Button';
 
-function SkillsSection() {
-  return (
-    <motion.section
-      id="competences"
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="terminal-section"
-    >
-      <div className="container">
-        <motion.h2 variants={childVariants} className="terminal-command">
-          &gt; Compétences
-        </motion.h2>
-        <motion.div variants={childVariants} className="terminal-skills">
-          <div className="skills-container">
-            {skills.map((skill, index) => (
-              <SkillBar key={index} skill={skill} />
-            ))}
-          </div>
-        </motion.div>
-      </div>
-    </motion.section>
-  );
-}
+                // Catégorisation des technologies
+                const skillCategories = [
+                  {
+                    name: "Frontend",
+                    items: skills.filter(s => ["HTML", "CSS", "React", "JavaScript"].includes(s.name)),
+                  },
+                  {
+                    name: "Backend",
+                    items: skills.filter(s => ["PHP", "Java", "C", "SQL"].includes(s.name)),
+                  },
+                  {
+                    name: "Systèmes & Outils",
+                    items: skills.filter(s => ["Linux (Bash)", "Git", "VBA"].includes(s.name)),
+                  },
+                  {
+                    name: "Déploiement",
+                    items: skills.filter(s => ["Docker", "Kubernetes"].includes(s.name)),
+                  },
 
-export default SkillsSection;
+                ];
+
+                function renderStars(count) {
+                  return Array.from({ length: 5 }, (_, i) => (
+                    <span key={i} style={{ color: i < count ? '#FFD700' : '#ccc', fontSize: '1.1rem' }}>★</span>
+                  ));
+                }
+
+                function SkillsSection() {
+                  return (
+                    <section id="competences" className="terminal-section skills-section">
+                      <div className="container">
+                        <h2 className="terminal-command">&gt; Compétences</h2>
+                        <div className="skills-table-wrapper">
+                          <table className="vut-skills-table">
+                            <thead>
+                              <tr>
+                                <th>Compétence</th>
+                                <th>Autoévaluation</th>
+                                <th>Commentaire</th>
+                                <th>Projet GitHub</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {vutSkills.map((skill, idx) => (
+                                <tr key={idx}>
+                                  <td>{skill.name}</td>
+                                  <td>{renderStars(skill.stars)}</td>
+                                  <td>{skill.comment}</td>
+                                  <td>
+                                    <Button href={skill.github} target="_blank" rel="noopener noreferrer" secondary>
+                                      Voir le projet
+                                    </Button>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <h2 className="terminal-command" style={{ marginTop: '2.5rem' }}>&gt; Technologies</h2>
+                        <div className="skills-grid-wide">
+                          {skillCategories.map(category => (
+                            <div key={category.name} className="skills-category tech-card">
+                              <div className="skills-category-title">{category.name}</div>
+                              <div className="skills-category-list">
+                                {category.items.map(skill => (
+                                  <SkillBar key={skill.name} skill={skill} />
+                                ))}
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </section>
+                  );
+                }
+
+                export default SkillsSection;

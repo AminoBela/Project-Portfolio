@@ -14,9 +14,9 @@ section:first-of-type {
 
 /* Desktop background pour la section A Propos */
 .desktop-background {
-  position: relative;
+  position: relative; /* Doit absolument être là */
   width: 100%;
-  height: 80vh; /* OK pour les grands écrans */
+  height: 80vh;
   background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   border-radius: 8px;
   overflow: hidden;

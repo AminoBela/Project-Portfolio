@@ -41,6 +41,15 @@ function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme,
         </li>
         <li>
           <a
+            href="#stage"
+            className={`main-nav__link ${activeSection === 'stage' ? 'is-active' : ''}`}
+            onClick={onNavLinkClick}
+          >
+            &gt; stage
+          </a>
+        </li>
+        <li>
+          <a
             href="#projets"
             className={`main-nav__link ${activeSection === 'projets' ? 'is-active' : ''}`}
             onClick={onNavLinkClick}

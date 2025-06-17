@@ -6,7 +6,8 @@ import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
 import SkillsSection from './components/Sections/SkillsSection';
 import ProjectsSection from './components/Sections/ProjectsSection';
-import { navVariants } from './utils/framerMotionVariants'; // Utilise les variants centralisés
+import { navVariants } from './utils/framerMotionVariants';
+import StageSection from "./components/Sections/StageSection.jsx"; // Utilise les variants centralisés
 
 function App() {
   const { theme, toggleTheme } = useTheme();
@@ -35,6 +36,7 @@ function App() {
       <HomeSection />
       <AboutSection />
       <SkillsSection />
+      <StageSection />
       <ProjectsSection />
       
       {/* Tu peux ajouter un footer ici si besoin */}
