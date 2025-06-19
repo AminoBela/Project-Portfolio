@@ -12,6 +12,13 @@
       cursor: pointer;
   }
 
+.vut-skills-table td .star--filled {
+  color: #FFD700 !important;
+}
+:root.terminal .vut-skills-table td .star--filled {
+  color: #66ff99 !important;
+}
+
   /* --- Étoiles de compétences --- */
   .star {
     color: #ccc !important;
