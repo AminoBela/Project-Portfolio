@@ -18,7 +18,9 @@
 :root.terminal .vut-skills-table td .star--filled {
   color: #66ff99 !important;
 }
-
+.vut-skills-table td .star {
+  color: #ccc !important;
+}
   /* --- Étoiles de compétences --- */
   .star {
     color: #ccc !important;
