@@ -154,12 +154,13 @@
   .main-nav__list li {
     width: 100%;
   }
-  
+
   .main-nav__link {
-    display: block;
-    width: 100%;
-    padding: 0.75rem 1rem;
-    text-align: center;
+    white-space: nowrap; /* Empêche le retour à la ligne */
+    font-size: 1rem;     /* Réduit la taille si besoin */
+    padding: 0.5rem 0.5rem; /* Moins de padding pour gagner de la place */
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   .main-nav__icon-link {

@@ -12,6 +12,19 @@
     cursor: pointer;
   }
 
+.star {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-right: 0.1em;
+  transition: color 0.2s;
+}
+.star--filled {
+  color: #FFD700;
+}
+:root.terminal .star--filled {
+  color: #66ff99;
+}
+
   .button--primary { /* Style pour le bouton principal */
     background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
   }

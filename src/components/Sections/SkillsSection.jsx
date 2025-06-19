@@ -26,7 +26,11 @@ const skillCategories = [
 
 function renderStars(count) {
   return Array.from({ length: 5 }, (_, i) => (
-    <span key={i} style={{ color: i < count ? '#FFD700' : '#ccc', fontSize: '1.1rem' }}>★</span>
+    <span
+      key={i}
+      className={`star${i < count ? ' star--filled' : ''}`}
+      aria-label={i < count ? 'Étoile remplie' : 'Étoile vide'}
+    >★</span>
   ));
 }
 
