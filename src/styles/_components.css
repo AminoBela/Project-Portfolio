@@ -1,307 +1,276 @@
 .button {
-      display: inline-block;
-      padding: 0.9rem 1.8rem;
-      color: var(--button-text);
-      text-decoration: none;
-      border-radius: 0.25rem;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-      border: 1px solid var(--accent);
-      cursor: pointer;
-  }
+  display: inline-block;
+  padding: 0.9rem 1.8rem;
+  color: var(--button-text);
+  text-decoration: none;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--accent);
+  cursor: pointer;
+}
 
+/* --- Étoiles de compétences --- */
+.vut-skills-table td .star {
+  color: #ccc;
+  font-size: 1.1rem;
+  margin-right: 0.1em;
+  transition: color 0.2s;
+}
 .vut-skills-table td .star--filled {
-  color: #FFD700 !important;
+  color: #FFD700;
 }
 :root.terminal .vut-skills-table td .star--filled {
-  color: #66ff99 !important;
+  color: #66ff99;
 }
-.vut-skills-table td .star {
-  color: #ccc !important;
+
+/* Ancien style qui forçait la couleur sur toutes les spans du tableau (désactivé) */
+.vut-skills-table td span {
+  text-shadow: 0 0 2px #222, 0 0 1px #fff;
 }
-  /* --- Étoiles de compétences --- */
-  .star {
-    color: #ccc !important;
-    font-size: 1.1rem;
-    margin-right: 0.1em;
-    transition: color 0.2s;
-  }
-  .star--filled {
-    color: #FFD700 !important;
-  }
-  :root.terminal .star--filled {
-    color: #66ff99 !important;
-  }
+/* :root.light .vut-skills-table td span {
+  color: #FFD700;
+  text-shadow: 0 0 2px #333, 0 0 1px #fff;
+} */
 
-  /* Ancien style qui forçait la couleur sur toutes les spans du tableau (désactivé) */
-  .vut-skills-table td span {
-    text-shadow: 0 0 2px #222, 0 0 1px #fff;
-  }
-  /* :root.light .vut-skills-table td span {
-    color: #FFD700;
-    text-shadow: 0 0 2px #333, 0 0 1px #fff;
-  } */
+.button--primary {
+  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
+}
 
-  .button--primary {
-      background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-  }
+.button--primary:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px) scale(1.03);
+}
 
-  .button--primary:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-      background: linear-gradient(90deg, var(--accent-hover), var(--gradient-end));
-  }
+.button--secondary {
+  background: var(--card-bg);
+  color: var(--accent);
+  border: 1.5px solid var(--accent);
+}
 
-  .button--secondary {
-      background: transparent;
-      border: 1px solid var(--accent);
-      color: var(--accent);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-  }
+.button--secondary:hover {
+  background: var(--accent);
+  color: var(--button-text);
+  transform: translateY(-2px) scale(1.03);
+}
 
-  .button--secondary:hover {
-      background: var(--accent);
-      color: var(--button-text);
-      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-  }
+/* Style pour les boutons de navigation */
+.vut-skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
 
-  /* Style pour les boutons de navigation */
-  .vut-skills-table {
-      width: 100%;
-      table-layout: auto;
-      margin: 0 auto;
-  }
+.vut-skills-table .button {
+  font-size: 0.95rem;
+  padding: 0.5rem 1.2rem;
+  margin: 0;
+}
 
-  .vut-skills-table .button {
-      font-size: 0.85rem;
-      padding: 0.3rem 0.8rem;
-  }
+.skills-section .terminal-command {
+  margin-bottom: 1.5rem;
+}
 
-  .skills-section .terminal-command {
-      margin-top: 2.5rem;
-  }
+.vut-skills-table th, .vut-skills-table td {
+  padding: 0.7rem 1.2rem;
+  text-align: left;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+}
 
-  .vut-skills-table th, .vut-skills-table td {
-      border: 1px solid var(--border-color);
-      padding: 0.75rem 1rem;
-      text-align: left;
-  }
+.vut-skills-table th {
+  background: var(--bg-secondary);
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
 
-  .vut-skills-table th {
-      background: var(--bg-primary);
-      color: var(--accent);
-  }
+.vut-skills-table td {
+  background: var(--card-bg);
+  color: var(--text-primary);
+}
 
-  .vut-skills-table td {
-      vertical-align: middle;
-  }
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
 
-  .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      margin-top: 1.5rem;
-  }
+.skills-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 2.5rem;
+}
 
-  .skills-table-wrapper {
-      width: 100%;
-      margin-bottom: 2.5rem;
-  }
+/* --- AJOUT POUR RESPONSIVE TABLEAU COMPÉTENCES --- */
+.skills-table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-  /* --- AJOUT POUR RESPONSIVE TABLEAU COMPÉTENCES --- */
+@media screen and (max-width: 600px) {
   .skills-table-responsive {
-      width: 100%;
-      overflow-x: auto;
+    border-radius: 0;
+    box-shadow: none;
   }
-
-  @media screen and (max-width: 600px) {
-      .vut-skills-table {
-        min-width: 500px;
-      }
+  .vut-skills-table {
+    font-size: 0.95rem;
+    min-width: 480px;
   }
-  /* --- FIN AJOUT --- */
+}
+/* --- FIN AJOUT --- */
 
+.skills-grid-wide {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.skills-category {
+  margin-bottom: 2rem;
+}
+
+.skills-category-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.tech-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 1.2rem 1.5rem;
+  transition: box-shadow 0.2s;
+}
+
+.tech-card:hover {
+  box-shadow: 0 8px 32px rgba(102,255,153,0.15), 0 0 0 4px #66ff99 inset;
+}
+
+.skills-category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+/* Groupe de boutons */
+.button-group {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+
+/* Skill Item */
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.skill-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.skill-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  margin-right: 0.5rem;
+}
+
+.skill-name {
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.skill-level {
+  margin-left: auto;
+  font-size: 0.95rem;
+  color: var(--accent);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--progress-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: 4px;
+  transition: width 1.5s cubic-bezier(.4,2,.6,1);
+}
+
+/* Project Card */
+.project-card {
+  background: var(--card-bg);
+  border-radius: 8px;
+  box-shadow: var(--card-shadow);
+  padding: 1.5rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  transition: box-shadow 0.2s;
+}
+
+.project-card.terminal-card {
+  border: 1.5px dashed var(--accent);
+}
+
+.project-card:hover {
+  box-shadow: 0 8px 32px rgba(102,255,153,0.15), 0 0 0 4px #66ff99 inset;
+}
+
+.project-card__title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.project-card__description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.project-card .button {
+  align-self: flex-start;
+  margin-top: 0.5rem;
+}
+
+/* Responsive pour les composants */
+@media screen and (max-width: 768px) {
   .skills-grid-wide {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-      width: 100%;
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
-
-  .skills-category {
-      flex: 1 1 250px;
-      min-width: 220px;
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
   }
+}
 
-  .skills-category-title {
-      font-size: 1.2rem;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
+@media screen and (max-width: 480px) {
+  .vut-skills-table td span {
+    font-size: 0.9rem;
   }
-
-  .tech-card {
-      background: var(--card-bg);
-      border: 1.5px dashed var(--accent);
-      border-radius: 0.5rem;
-      box-shadow: 0 2px 12px rgba(102,255,153,0.07);
-      padding: 1.5rem 1.2rem;
-      margin-bottom: 0.5rem;
-      transition: box-shadow 0.3s;
+  .vut-skills-table th, .vut-skills-table td {
+    padding: 0.4rem 0.5rem;
+    font-size: 0.95rem;
   }
-
-  .tech-card:hover {
-      box-shadow: 0 6px 24px rgba(102,255,153,0.15);
-      border-color: var(--accent-hover);
-  }
-
-  .skills-category-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-  }
-
-  /* Groupe de boutons */
-  .button-group {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-  }
-
-  /* Skill Item */
-  .skill-item {
-      margin-bottom: 1rem;
-  }
-
-  .skill-header {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      margin-bottom: 0.5rem;
-  }
-
-  .skill-icon {
-      width: 24px;
-      height: 24px;
-  }
-
-  .skill-name {
-      flex-grow: 1;
-      font-weight: 600;
-  }
-
-  .skill-level {
-      color: var(--text-secondary);
-      font-weight: 500;
-      min-width: 50px;
-      text-align: right;
-  }
-
-  .progress-bar {
-      width: 100%;
-      height: 20px;
-      background-color: var(--progress-bg);
-      border-radius: 0;
-      overflow: hidden;
-      position: relative;
-      border: 1px solid var(--border-color);
-  }
-
-  .progress {
-      height: 100%;
-      background: linear-gradient(90deg, var(--progress-fill), #7b5af0);
-      border-radius: 0;
-      transition: width 1.5s ease-out;
-  }
-
-  /* Project Card */
-  .project-card {
-      background-color: var(--card-bg);
-      border-radius: 0.25rem;
-      padding: 1.5rem;
-      box-shadow: var(--card-shadow);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid var(--border-color);
-      position: relative;
-      min-height: 200px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      opacity: 1 !important;
-      color: var(--text-primary) !important;
-      z-index: 1;
-  }
-
-  .project-card.terminal-card {
-      background-color: var(--card-bg);
-      border: 1px dashed var(--accent);
-  }
-
-  .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-  }
-
-  .project-card__title {
-      margin-bottom: 0.75rem;
-      color: var(--accent) !important;
-      font-size: 1.35rem;
-      line-height: 1.2;
-  }
-
-  .project-card__description {
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
-      color: var(--text-secondary) !important;
-      word-wrap: break-word;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      flex-grow: 1;
-      line-height: 1.4;
-  }
-
-  .project-card .button {
-      margin-top: auto;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-  }
-
-  /* Responsive pour les composants */
-  @media screen and (max-width: 768px) {
-      .button-group {
-        flex-direction: column;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .button {
-        width: 100%;
-        max-width: 300px;
-        text-align: center;
-      }
-
-      .project-card {
-        padding: 1.2rem;
-      }
-
-      .project-card__title {
-        font-size: 1.1rem;
-      }
-  }
-
-  @media screen and (max-width: 480px) {
-      .vut-skills-table td span {
-        font-size: 0.9rem;
-      }
-      .vut-skills-table th, .vut-skills-table td {
-        padding: 0.4rem 0.5rem;
-        font-size: 0.95rem;
-      }
-  }
+}
