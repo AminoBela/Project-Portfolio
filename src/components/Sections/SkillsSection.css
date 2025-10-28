@@ -1,0 +1,47 @@
+.skills-section {
+    padding-top: 4.5rem;
+    padding-bottom: 2.1rem;
+}
+.skills-cards-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    margin: 2.2rem 0 0 0;
+}
+.skills-card {
+    background: #181a1e;
+    border-radius: 14px;
+    box-shadow: 0 2px 16px #23232322;
+    padding: 1.5rem 1.3rem;
+    min-width: 230px;
+    max-width: 350px;
+    flex: 1 1 230px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-family: 'Fira Code', monospace;
+}
+.skills-card-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.8em;
+    color: var(--color-primary);
+}
+.skills-card-stars {
+    margin-bottom: 0.8em;
+    font-size: 1.2em;
+}
+.skills-card-comment {
+    font-size: 1rem;
+    color: #A7E8F2;
+    margin-bottom: 0.7em;
+}
+.skills-card-link { margin-top: auto; }
+.skills-card-na {
+    color: #888;
+    font-size: 0.95em;
+}
+@media (max-width: 800px) {
+    .skills-cards-grid { flex-direction: column; gap: 0.8rem; }
+    .skills-card { min-width: 98vw; max-width: 98vw; }
+}

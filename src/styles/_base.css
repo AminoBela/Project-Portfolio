@@ -39,3 +39,13 @@ body {
     margin: 0 auto;
     padding: 0 1rem;
 }
+
+section, .container {
+    margin-top: 3.2rem;
+    margin-bottom: 3rem;
+    padding-left: 0.7rem;
+    padding-right: 0.7rem;
+}
+@media (max-width: 700px) {
+    section, .container { margin-top: 2rem; margin-bottom: 1.2rem; }
+}

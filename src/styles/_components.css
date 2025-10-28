@@ -20,6 +20,35 @@
     box-shadow: 0 2px 16px rgba(46, 134, 171, 0.08);
 }
 
+/* Technologies logos */
+.skill-logo {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    vertical-align: middle;
+    margin-right: 0.7rem;
+    margin-bottom: 0.2rem;
+    filter: drop-shadow(0 2px 6px rgba(46,134,171,0.12));
+    transition: transform 0.2s;
+}
+.skill-logo:hover {
+    transform: scale(1.15);
+}
+
+.skills-category-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+}
+
+.tech-card {
+    background: rgba(30,34,40,0.94);
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(46,134,171,0.08);
+    padding: 1.1rem 1.2rem;
+    margin-bottom: 1rem;
+}
+
 .project-tags {
     margin-top: 0.5rem;
 }
@@ -50,4 +79,15 @@
     background: var(--color-primary);
     box-shadow: 0 4px 20px rgba(46, 134, 171, 0.16);
     transform: scale(1.04);
+}
+
+.project-card {
+    font-family: 'Fira Code', monospace;
+    background: #181a1e;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px #2E86AB11;
+    padding: 1.7rem;
+    margin-bottom: 2rem;
+    border-left: 3px solid #2E86AB;
+    border-top: 2px solid #F26419;
 }

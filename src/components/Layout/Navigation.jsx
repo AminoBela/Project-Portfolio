@@ -23,7 +23,7 @@ function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme,
         </li>
         <li>
           <a
-            href="#a-propos"
+            href="#about"
             className={`main-nav__link ${activeSection === 'a-propos' ? 'is-active' : ''}`}
             onClick={onNavLinkClick}
           >

@@ -1,41 +1,65 @@
-.about-flex {
+.skills-grid-wide {
     display: flex;
-    align-items: center;
-    gap: 2.5rem;
-}
-.about-photo {
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    object-fit: cover;
-    box-shadow: 0 4px 24px rgba(46, 134, 171, 0.12);
-    margin-right: 1.5rem;
-}
-.about-links {
-    margin-top: 1rem;
-}
-.about-link {
-    color: var(--color-primary);
-    font-weight: 600;
-    margin-right: 1em;
-    text-decoration: none;
-}
-.about-link:hover {
-    color: var(--color-accent);
-    text-decoration: underline;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
 }
 
-/* Footer */
-.footer {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    padding: 1.2rem 0;
-    margin-top: 2rem;
-    font-size: 1rem;
-    border-top: 1px solid var(--color-accent);
+.skills-category {
+    min-width: 220px;
+    flex: 1 1 260px;
+    padding-bottom: 0.5rem;
 }
-.footer .container {
+
+/* SkillBar */
+.skill-bar-container {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.6rem;
+}
+
+.skill-bar-label {
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Barre animée style terminal */
+.skill-bar-track {
+    background: #232323;
+    border-radius: 8px;
+    width: 120px;
+    height: 10px;
+    overflow: hidden;
+    position: relative;
+}
+.skill-bar-fill {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-primary));
+    height: 100%;
+    border-radius: 8px;
+    transition: width 0.7s cubic-bezier(.77,0,.18,1);
+    box-shadow: 0 2px 12px rgba(46,134,171,0.1);
+}
+
+/* Stars */
+.star {
+    color: #A7E8F2;
+    font-size: 1.1em;
+    margin-right: 0.08em;
+}
+.star--filled {
+    color: var(--color-accent);
+}
+
+@media (max-width: 800px) {
+    .skills-grid-wide {
+        flex-direction: column;
+        gap: 0.7rem;
+    }
+    .skills-category {
+        min-width: 100%;
+    }
 }

@@ -1,0 +1,161 @@
+.home-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 95vh;
+    background: linear-gradient(120deg, #232526 0%, #414345 100%);
+    padding: 0;
+}
+.pc-screen-big {
+    position: relative;
+    width: 700px;
+    max-width: 98vw;
+    min-height: 470px;
+    background: #191a1e;
+    border-radius: 28px;
+    box-shadow: 0 0 38px #2E86AB55, 0 0 60px 10px #0ff5, 0 7px 40px #1b1b1b;
+    margin: 0 auto;
+    overflow: hidden;
+}
+.screen-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    box-shadow: 0 0 62px 16px #2E86AB66, 0 0 24px #F26419aa;
+    z-index: 0;
+    pointer-events: none;
+}
+.terminal-window {
+    position: relative;
+    z-index: 1;
+    padding: 2.4rem 3.2rem 2.7rem 3.2rem;
+    background: linear-gradient(90deg, #22242c 90%, #16181d 100%);
+    border-radius: 22px;
+    box-shadow: 0 2px 21px #23232344;
+    font-family: 'Fira Code', monospace;
+}
+.terminal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+.dot {
+    width: 15px; height: 15px; border-radius: 50%;
+    margin-right: 7px;
+    display: inline-block;
+}
+.dot.red { background: #F26419; }
+.dot.yellow { background: #F6F7EB; }
+.dot.green { background: #2E86AB; }
+.terminal-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #A7E8F2;
+    margin-left: 24px;
+    letter-spacing: 0.09em;
+    text-shadow: 0 0 6px #2E86AB44;
+}
+.terminal-body {
+    font-size: 1.22rem;
+    color: #F6F7EB;
+    font-family: 'Fira Code', monospace;
+}
+.terminal-prompt {
+    color: #2E86AB;
+    font-weight: 900;
+    font-size: 1.32rem;
+    margin-right: 0.6em;
+    text-shadow: 0 0 10px #2E86AB44;
+}
+.typed-text {
+    font-weight: 700;
+    color: #F26419;
+    letter-spacing: 0.04em;
+    font-size: 1.4rem;
+    text-shadow: 0 0 7px #F2641933;
+}
+.terminal-desc {
+    margin-top: 1.2rem;
+    font-size: 1.09rem;
+    color: #A7E8F2;
+    font-family: 'Fira Code', monospace;
+    text-shadow: 0 0 8px #A7E8F233;
+}
+.home-btn-group {
+    margin-top: 2.1rem;
+    display: flex;
+    gap: 1.4rem;
+}
+.big-btn {
+    font-size: 1.12rem;
+    border-radius: 13px !important;
+    padding: 1.1em 2.2em !important;
+    box-shadow: 0 2px 12px #2E86AB22 !important;
+    background: linear-gradient(90deg, #2E86AB 80%, #F26419 100%) !important;
+    font-family: 'Fira Code', monospace;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    transition: 0.2s;
+}
+.big-btn:hover {
+    background: linear-gradient(90deg, #F26419 80%, #2E86AB 100%) !important;
+    color: #fff !important;
+    box-shadow: 0 8px 24px #F2641944 !important;
+    transform: scale(1.05);
+}
+.home-tech-title {
+    margin-top: 2.5rem;
+    font-size: 1.13rem;
+    font-family: 'Fira Code', monospace;
+    color: #F26419;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+}
+.home-tech-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.2rem;
+    margin-top: 0.7rem;
+}
+.tech-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    background: #181a1e;
+    border-radius: 11px;
+    box-shadow: 0 2px 8px #2E86AB22;
+    padding: 0.6em 1.1em;
+    font-family: 'Fira Code', monospace;
+    font-size: 1rem;
+    color: #fff;
+    border-left: 3px solid #2E86AB;
+    border-top: 2px solid #F26419;
+    transition: 0.18s;
+}
+.tech-badge:hover {
+    background: #232526;
+    transform: scale(1.07);
+    box-shadow: 0 6px 20px #F2641933;
+}
+.tech-icon {
+    width: 27px;
+    height: 27px;
+    filter: drop-shadow(0 1px 5px #A7E8F244);
+}
+.tech-name {
+    padding-left: 0.1em;
+    color: #A7E8F2;
+    font-weight: 600;
+    font-family: 'Fira Code', monospace;
+    font-size: 1em;
+}
+
+@media (max-width: 900px) {
+    .pc-screen-big { width: 98vw; min-height: 260px; }
+    .terminal-window { padding: 1rem 0.7rem 1.2rem 0.7rem;}
+    .home-btn-group { flex-direction: column; gap: 0.8rem; }
+    .home-tech-list { gap: 0.8rem; }
+    .tech-badge { font-size: 0.97em; padding: 0.5em 0.7em; }
+    .tech-icon { width: 22px; height: 22px;}
+}

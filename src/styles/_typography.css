@@ -1,65 +1,23 @@
-h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-secondary);
-  color: var(--text-primary);
+body, .terminal-section {
+    font-family: 'Fira Code', 'Inter', 'Poppins', monospace, sans-serif;
+    letter-spacing: 0.02em;
 }
 
-h1 {
-  font-size: 1.5rem;
-  font-weight: 700;
+.terminal-command {
+    font-family: 'Fira Code', monospace;
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--accent);
 }
 
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-  position: relative;
-  display: inline-block;
+.terminal-text, .project-card, .skills-category-title {
+    font-family: 'Fira Code', monospace;
+    color: var(--text-primary);
 }
 
-p {
-  font-size: 1rem;
-  color: var(--text-secondary);
-}
-
-.terminal-command { /* Utilisé pour les titres de section */
-  color: var(--accent);
-  font-family: var(--font-secondary);
-  font-size: 1.8rem;
-}
-
-.terminal-command-line { /* Utilisé pour les lignes de commande dans le terminal */
-  color: var(--accent);
-  font-family: var(--font-secondary);
-  font-size: 1rem;
-}
-
-.terminal-text { /* Utilisé pour le texte général dans les sections */
-  color: var(--text-primary);
-  font-family: var(--font-primary);
-  line-height: 1.4;
-}
-
-.terminal-text-line { /* Utilisé pour le texte "réponse" dans le terminal */
-  color: var(--text-primary);
-  font-family: var(--font-primary);
-  font-size: 1rem;
-}
-
-/* Effet surlignage */
-.highlight {
-  position: relative;
-  display: inline-block;
-}
-
-.highlight::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 30%;
-  background-color: var(--accent);
-  opacity: 0.15;
-  z-index: -1;
-  transform: skewX(-15deg);
+.skills-category-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.7rem;
+    letter-spacing: 0.04em;
 }
