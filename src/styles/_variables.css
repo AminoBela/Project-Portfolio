@@ -1,24 +1,27 @@
-/* src/styles/_variables.css */
 :root {
-  --font-primary: 'Fira Code', 'Consolas', monospace;
-  --font-secondary: 'Fira Code', 'Consolas', monospace;
-  
-  /* Palette de couleurs - Mode clair */
-  --bg-primary: #f5f7fa;
-  --bg-secondary: #edf2f7;
-  --text-primary: #1a202c; /* Gris très foncé */
-  --text-secondary: #718096; /* Gris moyen */
-  --accent: #2a6df4; /* Bleu vif */
-  --accent-hover: #1e4ed8;
-  --card-bg: #ffffff; /* Blanc */
-  --card-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-  --nav-bg: #ffffff;
-  --border-color: #e2e8f0;
-  --gradient-start: #2a6df4;
-  --gradient-end: #9333ea;
-  --button-text: #ffffff; /* Texte des boutons clair */
-  --progress-bg: #e0e7ff;
-  --progress-fill: var(--accent);
-  --nav-link-hover-bg: rgba(42, 109, 244, 0.1);
-  --icon-link-bg: rgba(42, 109, 244, 0.1);
+    --color-primary: #2E86AB;
+    --color-secondary: #F6F7EB;
+    --color-accent: #F26419;
+    --color-bg-dark: #1B1B1B;
+    --color-bg-light: #FFFFFF;
+    --color-text-dark: #232323;
+    --color-text-light: #F6F7EB;
+
+    --font-primary: 'Inter', 'Poppins', sans-serif;
+    --font-code: 'Fira Code', monospace;
+
+    --cursor-size: 24px;
+    --cursor-color: var(--color-accent);
+}
+
+.terminal {
+    --bg-primary: #151515;
+    --text-primary: #F6F7EB;
+    --accent: #F26419;
+}
+
+.light {
+    --bg-primary: #F6F7EB;
+    --text-primary: #232323;
+    --accent: #2E86AB;
 }

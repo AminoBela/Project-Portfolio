@@ -1,275 +1,41 @@
-.terminal-section {
-      border: 1px dashed var(--accent);
-      background-color: var(--bg-secondary);
-      box-shadow: inset 0 0 10px rgba(102, 255, 153, 0.1);
-    }
-
-/* Section Accueil (Hero) */
-.hero-section::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
-  opacity: 0.05;
-  z-index: -1;
+.about-flex {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
 }
-
-.typed-text {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  margin-bottom: 1.5rem;
-  line-height: 1.2;
-  font-weight: 800;
-  display: flex;
-  flex-wrap: wrap;
-  white-space: pre;
-}
-
-.typed-text span {
-  margin: 0 0.1rem;
-}
-
-.hero-subtitle {
-  font-size: 1.25rem;
-  max-width: 600px;
-  margin-bottom: 2.5rem;
-  color: var(--text-secondary);
-}
-
-/* Section À propos de moi */
-.about-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 2rem 0;
-}
-.desktop-background {
-  position: relative;
-  width: 100%;
-  max-width: 1300px;      /* Plus large */
-  aspect-ratio: 16 / 9;
-  min-width: 320px;
-  min-height: 180px;
-  max-height: 700px;      /* Plus haut */
-  margin: 0 auto;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-  border-radius: 18px;
-  border: 10px solid #222;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.45), 0 0 0 4px #444 inset;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.terminal-command {
-  margin-bottom: 2.5rem;
-  margin-top: 1.5rem;
-  text-align: center;
-  letter-spacing: 1px;
-  font-size: 2rem;
-  text-shadow: 0 0 8px var(--accent), 0 0 2px #222;
-}
-
-
-.about-title {
-  margin-bottom: 0.7rem;
-}
-
-.about-subtitle {
-  margin-bottom: 1.5rem;
-  font-size: 1.05rem;
-  color: var(--text-secondary);
-}
-
-/* Icône sur le bureau */
-.desktop-icon {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  padding: 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
-}
-
-.desktop-icon:hover {
-  background-color: var(--nav-link-hover-bg);
-}
-
-.desktop-icon-symbol {
-  font-size: 2.5rem;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.desktop-icon-label {
-  color: var(--text-primary);
-  font-size: 0.9rem;
-  text-align: center;
-}
-
-/* Fenêtre de terminal pour À propos */
-.terminal-window {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #1a1a1a;
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 15px rgba(102, 255, 153, 0.25);
-  width: 90%;
-  max-width: 520px;
-  height: 320px;
-  overflow: hidden;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  padding: 0.5rem 0 1rem 0;
-  transition: all 0.3s cubic-bezier(.4,2,.6,1);
-}
-
-.terminal-window.maximized {
-  width: 100%;
-  height: 100%;
-  max-width: none;
-  max-height: none;
-  top: 0;
-  left: 0;
-  transform: none;
-  border-radius: 8px;
-}
-
-.terminal-window::before {
-  display: none;
-}
-
-.terminal-header {
-  background-color: #333333;
-  padding: 0.7rem 1.2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  flex-shrink: 0;
-  height: 40px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.terminal-button {
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.terminal-button.red { background-color: #ff5555; }
-.terminal-button.red:hover { background-color: #ff7777; }
-.terminal-button.yellow { background-color: #ffaa33; }
-.terminal-button.green { background-color: #55ff55; }
-.terminal-button.green:hover { background-color: #77ff77; }
-
-.terminal-title {
-  color: var(--text-secondary);
-  font-size: 1rem;
-  margin-left: 1rem;
-  letter-spacing: 0.5px;
-}
-
-.terminal-body {
-  padding: 1rem 1.2rem;
-  flex-grow: 1;
-  min-height: 0;
-  overflow-y: auto;
-  font-size: 1rem;
-  position: relative;
-}
-
-.terminal-body p {
-  margin: 0.3rem 0;
-}
-
-/* Section Compétences */
-.skills-section {
-  /* Pas de styles spécifiques ici, tout est dans _components.css */
-}
-
-/* Section Projets */
-.project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-/* Section Stage */
-.stage-section {
-  /* Placeholder pour d'éventuels styles futurs */
-}
-
-/* Responsive */
-@media screen and (max-width: 768px) {
-  .about-section {
-    padding: 1.2rem 0;
-  }
-
-  .desktop-icon {
-    top: 1rem;
-    left: 1rem;
-    padding: 0.7rem;
-  }
-
-  .desktop-icon-symbol {
-    font-size: 2rem;
-  }
-
-  .desktop-icon-label {
-    font-size: 0.8rem;
-  }
-
-  .terminal-window {
-    width: 98%;
-    max-width: 98vw;
-    height: 220px;
-    padding: 0.3rem 0 0.7rem 0;
-  }
-
-  .terminal-window.maximized {
-    width: 100%;
-    height: 100%;
-    border-radius: 8px;
-  }
-
-  .about-title {
-    margin-bottom: 0.4rem;
-  }
-
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-
-    .terminal-command {
-      font-size: 1.3rem;
-      margin-bottom: 1.2rem;
-      margin-top: 0.7rem;
-    }
-
-  .about-section {
-    padding: 0.7rem 0;
-  }
-  .terminal-window {
+.about-photo {
+    width: 160px;
     height: 160px;
-    font-size: 0.95rem;
-  }
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 24px rgba(46, 134, 171, 0.12);
+    margin-right: 1.5rem;
+}
+.about-links {
+    margin-top: 1rem;
+}
+.about-link {
+    color: var(--color-primary);
+    font-weight: 600;
+    margin-right: 1em;
+    text-decoration: none;
+}
+.about-link:hover {
+    color: var(--color-accent);
+    text-decoration: underline;
+}
 
+/* Footer */
+.footer {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: 1.2rem 0;
+    margin-top: 2rem;
+    font-size: 1rem;
+    border-top: 1px solid var(--color-accent);
+}
+.footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }

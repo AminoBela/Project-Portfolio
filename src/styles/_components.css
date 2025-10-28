@@ -1,276 +1,53 @@
-.button {
-  display: inline-block;
-  padding: 0.9rem 1.8rem;
-  color: var(--button-text);
-  text-decoration: none;
-  border-radius: 0.25rem;
-  font-weight: 600;
-  font-size: 1rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  border: 1px solid var(--accent);
-  cursor: pointer;
-}
-
-/* --- Étoiles de compétences --- */
-.vut-skills-table td .star {
-  color: #ccc;
-  font-size: 1.1rem;
-  margin-right: 0.1em;
-  transition: color 0.2s;
-}
-.vut-skills-table td .star--filled {
-  color: #FFD700;
-}
-:root.terminal .vut-skills-table td .star--filled {
-  color: #66ff99;
-}
-
-/* Ancien style qui forçait la couleur sur toutes les spans du tableau (désactivé) */
-.vut-skills-table td span {
-  text-shadow: 0 0 2px #222, 0 0 1px #fff;
-}
-/* :root.light .vut-skills-table td span {
-  color: #FFD700;
-  text-shadow: 0 0 2px #333, 0 0 1px #fff;
-} */
-
-.button--primary {
-  background: linear-gradient(90deg, var(--gradient-start), var(--gradient-end));
-}
-
-.button--primary:hover {
-  filter: brightness(1.1);
-  transform: translateY(-2px) scale(1.03);
-}
-
-.button--secondary {
-  background: var(--card-bg);
-  color: var(--accent);
-  border: 1.5px solid var(--accent);
-}
-
-.button--secondary:hover {
-  background: var(--accent);
-  color: var(--button-text);
-  transform: translateY(-2px) scale(1.03);
-}
-
-/* Style pour les boutons de navigation */
-.vut-skills-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-  background: var(--card-bg);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-}
-
-.vut-skills-table .button {
-  font-size: 0.95rem;
-  padding: 0.5rem 1.2rem;
-  margin: 0;
-}
-
-.skills-section .terminal-command {
-  margin-bottom: 1.5rem;
-}
-
-.vut-skills-table th, .vut-skills-table td {
-  padding: 0.7rem 1.2rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 1rem;
-}
-
-.vut-skills-table th {
-  background: var(--bg-secondary);
-  color: var(--accent);
-  font-weight: 700;
-  letter-spacing: 0.5px;
-}
-
-.vut-skills-table td {
-  background: var(--card-bg);
-  color: var(--text-primary);
-}
-
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.skills-table-wrapper {
-  overflow-x: auto;
-  margin-bottom: 2.5rem;
-}
-
-/* --- AJOUT POUR RESPONSIVE TABLEAU COMPÉTENCES --- */
-.skills-table-responsive {
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-@media screen and (max-width: 600px) {
-  .skills-table-responsive {
-    border-radius: 0;
-    box-shadow: none;
-  }
-  .vut-skills-table {
-    font-size: 0.95rem;
-    min-width: 480px;
-  }
-}
-/* --- FIN AJOUT --- */
-
-.skills-grid-wide {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  gap: 2rem;
-  margin-top: 2.5rem;
-}
-
-.skills-category {
-  margin-bottom: 2rem;
-}
-
-.skills-category-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.tech-card {
-  background: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  padding: 1.2rem 1.5rem;
-  transition: box-shadow 0.2s;
-}
-
-.tech-card:hover {
-  box-shadow: 0 8px 32px rgba(102,255,153,0.15), 0 0 0 4px #66ff99 inset;
-}
-
-.skills-category-list {
-  display: flex;
-  flex-direction: column;
-  gap: 1.1rem;
-}
-
-/* Groupe de boutons */
-.button-group {
-  display: flex;
-  gap: 1.2rem;
-  margin-top: 2rem;
-}
-
-/* Skill Item */
-.skill-item {
-  display: flex;
-  flex-direction: column;
-  gap: 0.3rem;
-}
-
-.skill-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 0.2rem;
-}
-
-.skill-icon {
-  width: 28px;
-  height: 28px;
-  object-fit: contain;
-  margin-right: 0.5rem;
-}
-
-.skill-name {
-  font-weight: 600;
-  font-size: 1.05rem;
-}
-
-.skill-level {
-  margin-left: auto;
-  font-size: 0.95rem;
-  color: var(--accent);
-}
-
-.progress-bar {
-  width: 100%;
-  height: 8px;
-  background: var(--progress-bg);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.progress {
-  height: 100%;
-  background: var(--progress-fill);
-  border-radius: 4px;
-  transition: width 1.5s cubic-bezier(.4,2,.6,1);
-}
-
-/* Project Card */
 .project-card {
-  background: var(--card-bg);
-  border-radius: 8px;
-  box-shadow: var(--card-shadow);
-  padding: 1.5rem 1.2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  transition: box-shadow 0.2s;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(46, 134, 171, 0.08);
+    padding: 2rem;
+    margin: 1.5rem 0;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
 }
-
-.project-card.terminal-card {
-  border: 1.5px dashed var(--accent);
-}
-
 .project-card:hover {
-  box-shadow: 0 8px 32px rgba(102,255,153,0.15), 0 0 0 4px #66ff99 inset;
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 8px 32px rgba(46, 134, 171, 0.18);
 }
 
-.project-card__title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--accent);
+.project-image {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 16px rgba(46, 134, 171, 0.08);
 }
 
-.project-card__description {
-  color: var(--text-secondary);
-  font-size: 1rem;
+.project-tags {
+    margin-top: 0.5rem;
+}
+.tag {
+    background: var(--color-accent);
+    color: #fff;
+    font-size: 0.75rem;
+    border-radius: 6px;
+    padding: 0.3em 0.7em;
+    margin-right: 0.3em;
+    margin-bottom: 0.2em;
+    display: inline-block;
 }
 
-.project-card .button {
-  align-self: flex-start;
-  margin-top: 0.5rem;
+/* Boutons */
+.button-group Button, .project-card Button, .about-link {
+    border-radius: 8px;
+    padding: 0.7em 1.6em;
+    font-weight: 600;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    box-shadow: 0 2px 8px rgba(46, 134, 171, 0.08);
+    transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    cursor: pointer;
 }
-
-/* Responsive pour les composants */
-@media screen and (max-width: 768px) {
-  .skills-grid-wide {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 1.2rem;
-  }
-}
-
-@media screen and (max-width: 480px) {
-  .vut-skills-table td span {
-    font-size: 0.9rem;
-  }
-  .vut-skills-table th, .vut-skills-table td {
-    padding: 0.4rem 0.5rem;
-    font-size: 0.95rem;
-  }
+.button-group Button:hover, .project-card Button:hover, .about-link:hover {
+    background: var(--color-primary);
+    box-shadow: 0 4px 20px rgba(46, 134, 171, 0.16);
+    transform: scale(1.04);
 }
