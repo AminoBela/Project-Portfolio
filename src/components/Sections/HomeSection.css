@@ -8,11 +8,11 @@
 }
 .pc-screen-big {
     position: relative;
-    width: 700px;
-    max-width: 98vw;
-    min-height: 470px;
+    width: 720px;
+    max-width: 99vw;
+    min-height: 480px;
     background: #191a1e;
-    border-radius: 28px;
+    border-radius: 30px;
     box-shadow: 0 0 38px #2E86AB55, 0 0 60px 10px #0ff5, 0 7px 40px #1b1b1b;
     margin: 0 auto;
     overflow: hidden;
@@ -20,7 +20,7 @@
 .screen-glow {
     position: absolute;
     inset: 0;
-    border-radius: 28px;
+    border-radius: 30px;
     box-shadow: 0 0 62px 16px #2E86AB66, 0 0 24px #F26419aa;
     z-index: 0;
     pointer-events: none;
@@ -28,7 +28,7 @@
 .terminal-window {
     position: relative;
     z-index: 1;
-    padding: 2.4rem 3.2rem 2.7rem 3.2rem;
+    padding: 2.6rem 3.2rem 2.7rem 3.2rem;
     background: linear-gradient(90deg, #22242c 90%, #16181d 100%);
     border-radius: 22px;
     box-shadow: 0 2px 21px #23232344;
@@ -87,21 +87,26 @@
     gap: 1.4rem;
 }
 .big-btn {
-    font-size: 1.12rem;
-    border-radius: 13px !important;
-    padding: 1.1em 2.2em !important;
-    box-shadow: 0 2px 12px #2E86AB22 !important;
+    font-size: 1.13rem;
+    border-radius: 15px !important;
+    padding: 1.07em 2.1em !important;
     background: linear-gradient(90deg, #2E86AB 80%, #F26419 100%) !important;
+    color: #fff !important;
     font-family: 'Fira Code', monospace;
     font-weight: 700;
+    box-shadow: 0 2px 12px #2E86AB22 !important;
+    border: none !important;
     letter-spacing: 0.06em;
     transition: 0.2s;
+    cursor: pointer !important;
+    text-decoration: none !important;
+    display: inline-block;
 }
 .big-btn:hover {
     background: linear-gradient(90deg, #F26419 80%, #2E86AB 100%) !important;
     color: #fff !important;
     box-shadow: 0 8px 24px #F2641944 !important;
-    transform: scale(1.05);
+    transform: scale(1.04);
 }
 .home-tech-title {
     margin-top: 2.5rem;
@@ -125,9 +130,9 @@
     background: #181a1e;
     border-radius: 11px;
     box-shadow: 0 2px 8px #2E86AB22;
-    padding: 0.6em 1.1em;
+    padding: 0.5em 1em;
     font-family: 'Fira Code', monospace;
-    font-size: 1rem;
+    font-size: 0.97rem;
     color: #fff;
     border-left: 3px solid #2E86AB;
     border-top: 2px solid #F26419;
@@ -135,12 +140,12 @@
 }
 .tech-badge:hover {
     background: #232526;
-    transform: scale(1.07);
+    transform: scale(1.06);
     box-shadow: 0 6px 20px #F2641933;
 }
 .tech-icon {
-    width: 27px;
-    height: 27px;
+    width: 22px;
+    height: 22px;
     filter: drop-shadow(0 1px 5px #A7E8F244);
 }
 .tech-name {
@@ -153,9 +158,9 @@
 
 @media (max-width: 900px) {
     .pc-screen-big { width: 98vw; min-height: 260px; }
-    .terminal-window { padding: 1rem 0.7rem 1.2rem 0.7rem;}
+    .terminal-window { padding: 1.2rem 0.7rem 1.2rem 0.7rem;}
     .home-btn-group { flex-direction: column; gap: 0.8rem; }
     .home-tech-list { gap: 0.8rem; }
-    .tech-badge { font-size: 0.97em; padding: 0.5em 0.7em; }
-    .tech-icon { width: 22px; height: 22px;}
+    .tech-badge { font-size: 0.95em; padding: 0.4em 0.6em; }
+    .tech-icon { width: 18px; height: 18px;}
 }

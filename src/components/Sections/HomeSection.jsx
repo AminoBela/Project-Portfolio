@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import Button from '../UI/Button';
 import './HomeSection.css';
 
@@ -33,9 +32,9 @@ export default function HomeSection() {
               Étudiant en BUT Informatique – Déploiement d'Applications Communicantes et Sécurisées
             </span>
                         <div className="home-btn-group">
-                            <Button href="#projets" primary className="big-btn">&gt; Voir mes projets</Button>
-                            <Button href="#about" secondary className="big-btn">&gt; À propos de moi</Button>
-                            <Button href="/assets/cv.pdf" download className="big-btn">&gt; Télécharger mon CV</Button>
+                            <Button href="#projets" primary className="big-btn" type="button">&gt; Voir mes projets</Button>
+                            <Button href="#about" secondary className="big-btn" type="button">&gt; À propos de moi</Button>
+                            <Button href="/assets/cv.pdf" download className="big-btn" type="button">&gt; Télécharger mon CV</Button>
                         </div>
                         <div className="home-tech-title">Outils & technologies</div>
                         <div className="home-tech-list">
