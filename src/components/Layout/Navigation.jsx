@@ -24,7 +24,7 @@ function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme,
         <li>
           <a
             href="#about"
-            className={`main-nav__link ${activeSection === 'a-propos' ? 'is-active' : ''}`}
+            className={`main-nav__link ${activeSection === 'about' ? 'is-active' : ''}`}
             onClick={onNavLinkClick}
           >
             &gt; a-propos

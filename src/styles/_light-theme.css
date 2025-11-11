@@ -1,19 +1,21 @@
-:root.light .terminal-body {
-  background: #2d3748; /* Fond sombre pour le terminal même en mode clair */
-  color: #ffffff; /* Texte en BLANC pur pour le terminal en mode clair */
-}
-
-/* Ajustement pour les lignes de commande spécifiques si elles utilisent --text-primary */
-:root.light .terminal-command-line {
-    color: #66ff99; /* Vert fluo pour les commandes en mode clair aussi, pour un look cohérent avec le terminal */
-}
-
-:root.light .terminal-text-line {
-    color: #cccccc; /* Un gris clair pour le texte de réponse en mode clair */
-}
-
-
-/* Ajustement pour l'icône de compétence en mode clair */
-:root.light .skill-icon {
-  filter: brightness(0); /* Noir pur en mode clair */
+/* src/styles/_light-theme.css */
+:root.light {
+  /* Palette claire cohérente avec les tokens globaux */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f5f7fb;
+  --text-primary: #1f2937;
+  --text-secondary: #4b5563;
+  --accent: #5b7cfa;
+  --accent-hover: #4a67d6;
+  --color-background: var(--bg-primary);
+  --color-surface: #ffffff;
+  --color-text: var(--text-primary);
+  --color-text-muted: #6b7280;
+  --color-border: #e5e7eb;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --button-text: #ffffff;
+  --progress-bg: #e5e7eb;
+  --progress-fill: var(--accent);
+  --nav-link-hover-bg: rgba(91, 124, 250, 0.1);
+  --icon-link-bg: rgba(91, 124, 250, 0.12);
 }

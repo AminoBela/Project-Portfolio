@@ -1,5 +1,6 @@
 import React from 'react';
 import photo from '../../assets/photo-profil.jpg';
+import cvPdf from '../../assets/cv.pdf';
 import './AboutSection.css';
 
 export default function AboutSection() {
@@ -29,7 +30,7 @@ export default function AboutSection() {
                             <div className="about-links">
                                 <a href="mailto:amin.belalia@example.com" className="about-link">Contact 📧</a>
                                 <a href="https://www.linkedin.com/in/amin-belalia" className="about-link" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href="/assets/cv.pdf" className="about-link" target="_blank" rel="noopener">CV</a>
+                                <a href={cvPdf} className="about-link" target="_blank" rel="noopener">CV</a>
                             </div>
                         </div>
                     </div>

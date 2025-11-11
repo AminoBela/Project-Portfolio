@@ -1,15 +1,16 @@
 import React from 'react';
 import Button from '../UI/Button';
 import './HomeSection.css';
+import cvPdf from '../../assets/cv.pdf';
 
 const technologies = [
-    { name: "HTML", icon: "/assets/tech-logos/html.svg" },
-    { name: "CSS", icon: "/assets/tech-logos/css.svg" },
-    { name: "JavaScript", icon: "/assets/tech-logos/js.svg" },
-    { name: "React", icon: "/assets/tech-logos/react.svg" },
-    { name: "Docker", icon: "/assets/tech-logos/docker.svg" },
-    { name: "Linux", icon: "/assets/tech-logos/linux.svg" },
-    { name: "Git", icon: "/assets/tech-logos/git.svg" }
+    { name: "HTML" },
+    { name: "CSS" },
+    { name: "JavaScript" },
+    { name: "React" },
+    { name: "Docker" },
+    { name: "Linux" },
+    { name: "Git" }
 ];
 
 export default function HomeSection() {
@@ -34,13 +35,12 @@ export default function HomeSection() {
                         <div className="home-btn-group">
                             <Button href="#projets" primary className="big-btn" type="button">&gt; Voir mes projets</Button>
                             <Button href="#about" secondary className="big-btn" type="button">&gt; À propos de moi</Button>
-                            <Button href="/assets/cv.pdf" download className="big-btn" type="button">&gt; Télécharger mon CV</Button>
+                            <Button href={cvPdf} download className="big-btn" type="button">&gt; Télécharger mon CV</Button>
                         </div>
                         <div className="home-tech-title">Outils & technologies</div>
                         <div className="home-tech-list">
                             {technologies.map(tech => (
                                 <div className="tech-badge" key={tech.name}>
-                                    <img src={tech.icon} alt={tech.name} className="tech-icon" />
                                     <span className="tech-name">{tech.name}</span>
                                 </div>
                             ))}
