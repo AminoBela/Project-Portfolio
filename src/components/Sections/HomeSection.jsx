@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../UI/Button';
 import './HomeSection.css';
 import cvPdf from '../../assets/cv.pdf';
@@ -14,6 +14,13 @@ const technologies = [
 ];
 
 export default function HomeSection() {
+    const [isBooted, setIsBooted] = useState(false);
+
+    useEffect(() => {
+        const timer = window.setTimeout(() => setIsBooted(true), 120);
+        return () => window.clearTimeout(timer);
+    }, []);
+
     return (
         <section id="accueil" className="home-section terminal-section">
             <div className="hero-bg">
@@ -23,7 +30,7 @@ export default function HomeSection() {
                 <div className="hero-grid" />
                 <div className="scanline" />
             </div>
-            <div className="pc-screen-big">
+            <div className={`pc-screen-big ${isBooted ? 'is-active' : ''}`}>
                 <div className="screen-glow"></div>
                 <div className="terminal-window">
                     <div className="terminal-header">
