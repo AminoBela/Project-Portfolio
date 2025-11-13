@@ -8,11 +8,12 @@
     padding-bottom: 2.1rem;
 }
 .about-container {
-    display: flex;
-    gap: 3.2rem;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 2.2rem;
+    align-items: start;
     width: 100%;
-    max-width: 900px;
+    max-width: 1100px;
 }
 .about-photo-wrap {
     flex: 0 0 170px;
@@ -42,7 +43,7 @@
     box-shadow: 0 18px 38px rgba(15, 23, 42, 0.28);
     border: 1px solid rgba(102, 255, 153, 0.12);
     font-family: 'Fira Code', monospace;
-    padding: 2.2rem 2.4rem 2.3rem 2.2rem;
+    padding: 1.6rem 1.6rem 1.6rem 1.6rem;
     width: 100%;
     position: relative;
 }
@@ -101,15 +102,15 @@
 }
 .about-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0 1.2rem 0;
+    grid-template-columns: repeat(2, minmax(220px, 1fr));
+    gap: 0.8rem;
+    margin: 0.8rem 0 1rem 0;
 }
 .about-item {
     background: rgba(16, 24, 32, 0.55);
     border: 1px solid rgba(102,255,153,0.12);
     border-radius: 12px;
-    padding: 0.75rem 0.9rem;
+    padding: 0.65rem 0.8rem;
 }
 .about-item__label {
     font-size: 0.75rem;
@@ -172,8 +173,8 @@
 .lang-badges {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.6rem;
-    margin: 0.4rem 0 0.8rem 0;
+    gap: 0.5rem;
+    margin: 0.2rem 0 0.6rem 0;
 }
 .lang-badge {
     padding: 0.35rem 0.7rem;
@@ -188,15 +189,15 @@
 /* Compétences */
 .comp-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1rem;
-    margin: 0.6rem 0 1.2rem 0;
+    grid-template-columns: repeat(3, minmax(220px, 1fr));
+    gap: 0.8rem;
+    margin: 0.4rem 0 0.8rem 0;
 }
 .comp-card {
     background: rgba(16, 24, 32, 0.55);
     border: 1px solid rgba(102,255,153,0.12);
     border-radius: 12px;
-    padding: 0.9rem 1rem;
+    padding: 0.8rem 0.9rem;
 }
 .comp-card__title {
     font-size: 0.9rem;
@@ -213,12 +214,45 @@
     padding-left: 1.1rem;
     color: var(--text-secondary);
     display: grid;
-    gap: 0.25rem;
-    font-size: 0.95rem;
+    gap: 0.2rem;
+    font-size: 0.92rem;
+}
+.comp-list.is-collapsed {
+    max-height: 4.2rem;
+    overflow: hidden;
+    position: relative;
+}
+.comp-list.is-collapsed::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1.6rem;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(16,24,32,0.45) 100%);
+}
+.about-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+.about-toggle {
+    background: rgba(16, 24, 32, 0.55);
+    border: 1px solid rgba(102,255,153,0.22);
+    color: var(--accent);
+    border-radius: 10px;
+    padding: 0.4rem 0.8rem;
+    cursor: none;
+    transition: transform .18s ease, background .18s ease, border-color .18s ease;
+}
+.about-toggle:hover {
+    transform: translateY(-1px);
+    background: rgba(22,30,40,0.8);
+    border-color: rgba(102,255,153,0.32);
 }
 @media (max-width: 900px) {
-    .about-container { flex-direction: column; align-items: center; gap: 1.5rem;}
+    .about-container { grid-template-columns: 1fr; gap: 1.2rem; }
     .about-content{ width: 100%; }
-    .about-terminal { padding: 1.2rem 0.7rem 1.6rem 0.8rem; }
+    .about-terminal { padding: 1rem; }
     .about-photo { width: 120px; height: 120px; }
+    .comp-grid { grid-template-columns: 1fr; }
 }

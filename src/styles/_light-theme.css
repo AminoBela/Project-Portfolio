@@ -1,17 +1,17 @@
 /* src/styles/_light-theme.css */
 :root.light {
   /* Palette claire cohérente avec les tokens globaux */
-  --bg-primary: #f9fafb;
-  --bg-secondary: #ffffff;
-  --text-primary: #1c1f2b;
-  --text-secondary: #3f4a5a;
+  --bg-primary: #eef1f5;
+  --bg-secondary: #f9fafc;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
   --accent: #3368e9;
   --accent-hover: #2853bc;
   --color-background: var(--bg-primary);
   --color-surface: var(--bg-secondary);
   --color-text: var(--text-primary);
   --color-text-muted: #5f6a7d;
-  --color-border: #d1d5db;
+  --color-border: #cbd5e1;
   --nav-bg: rgba(255, 255, 255, 0.85);
   --button-text: #0b1220;
   --progress-bg: #e5e7eb;
@@ -46,8 +46,8 @@
 
 /* Projets: fond clair et contraste renforcé en clair */
 :root.light .project-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #fdfefe;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
 }
 :root.light .project-card::before {
@@ -60,25 +60,25 @@
   color: #3f4a5a;
 }
 :root.light .project-card__meta {
-  color: #6b7280;
+  color: #475569;
 }
 :root.light .tag {
-  background: #f3f4f6;
-  border-color: #e5e7eb;
+  background: #eaf0ff;
+  border-color: #dbeafe;
   color: var(--accent);
 }
 
 /* Terminal window / Accueil en clair */
 :root.light .pc-screen-big {
-  background: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 22px 45px rgba(2, 6, 23, 0.08), inset 0 0 0 1px rgba(0,0,0,0.04);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 22px 45px rgba(2, 6, 23, 0.07), inset 0 0 0 1px rgba(0,0,0,0.04);
 }
 :root.light .screen-glow {
   box-shadow: 0 0 44px 14px rgba(51,104,233,0.15), 0 0 18px rgba(239,124,57,0.12);
 }
 :root.light .terminal-window {
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.07);
+  background: rgba(255,255,255,0.98);
+  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.06);
 }
 :root.light .terminal-title,
 :root.light .terminal-prompt {
@@ -91,47 +91,47 @@
   color: var(--text-primary);
 }
 :root.light .tech-badge {
-  background: #f7f8fa;
-  border-color: #e5e7eb;
+  background: #f5f7fb;
+  border-color: #e2e8f0;
   color: var(--text-primary);
 }
 
 /* Skills en clair */
 :root.light .skills-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #fdfefe;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
 }
 :root.light .skill-bar-container {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #fdfefe;
+  border: 1px solid #e2e8f0;
   box-shadow: none;
 }
 :root.light .skill-bar-track {
-  background: #e5e7eb;
-  border-color: #d1d5db;
+  background: #e2e8f0;
+  border-color: #cbd5e1;
 }
 :root.light .skill-bar-fill {
-  background: linear-gradient(90deg, rgba(51,104,233,0.25) 0%, var(--accent) 92%);
+  background: linear-gradient(90deg, rgba(51,104,233,0.22) 0%, var(--accent) 92%);
   box-shadow: none;
 }
 :root.light .skill-bar-indicator {
-  background: #ffffff;
-  border-color: #d1d5db;
+  background: #fdfefe;
+  border-color: #cbd5e1;
   color: var(--accent);
 }
 
 /* About en clair */
 :root.light .about-terminal {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #fdfefe;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
 }
 :root.light .about-item,
 :root.light .lang-badge,
 :root.light .comp-card {
-  background: #f7f8fa;
-  border: 1px solid #e5e7eb;
+  background: #f5f7fb;
+  border: 1px solid #e2e8f0;
   color: var(--text-primary);
 }
 :root.light .about-item__label,
@@ -145,8 +145,8 @@
 
 /* Stage en clair */
 :root.light .stage-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: #fdfefe;
+  border: 1px solid #e2e8f0;
   box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
 }
 :root.light .stage-description,
