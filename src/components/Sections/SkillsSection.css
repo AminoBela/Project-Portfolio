@@ -9,13 +9,14 @@
     margin: 2.2rem 0 0 0;
 }
 .skills-card {
-    background: #181a1e;
-    border-radius: 14px;
-    box-shadow: 0 2px 16px #23232322;
-    padding: 1.5rem 1.3rem;
-    min-width: 230px;
-    max-width: 350px;
-    flex: 1 1 230px;
+    background: linear-gradient(135deg, rgba(102, 255, 153, 0.08), rgba(46, 134, 171, 0.08)), var(--color-surface);
+    border: 1px solid rgba(102, 255, 153, 0.12);
+    border-radius: 18px;
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.28);
+    padding: 1.6rem 1.4rem;
+    min-width: 260px;
+    max-width: 380px;
+    flex: 1 1 260px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -23,18 +24,21 @@
 }
 .skills-card-title {
     font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.8em;
-    color: var(--color-primary);
+    font-size: 1.05rem;
+    margin-bottom: 0.6em;
+    color: var(--accent);
+    letter-spacing: 0.04em;
+    text-transform: none;
 }
 .skills-card-stars {
     margin-bottom: 0.8em;
-    font-size: 1.2em;
+    font-size: 1.1em;
 }
 .skills-card-comment {
-    font-size: 1rem;
-    color: #A7E8F2;
+    font-size: 0.98rem;
+    color: var(--text-secondary);
     margin-bottom: 0.7em;
+    line-height: 1.6;
 }
 .skills-card-link { margin-top: auto; }
 .skills-card-na {

@@ -15,7 +15,7 @@ const technologies = [
 
 export default function HomeSection() {
     return (
-        <section id="accueil" className="home-section">
+        <section id="accueil" className="home-section terminal-section">
             <div className="pc-screen-big">
                 <div className="screen-glow"></div>
                 <div className="terminal-window">

@@ -59,7 +59,7 @@ section {
     background: var(--cursor-color);
     border-radius: 50%;
     pointer-events: none;
-    z-index: var(--z-fixed);
+    z-index: var(--z-cursor);
     mix-blend-mode: difference;
     transition: transform var(--transition-fast);
 }

@@ -4,8 +4,8 @@ section {
   display: flex;
   align-items: center;
   padding: 6rem 0;
-  border: 1px solid var(--border-color);
-  background-color: var(--bg-secondary);
+  border: none;
+  background-color: transparent;
 }
 
 section:first-of-type {
@@ -17,7 +17,7 @@ section:first-of-type {
   position: relative; /* Doit absolument être là */
   width: 100%;
   height: 80vh;
-  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  background: linear-gradient(135deg, rgba(102, 255, 153, 0.06), rgba(46, 134, 171, 0.06)), linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);

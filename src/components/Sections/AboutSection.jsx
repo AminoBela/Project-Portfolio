@@ -5,7 +5,7 @@ import './AboutSection.css';
 
 export default function AboutSection() {
     return (
-        <section id="about" className="about-section">
+        <section id="about" className="about-section terminal-section">
             <div className="about-container">
                 <div className="about-photo-wrap">
                     <img src={photo} alt="Amin Belalia" className="about-photo" />

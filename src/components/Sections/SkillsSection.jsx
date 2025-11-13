@@ -7,7 +7,7 @@ import './SkillsSection.css';
 
 function SkillsSection() {
     return (
-        <section id="competences" className="skills-section">
+        <section id="competences" className="skills-section terminal-section">
             <div className="container">
                 <h2 className="terminal-command">&gt; Compétences BUT</h2>
                 <div className="skills-cards-grid">
