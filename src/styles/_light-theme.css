@@ -67,3 +67,102 @@
   border-color: #e5e7eb;
   color: var(--accent);
 }
+
+/* Terminal window / Accueil en clair */
+:root.light .pc-screen-big {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 22px 45px rgba(2, 6, 23, 0.08), inset 0 0 0 1px rgba(0,0,0,0.04);
+}
+:root.light .screen-glow {
+  box-shadow: 0 0 44px 14px rgba(51,104,233,0.15), 0 0 18px rgba(239,124,57,0.12);
+}
+:root.light .terminal-window {
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.07);
+}
+:root.light .terminal-title,
+:root.light .terminal-prompt {
+  color: var(--accent);
+  text-shadow: none;
+}
+:root.light .terminal-text,
+:root.light .terminal-desc,
+:root.light .tech-name {
+  color: var(--text-primary);
+}
+:root.light .tech-badge {
+  background: #f7f8fa;
+  border-color: #e5e7eb;
+  color: var(--text-primary);
+}
+
+/* Skills en clair */
+:root.light .skills-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
+}
+:root.light .skill-bar-container {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: none;
+}
+:root.light .skill-bar-track {
+  background: #e5e7eb;
+  border-color: #d1d5db;
+}
+:root.light .skill-bar-fill {
+  background: linear-gradient(90deg, rgba(51,104,233,0.25) 0%, var(--accent) 92%);
+  box-shadow: none;
+}
+:root.light .skill-bar-indicator {
+  background: #ffffff;
+  border-color: #d1d5db;
+  color: var(--accent);
+}
+
+/* About en clair */
+:root.light .about-terminal {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
+}
+:root.light .about-item,
+:root.light .lang-badge,
+:root.light .comp-card {
+  background: #f7f8fa;
+  border: 1px solid #e5e7eb;
+  color: var(--text-primary);
+}
+:root.light .about-item__label,
+:root.light .comp-card__title {
+  color: var(--accent);
+}
+:root.light .about-item__value,
+:root.light .comp-list {
+  color: var(--text-primary);
+}
+
+/* Stage en clair */
+:root.light .stage-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
+}
+:root.light .stage-description,
+:root.light .stage-infos dd,
+:root.light .stage-highlight {
+  color: var(--text-primary);
+}
+:root.light .stage-tag {
+  background: rgba(51,104,233,0.08);
+  border-color: rgba(51,104,233,0.35);
+  color: var(--accent);
+}
+
+/* Halo terminal-section plus subtil en clair */
+:root.light .terminal-section::before {
+  background: linear-gradient(135deg, rgba(51, 104, 233, 0.06), rgba(16, 24, 32, 0.03));
+  filter: blur(28px);
+  opacity: 0.6;
+}
