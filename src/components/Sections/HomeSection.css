@@ -3,25 +3,57 @@
     justify-content: center;
     align-items: center;
     min-height: 95vh;
-    background: linear-gradient(120deg, #232526 0%, #414345 100%);
+    background: radial-gradient(1200px 700px at 20% 10%, rgba(102,255,153,0.06), transparent 60%),
+                radial-gradient(900px 600px at 80% 80%, rgba(46,134,171,0.08), transparent 65%),
+                linear-gradient(120deg, #10141a 0%, #0e1220 100%);
     padding: 0;
+    position: relative;
+    overflow: hidden;
 }
+.hero-bg { position: absolute; inset: 0; pointer-events: none; }
+.hero-grid {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to right, rgba(102,255,153,0.12) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(102,255,153,0.12) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(80% 60% at 50% 50%, black 60%, transparent 100%);
+    opacity: 0.25;
+}
+.scanline {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 2px, transparent 4px);
+    mix-blend-mode: overlay; opacity: 0.15;
+    animation: scan 9s linear infinite;
+}
+@keyframes scan { from { transform: translateY(-10%); } to { transform: translateY(10%); } }
+.orb {
+    position: absolute; filter: blur(28px);
+    width: 360px; height: 360px; border-radius: 50%;
+    opacity: 0.45;
+}
+.orb--1 { left: -80px; top: -80px; background: radial-gradient(circle at 30% 30%, rgba(102,255,153,0.55), rgba(46,134,171,0.25)); animation: float1 9s ease-in-out infinite; }
+.orb--2 { right: -120px; bottom: -120px; background: radial-gradient(circle at 70% 70%, rgba(46,134,171,0.45), rgba(102,255,153,0.2)); animation: float2 11s ease-in-out infinite; }
+.orb--3 { left: 50%; bottom: 10%; transform: translateX(-50%); width: 220px; height: 220px; background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.25), rgba(102,255,153,0.15)); animation: float3 13s ease-in-out infinite; }
+@keyframes float1 { 0%{transform: translate(0,0)} 50%{transform: translate(14px, -10px)} 100%{transform: translate(0,0)} }
+@keyframes float2 { 0%{transform: translate(0,0)} 50%{transform: translate(-12px, 12px)} 100%{transform: translate(0,0)} }
+@keyframes float3 { 0%{transform: translate(-50%,0)} 50%{transform: translate(calc(-50% + 10px), -8px)} 100%{transform: translate(-50%,0)} }
 .pc-screen-big {
     position: relative;
     width: 720px;
     max-width: 99vw;
     min-height: 480px;
-    background: #191a1e;
-    border-radius: 30px;
-    box-shadow: 0 0 38px #2E86AB55, 0 0 60px 10px #0ff5, 0 7px 40px #1b1b1b;
+    background: linear-gradient(135deg, rgba(102, 255, 153, 0.12), rgba(46, 134, 171, 0.12)), rgba(20, 26, 34, 0.85);
+    border-radius: 24px;
+    box-shadow: 0 22px 45px rgba(8, 15, 32, 0.5), inset 0 0 0 1px rgba(102,255,153,0.12);
     margin: 0 auto;
     overflow: hidden;
 }
 .screen-glow {
     position: absolute;
     inset: 0;
-    border-radius: 30px;
-    box-shadow: 0 0 62px 16px #2E86AB66, 0 0 24px #F26419aa;
+    border-radius: 24px;
+    box-shadow: 0 0 62px 18px rgba(102, 255, 153, 0.25), 0 0 24px rgba(46, 134, 171, 0.18);
     z-index: 0;
     pointer-events: none;
 }
@@ -29,9 +61,9 @@
     position: relative;
     z-index: 1;
     padding: 2.6rem 3.2rem 2.7rem 3.2rem;
-    background: linear-gradient(90deg, #22242c 90%, #16181d 100%);
-    border-radius: 22px;
-    box-shadow: 0 2px 21px #23232344;
+    background: linear-gradient(90deg, rgba(17, 20, 28, 0.75) 90%, rgba(14, 18, 25, 0.85) 100%);
+    border-radius: 18px;
+    box-shadow: 0 2px 21px rgba(35, 35, 35, 0.35);
     font-family: 'Fira Code', monospace;
 }
 .terminal-header {
@@ -48,38 +80,38 @@
 .dot.yellow { background: #F6F7EB; }
 .dot.green { background: #2E86AB; }
 .terminal-title {
-    font-size: 1.3rem;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #A7E8F2;
+    color: var(--accent);
     margin-left: 24px;
-    letter-spacing: 0.09em;
-    text-shadow: 0 0 6px #2E86AB44;
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 12px rgba(102, 255, 153, 0.25);
 }
 .terminal-body {
     font-size: 1.22rem;
-    color: #F6F7EB;
+    color: var(--color-text);
     font-family: 'Fira Code', monospace;
 }
 .terminal-prompt {
-    color: #2E86AB;
+    color: var(--accent);
     font-weight: 900;
     font-size: 1.32rem;
     margin-right: 0.6em;
-    text-shadow: 0 0 10px #2E86AB44;
+    text-shadow: 0 0 10px rgba(102, 255, 153, 0.25);
 }
 .typed-text {
     font-weight: 700;
     color: #F26419;
     letter-spacing: 0.04em;
     font-size: 1.4rem;
-    text-shadow: 0 0 7px #F2641933;
+    text-shadow: 0 0 7px rgba(242, 100, 25, 0.25);
 }
 .terminal-desc {
     margin-top: 1.2rem;
     font-size: 1.09rem;
     color: #A7E8F2;
     font-family: 'Fira Code', monospace;
-    text-shadow: 0 0 8px #A7E8F233;
+    text-shadow: 0 0 8px rgba(167, 232, 242, 0.2);
 }
 .home-btn-group {
     margin-top: 2.1rem;
@@ -90,11 +122,11 @@
     font-size: 1.13rem;
     border-radius: 15px !important;
     padding: 1.07em 2.1em !important;
-    background: linear-gradient(90deg, #2E86AB 80%, #F26419 100%) !important;
+    background: linear-gradient(90deg, var(--accent) 80%, #F26419 100%) !important;
     color: #fff !important;
     font-family: 'Fira Code', monospace;
     font-weight: 700;
-    box-shadow: 0 2px 12px #2E86AB22 !important;
+    box-shadow: 0 12px 24px rgba(102,255,153,0.15), 0 6px 18px rgba(242,100,25,0.15) !important;
     border: none !important;
     letter-spacing: 0.06em;
     transition: 0.2s;
@@ -103,16 +135,16 @@
     display: inline-block;
 }
 .big-btn:hover {
-    background: linear-gradient(90deg, #F26419 80%, #2E86AB 100%) !important;
+    background: linear-gradient(90deg, #F26419 80%, var(--accent) 100%) !important;
     color: #fff !important;
-    box-shadow: 0 8px 24px #F2641944 !important;
+    box-shadow: 0 16px 32px rgba(242,100,25,0.22), 0 8px 24px rgba(102,255,153,0.2) !important;
     transform: scale(1.04);
 }
 .home-tech-title {
     margin-top: 2.5rem;
     font-size: 1.13rem;
     font-family: 'Fira Code', monospace;
-    color: #F26419;
+    color: var(--accent);
     font-weight: 700;
     letter-spacing: 0.06em;
     margin-bottom: 1rem;
@@ -127,26 +159,26 @@
     display: flex;
     align-items: center;
     gap: 0.7rem;
-    background: #181a1e;
-    border-radius: 11px;
-    box-shadow: 0 2px 8px #2E86AB22;
+    background: rgba(16, 24, 32, 0.65);
+    border-radius: 12px;
+    box-shadow: 0 12px 24px rgba(8, 15, 32, 0.35), inset 0 0 0 1px rgba(102,255,153,0.12);
     padding: 0.5em 1em;
     font-family: 'Fira Code', monospace;
     font-size: 0.97rem;
     color: #fff;
-    border-left: 3px solid #2E86AB;
-    border-top: 2px solid #F26419;
+    border-left: 3px solid var(--accent);
+    border-top: 2px solid rgba(242,100,25,0.9);
     transition: 0.18s;
 }
 .tech-badge:hover {
-    background: #232526;
+    background: rgba(22, 30, 40, 0.85);
     transform: scale(1.06);
-    box-shadow: 0 6px 20px #F2641933;
+    box-shadow: 0 18px 32px rgba(242,100,25,0.25);
 }
 .tech-icon {
     width: 22px;
     height: 22px;
-    filter: drop-shadow(0 1px 5px #A7E8F244);
+    filter: drop-shadow(0 1px 5px rgba(167,232,242,0.3));
 }
 .tech-name {
     padding-left: 0.1em;

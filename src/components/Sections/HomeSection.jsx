@@ -16,6 +16,13 @@ const technologies = [
 export default function HomeSection() {
     return (
         <section id="accueil" className="home-section terminal-section">
+            <div className="hero-bg">
+                <div className="orb orb--1" />
+                <div className="orb orb--2" />
+                <div className="orb orb--3" />
+                <div className="hero-grid" />
+                <div className="scanline" />
+            </div>
             <div className="pc-screen-big">
                 <div className="screen-glow"></div>
                 <div className="terminal-window">
@@ -23,7 +30,7 @@ export default function HomeSection() {
                         <span className="dot red"></span>
                         <span className="dot yellow"></span>
                         <span className="dot green"></span>
-                        <span className="terminal-title">amin@portfolio:~$</span>
+                        <span className="terminal-title">amin@portfolio:~$ whoami</span>
                     </div>
                     <div className="terminal-body">
                         <span className="terminal-prompt">&gt;_</span>
@@ -40,7 +47,7 @@ export default function HomeSection() {
                         <div className="home-tech-title">Outils & technologies</div>
                         <div className="home-tech-list">
                             {technologies.map((tech) => (
-                                <div className="tech-badge" key={tech.name}>
+                                <div className="tech-badge" key={tech.name} data-cursor="pointer">
                                     <img src={tech.icon} alt={tech.name} className="tech-icon" loading="lazy" />
                                     <span className="tech-name">{tech.name}</span>
                                 </div>
