@@ -5,15 +5,15 @@
   --bg-secondary: #ffffff;
   --text-primary: #1c1f2b;
   --text-secondary: #3f4a5a;
-  --accent: #2c7be5;
-  --accent-hover: #225fbb;
+  --accent: #3368e9;
+  --accent-hover: #2853bc;
   --color-background: var(--bg-primary);
   --color-surface: var(--bg-secondary);
   --color-text: var(--text-primary);
   --color-text-muted: #5f6a7d;
   --color-border: #d1d5db;
   --nav-bg: rgba(255, 255, 255, 0.85);
-  --button-text: #ffffff;
+  --button-text: #0b1220;
   --progress-bg: #e5e7eb;
   --progress-fill: var(--accent);
   --nav-link-hover-bg: rgba(91, 124, 250, 0.1);
@@ -29,4 +29,41 @@
 }
 :root.light .terminal-body {
   color: var(--text-primary);
+}
+
+/* Accueil: rendre les gros boutons très lisibles en clair */
+:root.light .big-btn {
+  background: linear-gradient(90deg, var(--accent) 70%, #ef7c39 100%) !important;
+  color: #0b1220 !important;
+  border-color: rgba(0,0,0,0.06) !important;
+  box-shadow: 0 12px 22px rgba(51,104,233,0.18), 0 8px 18px rgba(239,124,57,0.16) !important;
+  text-shadow: none !important;
+}
+:root.light .big-btn:hover {
+  background: linear-gradient(90deg, #ef7c39 65%, var(--accent) 100%) !important;
+  border-color: rgba(0,0,0,0.08) !important;
+}
+
+/* Projets: fond clair et contraste renforcé en clair */
+:root.light .project-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
+}
+:root.light .project-card::before {
+  background: radial-gradient(circle at top right, rgba(51,104,233,0.10), transparent 55%);
+}
+:root.light .project-card__title {
+  color: var(--text-primary);
+}
+:root.light .project-card__description {
+  color: #3f4a5a;
+}
+:root.light .project-card__meta {
+  color: #6b7280;
+}
+:root.light .tag {
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: var(--accent);
 }
