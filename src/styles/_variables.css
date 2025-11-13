@@ -41,7 +41,7 @@
 
     /* Typographie */
     --font-terminal: 'Fira Code', monospace;
-    --font-primary: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    --font-primary: var(--font-terminal);
     --font-code: var(--font-terminal);
     --font-size-xs: 0.75rem;
     --font-size-sm: 0.875rem;

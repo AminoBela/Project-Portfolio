@@ -25,6 +25,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+    cursor: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: none;
+}
+
 /* Layout containers */
 .container {
     width: 100%;

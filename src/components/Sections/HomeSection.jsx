@@ -4,13 +4,13 @@ import './HomeSection.css';
 import cvPdf from '../../assets/cv.pdf';
 
 const technologies = [
-    { name: "HTML" },
-    { name: "CSS" },
-    { name: "JavaScript" },
-    { name: "React" },
-    { name: "Docker" },
-    { name: "Linux" },
-    { name: "Git" }
+    { name: 'HTML', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
+    { name: 'CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' },
+    { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
+    { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
+    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
+    { name: 'Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
 ];
 
 export default function HomeSection() {
@@ -39,8 +39,9 @@ export default function HomeSection() {
                         </div>
                         <div className="home-tech-title">Outils & technologies</div>
                         <div className="home-tech-list">
-                            {technologies.map(tech => (
+                            {technologies.map((tech) => (
                                 <div className="tech-badge" key={tech.name}>
+                                    <img src={tech.icon} alt={tech.name} className="tech-icon" loading="lazy" />
                                     <span className="tech-name">{tech.name}</span>
                                 </div>
                             ))}

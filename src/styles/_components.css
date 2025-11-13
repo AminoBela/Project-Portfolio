@@ -13,7 +13,8 @@
     transition: all var(--transition-normal);
     border: none;
     background: var(--color-primary);
-    color: var(--color-text);
+    color: var(--button-text, var(--color-text));
+    text-decoration: none;
 }
 
 .button:hover {

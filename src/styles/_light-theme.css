@@ -1,17 +1,17 @@
 /* src/styles/_light-theme.css */
 :root.light {
   /* Palette claire cohérente avec les tokens globaux */
-  --bg-primary: #ffffff;
-  --bg-secondary: #f5f7fb;
-  --text-primary: #1f2937;
-  --text-secondary: #4b5563;
-  --accent: #5b7cfa;
-  --accent-hover: #4a67d6;
+  --bg-primary: #f9fafb;
+  --bg-secondary: #ffffff;
+  --text-primary: #1c1f2b;
+  --text-secondary: #3f4a5a;
+  --accent: #2c7be5;
+  --accent-hover: #225fbb;
   --color-background: var(--bg-primary);
-  --color-surface: #ffffff;
+  --color-surface: var(--bg-secondary);
   --color-text: var(--text-primary);
-  --color-text-muted: #6b7280;
-  --color-border: #e5e7eb;
+  --color-text-muted: #5f6a7d;
+  --color-border: #d1d5db;
   --nav-bg: rgba(255, 255, 255, 0.85);
   --button-text: #ffffff;
   --progress-bg: #e5e7eb;
