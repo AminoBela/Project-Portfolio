@@ -19,3 +19,14 @@
   --nav-link-hover-bg: rgba(91, 124, 250, 0.1);
   --icon-link-bg: rgba(91, 124, 250, 0.12);
 }
+
+/* Amélioration de la lisibilité en mode clair sur les éléments "terminal" */
+:root.light .terminal-command {
+  color: var(--accent);
+}
+:root.light .terminal-text {
+  color: var(--text-primary);
+}
+:root.light .terminal-body {
+  color: var(--text-primary);
+}
