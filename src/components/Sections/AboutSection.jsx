@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
 import './AboutSection.css';
 
 export default function AboutSection() {
     const languages = ['Français', 'Anglais', 'Espagnol', 'Valencien', 'Arabe'];
-    const [showMore, setShowMore] = useState(false);
+    const highlights = [
+        { icon: 'fa-code-branch', label: 'Projets menés', value: '15+' },
+        { icon: 'fa-server', label: 'Missions Ops', value: 'Dev & Ops' },
+        { icon: 'fa-user-graduate', label: 'BUT Info', value: 'Parcours DACS' },
+    ];
 
     return (
         <section id="about" className="about-section terminal-section">
@@ -24,86 +28,61 @@ export default function AboutSection() {
                         <div className="about-body">
                             <span className="about-prompt">&gt;_</span>
                             <span className="about-hi">Salut, moi c'est Amin&nbsp;!</span>
-                            <p className="about-desc">
-                                Passionné par le web, les systèmes et la sécurité.<br/>
-                                Étudiant en BUT Informatique, je conçois des applications modernes et robustes.<br/>
-                                J’aime relever les défis techniques, travailler en équipe et apprendre en continu.<br/>
-                                <span className="about-highlight">Objectif : créer des solutions fiables et accessibles.</span>
-                            </p>
-                            <h3 className="about-section-title terminal-command">&gt; Profil</h3>
-                            <div className="about-grid">
-                                <div className="about-item">
-                                    <div className="about-item__label"><i className="fa-solid fa-graduation-cap"></i> Spécialité</div>
-                                    <div className="about-item__value">Déploiement d'applications communicantes et sécurisées</div>
-                                </div>
-                                <div className="about-item">
-                                    <div className="about-item__label"><i className="fa-solid fa-bolt"></i> Forces</div>
-                                    <div className="about-item__value">Rigueur, curiosité, sens du détail</div>
-                                </div>
-                                <div className="about-item">
-                                    <div className="about-item__label"><i className="fa-solid fa-toolbox"></i> Stack</div>
-                                    <div className="about-item__value">JS/React, Linux, Docker, Git</div>
-                                </div>
-                                <div className="about-item">
-                                    <div className="about-item__label"><i className="fa-solid fa-people-group"></i> Soft skills</div>
-                                    <div className="about-item__value">Travail en équipe, communication, autonomie</div>
+                            <div className="about-summary">
+                                <p className="about-desc">
+                                    Étudiant en BUT Informatique (parcours DACS), je conçois des applications modernes
+                                    et je fais vivre l’infrastructure qui les porte. J’adore assembler design, dev, automatisation
+                                    et sécurité pour livrer des solutions fiables.
+                                </p>
+                                <div className="about-metrics">
+                                    {highlights.map((metric) => (
+                                        <div key={metric.label} className="about-metric">
+                                            <i className={`fa-solid ${metric.icon}`} aria-hidden="true"></i>
+                                            <span className="about-metric__value">{metric.value}</span>
+                                            <span className="about-metric__label">{metric.label}</span>
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-                            <ul className="about-list">
-                                <li><span className="about-bullet" />Conception de frontends propres et performants</li>
-                                <li><span className="about-bullet" />Automatisation outillée et CI de base</li>
-                                <li><span className="about-bullet" />Veille techno régulière et apprentissage continu</li>
-                            </ul>
-                            <h3 className="about-section-title terminal-command">&gt; Langues</h3>
-                            <div className="lang-badges">
-                                {languages.map((l) => (
-                                    <span key={l} className="lang-badge">{l}</span>
-                                ))}
-                            </div>
-                            <h3 className="about-section-title terminal-command" style={{ marginTop: '1.2rem' }}>&gt; Compétences</h3>
-                            <div className="comp-grid">
-                                <div className="comp-card">
-                                    <div className="comp-card__title"><i className="fa-solid fa-layer-group comp-card__icon"></i> Générales</div>
-                                    <ul className={`comp-list ${showMore ? '' : 'is-collapsed'}`}>
-                                        <li>Réaliser: POO, patterns, modélisation, tests</li>
-                                        <li>Optimiser: algo, structures, complexité</li>
-                                        <li>Administrer: système, configuration, réseau</li>
-                                        <li>Gérer: modélisation, SQL, transactions</li>
-                                        <li>Conduire: besoins, projet, agilité</li>
-                                        <li>Collaborer: FR/EN, équipe, partage</li>
+                            <div className="about-panels">
+                                <article className="about-card">
+                                    <header className="about-card__header">
+                                        <i className="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+                                        <span>Profil</span>
+                                    </header>
+                                    <p>Spécialisation en déploiement d’applications communicantes & sécurisées.</p>
+                                    <ul>
+                                        <li>Stack cœur : JS/React, Node, Docker, Linux</li>
+                                        <li>Soft skills : rigueur, curiosité, communication</li>
+                                        <li>Objectif : solutions fiables, accessibles, maintenables</li>
                                     </ul>
-                                </div>
-                                <div className="comp-card">
-                                    <div className="comp-card__title"><i className="fa-solid fa-code comp-card__icon"></i> Techniques générales</div>
-                                    <ul className={`comp-list ${showMore ? '' : 'is-collapsed'}`}>
-                                        <li>Langages: Java, PHP, C, JS (fonctionnel/événementiel)</li>
-                                        <li>Qualité: design patterns, normes, bonnes pratiques</li>
-                                        <li>Conception: UML, refactoring, processus unifié</li>
-                                        <li>Tests/doc: JUnit, PHPUnit, Git, Javadoc</li>
-                                        <li>Projet: PERT, coûts, Gantt</li>
-                                        <li>Web: HTML/CSS, PHP (sessions, sécurité)</li>
-                                        <li>Sys/Réseaux: Unix/Windows, TCP/IP, DNS, HTTP</li>
-                                        <li>BD: SQL/PL-SQL, JDBC/PDO, MySQL/Oracle</li>
+                                </article>
+                                <article className="about-card">
+                                    <header className="about-card__header">
+                                        <i className="fa-solid fa-sitemap" aria-hidden="true"></i>
+                                        <span>Compétences clés</span>
+                                    </header>
+                                    <ul>
+                                        <li>Conception & dev (POO, patterns, tests)</li>
+                                        <li>Admin systèmes & réseaux, sécurité</li>
+                                        <li>Automation DevOps, CI/CD, supervision</li>
                                     </ul>
-                                </div>
-                                <div className="comp-card">
-                                    <div className="comp-card__title"><i className="fa-solid fa-network-wired comp-card__icon"></i> Spécifiques parcours DACS</div>
-                                    <ul className={`comp-list ${showMore ? '' : 'is-collapsed'}`}>
-                                        <li>Réseau: TCP/IP, HTTP, DNS, DHCP, SMTP</li>
-                                        <li>Linux: bash, packaging, droits, stockage</li>
-                                        <li>Admin: routage, iptables, SSH, VPN, VLAN</li>
-                                        <li>Serveurs: Apache/Nginx, LDAP, MySQL/PostgreSQL, CI/CD</li>
-                                        <li>Cloud: conteneurs, hyperviseurs, IaaS/PaaS/SaaS</li>
-                                        <li>Infra: supervision, config mgmt, déploiement auto, HA, PRA/PCA</li>
-                                        <li>Libre: Git, outils de projet, licences</li>
-                                        <li>Sécurité: politiques, durcissement, sécurisation</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div className="about-actions">
-                                <button className="about-toggle" onClick={() => setShowMore((v) => !v)}>
-                                    {showMore ? 'Voir moins' : 'Voir plus'}
-                                </button>
+                                    <a href="#competences" className="about-card__cta" data-cursor="pointer">
+                                        Voir le détail des compétences
+                                    </a>
+                                </article>
+                                <article className="about-card">
+                                    <header className="about-card__header">
+                                        <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
+                                        <span>Langues</span>
+                                    </header>
+                                    <p>Je navigue dans des environnements multilingues.</p>
+                                    <div className="lang-badges">
+                                        {languages.map((l) => (
+                                            <span key={l} className="lang-badge">{l}</span>
+                                        ))}
+                                    </div>
+                                </article>
                             </div>
                             <div className="about-links">
                                 <a href="mailto:amin.belalia@example.com" className="about-link">Contact 📧</a>
