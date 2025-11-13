@@ -1,3 +1,6 @@
+:root.light .about-section {
+  background: linear-gradient(135deg, #e4ebf7 0%, #f2f6ff 100%);
+}
 /* src/styles/_light-theme.css */
 :root.light {
   /* Palette claire cohérente avec les tokens globaux */
@@ -130,9 +133,34 @@
 :root.light .about-item,
 :root.light .lang-badge,
 :root.light .comp-card {
-  background: #f5f7fb;
-  border: 1px solid #e2e8f0;
+  background: linear-gradient(145deg, #f5f8ff 0%, #eef2ff 100%);
+  border: 1px solid #d7e3ff;
   color: var(--text-primary);
+}
+:root.light .lang-badge {
+  color: #1f2937;
+  font-weight: 600;
+}
+:root.light .about-link {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e9ff 100%);
+  border: 1px solid #c7d2fe;
+  color: #1f2a44;
+  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
+}
+:root.light .about-link:hover {
+  background: linear-gradient(135deg, #e0e9ff 0%, #eef2ff 100%);
+  color: var(--accent);
+  border-color: #9da4ff;
+}
+:root.light .about-toggle {
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e9ff 100%);
+  border: 1px solid #c7d2fe;
+  color: var(--accent);
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
+}
+:root.light .about-toggle:hover {
+  background: linear-gradient(135deg, #e0e9ff 0%, #eef2ff 100%);
+  border-color: #9da4ff;
 }
 :root.light .about-item__label,
 :root.light .comp-card__title {
