@@ -98,7 +98,7 @@
     border: none !important;
     letter-spacing: 0.06em;
     transition: 0.2s;
-    cursor: pointer !important;
+    cursor: none !important;
     text-decoration: none !important;
     display: inline-block;
 }
