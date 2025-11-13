@@ -14,6 +14,12 @@ export function useTheme() {
   }, [theme]);
 
   const toggleTheme = () => {
+    // Ajoute une classe de transition globale le temps du switch
+    const root = document.documentElement;
+    if (!root.classList.contains('theme-transition')) {
+      root.classList.add('theme-transition');
+      window.setTimeout(() => root.classList.remove('theme-transition'), 450);
+    }
     setTheme((prevTheme) => (prevTheme === 'terminal' ? 'light' : 'terminal'));
   };
 
