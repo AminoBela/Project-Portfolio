@@ -2,50 +2,78 @@
     padding-top: 4.5rem;
     padding-bottom: 2.1rem;
 }
+
+/* Compétences BUT - Cartes */
 .skills-cards-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem;
-    margin: 2.2rem 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin: 2.5rem 0 0 0;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
 }
+
 .skills-card {
     background: linear-gradient(135deg, rgba(102, 255, 153, 0.08), rgba(46, 134, 171, 0.08)), var(--color-surface);
     border: 1px solid rgba(102, 255, 153, 0.12);
-    border-radius: 18px;
-    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.28);
-    padding: 1.6rem 1.4rem;
-    min-width: 260px;
-    max-width: 380px;
-    flex: 1 1 260px;
+    border-radius: 16px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+    padding: 2rem;
+    width: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     font-family: 'Fira Code', monospace;
+    box-sizing: border-box;
 }
+
 .skills-card-title {
     font-weight: 700;
-    font-size: 1.05rem;
-    margin-bottom: 0.6em;
+    font-size: 1.1rem;
+    margin-bottom: 0.8em;
     color: var(--accent);
-    letter-spacing: 0.04em;
+    letter-spacing: 0.02em;
     text-transform: none;
 }
+
 .skills-card-stars {
-    margin-bottom: 0.8em;
-    font-size: 1.1em;
+    margin-bottom: 1em;
+    font-size: 1.2em;
 }
+
 .skills-card-comment {
     font-size: 0.98rem;
     color: var(--text-secondary);
-    margin-bottom: 0.7em;
-    line-height: 1.6;
+    margin-bottom: 1em;
+    line-height: 1.65;
 }
-.skills-card-link { margin-top: auto; }
+
+.skills-card-link { 
+    margin-top: auto;
+    padding-top: 0.75rem;
+}
+
 .skills-card-na {
     color: #888;
     font-size: 0.95em;
 }
-@media (max-width: 800px) {
-    .skills-cards-grid { flex-direction: column; gap: 0.8rem; }
-    .skills-card { min-width: 98vw; max-width: 98vw; }
+
+@media (max-width: 1024px) {
+    .skills-cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.75rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .skills-cards-grid { 
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .skills-card { 
+        padding: 1.75rem;
+    }
 }
