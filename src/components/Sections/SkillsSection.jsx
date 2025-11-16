@@ -65,9 +65,9 @@ function SkillsSection() {
                                 <h3>{category}</h3>
                                 <span>{items.length} technos</span>
                             </header>
-                            <div className="skills-grid-wide">
+                <div className="skills-grid-wide">
                                 {items.map((skill) => (
-                                    <SkillBar key={skill.name} skill={skill} />
+                        <SkillBar key={skill.name} skill={skill} />
                                 ))}
                             </div>
                         </section>

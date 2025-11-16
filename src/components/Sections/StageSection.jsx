@@ -9,10 +9,10 @@ const stageHighlights = [
     'Support technique et accompagnement des équipes'
 ];
 
-function StageSection() {
-    return (
-        <section id="stage" className="terminal-section stage-section">
-            <div className="container">
+                function StageSection() {
+                  return (
+                    <section id="stage" className="terminal-section stage-section">
+                      <div className="container">
                 <div className="stage-wrapper">
                     <header className="stage-header">
                         <h2 className="terminal-command">&gt; Stage</h2>
@@ -25,18 +25,18 @@ function StageSection() {
                     <article className="stage-card">
                         <div className="stage-card__top">
                             <div className="stage-logo" data-cursor="pointer">
-                                <img
-                                    src="https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_ELA_Pav%C3%A9_Rose_-_Baseline.jpg"
+                            <img
+                              src="https://upload.wikimedia.org/wikipedia/commons/7/70/Logo_ELA_Pav%C3%A9_Rose_-_Baseline.jpg"
                                     alt="Logo de l'association ELA"
                                     loading="lazy"
-                                />
+                            />
                             </div>
                             <div className="stage-meta">
                                 <span className="stage-organization">Association ELA</span>
                                 <span className="stage-role">Développeur — Stage de 8 semaines (2025)</span>
                             </div>
                             <span className="stage-tag">VBA & Automatisation</span>
-                        </div>
+                          </div>
 
                         <div className="stage-body">
                             <p className="stage-description">
@@ -49,11 +49,11 @@ function StageSection() {
                                 <div>
                                     <dt>Technologies</dt>
                                     <dd>VBA, Excel, macros avancées, Power Query</dd>
-                                </div>
+                          </div>
                                 <div>
                                     <dt>Livrables</dt>
                                     <dd>Scripts VBA modulaires, génération de PDF, guide de maintenance</dd>
-                                </div>
+                          </div>
                             </dl>
 
                             <ul className="stage-highlights">
@@ -64,12 +64,12 @@ function StageSection() {
                                     </li>
                                 ))}
                             </ul>
-                        </div>
+                          </div>
                     </article>
-                </div>
-            </div>
-        </section>
-    );
-}
+                        </div>
+                      </div>
+                    </section>
+                  );
+                }
 
-export default StageSection;
+                export default StageSection;

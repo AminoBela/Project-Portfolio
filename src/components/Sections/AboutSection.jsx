@@ -29,7 +29,7 @@ export default function AboutSection() {
                             <span className="about-prompt">&gt;_</span>
                             <span className="about-hi">Salut, moi c'est Amin&nbsp;!</span>
                             <div className="about-summary">
-                                <p className="about-desc">
+                            <p className="about-desc">
                                     Étudiant en BUT Informatique (parcours DACS), je conçois des applications modernes
                                     et je fais vivre l’infrastructure qui les porte. J’adore assembler design, dev, automatisation
                                     et sécurité pour livrer des solutions fiables.

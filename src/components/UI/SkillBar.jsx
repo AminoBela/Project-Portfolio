@@ -31,7 +31,7 @@ export default function SkillBar({ skill }) {
                             <span className="skill-card__badge">{skill.category}</span>
                         )}
                     </div>
-                </div>
+            </div>
                 <span className={`skill-card__level skill-card__level--${levelLabel.toLowerCase().replace(' ', '-')}`}>
                     {levelLabel}
                 </span>
