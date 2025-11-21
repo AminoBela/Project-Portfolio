@@ -1,80 +1,91 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-export default function CustomCursor() {
-    const cursorRef = useRef(null);
+const CustomCursor = () => {
+    const cursorDotRef = useRef(null);
+    const cursorOutlineRef = useRef(null);
+    const requestRef = useRef(null);
+    const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+    const [isPointer, setIsPointer] = useState(false);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
-        const cursorEl = cursorRef.current;
-        const isTouchDevice = () =>
-            window.matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
-
-        if (!cursorEl || isTouchDevice()) {
+        // Détection robuste des appareils tactiles
+        if (window.matchMedia("(pointer: coarse)").matches) {
+            setIsTouchDevice(true);
             return;
         }
 
-        let lastX = 0;
-        let lastY = 0;
-        let isHovering = false;
-
-        const updateTransform = () => {
-            const offset = isHovering ? 18 : 12;
-            const scale = isHovering ? 1.75 : 1;
-            cursorEl.style.transform = `translate3d(${lastX - offset}px, ${lastY - offset}px, 0) scale(${scale})`;
+        const handleMouseMove = (e) => {
+            setMousePosition({ x: e.clientX, y: e.clientY });
         };
 
-        const moveCursor = (event) => {
-            lastX = event.clientX;
-            lastY = event.clientY;
-            updateTransform();
+        const handleMouseOver = (e) => {
+            if (e.target.closest('a, button, [data-cursor="pointer"]')) {
+                setIsPointer(true);
+            }
         };
 
-        const handleEnter = () => {
-            isHovering = true;
-            updateTransform();
+        const handleMouseOut = (e) => {
+            if (e.target.closest('a, button, [data-cursor="pointer"]')) {
+                setIsPointer(false);
+            }
         };
 
-        const handleLeave = () => {
-            isHovering = false;
-            updateTransform();
-        };
-
-        const interactiveSelectors = 'a, button, .button, [data-cursor="pointer"]';
-        const interactiveElements = document.querySelectorAll(interactiveSelectors);
-
-        interactiveElements.forEach((element) => {
-            element.addEventListener('mouseenter', handleEnter);
-            element.addEventListener('mouseleave', handleLeave);
-        });
-
-        window.addEventListener('mousemove', moveCursor, { passive: true });
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseover', handleMouseOver);
+        document.addEventListener('mouseout', handleMouseOut);
 
         return () => {
-            window.removeEventListener('mousemove', moveCursor);
-            interactiveElements.forEach((element) => {
-                element.removeEventListener('mouseenter', handleEnter);
-                element.removeEventListener('mouseleave', handleLeave);
-            });
+            document.removeEventListener('mousemove', handleMouseMove);
+            document.removeEventListener('mouseover', handleMouseOver);
+            document.removeEventListener('mouseout', handleMouseOut);
         };
     }, []);
 
-    return (
-        <div
-            ref={cursorRef}
-            className="custom-cursor"
-            style={{
-                width: '24px',
-                height: '24px',
-                background: 'radial-gradient(circle, rgba(102,255,153,0.9) 0%, rgba(46,134,171,0.3) 90%)',
-                border: '1px solid rgba(255,255,255,0.25)',
-                boxShadow: '0 0 16px rgba(102,255,153,0.45), 0 0 22px rgba(46,134,171,0.35)',
-                borderRadius: '50%',
-                pointerEvents: 'none',
-                mixBlendMode: 'difference',
-                zIndex: '9999',
-                transition: 'transform 0.018s linear',
-                willChange: 'transform',
-            }}
-        />
-    );
-}
+    useEffect(() => {
+        if (isTouchDevice) return;
 
+        let lastX = mousePosition.x;
+        let lastY = mousePosition.y;
+
+        const animate = () => {
+            // Lissage du mouvement
+            lastX += (mousePosition.x - lastX) * 0.1;
+            lastY += (mousePosition.y - lastY) * 0.1;
+
+            if (cursorDotRef.current) {
+                cursorDotRef.current.style.transform = `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`;
+            }
+            if (cursorOutlineRef.current) {
+                cursorOutlineRef.current.style.transform = `translate3d(${lastX}px, ${lastY}px, 0)`;
+            }
+            requestRef.current = requestAnimationFrame(animate);
+        };
+
+        requestRef.current = requestAnimationFrame(animate);
+
+        return () => {
+            cancelAnimationFrame(requestRef.current);
+        };
+    }, [mousePosition, isTouchDevice]);
+
+    // Ne rend absolument rien sur les appareils tactiles
+    if (isTouchDevice) {
+        return null;
+    }
+
+    return (
+        <>
+            <div
+                ref={cursorOutlineRef}
+                className={`cursor-outline ${isPointer ? 'is-pointer' : ''}`}
+            />
+            <div
+                ref={cursorDotRef}
+                className={`cursor-dot ${isPointer ? 'is-pointer' : ''}`}
+            />
+        </>
+    );
+};
+
+export default CustomCursor;

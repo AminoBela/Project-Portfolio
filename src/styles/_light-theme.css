@@ -1,4 +1,4 @@
-/* --- Thème Clair : Refonte Complète et Spécifique --- */
+/* --- Thème Clair : Refonte Finale et Définitive --- */
 
 /* 1. Palette de couleurs à fort contraste */
 :root.light {
@@ -11,28 +11,28 @@
   --button-text: #ffffff;
 }
 
-/* 2. Arrière-plan global */
+/* 2. Arrière-plan global épuré */
 :root.light .site-background {
   background: var(--color-background);
 }
 :root.light .site-background .hero-grid,
 :root.light .site-background .scanline,
 :root.light .site-background .orb {
-  display: none; /* On cache les effets pour un look épuré */
+  display: none;
 }
 
-/* 3. Style "Feuille de Papier" pour tous les conteneurs */
+/* 3. Style "Feuille de Papier" pour TOUS les conteneurs */
 :root.light .main-nav,
 :root.light .footer,
 :root.light .pc-screen-big,
 :root.light .terminal-window,
 :root.light .about-terminal,
-:root.light .about-metric,
-:root.light .about-card,
-:root.light .lang-badge,
 :root.light .project-card,
-:root.light .skills-cards-grid .skills-card, /* Cible spécifique pour les cartes BUT */
-:root.light .skills-grid-wide .skill-card   /* Cible spécifique pour les cartes Technologies */
+:root.light .skills-cards-grid .skills-card,
+:root.light .skills-grid-wide .skill-card,
+:root.light .about-metric, /* Ajout pour la cohérence */
+:root.light .about-card,   /* Ajout pour la cohérence */
+:root.light .lang-badge    /* Ajout pour la cohérence */
 {
   background: var(--color-surface);
   border: 1px solid #dee2e6;
@@ -46,7 +46,10 @@
 :root.light .pc-screen-big:hover,
 :root.light .about-terminal:hover,
 :root.light .skills-card:hover,
-:root.light .project-card:hover {
+:root.light .project-card:hover,
+:root.light .about-metric:hover,
+:root.light .about-card:hover,
+:root.light .lang-badge:hover {
   border-color: var(--accent);
 }
 
@@ -93,7 +96,9 @@
 :root.light .terminal-prompt, 
 :root.light .about-highlight,
 :root.light .main-nav__logo,
-:root.light .footer__social-link:hover {
+:root.light .footer__social-link:hover,
+:root.light .about-card__header,
+:root.light .about-metric i {
   color: var(--accent);
 }
 
@@ -112,7 +117,10 @@
 :root.light .footer__copy,
 :root.light .tech-name,
 :root.light .main-nav__link,
-:root.light .footer__social-link {
+:root.light .footer__social-link,
+:root.light .about-metric__label,
+:root.light .about-card p,
+:root.light .about-card ul {
   color: var(--text-secondary);
 }
 

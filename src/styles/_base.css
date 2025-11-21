@@ -1,4 +1,13 @@
 /* src/styles/_base.css */
+
+/* 1. Masquage définitif et forcé du curseur système */
+html {
+  cursor: none !important;
+}
+body, a, button, [data-cursor="pointer"] {
+  cursor: none !important;
+}
+
 *,
 *::before,
 *::after {
@@ -10,7 +19,7 @@
 body {
   font-family: var(--font-sans);
   color: var(--color-text);
-  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%); /* Fond de transition */
+  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,5 +35,48 @@ ul {
 
 button {
   font-family: inherit;
-  cursor: pointer;
+}
+
+/* 2. Design du Curseur Personnalisé */
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border-radius: 50%;
+  z-index: 9999;
+  transition: opacity 0.3s ease, width 0.4s ease, height 0.4s ease, border-color 0.3s ease;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background-color: var(--accent);
+}
+
+.cursor-outline {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--accent);
+  opacity: 0.5;
+}
+
+.cursor-dot.is-pointer {
+  opacity: 0;
+}
+
+.cursor-outline.is-pointer {
+  width: 60px;
+  height: 60px;
+  opacity: 0.8;
+}
+
+/* 3. Désactivation totale sur mobile via CSS */
+@media (max-width: 768px) {
+  .cursor-dot,
+  .cursor-outline {
+    display: none !important;
+  }
 }
