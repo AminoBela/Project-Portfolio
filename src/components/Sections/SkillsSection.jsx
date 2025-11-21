@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { vutSkills } from '../../data/vutSkills';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
@@ -28,11 +28,50 @@ function SkillsSection() {
             }));
     }, []);
 
+    const [activeTab, setActiveTab] = useState(groupedSkills[0]?.category);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const gridRef = useRef(null); // Ref pour la grille des compétences BUT
+
+    const activeSkills = useMemo(() => {
+        return groupedSkills.find(group => group.category === activeTab)?.items || [];
+    }, [activeTab, groupedSkills]);
+
+    useEffect(() => {
+        setIsAnimating(true);
+        const timer = setTimeout(() => setIsAnimating(false), 500);
+        return () => clearTimeout(timer);
+    }, [activeTab]);
+
+    // Effet de survol lumineux pour les cartes de compétences BUT
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            const cards = gridRef.current.querySelectorAll('.skills-card');
+            cards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--x', `${x}px`);
+                card.style.setProperty('--y', `${y}px`);
+            });
+        };
+
+        const currentGrid = gridRef.current;
+        if (currentGrid) {
+            currentGrid.addEventListener('mousemove', handleMouseMove);
+        }
+
+        return () => {
+            if (currentGrid) {
+                currentGrid.removeEventListener('mousemove', handleMouseMove);
+            }
+        };
+    }, []); // Le tableau de dépendances est vide pour n'attacher l'écouteur qu'une seule fois
+
     return (
         <section id="competences" className="skills-section terminal-section">
             <div className="container">
                 <h2 className="terminal-command">&gt; Compétences BUT</h2>
-                <div className="skills-cards-grid">
+                <div className="skills-cards-grid" ref={gridRef}>
                     {vutSkills.map((skill, idx) => (
                         <div key={idx} className="skills-card">
                             <div className="skills-card-title">{skill.name}</div>
@@ -58,19 +97,30 @@ function SkillsSection() {
                     <span><span className="legend-dot legend-dot--confirmed" />Confirmé</span>
                     <span><span className="legend-dot legend-dot--progress" />En progression</span>
                 </div>
-                <div className="skills-groups">
-                    {groupedSkills.map(({ category, items }) => (
-                        <section key={category} className="skills-group">
-                            <header className="skills-group__header">
-                                <h3>{category}</h3>
-                                <span>{items.length} technos</span>
-                            </header>
-                            <div className="skills-grid-wide">
-                                {items.map((skill) => (
-                                    <SkillBar key={skill.name} skill={skill} />
-                                ))}
-                            </div>
-                        </section>
+
+                <div className="skills-tabs">
+                    {groupedSkills.map(({ category }) => (
+                        <button
+                            key={category}
+                            className={`skills-tab ${activeTab === category ? 'skills-tab--active' : ''}`}
+                            onClick={() => setActiveTab(category)}
+                        >
+                            {category}
+                        </button>
+                    ))}
+                </div>
+
+                <div className="skills-grid-wide">
+                    {activeSkills.map((skill, index) => (
+                        <SkillBar
+                            key={skill.name}
+                            skill={skill}
+                            style={{
+                                animation: isAnimating
+                                    ? `fadeInUp 0.5s ${index * 0.05}s both`
+                                    : 'none'
+                            }}
+                        />
                     ))}
                 </div>
             </div>

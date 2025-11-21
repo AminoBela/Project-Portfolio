@@ -90,4 +90,4 @@ export const skills = [
     category: 'Data & SGBD',
     description: 'Modélisation relationnelle, requêtes optimisées, transactions'
   }
-];
+]; 

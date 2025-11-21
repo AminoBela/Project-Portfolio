@@ -1,216 +1,124 @@
-:root.light .about-section {
-  background: linear-gradient(135deg, #e4ebf7 0%, #f2f6ff 100%);
-}
-/* src/styles/_light-theme.css */
+/* --- Thème Clair : Refonte Complète et Spécifique --- */
+
+/* 1. Palette de couleurs à fort contraste */
 :root.light {
-  /* Palette claire cohérente avec les tokens globaux */
-  --bg-primary: #eef1f5;
-  --bg-secondary: #f9fafc;
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --accent: #3368e9;
-  --accent-hover: #2853bc;
-  --color-background: var(--bg-primary);
-  --color-surface: var(--bg-secondary);
-  --color-text: var(--text-primary);
-  --color-text-muted: #5f6a7d;
-  --color-border: #cbd5e1;
-  --nav-bg: rgba(255, 255, 255, 0.85);
-  --button-text: #0b1220;
-  --progress-bg: #e5e7eb;
-  --progress-fill: var(--accent);
-  --nav-link-hover-bg: rgba(91, 124, 250, 0.1);
-  --icon-link-bg: rgba(91, 124, 250, 0.12);
+  --color-background: #f8f9fa;
+  --color-surface: #ffffff;
+  --color-text: #212529;
+  --text-secondary: #6c757d;
+  --accent: #007bff;
+  --accent-dark: #0056b3;
+  --button-text: #ffffff;
 }
 
-/* Amélioration de la lisibilité en mode clair sur les éléments "terminal" */
-:root.light .terminal-command {
-  color: var(--accent);
+/* 2. Arrière-plan global */
+:root.light .site-background {
+  background: var(--color-background);
 }
-:root.light .terminal-text {
-  color: var(--text-primary);
-}
-:root.light .terminal-body {
-  color: var(--text-primary);
-}
-
-/* Accueil: rendre les gros boutons très lisibles en clair */
-:root.light .big-btn {
-  background: linear-gradient(90deg, var(--accent) 70%, #ef7c39 100%) !important;
-  color: #0b1220 !important;
-  border-color: rgba(0,0,0,0.06) !important;
-  box-shadow: 0 12px 22px rgba(51,104,233,0.18), 0 8px 18px rgba(239,124,57,0.16) !important;
-  text-shadow: none !important;
-}
-:root.light .big-btn:hover {
-  background: linear-gradient(90deg, #ef7c39 65%, var(--accent) 100%) !important;
-  border-color: rgba(0,0,0,0.08) !important;
+:root.light .site-background .hero-grid,
+:root.light .site-background .scanline,
+:root.light .site-background .orb {
+  display: none; /* On cache les effets pour un look épuré */
 }
 
-/* Projets: fond clair et contraste renforcé en clair */
-:root.light .project-card {
-  background: #fdfefe;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
-}
-:root.light .project-card::before {
-  background: radial-gradient(circle at top right, rgba(51,104,233,0.10), transparent 55%);
-}
-:root.light .project-card__title {
-  color: var(--text-primary);
-}
-:root.light .project-card__description {
-  color: #3f4a5a;
-}
-:root.light .project-card__meta {
-  color: #475569;
-}
-:root.light .tag {
-  background: #eaf0ff;
-  border-color: #dbeafe;
-  color: var(--accent);
-}
-
-/* Terminal window / Accueil en clair */
-:root.light .pc-screen-big {
-  background: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 22px 45px rgba(2, 6, 23, 0.07), inset 0 0 0 1px rgba(0,0,0,0.04);
-}
-:root.light .screen-glow {
-  box-shadow: 0 0 44px 14px rgba(51,104,233,0.15), 0 0 18px rgba(239,124,57,0.12);
-}
-:root.light .terminal-window {
-  background: rgba(255,255,255,0.98);
-  box-shadow: 0 10px 22px rgba(2, 6, 23, 0.06);
-}
-:root.light .terminal-title,
-:root.light .terminal-prompt {
-  color: var(--accent);
-  text-shadow: none;
-}
-:root.light .terminal-text,
-:root.light .terminal-desc,
-:root.light .tech-name {
-  color: var(--text-primary);
-}
-:root.light .tech-badge {
-  background: #f5f7fb;
-  border-color: #e2e8f0;
-  color: var(--text-primary);
-}
-
-/* Skills en clair */
-:root.light .skills-card {
-  background: #fdfefd;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
-}
-:root.light .skills-legend {
-  color: #475569;
-}
-:root.light .skills-group {
-  background: linear-gradient(135deg, #f4f7ff 0%, #eef3ff 100%);
-  border: 1px solid #dae4ff;
-  box-shadow: 0 18px 34px rgba(15, 23, 42, 0.12);
-}
-:root.light .skill-card {
-  background: linear-gradient(145deg, #fdfefe 0%, #f4f7ff 100%);
-  border: 1px solid #dae4ff;
-  box-shadow: none;
-}
-:root.light .skill-card__badge {
-  background: rgba(51, 104, 233, 0.12);
-  border-color: rgba(51, 104, 233, 0.2);
-  color: #2746d8;
-}
-:root.light .skill-card__level {
-  border-color: rgba(51, 104, 233, 0.25);
-  color: #2746d8;
-}
-:root.light .skill-card__description {
-  color: #475569;
-}
-:root.light .skill-bar-track {
-  background: #e2e8f0;
-  border-color: #cbd5e1;
-}
-:root.light .skill-bar-fill {
-  background: linear-gradient(90deg, rgba(51,104,233,0.22) 0%, var(--accent) 92%);
-  box-shadow: none;
-}
-:root.light .skill-bar-indicator {
-  background: #fdfefe;
-  border-color: #cbd5e1;
-  color: var(--accent);
-}
-
-/* About en clair */
-:root.light .about-terminal {
-  background: #fdfefe;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
-}
-:root.light .about-item,
+/* 3. Style "Feuille de Papier" pour tous les conteneurs */
+:root.light .main-nav,
+:root.light .footer,
+:root.light .pc-screen-big,
+:root.light .terminal-window,
+:root.light .about-terminal,
+:root.light .about-metric,
+:root.light .about-card,
 :root.light .lang-badge,
-:root.light .comp-card {
-  background: linear-gradient(145deg, #f5f8ff 0%, #eef2ff 100%);
-  border: 1px solid #d7e3ff;
-  color: var(--text-primary);
-}
-:root.light .lang-badge {
-  color: #1f2937;
-  font-weight: 600;
-}
-:root.light .about-link {
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e9ff 100%);
-  border: 1px solid #c7d2fe;
-  color: #1f2a44;
-  box-shadow: 0 10px 22px rgba(15, 23, 42, 0.12);
-}
-:root.light .about-link:hover {
-  background: linear-gradient(135deg, #e0e9ff 0%, #eef2ff 100%);
-  color: var(--accent);
-  border-color: #9da4ff;
-}
-:root.light .about-toggle {
-  background: linear-gradient(135deg, #eef2ff 0%, #e0e9ff 100%);
-  border: 1px solid #c7d2fe;
-  color: var(--accent);
-  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.1);
-}
-:root.light .about-toggle:hover {
-  background: linear-gradient(135deg, #e0e9ff 0%, #eef2ff 100%);
-  border-color: #9da4ff;
-}
-:root.light .about-item__label,
-:root.light .comp-card__title {
-  color: var(--accent);
-}
-:root.light .about-item__value,
-:root.light .comp-list {
-  color: var(--text-primary);
+:root.light .project-card,
+:root.light .skills-cards-grid .skills-card, /* Cible spécifique pour les cartes BUT */
+:root.light .skills-grid-wide .skill-card   /* Cible spécifique pour les cartes Technologies */
+{
+  background: var(--color-surface);
+  border: 1px solid #dee2e6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  backdrop-filter: none;
+  color: var(--color-text);
 }
 
-/* Stage en clair */
-:root.light .stage-card {
-  background: #fdfefe;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 14px 30px rgba(2, 6, 23, 0.08);
+:root.light .main-nav:hover,
+:root.light .footer:hover,
+:root.light .pc-screen-big:hover,
+:root.light .about-terminal:hover,
+:root.light .skills-card:hover,
+:root.light .project-card:hover {
+  border-color: var(--accent);
 }
-:root.light .stage-description,
-:root.light .stage-infos dd,
-:root.light .stage-highlight {
-  color: var(--text-primary);
+
+/* 4. Correction des Boutons */
+:root.light .button {
+  background: #e9ecef;
+  color: var(--color-text);
+  border: 1px solid #ced4da;
 }
-:root.light .stage-tag {
-  background: rgba(51,104,233,0.08);
-  border-color: rgba(51,104,233,0.35);
+:root.light .button:hover {
+  border-color: var(--accent);
+  background: #dee2e6;
+}
+:root.light .button.button--primary {
+  background: var(--accent);
+  color: var(--button-text);
+  border-color: transparent;
+}
+:root.light .button.button--primary:hover {
+  background: var(--accent-dark);
+}
+:root.light .button.button--secondary {
+  background: transparent;
+  border-color: var(--accent);
+  color: var(--accent);
+}
+:root.light .button.button--secondary:hover {
+  background: rgba(0, 123, 255, 0.05);
+  color: var(--accent-dark);
+}
+
+/* 5. Correction des Badges de Technologie de l'Accueil */
+:root.light .tech-badge {
+  background: #f1f3f5;
+  border: 1px solid #dee2e6;
+  box-shadow: none;
+}
+:root.light .tech-badge:hover {
+  border-color: var(--accent);
+}
+
+/* 6. Correction des textes et couleurs spécifiques */
+:root.light .terminal-title, 
+:root.light .terminal-prompt, 
+:root.light .about-highlight,
+:root.light .main-nav__logo,
+:root.light .footer__social-link:hover {
   color: var(--accent);
 }
 
-/* Halo terminal-section plus subtil en clair */
-:root.light .terminal-section::before {
-  background: linear-gradient(135deg, rgba(51, 104, 233, 0.06), rgba(16, 24, 32, 0.03));
-  filter: blur(28px);
-  opacity: 0.6;
+:root.light .main-nav__link:hover, 
+:root.light .main-nav__link.is-active {
+  background-color: rgba(0, 123, 255, 0.1);
+  color: var(--accent);
+}
+
+:root.light .typed-text {
+  color: #d9480f;
+}
+:root.light .terminal-desc, 
+:root.light .about-desc, 
+:root.light .skills-card__level, 
+:root.light .footer__copy,
+:root.light .tech-name,
+:root.light .main-nav__link,
+:root.light .footer__social-link {
+  color: var(--text-secondary);
+}
+
+:root.light .terminal-command {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--color-text) 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }

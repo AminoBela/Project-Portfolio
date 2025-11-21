@@ -11,11 +11,10 @@ export function useScrollspy() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
-            // setIsMenuOpen(false); // Tu peux commenter ou gérer ça dans Navigation.jsx si tu veux que le menu ne se ferme pas automatiquement sur mobile
           }
         });
       },
-      { threshold: 0.5 } // Peut ajuster si nécessaire
+      { threshold: 0.2 } // Seuil réduit pour une meilleure détection
     );
 
     sections.forEach((section) => observer.observe(section));

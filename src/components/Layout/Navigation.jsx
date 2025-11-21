@@ -1,16 +1,18 @@
 import React from 'react';
-// import { motion } from 'framer-motion'; // Pas besoin si motion n'est plus utilisé ici
 import ThemeToggleButton from './ThemeToggleButton';
-// Retire l'import de menuVariants
 
-function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme, onNavLinkClick }) {
+function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme, isScrolled, onNavLinkClick }) {
   return (
     <div className="container">
-      <h1 className="main-nav__logo">Amin Belalia</h1>
+      <a href="#accueil" className="main-nav__logo-link">
+        <h1 className="main-nav__logo">
+          <span className="logo-full">Amin Belalia</span>
+          <span className="logo-compact">AB</span>
+        </h1>
+      </a>
       <button className="main-nav__toggle" onClick={toggleMenu}>
         <i className={isMenuOpen ? 'fas fa-times' : 'fas fa-bars'}></i>
       </button>
-      {/* C'est ici que nous avons retiré motion.ul pour laisser le CSS gérer l'affichage */}
       <ul className={`main-nav__list ${isMenuOpen ? 'active' : ''}`}>
         <li>
           <a
@@ -64,7 +66,7 @@ function Navigation({ activeSection, isMenuOpen, toggleMenu, toggleTheme, theme,
         </li>
         <li>
           <a
-            href="https://linkedin.com/in/amin-belalia-bendjafar-8b340a227" // Double vérifié le LinkedIn
+            href="https://linkedin.com/in/amin-belalia-bendjafar-8b340a227"
             target="_blank"
             rel="noopener noreferrer"
             className="main-nav__icon-link"

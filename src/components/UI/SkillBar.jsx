@@ -8,13 +8,13 @@ function getLevelLabel(level) {
     return 'En progression';
 }
 
-export default function SkillBar({ skill }) {
+export default function SkillBar({ skill, style }) { // Ajout de la prop "style"
     const level = Math.max(0, Math.min(skill.level ?? 0, 100));
     const indicatorPosition = `${level}%`;
     const levelLabel = getLevelLabel(level);
 
     return (
-        <article className="skill-card">
+        <article className="skill-card" style={style}> {/* Application de la prop "style" */}
             <header className="skill-card__header">
                 <div className="skill-card__identity">
                     {skill.icon && (
@@ -51,4 +51,3 @@ export default function SkillBar({ skill }) {
         </article>
     );
 }
-

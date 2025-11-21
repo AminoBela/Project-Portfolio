@@ -1,106 +1,30 @@
-/* Reset moderne */
+/* src/styles/_base.css */
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 16px;
-    scroll-behavior: smooth;
-    height: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: var(--font-primary);
-    font-size: var(--text-base);
-    line-height: 1.6;
-    color: var(--color-text);
-    background-color: var(--color-background);
-    min-height: 100vh;
-    cursor: none;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-
-/* Transition douce lors du changement de thème */
-:root.theme-transition *,
-:root.theme-transition *::before,
-:root.theme-transition *::after {
-    transition: background-color var(--transition-normal),
-                color var(--transition-normal),
-                border-color var(--transition-normal),
-                box-shadow var(--transition-normal),
-                fill var(--transition-normal),
-                stroke var(--transition-normal),
-                filter var(--transition-normal) !important;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%); /* Fond de transition */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-    color: inherit;
-    text-decoration: none;
-    cursor: none;
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
 }
 
 button {
-    font-family: inherit;
-    cursor: none;
-}
-
-/* Layout containers */
-.container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 var(--space-4);
-}
-
-section {
-    margin: var(--space-8) 0;
-    padding: var(--space-4) 0;
-}
-
-/* Curseur personnalisé */
-.custom-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: var(--cursor-size);
-    height: var(--cursor-size);
-    background: var(--cursor-color);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: var(--z-cursor);
-    mix-blend-mode: difference;
-    transition: transform var(--transition-fast);
-}
-
-/* Media Queries */
-@media (max-width: 1200px) {
-    .container {
-        padding: 0 var(--space-3);
-    }
-}
-
-@media (max-width: 768px) {
-    html {
-        font-size: 14px;
-    }
-
-    section {
-        margin: var(--space-6) 0;
-        padding: var(--space-3) 0;
-    }
-}
-
-@media (max-width: 480px) {
-    html {
-        font-size: 12px;
-    }
-
-    .container {
-        padding: 0 var(--space-2);
-    }
+  font-family: inherit;
+  cursor: pointer;
 }

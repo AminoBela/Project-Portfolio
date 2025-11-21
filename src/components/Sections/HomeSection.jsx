@@ -22,14 +22,8 @@ export default function HomeSection() {
     }, []);
 
     return (
-        <section id="accueil" className="home-section terminal-section">
-            <div className="hero-bg">
-                <div className="orb orb--1" />
-                <div className="orb orb--2" />
-                <div className="orb orb--3" />
-                <div className="hero-grid" />
-                <div className="scanline" />
-            </div>
+        <section id="accueil" className="home-section">
+            {/* Le div "hero-bg" a été supprimé pour éviter la duplication du fond */}
             <div className={`pc-screen-big ${isBooted ? 'is-active' : ''}`}>
                 <div className="screen-glow"></div>
                 <div className="terminal-window">
@@ -47,7 +41,7 @@ export default function HomeSection() {
               Étudiant en BUT Informatique – Déploiement d'Applications Communicantes et Sécurisées
             </span>
                         <div className="home-btn-group">
-                            <Button href="#projets" primary className="big-btn" type="button">&gt; Voir mes projets</Button>
+                            <Button href="#projets" primary className="big-btn" type="button">&gt; Visualiser tous mes projets</Button>
                             <Button href="#about" secondary className="big-btn" type="button">&gt; À propos de moi</Button>
                             <Button href={cvPdf} download className="big-btn" type="button">&gt; Télécharger mon CV</Button>
                         </div>
