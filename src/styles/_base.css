@@ -1,13 +1,6 @@
 /* src/styles/_base.css */
 
-/* 1. Masquage définitif et forcé du curseur système */
-html {
-  cursor: none !important;
-}
-body, a, button, [data-cursor="pointer"] {
-  cursor: none !important;
-}
-
+/* 1. Reset moderne */
 *,
 *::before,
 *::after {
@@ -16,12 +9,29 @@ body, a, button, [data-cursor="pointer"] {
   padding: 0;
 }
 
+/* 2. Styles de base HTML et Body */
+html {
+  font-size: 16px; /* Taille de police de base pour le calcul des rem */
+  scroll-behavior: smooth;
+  height: 100%;
+  cursor: none !important; /* Masquage définitif et forcé du curseur système */
+}
+
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-primary);
+  font-size: var(--text-base);
+  line-height: 1.6;
   color: var(--color-text);
-  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%);
+  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%); /* Fond global */
+  min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  cursor: none !important; /* Masquage définitif et forcé du curseur système */
+}
+
+/* Styles pour les éléments interactifs */
+a, button, [data-cursor="pointer"] {
+  cursor: none !important;
 }
 
 a {
@@ -37,7 +47,7 @@ button {
   font-family: inherit;
 }
 
-/* 2. Design du Curseur Personnalisé */
+/* 3. Design du Curseur Personnalisé */
 .cursor-dot,
 .cursor-outline {
   position: fixed;
@@ -46,7 +56,7 @@ button {
   transform: translate(-50%, -50%);
   pointer-events: none;
   border-radius: 50%;
-  z-index: 9999;
+  z-index: var(--z-cursor); /* Utilisation de la variable z-index */
   transition: opacity 0.3s ease, width 0.4s ease, height 0.4s ease, border-color 0.3s ease;
 }
 
@@ -73,7 +83,7 @@ button {
   opacity: 0.8;
 }
 
-/* 3. Désactivation totale sur mobile via CSS */
+/* 4. Désactivation totale du curseur sur mobile via CSS */
 @media (max-width: 768px) {
   .cursor-dot,
   .cursor-outline {

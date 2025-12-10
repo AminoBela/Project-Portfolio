@@ -1,5 +1,5 @@
 import React from 'react';
-import './StageSection.css';
+import '../../styles/components.css';
 
 const stageHighlights = [
     'Automatisation complète du suivi des adhérents et des dons',

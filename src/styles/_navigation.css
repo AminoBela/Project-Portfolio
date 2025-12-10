@@ -4,67 +4,71 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: var(--nav-bg);
-  z-index: 1000; /* Toujours au-dessus */
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--border-color);
+  z-index: 1000;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(102, 255, 153, 0.1);
+  transition: height 0.3s ease, background-color 0.3s ease;
 }
-
 .main-nav .container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 70px;
+  transition: height 0.3s ease;
+}
+.main-nav--scrolled .container {
+  height: 50px; /* Hauteur ultra-compacte */
+}
+
+.main-nav__logo-link {
+  white-space: nowrap;
 }
 
 .main-nav__logo {
-  color: var(--accent);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+  position: relative;
+}
+.main-nav__logo span {
+  display: inline-block;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.logo-compact {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  transform: translateY(10px);
+}
+.main-nav--scrolled .logo-full {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+.main-nav--scrolled .logo-compact {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .main-nav__list {
-  display: flex; /* Toujours flex sur desktop */
-  gap: 1.5rem;
+  display: flex;
   align-items: center;
-  list-style: none;
-
-  /* --- STYLES PAR DÉFAUT POUR DESKTOP (toujours visibles et fonctionnels) --- */
-  opacity: 1; /* C'est la clé ! Doit être 1 sur desktop */
-  pointer-events: auto; /* Clicable sur desktop */
-  max-height: none; /* Pas de max-height sur desktop */
-  overflow: visible; /* Pas de overflow caché sur desktop */
-  transform: none; /* Pas de transformation qui le cache */
-  transition: none; /* Pas de transition CSS ici, Framer Motion gère si utilisé ailleurs */
+  gap: 0.5rem;
 }
-
 .main-nav__link {
-  color: var(--text-primary);
-  text-decoration: none;
-  font-weight: 600;
-  position: relative;
-  padding: 0.25rem 0.5rem;
-  transition: color 0.3s ease, background-color 0.3s ease;
-  border-radius: 0.25rem;
-  cursor: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: lowercase;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: color 0.2s, background-color 0.2s;
 }
-
-.main-nav__link::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -2px;
-  left: 0;
-  background-color: var(--accent);
-  transition: width 0.3s ease;
-}
-
-.main-nav__link:hover, .main-nav__link.is-active {
-  color: var(--accent);
-  background-color: var(--nav-link-hover-bg);
-}
-
-.main-nav__link:hover::after, .main-nav__link.is-active::after {
-  width: 100%;
+.main-nav__link:hover,
+.main-nav__link.is-active {
+  color: var(--color-text);
+  background-color: rgba(102, 255, 153, 0.1);
 }
 
 .main-nav__icon-link {

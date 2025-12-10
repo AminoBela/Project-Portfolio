@@ -38,9 +38,15 @@
 
 /* --- Layout Général --- */
 .container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--space-4);
+}
+
+section {
+  margin: var(--space-8) 0;
+  padding: var(--space-4) 0;
 }
 
 /* --- Titres de section --- */
@@ -55,79 +61,6 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-}
-
-/* --- Barre de Navigation --- */
-.main-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-  background: rgba(15, 23, 42, 0.75);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(102, 255, 153, 0.1);
-  transition: height 0.3s ease, background-color 0.3s ease;
-}
-.main-nav .container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 70px;
-  transition: height 0.3s ease;
-}
-.main-nav--scrolled .container {
-  height: 50px; /* Hauteur ultra-compacte */
-}
-
-.main-nav__logo-link {
-  white-space: nowrap;
-}
-
-.main-nav__logo {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: var(--color-text);
-  letter-spacing: 0.02em;
-  position: relative;
-}
-.main-nav__logo span {
-  display: inline-block;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-.logo-compact {
-  position: absolute;
-  left: 0;
-  opacity: 0;
-  transform: translateY(10px);
-}
-.main-nav--scrolled .logo-full {
-  opacity: 0;
-  transform: translateY(-10px);
-}
-.main-nav--scrolled .logo-compact {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.main-nav__list {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.main-nav__link {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  font-weight: 500;
-  text-transform: lowercase;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  transition: color 0.2s, background-color 0.2s;
-}
-.main-nav__link:hover,
-.main-nav__link.is-active {
-  color: var(--color-text);
-  background-color: rgba(102, 255, 153, 0.1);
 }
 
 /* --- Footer --- */
@@ -163,9 +96,22 @@
   transform: translateY(-3px);
 }
 
+@media (max-width: 1200px) {
+    .container {
+        padding: 0 var(--space-3);
+    }
+}
+
 @media (max-width: 768px) {
-  .main-nav__toggle { display: block; }
-  .main-nav__list { display: none; }
-  .main-nav__list.active { display: flex; }
-  .footer__inner { flex-direction: column; text-align: center; }
+    section {
+        margin: var(--space-6) 0;
+        padding: var(--space-3) 0;
+    }
+    .footer__inner { flex-direction: column; text-align: center; }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0 var(--space-2);
+    }
 }

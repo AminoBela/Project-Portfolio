@@ -1,16 +1,67 @@
 import React from 'react';
 import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
-import './AboutSection.css';
+import '../../styles/components.css';
+
+// Data moved outside the component for minor performance improvement
+// and better separation of concerns.
+const highlights = [
+    { icon: 'fa-code-branch', label: 'Projets menés', value: '15+' },
+    { icon: 'fa-server', label: 'Missions Ops', value: 'Dev & Ops' },
+    { icon: 'fa-user-graduate', label: 'BUT Info', value: 'Parcours DACS' },
+];
+
+const languages = ['Français', 'Anglais', 'Espagnol', 'Valencien', 'Arabe'];
+
+// Centralized data for the "about" cards to make the component more maintainable.
+const aboutCards = [
+    {
+        icon: 'fa-graduation-cap',
+        title: 'Profil',
+        content: (
+            <>
+                <p>Spécialisation en déploiement d’applications communicantes & sécurisées.</p>
+                <ul>
+                    <li>Stack cœur : JS/React, Node, Docker, Linux</li>
+                    <li>Soft skills : rigueur, curiosité, communication</li>
+                    <li>Objectif : solutions fiables, accessibles, maintenables</li>
+                </ul>
+            </>
+        )
+    },
+    {
+        icon: 'fa-sitemap',
+        title: 'Compétences clés',
+        content: (
+            <>
+                <ul>
+                    <li>Conception & dev (POO, patterns, tests)</li>
+                    <li>Admin systèmes & réseaux, sécurité</li>
+                    <li>Automation DevOps, CI/CD, supervision</li>
+                </ul>
+                <a href="#competences" className="about-card__cta" data-cursor="pointer">
+                    Voir le détail des compétences
+                </a>
+            </>
+        )
+    },
+    {
+        icon: 'fa-earth-europe',
+        title: 'Langues',
+        content: (
+            <>
+                <p>Je navigue dans des environnements multilingues.</p>
+                <div className="lang-badges">
+                    {languages.map((l) => (
+                        <span key={l} className="lang-badge">{l}</span>
+                    ))}
+                </div>
+            </>
+        )
+    }
+];
 
 export default function AboutSection() {
-    const languages = ['Français', 'Anglais', 'Espagnol', 'Valencien', 'Arabe'];
-    const highlights = [
-        { icon: 'fa-code-branch', label: 'Projets menés', value: '15+' },
-        { icon: 'fa-server', label: 'Missions Ops', value: 'Dev & Ops' },
-        { icon: 'fa-user-graduate', label: 'BUT Info', value: 'Parcours DACS' },
-    ];
-
     return (
         <section id="about" className="about-section terminal-section">
             <div className="about-container">
@@ -45,49 +96,20 @@ export default function AboutSection() {
                                 </div>
                             </div>
                             <div className="about-panels">
-                                <article className="about-card">
-                                    <header className="about-card__header">
-                                        <i className="fa-solid fa-graduation-cap" aria-hidden="true"></i>
-                                        <span>Profil</span>
-                                    </header>
-                                    <p>Spécialisation en déploiement d’applications communicantes & sécurisées.</p>
-                                    <ul>
-                                        <li>Stack cœur : JS/React, Node, Docker, Linux</li>
-                                        <li>Soft skills : rigueur, curiosité, communication</li>
-                                        <li>Objectif : solutions fiables, accessibles, maintenables</li>
-                                    </ul>
-                                </article>
-                                <article className="about-card">
-                                    <header className="about-card__header">
-                                        <i className="fa-solid fa-sitemap" aria-hidden="true"></i>
-                                        <span>Compétences clés</span>
-                                    </header>
-                                    <ul>
-                                        <li>Conception & dev (POO, patterns, tests)</li>
-                                        <li>Admin systèmes & réseaux, sécurité</li>
-                                        <li>Automation DevOps, CI/CD, supervision</li>
-                                    </ul>
-                                    <a href="#competences" className="about-card__cta" data-cursor="pointer">
-                                        Voir le détail des compétences
-                                    </a>
-                                </article>
-                                <article className="about-card">
-                                    <header className="about-card__header">
-                                        <i className="fa-solid fa-earth-europe" aria-hidden="true"></i>
-                                        <span>Langues</span>
-                                    </header>
-                                    <p>Je navigue dans des environnements multilingues.</p>
-                                    <div className="lang-badges">
-                                        {languages.map((l) => (
-                                            <span key={l} className="lang-badge">{l}</span>
-                                        ))}
-                                    </div>
-                                </article>
+                                {aboutCards.map((card) => (
+                                    <article key={card.title} className="about-card">
+                                        <header className="about-card__header">
+                                            <i className={`fa-solid ${card.icon}`} aria-hidden="true"></i>
+                                            <span>{card.title}</span>
+                                        </header>
+                                        {card.content}
+                                    </article>
+                                ))}
                             </div>
                             <div className="about-links">
                                 <a href="mailto:abelaliabendjafar@gmail.com" className="about-link">Contact 📧</a>
-                                <a href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/" className="about-link" target="_blank" rel="noopener">LinkedIn</a>
-                                <a href={cvPdf} className="about-link" target="_blank" rel="noopener">CV</a>
+                                <a href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/" className="about-link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                                <a href={cvPdf} className="about-link" target="_blank" rel="noopener noreferrer">CV</a>
                             </div>
                         </div>
                     </div>

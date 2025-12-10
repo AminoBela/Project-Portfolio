@@ -5,7 +5,7 @@
 @import './styles/_layout.css';
 @import './styles/_navigation.css';
 @import './styles/_sections.css';
-@import './styles/_components.css';
+@import './styles/components.css'; /* Updated import */
 @import './styles/_terminal-theme.css';
 @import './styles/_light-theme.css';
 
