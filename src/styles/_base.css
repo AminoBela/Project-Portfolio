@@ -57,30 +57,33 @@ button {
   pointer-events: none;
   border-radius: 50%;
   z-index: var(--z-cursor); /* Utilisation de la variable z-index */
-  transition: opacity 0.3s ease, width 0.4s ease, height 0.4s ease, border-color 0.3s ease;
+  transition: opacity 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
 }
 
 .cursor-dot {
-  width: 6px;
-  height: 6px;
+  width: 4px; /* Plus petit */
+  height: 4px; /* Plus petit */
   background-color: var(--accent);
 }
 
 .cursor-outline {
-  width: 40px;
-  height: 40px;
+  width: 24px; /* Plus petit */
+  height: 24px; /* Plus petit */
   border: 1px solid var(--accent);
-  opacity: 0.5;
+  opacity: 0.4; /* Plus subtil */
+  mix-blend-mode: difference; /* Effet de mélange */
 }
 
 .cursor-dot.is-pointer {
-  opacity: 0;
+  opacity: 0; /* Le point disparaît */
 }
 
 .cursor-outline.is-pointer {
-  width: 60px;
-  height: 60px;
-  opacity: 0.8;
+  width: 48px; /* Taille agrandie au survol */
+  height: 48px; /* Taille agrandie au survol */
+  background-color: var(--accent); /* Remplir l'outline */
+  border-color: var(--accent);
+  opacity: 0.2; /* Transparence pour l'effet */
 }
 
 /* 4. Désactivation totale du curseur sur mobile via CSS */

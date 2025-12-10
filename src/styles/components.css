@@ -899,3 +899,161 @@
   background: rgba(102, 255, 153, 0.1);
   border-color: rgba(102, 255, 153, 0.6);
 }
+
+.technologies-wrapper {
+    margin-top: 6rem; /* Augmente l'espacement */
+}
+
+/* Styles pour la chronologie (ExperienceEducationSection) */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 4rem auto;
+    padding: 1rem 0;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    background-color: var(--accent);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
+    box-shadow: 0 0 10px rgba(102, 255, 153, 0.5);
+}
+
+.timeline-item {
+    padding: 10px 40px;
+    position: relative;
+    width: 50%;
+}
+
+.timeline-item.left {
+    left: 0;
+}
+
+.timeline-item.right {
+    left: 50%;
+}
+
+.timeline-content {
+    padding: 20px 30px;
+    background: linear-gradient(135deg, rgba(102, 255, 153, 0.08), rgba(46, 134, 171, 0.08)), rgba(17,19,25,0.85);
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid rgba(102, 255, 153, 0.12);
+    box-shadow: 0 8px 24px rgba(8, 15, 32, 0.35);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(8, 15, 32, 0.45);
+}
+
+.timeline-logo-wrapper {
+    position: absolute;
+    top: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--accent);
+    overflow: hidden; /* Ensure logo doesn't overflow */
+}
+
+.timeline-item.left .timeline-logo-wrapper {
+    right: -25px;
+}
+
+.timeline-item.right .timeline-logo-wrapper {
+    left: -25px;
+}
+
+.timeline-logo {
+    width: 100%; /* Make logo fill the wrapper */
+    height: 100%; /* Make logo fill the wrapper */
+    object-fit: contain; /* Ensure logo is contained within the wrapper */
+    padding: 5px; /* Add some padding to prevent logo from touching border */
+}
+
+.timeline-logo-icon {
+    font-size: 1.5rem;
+    color: var(--accent);
+}
+
+.timeline-text {
+    padding-left: 60px;
+}
+
+.timeline-item.right .timeline-text {
+    padding-left: 0;
+    padding-right: 60px;
+    text-align: right;
+}
+
+.timeline-period {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin-bottom: 0.3rem;
+}
+
+.timeline-meta {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.8rem;
+}
+
+.timeline-description {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+    .timeline-container::before {
+        left: 35px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-item.right {
+        left: 0%;
+    }
+
+    .timeline-logo-wrapper {
+        left: 10px;
+    }
+
+    .timeline-item.right .timeline-logo-wrapper {
+        left: 10px;
+    }
+
+    .timeline-text {
+        padding-left: 0;
+    }
+
+    .timeline-item.right .timeline-text {
+        padding-right: 0;
+        text-align: left;
+    }
+}

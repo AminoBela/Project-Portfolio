@@ -8,7 +8,9 @@ function SkillsSection() {
         <section id="competences" className="skills-section terminal-section">
             <div className="container">
                 <VutSkillsGrid />
-                <TechnologiesSection />
+                <div className="technologies-wrapper">
+                    <TechnologiesSection />
+                </div>
             </div>
         </section>
     );

@@ -5,6 +5,7 @@ import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
+import ExperienceEducationSection from './components/Sections/ExperienceEducationSection'; // Import the new component
 import SkillsSection from './components/Sections/SkillsSection';
 import ProjectsSection from './components/Sections/ProjectsSection';
 import StageSection from "./components/Sections/StageSection.jsx";
@@ -57,6 +58,7 @@ function App() {
                 <main>
                     <HomeSection />
                     <AboutSection />
+                    <ExperienceEducationSection /> {/* Render the new component here */}
                     <SkillsSection />
                     <StageSection />
                     <ProjectsSection />
