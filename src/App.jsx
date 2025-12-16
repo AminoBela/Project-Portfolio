@@ -5,10 +5,9 @@ import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
-import ExperienceEducationSection from './components/Sections/ExperienceEducationSection'; // Import the new component
+import ExperienceEducationSection from './components/Sections/ExperienceEducationSection';
 import SkillsSection from './components/Sections/SkillsSection';
 import ProjectsSection from './components/Sections/ProjectsSection';
-import StageSection from "./components/Sections/StageSection.jsx";
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
 import { navVariants } from './utils/framerMotionVariants';
@@ -58,9 +57,8 @@ function App() {
                 <main>
                     <HomeSection />
                     <AboutSection />
-                    <ExperienceEducationSection /> {/* Render the new component here */}
+                    <ExperienceEducationSection />
                     <SkillsSection />
-                    <StageSection />
                     <ProjectsSection />
                 </main>
                 <Footer />

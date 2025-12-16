@@ -11,10 +11,10 @@
 
 /* 2. Styles de base HTML et Body */
 html {
-  font-size: 16px; /* Taille de police de base pour le calcul des rem */
+  font-size: 16px;
   scroll-behavior: smooth;
   height: 100%;
-  cursor: none !important; /* Masquage définitif et forcé du curseur système */
+  cursor: none !important;
 }
 
 body {
@@ -22,11 +22,11 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text);
-  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%); /* Fond global */
+  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none !important; /* Masquage définitif et forcé du curseur système */
+  cursor: none !important;
 }
 
 /* Styles pour les éléments interactifs */
@@ -53,37 +53,53 @@ button {
   position: fixed;
   top: 0;
   left: 0;
-  transform: translate(-50%, -50%);
   pointer-events: none;
   border-radius: 50%;
-  z-index: var(--z-cursor); /* Utilisation de la variable z-index */
-  transition: opacity 0.2s ease-out, width 0.3s ease-out, height 0.3s ease-out, background-color 0.2s ease-out, border-color 0.2s ease-out;
+  z-index: var(--z-cursor);
 }
 
+/* Le point central (le "click") */
 .cursor-dot {
-  width: 4px; /* Plus petit */
-  height: 4px; /* Plus petit */
+  width: 8px;
+  height: 8px;
   background-color: var(--accent);
+  /* Centrage parfait par rapport aux coordonnées JS */
+  margin-left: -4px; 
+  margin-top: -4px;
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
 }
 
+/* Le cercle qui suit avec du retard */
 .cursor-outline {
-  width: 24px; /* Plus petit */
-  height: 24px; /* Plus petit */
+  width: 40px;
+  height: 40px;
   border: 1px solid var(--accent);
-  opacity: 0.4; /* Plus subtil */
-  mix-blend-mode: difference; /* Effet de mélange */
+  opacity: 0.5;
+  /* Centrage parfait */
+  margin-left: -20px;
+  margin-top: -20px;
+  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
 }
 
+/* État au survol d'un lien/bouton */
 .cursor-dot.is-pointer {
-  opacity: 0; /* Le point disparaît */
+  /* Le point reste au centre mais change peut-être de couleur ou taille */
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
+  background-color: var(--color-text); /* Contraste */
 }
 
 .cursor-outline.is-pointer {
-  width: 48px; /* Taille agrandie au survol */
-  height: 48px; /* Taille agrandie au survol */
-  background-color: var(--accent); /* Remplir l'outline */
-  border-color: var(--accent);
-  opacity: 0.2; /* Transparence pour l'effet */
+  /* Le cercle s'agrandit autour */
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  margin-top: -30px;
+  background-color: rgba(102, 255, 153, 0.1); /* Légère teinte de fond */
+  border-color: transparent; /* On enlève la bordure pour un effet "glow" */
+  opacity: 1;
 }
 
 /* 4. Désactivation totale du curseur sur mobile via CSS */

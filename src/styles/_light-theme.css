@@ -2,13 +2,14 @@
 
 /* 1. Palette de couleurs à fort contraste */
 :root.light {
-  --color-background: #f8f9fa;
-  --color-surface: #ffffff;
-  --color-text: #212529;
-  --text-secondary: #6c757d;
-  --accent: #007bff;
-  --accent-dark: #0056b3;
-  --button-text: #ffffff;
+  --color-background: #f8f9fa; /* Blanc cassé pour le fond */
+  --color-surface: #ffffff; /* Blanc pur pour les surfaces */
+  --color-text: #212529; /* Texte presque noir */
+  --text-secondary: #6c757d; /* Gris pour le texte secondaire */
+  --accent: #007bff; /* Bleu vif pour l'accent */
+  --accent-dark: #0056b3; /* Bleu plus foncé pour le survol */
+  --button-text: #ffffff; /* Texte blanc pour les boutons */
+  --border-color: #dee2e6; /* Bordure grise claire */
 }
 
 /* 2. Arrière-plan global épuré */
@@ -30,12 +31,14 @@
 :root.light .project-card,
 :root.light .skills-cards-grid .skills-card,
 :root.light .skills-grid-wide .skill-card,
-:root.light .about-metric, /* Ajout pour la cohérence */
-:root.light .about-card,   /* Ajout pour la cohérence */
-:root.light .lang-badge    /* Ajout pour la cohérence */
+:root.light .about-metric,
+:root.light .about-card,
+:root.light .lang-badge,
+:root.light .timeline-card-compact,
+:root.light .expanded-card
 {
   background: var(--color-surface);
-  border: 1px solid #dee2e6;
+  border: 1px solid var(--border-color);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   backdrop-filter: none;
   color: var(--color-text);
@@ -49,7 +52,8 @@
 :root.light .project-card:hover,
 :root.light .about-metric:hover,
 :root.light .about-card:hover,
-:root.light .lang-badge:hover {
+:root.light .lang-badge:hover,
+:root.light .timeline-card-compact:hover {
   border-color: var(--accent);
 }
 
@@ -98,7 +102,11 @@
 :root.light .main-nav__logo,
 :root.light .footer__social-link:hover,
 :root.light .about-card__header,
-:root.light .about-metric i {
+:root.light .about-metric i,
+:root.light .timeline-icon-wrapper,
+:root.light .parcours-card-period,
+:root.light .tech-tag,
+:root.light .highlights-list i {
   color: var(--accent);
 }
 
@@ -120,7 +128,10 @@
 :root.light .footer__social-link,
 :root.light .about-metric__label,
 :root.light .about-card p,
-:root.light .about-card ul {
+:root.light .about-card ul,
+:root.light .parcours-card-meta,
+:root.light .parcours-card-description,
+:root.light .highlights-list li {
   color: var(--text-secondary);
 }
 
@@ -129,4 +140,8 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+}
+
+:root.light .tech-tag {
+    background: rgba(0, 123, 255, 0.1);
 }
