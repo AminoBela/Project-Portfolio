@@ -9,7 +9,7 @@ export const timelineData = [
         location: 'PIC Lorraine - Pagny-lès-Goin',
         period: 'Sept. 2023 - Actuel',
         description: 'Tri du courrier avec l\'aide des équipements automatiques ou de manière manuelle. Job étudiant le week-end.',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/La_Poste_logo.svg/500px-La_Poste_logo.svg.png',
+        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/La_Poste_2022.svg/langfr-2560px-La_Poste_2022.svg.png',
         details: null
     },
     {
@@ -20,7 +20,7 @@ export const timelineData = [
         location: 'Vandoeuvre-lès-Nancy',
         period: 'Déc. 2025 - Actuel',
         description: 'Responsable de l\'accueil, de l\'intégration et du soutien des étudiants résidents. Organisation d\'événements et gestion des problématiques quotidiennes.',
-        logo: 'https://www.crous-lorraine.fr/wp-content/uploads/sites/15/2021/08/logo-crous.svg',
+        logo: 'https://pbs.twimg.com/profile_images/1871548296432418816/JqhgFUlI_400x400.jpg',
         details: null
     },
     {
@@ -52,7 +52,7 @@ export const timelineData = [
         location: 'Gares du Luxembourg',
         period: 'Étés 2020 - 2023',
         description: 'Nettoyage et entretien des infrastructures ferroviaires pendant les périodes estivales.',
-        logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/ISS_logo.svg/500px-ISS_logo.svg.png',
+        logo: 'https://www.developmentaid.org/files/organizationLogos/iss-facility-services-sa-120962.jpg',
         details: null
     },
 
@@ -65,7 +65,7 @@ export const timelineData = [
         location: 'Nancy',
         period: '2023 - 2026',
         description: 'Administration Linux, Virtualisation (Docker), Cloud, Sécurité, Administration réseau, Programmation (Java, C, JS, PHP...).',
-        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/a/a2/Logo_Universit%C3%A9_de_Lorraine.svg/500px-Logo_Universit%C3%A9_de_Lorraine.svg.png',
+        logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
         details: null
     },
     {
@@ -76,7 +76,7 @@ export const timelineData = [
         location: 'Vandoeuvre-lès-Nancy',
         period: '2022 - 2023',
         description: 'Formation en sciences de l\'ingénieur, mathématiques, circuits électriques et utilisation du logiciel CATIA V5.',
-        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/a/a2/Logo_Universit%C3%A9_de_Lorraine.svg/500px-Logo_Universit%C3%A9_de_Lorraine.svg.png',
+        logo: 'https://yt3.googleusercontent.com/dlfb9W3nYcX5-uBro9MdZNfjbv_crHLKwWP2WMCw5bh5tTd2gIJes_RpwFw1MJQsph6sjSx3rXQ=s900-c-k-c0x00ffffff-no-rj',
         details: null
     },
     {
