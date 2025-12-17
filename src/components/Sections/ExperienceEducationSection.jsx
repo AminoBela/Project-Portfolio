@@ -1,133 +1,31 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { timelineData } from '../../data/experienceEducationData';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import Modal from '../UI/Modal'; // On réutilise le composant Modal des projets
 
-// --- Carte simplifiée pour la timeline ---
-const TimelineCard = ({ item, onSelect, isSelected }) => (
+// --- CARTE COMPACTE (TIMELINE) ---
+const TimelineCard = ({ item, onSelect }) => (
     <motion.div
-        layoutId={`card-container-${item.id}`}
         className="timeline-card-compact"
-        onClick={() => onSelect(item.id)}
+        onClick={() => onSelect(item)}
         variants={childVariants}
-        initial={{ borderRadius: 12 }}
-        style={{ opacity: isSelected ? 0 : 1 }}
+        whileHover={{ y: -5 }}
         data-cursor="pointer"
     >
         <div className="timeline-card-compact-header">
-            <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
-            <motion.h3 layoutId={`card-title-${item.id}`} className="timeline-card-compact-title">{item.title}</motion.h3>
+            <div className="timeline-card-compact-icon">
+                <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
+            </div>
+            <h3 className="timeline-card-compact-title">{item.title}</h3>
         </div>
-        <motion.span layoutId={`card-period-${item.id}`} className="timeline-card-compact-period">{item.period}</motion.span>
-    </motion.div>
-);
-
-// --- Carte détaillée qui s'affiche en grand ---
-const ExpandedCard = ({ item, onDeselect }) => (
-    <motion.div
-        className="expanded-card-backdrop"
-        onClick={onDeselect}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2 }}
-    >
-        <motion.div
-            layoutId={`card-container-${item.id}`}
-            className="expanded-card"
-            onClick={(e) => e.stopPropagation()}
-            initial={{ borderRadius: 12 }}
-        >
-            <motion.div
-                className="expanded-card-content-wrapper"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ delay: 0.1, duration: 0.3 }}
-            >
-                <div className="expanded-card-header">
-                    {item.logo && (
-                        <div className="expanded-card-logo-wrapper">
-                            <img src={item.logo} alt={item.company || item.institution} className="expanded-card-logo" />
-                        </div>
-                    )}
-                    <div className="expanded-card-header-text">
-                        <motion.h3 layoutId={`card-title-${item.id}`} className="parcours-card-title">{item.title}</motion.h3>
-                        <p className="parcours-card-meta">
-                            {item.type === 'experience' ? item.company : item.institution} - {item.location}
-                        </p>
-                        <motion.span layoutId={`card-period-${item.id}`} className="parcours-card-period">{item.period}</motion.span>
-                    </div>
-                </div>
-
-                <hr className="expanded-card-divider" />
-
-                <div className="expanded-card-body">
-                    <p className="parcours-card-description">{item.description}</p>
-                    
-                    {item.details && (
-                        <div className="expanded-card-details">
-                            <p>{item.details.intro}</p>
-                            <div className="details-grid">
-                                <div className="details-column">
-                                    <h4>Technologies Clés</h4>
-                                    <div className="tech-tags">
-                                        {item.details.tech.map(t => <span key={t} className="tech-tag">{t}</span>)}
-                                    </div>
-                                </div>
-                                <div className="details-column">
-                                    <h4>Points Marquants</h4>
-                                    <ul className="highlights-list">
-                                        {item.details.highlights.map((h, i) => <li key={i}><i className="fa-solid fa-check"></i> {h}</li>)}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                </div>
-            </motion.div>
-            <button onClick={onDeselect} className="close-button" data-cursor="pointer">
-                <i className="fa-solid fa-times"></i>
-            </button>
-        </motion.div>
+        <span className="timeline-card-compact-period">{item.period}</span>
     </motion.div>
 );
 
 // --- Composant principal de la section ---
 function ExperienceEducationSection() {
-    const [selectedId, setSelectedId] = useState(null);
-    const timelineRef = useRef(null);
-    const selectedItem = selectedId ? timelineData.find(item => item.id === selectedId) : null;
-
-    useEffect(() => {
-        const currentTimeline = timelineRef.current;
-        if (!currentTimeline) return;
-
-        let animationFrameId;
-
-        const handleMouseMove = (e) => {
-            if (animationFrameId) return;
-
-            animationFrameId = requestAnimationFrame(() => {
-                const cards = currentTimeline.querySelectorAll('.timeline-card-compact');
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const x = e.clientX - rect.left;
-                    const y = e.clientY - rect.top;
-                    card.style.setProperty('--x', `${x}px`);
-                    card.style.setProperty('--y', `${y}px`);
-                });
-                animationFrameId = null;
-            });
-        };
-
-        currentTimeline.addEventListener('mousemove', handleMouseMove);
-
-        return () => {
-            currentTimeline.removeEventListener('mousemove', handleMouseMove);
-            if (animationFrameId) cancelAnimationFrame(animationFrameId);
-        };
-    }, []);
+    const [selectedItem, setSelectedItem] = useState(null);
 
     return (
         <motion.section
@@ -143,23 +41,72 @@ function ExperienceEducationSection() {
                     &gt; Mon Parcours
                 </motion.h2>
 
-                <div className="timeline-container" ref={timelineRef}>
+                <div className="timeline-container">
                     {timelineData.map((item, index) => (
                         <div key={item.id} className={`timeline-item ${index % 2 === 0 ? 'left' : 'right'}`}>
                              <div className="timeline-icon-wrapper">
                                 <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
                             </div>
-                            <TimelineCard item={item} onSelect={setSelectedId} isSelected={selectedId === item.id} />
+                            <TimelineCard item={item} onSelect={setSelectedItem} />
                         </div>
                     ))}
                 </div>
             </div>
 
-            <AnimatePresence>
+            {/* --- MODALE (Exactement comme pour les projets) --- */}
+            <Modal isOpen={!!selectedItem} onClose={() => setSelectedItem(null)}>
                 {selectedItem && (
-                    <ExpandedCard item={selectedItem} onDeselect={() => setSelectedId(null)} />
+                    <>
+                        {/* --- HERO HEADER --- */}
+                        <div className="modal-hero" style={{ 
+                            background: `linear-gradient(135deg, ${selectedItem.color || '#66ff99'}22 0%, rgba(0,0,0,0) 100%)`, 
+                            borderBottom: `1px solid ${selectedItem.color || '#66ff99'}44` 
+                        }}>
+                            <div className="modal-hero__content">
+                                {selectedItem.logo && <img src={selectedItem.logo} alt="" className="expanded-card-logo" />}
+                                <h2>{selectedItem.title}</h2>
+                                <p className="expanded-card-subtitle">{selectedItem.company || selectedItem.institution} • {selectedItem.location}</p>
+                            </div>
+                        </div>
+
+                        <div className="modal-body">
+                            {/* --- DASHBOARD --- */}
+                            <div className="stats-grid">
+                                <div className="stat-box">
+                                    <span className="stat-label">Période</span>
+                                    <span className="stat-value">{selectedItem.period}</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-label">Type</span>
+                                    <span className="stat-value">{selectedItem.type === 'experience' ? 'Expérience' : 'Formation'}</span>
+                                </div>
+                            </div>
+
+                            {/* --- DESCRIPTION & DÉTAILS --- */}
+                            <div className="tech-section">
+                                {selectedItem.description && <p className="project-full-desc">{selectedItem.description}</p>}
+                                
+                                {selectedItem.details && (
+                                    <>
+                                        <div className="tech-stack">
+                                            <h4>Technologies Clés</h4>
+                                            <div className="project-tags large">
+                                                {selectedItem.details.tech.map(t => <span key={t} className="tag">{t}</span>)}
+                                            </div>
+                                        </div>
+                                        <div className="tech-stack" style={{marginTop: '2rem'}}>
+                                            <h4>Points Marquants</h4>
+                                            <ul className="highlights-list">
+                                                {selectedItem.details.highlights.map((h, i) => <li key={i}><span>✓</span> {h}</li>)}
+                                            </ul>
+                                        </div>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+                    </>
                 )}
-            </AnimatePresence>
+            </Modal>
         </motion.section>
     );
 }

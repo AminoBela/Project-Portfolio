@@ -5,4 +5,5 @@
 @import './components/StageSection.css';
 @import './components/Timeline.css';
 @import './components/Buttons.css';
-@import './components/ProjectsSection.css'; /* Ajout de l'import */
+@import './components/ProjectsSection.css';
+@import './components/ContactSection.css'; /* --- IMPORT --- */
