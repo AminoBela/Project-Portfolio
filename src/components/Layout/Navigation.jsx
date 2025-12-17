@@ -10,35 +10,32 @@ const navLinks = [
     { href: '#projets', label: 'Projets' },
 ];
 
+// Animation de la carte centrale
 const menuVariants = {
-    closed: {
-        x: '100%',
-        transition: {
-            type: 'tween',
-            ease: [0.4, 0, 0.2, 1],
-            duration: 0.5
-        }
-    },
-    open: {
-        x: '0%',
-        transition: {
-            type: 'tween',
-            ease: [0.4, 0, 0.2, 1],
-            duration: 0.5,
-            staggerChildren: 0.1,
-            delayChildren: 0.2
-        }
-    },
+    closed: { opacity: 0, scale: 0.95, y: -20 },
+    open: { 
+        opacity: 1, 
+        scale: 1,
+        y: 0,
+        transition: { 
+            type: 'spring', 
+            stiffness: 300, 
+            damping: 30,
+            staggerChildren: 0.08,
+            delayChildren: 0.15
+        } 
+    }
 };
 
+// Animation des liens
 const linkVariants = {
-    closed: { opacity: 0, y: 20 },
-    open: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 300, damping: 30 } }
+    closed: { opacity: 0, x: -20 },
+    open: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 200 } }
 };
 
 const overlayVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { opacity: 0, scale: 1.05 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
 function Navigation({ activeSection, toggleTheme, theme }) {
@@ -63,30 +60,20 @@ function Navigation({ activeSection, toggleTheme, theme }) {
     return (
         <>
             <nav className="main-nav">
-                <div className="container">
+                <div className="nav-header">
                     <a href="#accueil" className="main-nav__logo-link" data-cursor="pointer">
                         <div className="main-nav__logo">AB</div>
                     </a>
 
-                    {/* Desktop Menu */}
                     <ul className="main-nav__list--desktop">
                         {navLinks.map(link => {
                             const isActive = activeSection === link.href.substring(1);
                             return (
                                 <li key={link.href} style={{ position: 'relative' }}>
-                                    <a
-                                        href={link.href}
-                                        className={`main-nav__link ${isActive ? 'is-active' : ''}`}
-                                        onClick={handleNavLinkClick}
-                                        data-cursor="pointer"
-                                    >
+                                    <a href={link.href} className={`main-nav__link ${isActive ? 'is-active' : ''}`} onClick={handleNavLinkClick} data-cursor="pointer">
                                         {link.label}
                                         {isActive && (
-                                            <motion.div
-                                                layoutId="nav-highlight"
-                                                className="nav-highlight"
-                                                transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                                            />
+                                            <motion.div layoutId="nav-highlight" className="nav-highlight" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
                                         )}
                                     </a>
                                 </li>
@@ -96,12 +83,7 @@ function Navigation({ activeSection, toggleTheme, theme }) {
 
                     <div className="main-nav__actions">
                         <ThemeToggleButton toggleTheme={toggleTheme} theme={theme} />
-                        <button 
-                            className={`main-nav__toggle ${isMenuOpen ? 'is-active' : ''}`} 
-                            onClick={toggleMenu} 
-                            aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
-                            data-cursor="pointer"
-                        >
+                        <button className={`main-nav__toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} data-cursor="pointer">
                             <span className="burger-bar"></span>
                             <span className="burger-bar"></span>
                             <span className="burger-bar"></span>
@@ -110,49 +92,35 @@ function Navigation({ activeSection, toggleTheme, theme }) {
                 </div>
             </nav>
 
-            {/* Mobile Menu Overlay */}
             <AnimatePresence>
                 {isMenuOpen && (
-                    <>
-                        <motion.div
-                            className="mobile-menu-overlay"
-                            variants={overlayVariants}
-                            initial="hidden"
-                            animate="visible"
-                            exit="hidden"
-                            onClick={toggleMenu}
-                        />
+                    <motion.div
+                        className="mobile-menu-overlay"
+                        variants={overlayVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                        onClick={toggleMenu}
+                    >
                         <motion.div
                             className="main-nav__mobile-container"
                             variants={menuVariants}
                             initial="closed"
                             animate="open"
                             exit="closed"
+                            onClick={(e) => e.stopPropagation()}
                         >
                             <ul className="main-nav__list--mobile">
                                 {navLinks.map(link => (
-                                    <motion.li 
-                                        key={link.href} 
-                                        variants={linkVariants}
-                                        style={{ width: '100%', textAlign: 'center' }}
-                                    >
-                                        <a
-                                            href={link.href}
-                                            className={`main-nav__link--mobile ${activeSection === link.href.substring(1) ? 'is-active' : ''}`}
-                                            onClick={handleNavLinkClick}
-                                            data-cursor="pointer"
-                                        >
+                                    <motion.li key={link.href} variants={linkVariants}>
+                                        <a href={link.href} className={`main-nav__link--mobile ${activeSection === link.href.substring(1) ? 'is-active' : ''}`} onClick={handleNavLinkClick} data-cursor="pointer">
                                             {link.label}
                                         </a>
                                     </motion.li>
                                 ))}
                             </ul>
-                            
-                            <motion.div className="mobile-menu-footer" variants={linkVariants}>
-                                <p>© 2024 Portfolio</p>
-                            </motion.div>
                         </motion.div>
-                    </>
+                    </motion.div>
                 )}
             </AnimatePresence>
         </>
