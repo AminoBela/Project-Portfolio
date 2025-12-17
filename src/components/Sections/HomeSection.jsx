@@ -11,12 +11,11 @@ const HomeSection = () => {
         { typeSpeed: 100, deleteSpeed: 80, delay: 2000 }
     );
 
-    // Memoize the icon styles with collision detection to prevent re-calculation and overlap
     const techCloudStyles = useMemo(() => {
         const positions = [];
-        const iconSize = 110; // Increased icon size for more spacing
+        const iconSize = 160; 
         const containerWidth = 400;
-        const containerHeight = 350;
+        const containerHeight = 450;
         const animationNames = ['float-1', 'float-2', 'float-3'];
 
         return technologies.map((tech, index) => {
@@ -45,18 +44,17 @@ const HomeSection = () => {
                 });
 
                 attempts++;
-            } while (isOverlapping && attempts < 100);
+            } while (isOverlapping && attempts < 200);
 
             positions.push(newPos);
 
-            // Assign a random animation name from the list
             const animationName = animationNames[index % animationNames.length];
 
             return {
                 ...tech,
                 top: `${newPos.top}%`,
                 left: `${newPos.left}%`,
-                animation: `${animationName} ${18 + Math.random() * 12}s ease-in-out infinite alternate`
+                animation: `${animationName} ${8 + Math.random() * 8}s ease-in-out infinite alternate`
             };
         });
     }, []);
@@ -101,14 +99,16 @@ const HomeSection = () => {
                     </motion.div>
                 </motion.div>
 
-                <motion.div className="home-tech-cloud" initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
-                    {techCloudStyles.map((tech, index) => (
+                <motion.div className="home-tech-cloud" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } }}>
+                    {techCloudStyles.map((tech) => (
                         <motion.div
                             key={tech.name}
                             className="tech-icon-wrapper"
-                            initial={{ opacity: 0, scale: 0.5 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ delay: 0.8 + index * 0.1 }}
+                            variants={{
+                                hidden: { opacity: 0 },
+                                visible: { opacity: 1 }
+                            }}
+                            transition={{ duration: 0.5 }}
                             style={{
                                 top: tech.top,
                                 left: tech.left,

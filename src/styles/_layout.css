@@ -3,26 +3,38 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background: radial-gradient(1200px 700px at 20% 10%, rgba(102,255,153,0.06), transparent 60%),
-                radial-gradient(900px 600px at 80% 80%, rgba(46,134,171,0.08), transparent 65%),
-                linear-gradient(120deg, #10141a 0%, #0e1220 100%);
+    /* Utilisation des variables pour le dégradé de fond */
+    background: radial-gradient(1200px 700px at 20% 10%, rgba(102,255,153,0.03), transparent 60%),
+                radial-gradient(900px 600px at 80% 80%, rgba(46,134,171,0.04), transparent 65%),
+                linear-gradient(120deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
     pointer-events: none;
+    transition: background 0.5s ease;
 }
+
 .site-background .hero-grid {
     position: absolute; inset: 0;
     background:
-      linear-gradient(to right, rgba(102,255,153,0.12) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(102,255,153,0.12) 1px, transparent 1px);
+      linear-gradient(to right, rgba(102,255,153,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(102,255,153,0.05) 1px, transparent 1px);
     background-size: 60px 60px;
     mask-image: radial-gradient(80% 60% at 50% 50%, black 60%, transparent 100%);
     opacity: 0.25;
 }
+
 .site-background .scanline {
     position: absolute; inset: 0;
-    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 2px, transparent 4px);
+    background: repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 2px, transparent 4px);
     mix-blend-mode: overlay; opacity: 0.15;
     animation: scan 9s linear infinite;
 }
+
+/* Masquer les effets "tech" trop marqués en mode clair pour plus de propreté */
+:root.light .site-background .hero-grid,
+:root.light .site-background .scanline,
+:root.light .site-background .orb {
+    opacity: 0.05; /* Très subtil en mode clair */
+}
+
 @keyframes scan { from { transform: translateY(-10%); } to { transform: translateY(10%); } }
 .site-background .orb {
     position: absolute; filter: blur(28px);
@@ -67,8 +79,8 @@ section {
 .footer {
   margin-top: 6rem;
   padding: 2.5rem 0;
-  background: rgba(15, 23, 42, 0.6);
-  border-top: 1px solid rgba(102, 255, 153, 0.1);
+  background: var(--card-bg); /* Utilisation de la variable de carte pour le footer */
+  border-top: 1px solid var(--card-border);
   backdrop-filter: blur(10px);
 }
 .footer__inner {
@@ -103,6 +115,9 @@ section {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 0 var(--space-3); /* 1rem de marge latérale */
+    }
     section {
         margin: var(--space-6) 0;
         padding: var(--space-3) 0;
@@ -112,6 +127,6 @@ section {
 
 @media (max-width: 480px) {
     .container {
-        padding: 0 var(--space-2);
+        padding: 0 var(--space-3); /* Maintenir 1rem de marge */
     }
 }

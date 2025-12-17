@@ -22,11 +22,13 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text);
-  background: linear-gradient(120deg, #10141a 0%, #0e1220 100%);
+  /* CORRECTION : Utilisation de la variable pour le fond */
+  background: var(--bg-primary); 
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none !important;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* Styles pour les éléments interactifs */
@@ -37,6 +39,7 @@ a, button, [data-cursor="pointer"] {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color 0.3s ease;
 }
 
 ul {
@@ -45,6 +48,7 @@ ul {
 
 button {
   font-family: inherit;
+  transition: all 0.3s ease;
 }
 
 /* 3. Design du Curseur Personnalisé */
@@ -58,52 +62,48 @@ button {
   z-index: var(--z-cursor);
 }
 
-/* Le point central (le "click") */
 .cursor-dot {
   width: 8px;
   height: 8px;
   background-color: var(--accent);
-  /* Centrage parfait par rapport aux coordonnées JS */
   margin-left: -4px; 
   margin-top: -4px;
   transition: width 0.3s, height 0.3s, background-color 0.3s;
 }
 
-/* Le cercle qui suit avec du retard */
 .cursor-outline {
   width: 40px;
   height: 40px;
   border: 1px solid var(--accent);
   opacity: 0.5;
-  /* Centrage parfait */
   margin-left: -20px;
   margin-top: -20px;
-  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s;
+  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s, transform 0.1s ease-out;
 }
 
-/* État au survol d'un lien/bouton */
 .cursor-dot.is-pointer {
-  /* Le point reste au centre mais change peut-être de couleur ou taille */
   width: 10px;
   height: 10px;
   margin-left: -5px;
   margin-top: -5px;
-  background-color: var(--color-text); /* Contraste */
+  background-color: var(--color-text);
 }
 
 .cursor-outline.is-pointer {
-  /* Le cercle s'agrandit autour */
   width: 60px;
   height: 60px;
   margin-left: -30px;
   margin-top: -30px;
-  background-color: rgba(102, 255, 153, 0.1); /* Légère teinte de fond */
-  border-color: transparent; /* On enlève la bordure pour un effet "glow" */
+  background-color: rgba(102, 255, 153, 0.1);
+  border-color: transparent;
   opacity: 1;
 }
 
 /* 4. Désactivation totale du curseur sur mobile via CSS */
 @media (max-width: 768px) {
+  html, body {
+    cursor: auto !important;
+  }
   .cursor-dot,
   .cursor-outline {
     display: none !important;

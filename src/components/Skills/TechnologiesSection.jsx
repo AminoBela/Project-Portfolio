@@ -1,6 +1,7 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
+import { motion, AnimatePresence } from 'framer-motion';
 
 function TechnologiesSection() {
     const groupedSkills = useMemo(() => {
@@ -26,17 +27,33 @@ function TechnologiesSection() {
     }, []);
 
     const [activeTab, setActiveTab] = useState(groupedSkills[0]?.category);
-    const [isAnimating, setIsAnimating] = useState(false);
 
     const activeSkills = useMemo(() => {
         return groupedSkills.find(group => group.category === activeTab)?.items || [];
     }, [activeTab, groupedSkills]);
 
-    useEffect(() => {
-        setIsAnimating(true);
-        const timer = setTimeout(() => setIsAnimating(false), 500);
-        return () => clearTimeout(timer);
-    }, [activeTab]);
+    // Variants pour l'animation des cartes
+    const cardVariants = {
+        hidden: { opacity: 0, y: 20 },
+        visible: (i) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: i * 0.05,
+                duration: 0.3,
+                ease: 'easeOut'
+            }
+        }),
+        exit: (i) => ({
+            opacity: 0,
+            y: -20,
+            transition: {
+                delay: i * 0.03,
+                duration: 0.2,
+                ease: 'easeIn'
+            }
+        })
+    };
 
     return (
         <>
@@ -60,19 +77,22 @@ function TechnologiesSection() {
                 ))}
             </div>
 
-            <div className="skills-grid-wide">
-                {activeSkills.map((skill, index) => (
-                    <SkillBar
-                        key={skill.name}
-                        skill={skill}
-                        style={{
-                            animation: isAnimating
-                                ? `fadeInUp 0.5s ${index * 0.05}s both`
-                                : 'none'
-                        }}
-                    />
-                ))}
-            </div>
+            <motion.div className="skills-grid-wide">
+                <AnimatePresence mode="wait">
+                    {activeSkills.map((skill, index) => (
+                        <motion.div
+                            key={skill.name} // La clé doit être unique pour l'animation
+                            custom={index}
+                            variants={cardVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                        >
+                            <SkillBar skill={skill} />
+                        </motion.div>
+                    ))}
+                </AnimatePresence>
+            </motion.div>
         </>
     );
 }

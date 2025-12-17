@@ -1,147 +1,61 @@
-/* --- Thème Clair : Refonte Finale et Définitive --- */
-
-/* 1. Palette de couleurs à fort contraste */
+/* --- Thème Clair : Surcharge des variables --- */
 :root.light {
-  --color-background: #f8f9fa; /* Blanc cassé pour le fond */
-  --color-surface: #ffffff; /* Blanc pur pour les surfaces */
-  --color-text: #212529; /* Texte presque noir */
-  --text-secondary: #6c757d; /* Gris pour le texte secondaire */
-  --accent: #007bff; /* Bleu vif pour l'accent */
-  --accent-dark: #0056b3; /* Bleu plus foncé pour le survol */
-  --button-text: #ffffff; /* Texte blanc pour les boutons */
-  --border-color: #dee2e6; /* Bordure grise claire */
+    /* --- COULEURS FONCTIONNELLES --- */
+    --accent: #0056b3;
+    --accent-hover: #004085;
+    --color-text: #212529;
+    --text-secondary: #495057;
+    
+    /* --- VARIABLES D'ARCHITECTURE (LIGHT MODE) --- */
+    
+    /* Fond global adouci */
+    --bg-primary: #f0f4f8;
+    --bg-secondary: #ffffff;
+    
+    /* CARTES */
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --card-bg-hover: rgba(255, 255, 255, 0.9);
+    
+    /* Bordures */
+    --card-border: rgba(0, 0, 0, 0.1);
+    --card-border-top: rgba(0, 0, 0, 0.15);
+    --card-border-hover: var(--accent);
+    
+    /* Ombres */
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.1);
+    
+    /* Performance */
+    --card-backdrop: blur(10px);
+    
+    /* NOUVEAU : Couleur du texte au survol des cartes */
+    --text-highlight: var(--accent); /* Bleu en mode clair */
+    
+    /* --- CORRECTIONS SPÉCIFIQUES --- */
+    
+    /* Bouton CV : forcer le texte en blanc */
+    --button-text-primary: #ffffff;
+    
+    /* Navbar & Icônes Accueil : fond blanc */
+    --nav-bg: rgba(255, 255, 255, 0.8);
+    --tech-icon-bg: rgba(255, 255, 255, 0.8);
 }
 
-/* 2. Arrière-plan global épuré */
-:root.light .site-background {
-  background: var(--color-background);
-}
-:root.light .site-background .hero-grid,
-:root.light .site-background .scanline,
-:root.light .site-background .orb {
-  display: none;
+/* Application des corrections */
+:root.light .main-nav {
+    background: var(--nav-bg);
+    backdrop-filter: blur(10px);
 }
 
-/* 3. Style "Feuille de Papier" pour TOUS les conteneurs */
-:root.light .main-nav,
-:root.light .footer,
-:root.light .pc-screen-big,
-:root.light .terminal-window,
-:root.light .about-terminal,
-:root.light .project-card,
-:root.light .skills-cards-grid .skills-card,
-:root.light .skills-grid-wide .skill-card,
-:root.light .about-metric,
-:root.light .about-card,
-:root.light .lang-badge,
-:root.light .timeline-card-compact,
-:root.light .expanded-card
-{
-  background: var(--color-surface);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
-  backdrop-filter: none;
-  color: var(--color-text);
+:root.light .tech-icon-wrapper {
+    background: var(--tech-icon-bg);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
-:root.light .main-nav:hover,
-:root.light .footer:hover,
-:root.light .pc-screen-big:hover,
-:root.light .about-terminal:hover,
-:root.light .skills-card:hover,
-:root.light .project-card:hover,
-:root.light .about-metric:hover,
-:root.light .about-card:hover,
-:root.light .lang-badge:hover,
-:root.light .timeline-card-compact:hover {
-  border-color: var(--accent);
+:root.light .btn-download {
+    color: var(--button-text-primary) !important; /* Forcer la couleur */
 }
-
-/* 4. Correction des Boutons */
-:root.light .button {
-  background: #e9ecef;
-  color: var(--color-text);
-  border: 1px solid #ced4da;
-}
-:root.light .button:hover {
-  border-color: var(--accent);
-  background: #dee2e6;
-}
-:root.light .button.button--primary {
-  background: var(--accent);
-  color: var(--button-text);
-  border-color: transparent;
-}
-:root.light .button.button--primary:hover {
-  background: var(--accent-dark);
-}
-:root.light .button.button--secondary {
-  background: transparent;
-  border-color: var(--accent);
-  color: var(--accent);
-}
-:root.light .button.button--secondary:hover {
-  background: rgba(0, 123, 255, 0.05);
-  color: var(--accent-dark);
-}
-
-/* 5. Correction des Badges de Technologie de l'Accueil */
-:root.light .tech-badge {
-  background: #f1f3f5;
-  border: 1px solid #dee2e6;
-  box-shadow: none;
-}
-:root.light .tech-badge:hover {
-  border-color: var(--accent);
-}
-
-/* 6. Correction des textes et couleurs spécifiques */
-:root.light .terminal-title, 
-:root.light .terminal-prompt, 
-:root.light .about-highlight,
-:root.light .main-nav__logo,
-:root.light .footer__social-link:hover,
-:root.light .about-card__header,
-:root.light .about-metric i,
-:root.light .timeline-icon-wrapper,
-:root.light .parcours-card-period,
-:root.light .tech-tag,
-:root.light .highlights-list i {
-  color: var(--accent);
-}
-
-:root.light .main-nav__link:hover, 
-:root.light .main-nav__link.is-active {
-  background-color: rgba(0, 123, 255, 0.1);
-  color: var(--accent);
-}
-
-:root.light .typed-text {
-  color: #d9480f;
-}
-:root.light .terminal-desc, 
-:root.light .about-desc, 
-:root.light .skills-card__level, 
-:root.light .footer__copy,
-:root.light .tech-name,
-:root.light .main-nav__link,
-:root.light .footer__social-link,
-:root.light .about-metric__label,
-:root.light .about-card p,
-:root.light .about-card ul,
-:root.light .parcours-card-meta,
-:root.light .parcours-card-description,
-:root.light .highlights-list li {
-  color: var(--text-secondary);
-}
-
-:root.light .terminal-command {
-    background: linear-gradient(135deg, var(--accent) 0%, var(--color-text) 70%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-:root.light .tech-tag {
-    background: rgba(0, 123, 255, 0.1);
+:root.light .btn-download:hover {
+    color: var(--button-text-primary) !important;
 }

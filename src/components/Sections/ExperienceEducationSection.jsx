@@ -10,14 +10,15 @@ const TimelineCard = ({ item, onSelect, isSelected }) => (
         className="timeline-card-compact"
         onClick={() => onSelect(item.id)}
         variants={childVariants}
-        style={{ opacity: isSelected ? 0.5 : 1 }}
+        initial={{ borderRadius: 12 }}
+        style={{ opacity: isSelected ? 0 : 1 }}
         data-cursor="pointer"
     >
         <div className="timeline-card-compact-header">
             <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
-            <h3 className="timeline-card-compact-title">{item.title}</h3>
+            <motion.h3 layoutId={`card-title-${item.id}`} className="timeline-card-compact-title">{item.title}</motion.h3>
         </div>
-        <span className="timeline-card-compact-period">{item.period}</span>
+        <motion.span layoutId={`card-period-${item.id}`} className="timeline-card-compact-period">{item.period}</motion.span>
     </motion.div>
 );
 
@@ -28,19 +29,21 @@ const ExpandedCard = ({ item, onDeselect }) => (
         onClick={onDeselect}
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        exit={{ opacity: 0, transition: { duration: 0.15 } }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.2 }}
     >
         <motion.div
             layoutId={`card-container-${item.id}`}
             className="expanded-card"
             onClick={(e) => e.stopPropagation()}
+            initial={{ borderRadius: 12 }}
         >
             <motion.div
                 className="expanded-card-content-wrapper"
                 initial={{ opacity: 0 }}
-                animate={{ opacity: 1, transition: { delay: 0.15, duration: 0.3 } }}
-                exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
             >
                 <div className="expanded-card-header">
                     {item.logo && (
@@ -75,7 +78,7 @@ const ExpandedCard = ({ item, onDeselect }) => (
                                 <div className="details-column">
                                     <h4>Points Marquants</h4>
                                     <ul className="highlights-list">
-                                        {item.details.highlights.map((h, i) => <li key={i}>{h}</li>)}
+                                        {item.details.highlights.map((h, i) => <li key={i}><i className="fa-solid fa-check"></i> {h}</li>)}
                                     </ul>
                                 </div>
                             </div>
@@ -83,7 +86,9 @@ const ExpandedCard = ({ item, onDeselect }) => (
                     )}
                 </div>
             </motion.div>
-            <button onClick={onDeselect} className="close-button" data-cursor="pointer">&times;</button>
+            <button onClick={onDeselect} className="close-button" data-cursor="pointer">
+                <i className="fa-solid fa-times"></i>
+            </button>
         </motion.div>
     </motion.div>
 );
@@ -95,26 +100,32 @@ function ExperienceEducationSection() {
     const selectedItem = selectedId ? timelineData.find(item => item.id === selectedId) : null;
 
     useEffect(() => {
+        const currentTimeline = timelineRef.current;
+        if (!currentTimeline) return;
+
+        let animationFrameId;
+
         const handleMouseMove = (e) => {
-            const cards = timelineRef.current.querySelectorAll('.timeline-card-compact');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
+            if (animationFrameId) return;
+
+            animationFrameId = requestAnimationFrame(() => {
+                const cards = currentTimeline.querySelectorAll('.timeline-card-compact');
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--x', `${x}px`);
+                    card.style.setProperty('--y', `${y}px`);
+                });
+                animationFrameId = null;
             });
         };
 
-        const currentTimeline = timelineRef.current;
-        if (currentTimeline) {
-            currentTimeline.addEventListener('mousemove', handleMouseMove);
-        }
+        currentTimeline.addEventListener('mousemove', handleMouseMove);
 
         return () => {
-            if (currentTimeline) {
-                currentTimeline.removeEventListener('mousemove', handleMouseMove);
-            }
+            currentTimeline.removeEventListener('mousemove', handleMouseMove);
+            if (animationFrameId) cancelAnimationFrame(animationFrameId);
         };
     }, []);
 

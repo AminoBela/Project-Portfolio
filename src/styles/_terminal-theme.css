@@ -19,3 +19,18 @@
   --nav-link-hover-bg: rgba(102, 255, 153, 0.1);
   --icon-link-bg: rgba(102, 255, 153, 0.1);
 }
+
+/* --- OPTIMISATIONS POUR LE THÈME SOMBRE --- */
+
+/* On s'assure que les cartes sont opaques pour la performance */
+:root.terminal .timeline-card-compact,
+:root.terminal .expanded-card {
+    background: var(--bg-secondary);
+    backdrop-filter: none;
+}
+
+/* On s'assure que le fond de la modale n'est pas transparent */
+:root.terminal .expanded-card-backdrop {
+    background: rgba(10, 12, 18, 0.9);
+    backdrop-filter: none;
+}

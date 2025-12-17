@@ -38,99 +38,6 @@
     gap: 1.5rem;
 }
 
-/* --- Carte de compétence (Skill Card) --- */
-.skill-card {
-    display: flex;
-    flex-direction: column;
-    gap: 0.85rem;
-    padding: 1.25rem;
-    min-height: 150px;
-    background: rgba(20, 30, 48, 0.7);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(102, 255, 153, 0.15);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.skill-card:hover {
-    transform: translateY(-6px) scale(1.02); /* Effet de "respiration" ajouté */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-}
-.skill-card__header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-.skill-card__identity {
-    display: flex;
-    align-items: center;
-    gap: 0.85rem;
-}
-.skill-logo {
-    width: 30px;
-    height: 30px;
-    object-fit: contain;
-}
-.skill-card__name {
-    margin: 0;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--color-text);
-}
-.skill-card__level {
-    font-size: 0.7rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-    padding: 0.25rem 0.6rem;
-    border-radius: 999px;
-    border: 1px solid;
-    white-space: nowrap;
-    font-weight: 500;
-}
-.skill-card__level--expert {
-    border-color: rgba(74, 222, 128, 0.4);
-    background: rgba(74, 222, 128, 0.15);
-    color: #4ade80;
-}
-.skill-card__level--avancé {
-    border-color: rgba(96, 165, 250, 0.4);
-    background: rgba(96, 165, 250, 0.15);
-    color: #60a5fa;
-}
-.skill-card__level--confirmé {
-    border-color: rgba(251, 191, 36, 0.5);
-    background: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
-}
-.skill-card__level--intermédiaire,
-.skill-card__level--en-progression {
-    border-color: rgba(148, 163, 184, 0.4);
-    background: rgba(148, 163, 184, 0.15);
-    color: #94a3b8;
-}
-.skill-bar-track {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 8px;
-    background: rgba(15, 23, 42, 0.65);
-    border-radius: 999px;
-    overflow: hidden;
-    border: 1px solid rgba(102, 255, 153, 0.1);
-    margin-top: auto;
-}
-.skill-bar-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--accent) 0%, #4ade80 100%);
-    border-radius: inherit;
-    box-shadow: 0 0 12px rgba(102, 255, 153, 0.3);
-    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.skill-bar-indicator {
-    display: none;
-}
-
 /* --- Cartes de Projet --- */
 .project-grid {
     display: grid;
@@ -138,70 +45,12 @@
     gap: 2rem;
     margin-top: 2.5rem;
 }
-.project-card {
-    position: relative;
-    background: rgba(20, 30, 48, 0.7);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    border: 1px solid rgba(102, 255, 153, 0.15);
-    padding: 2rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.4rem;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.project-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at top right, rgba(102, 255, 153, 0.18), transparent 55%);
-    opacity: 0.8;
-    pointer-events: none;
-}
-.project-card:hover {
-    transform: translateY(-6px) scale(1.02); /* Effet de "respiration" ajouté */
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.2);
-    border-color: rgba(102, 255, 153, 0.3);
-}
-.project-card__title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
-}
-.project-card__meta {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: rgba(203, 213, 225, 0.8);
-}
-.project-card__description {
-    font-size: 0.97rem;
-    line-height: 1.65;
-    color: var(--text-secondary);
-}
-.project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-.tag {
-    padding: 0.35rem 0.7rem;
-    border-radius: 999px;
-    background: rgba(148, 163, 184, 0.12);
-    border: 1px solid rgba(102, 255, 153, 0.18);
-    color: var(--accent);
-    font-size: 0.75rem;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-}
-.project-card__footer {
-    margin-top: auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
+
+@media (min-width: 768px) and (max-width: 1024px) {
+    .skills-grid-wide {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+    .project-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
 }
