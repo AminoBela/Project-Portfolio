@@ -31,6 +31,13 @@
     box-shadow: var(--card-shadow-hover);
 }
 
+.project-card__image {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
 .project-card__title {
     font-size: 1.3rem;
     font-weight: 700;

@@ -9,33 +9,59 @@ export function useGithubRepos(username) {
 
   useEffect(() => {
     const fetchRepos = async () => {
-      setLoading(true); // Assure-toi que loading est toujours à true au début
-      setError(null); // Réinitialise l'erreur
-      console.log(`Tentative de récupération des repos pour l'utilisateur : AminoBela`);
+      setLoading(true);
+      setError(null);
 
       try {
-        const response = await axios.get(`https://api.github.com/users/AminoBela/repos`);
-        console.log('Projets GitHub récupérés :', response.data);
-        setProjects(response.data);
+        const reposResponse = await axios.get(`https://api.github.com/users/${username}/repos`);
+        const repos = reposResponse.data;
+
+        const projectsWithDetails = await Promise.all(
+          repos.map(async (repo) => {
+            let readmeContent = '';
+            try {
+              const readmeResponse = await axios.get(`https://api.github.com/repos/${username}/${repo.name}/readme`);
+              readmeContent = atob(readmeResponse.data.content);
+            } catch (e) {
+              console.warn(`Could not fetch README for ${repo.name}`);
+            }
+
+            let languages = {};
+            try {
+              const languagesResponse = await axios.get(repo.languages_url);
+              languages = languagesResponse.data;
+            } catch (e) {
+              console.warn(`Could not fetch languages for ${repo.name}`);
+            }
+
+            return {
+              ...repo,
+              readmeContent,
+              languages,
+            };
+          })
+        );
+
+        setProjects(projectsWithDetails);
       } catch (err) {
         console.error('Erreur lors de la récupération des repos GitHub:', err.response ? err.response.data : err.message);
         if (err.response && err.response.status === 403) {
-            setError('Quota API GitHub atteint. Veuillez réessayer plus tard ou utilisez un token personnel.');
+          setError('Quota API GitHub atteint. Veuillez réessayer plus tard ou utilisez un token personnel.');
         } else {
-            setError('Impossible de charger les projets GitHub. Vérifiez votre connexion ou réessayez plus tard.');
+          setError('Impossible de charger les projets GitHub. Vérifiez votre connexion ou réessayez plus tard.');
         }
       } finally {
         setLoading(false);
       }
     };
 
-    if (username) { // S'assure que le username est défini avant de faire la requête
-        fetchRepos();
+    if (username) {
+      fetchRepos();
     } else {
-        console.warn('Nom d\'utilisateur GitHub non fourni.');
-        setLoading(false);
+      console.warn('Nom d\'utilisateur GitHub non fourni.');
+      setLoading(false);
     }
-  }, [username]); // Le tableau de dépendances est correct
+  }, [username]);
 
   return { projects, loading, error };
 }
