@@ -12,15 +12,15 @@
     --color-text: var(--terminal-white);
     --text-secondary: #9aa4b2;
     
-    /* --- VARIABLES D'ARCHITECTURE --- */
+    /* --- VARIABLES D'ARCHITECTURE (Glassmorphism) --- */
     
     /* Fond global */
     --bg-primary: #1e1e1e;
     --bg-secondary: #252525;
     
-    /* CARTES */
-    --card-bg: linear-gradient(145deg, #1e232d 0%, #151820 100%);
-    --card-bg-hover: linear-gradient(145deg, #252b36 0%, #1a1e26 100%);
+    /* CARTES : Effet verre fumé */
+    --card-bg: rgba(20, 24, 32, 0.7);
+    --card-bg-hover: rgba(28, 33, 44, 0.8);
     
     /* Bordures */
     --card-border: rgba(102, 255, 153, 0.15);
@@ -28,11 +28,11 @@
     --card-border-hover: rgba(102, 255, 153, 0.6);
     
     /* Ombres & Glow */
-    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    --card-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.35), 0 0 20px rgba(102, 255, 153, 0.15);
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    --card-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(102, 255, 153, 0.15);
     
-    /* Performance */
-    --card-backdrop: none;
+    /* Performance : Activation du flou */
+    --card-backdrop: blur(16px); /* FLOU AUGMENTÉ */
     
     /* NOUVEAU : Couleur du texte au survol des cartes */
     --text-highlight: #ffffff; /* Blanc en mode sombre */

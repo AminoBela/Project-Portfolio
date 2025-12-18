@@ -1,12 +1,12 @@
-/* --- Styles de la Modale --- */
+/* --- Styles de la Modale (CORRECTION DÉFINITIVE) --- */
+
+/* 1. L'arrière-plan qui gère le flou et le fond sombre */
 .modal-backdrop {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(5px);
+  inset: 0;
+  background-color: rgba(10, 12, 18, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,8 +14,10 @@
   padding: 1rem;
 }
 
+/* 2. Le contenu, qui n'a plus à gérer le flou lui-même */
 .modal-content {
-  background: var(--card-bg);
+  background: var(--card-bg); /* Applique la couleur semi-transparente */
+  /* backdrop-filter: var(--card-backdrop); <-- SUPPRIMÉ, c'est la cause du bug */
   border: 1px solid var(--card-border);
   border-radius: 20px;
   box-shadow: 0 0 40px rgba(0,0,0,0.5);
@@ -25,6 +27,32 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  position: relative;
+}
+
+/* --- CROIX DE FERMETURE --- */
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 40px;
+  height: 40px;
+  background: rgba(0,0,0,0.2);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.modal-close-button:hover {
+  color: var(--color-text);
+  background: rgba(127,127,127,0.2);
+  transform: rotate(90deg);
 }
 
 /* --- HERO HEADER --- */
@@ -62,9 +90,8 @@
 }
 
 .btn-github {
-  /* CORRECTION : Fond solide et couleur de texte explicite */
   background-color: var(--color-text);
-  color: var(--bg-primary); /* Texte sombre sur fond clair */
+  color: var(--bg-primary);
 }
 .btn-github:hover {
   opacity: 0.8;
@@ -76,26 +103,6 @@
 .btn-demo:hover {
   background-color: var(--accent-color);
   color: #000 !important;
-}
-
-.modal-close-button {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0,0,0,0.1);
-  border: 1px solid var(--card-border);
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 1.5rem;
-  color: var(--text-secondary);
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-.modal-close-button:hover {
-  color: var(--color-text);
-  background: rgba(127,127,127,0.2);
-  transform: rotate(90deg);
 }
 
 .modal-body {
@@ -205,15 +212,15 @@
 
 /* --- AJUSTEMENTS POUR LE THÈME CLAIR --- */
 :root.light .modal-backdrop {
-    background-color: rgba(255, 255, 255, 0.5); /* Fond plus clair */
+    background-color: rgba(255, 255, 255, 0.5);
 }
 
 :root.light .modal-hero__badge {
-    color: #fff !important; /* Assure que le texte reste lisible sur les couleurs vives */
+    color: #fff !important;
 }
 
 :root.light .markdown-body pre {
-    background-color: #f6f8fa; /* Fond clair pour le code */
+    background-color: #f6f8fa;
     color: #24292e;
 }
 
@@ -224,7 +231,7 @@
 
 :root.light .markdown-body code {
     background-color: rgba(27, 31, 35, 0.05);
-    color: #e06c75; /* Couleur de tag pour le code inline */
+    color: #e06c75;
 }
 
 :root.light .markdown-body pre code {

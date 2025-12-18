@@ -7,7 +7,7 @@ import { useTypingEffect } from '../../hooks/useTypingEffect';
 
 const HomeSection = () => {
     const animatedTitle = useTypingEffect(
-        ['Développeur Web', 'Spécialiste DevOps', 'Créateur de Solutions'],
+        ['Admin. Système', 'Futur DevOps', 'Technicien Infra'],
         { typeSpeed: 100, deleteSpeed: 80, delay: 2000 }
     );
 
@@ -90,8 +90,8 @@ const HomeSection = () => {
                         <span className="home-cursor">|</span>
                     </motion.h2>
                     <motion.p className="home-description" variants={itemVariants}>
-                        Étudiant en BUT Informatique, passionné par la conception d'applications modernes
-                        et l'automatisation des infrastructures qui les soutiennent.
+                        Étudiant en 3ème année de BUT Informatique, parcours DACS. 
+                        Passionné par l'automatisation, le déploiement et la sécurisation des infrastructures.
                     </motion.p>
                     <motion.div className="home-btn-group" variants={itemVariants}>
                         <Button href="#projets" primary>&gt; Mes Projets</Button>

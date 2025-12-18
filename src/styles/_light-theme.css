@@ -8,25 +8,25 @@
     
     /* --- VARIABLES D'ARCHITECTURE (LIGHT MODE) --- */
     
-    /* Fond global : Plus sombre pour le contraste (Gris perle) */
+    /* Fond global : Gris perle doux pour le contraste */
     --bg-primary: #e9ecef; 
     --bg-secondary: #f8f9fa;
     
-    /* CARTES : Blanc pur et opaque pour ressortir du fond */
-    --card-bg: #ffffff;
-    --card-bg-hover: #ffffff;
+    /* CARTES : Retour au Glassmorphism (Translucide + Flou) */
+    --card-bg: rgba(255, 255, 255, 0.65);
+    --card-bg-hover: rgba(255, 255, 255, 0.85);
     
-    /* Bordures : Plus subtiles car le contraste se fait par la couleur */
-    --card-border: rgba(0, 0, 0, 0.08);
-    --card-border-top: rgba(0, 0, 0, 0.05);
+    /* Bordures */
+    --card-border: rgba(255, 255, 255, 0.4);
+    --card-border-top: rgba(255, 255, 255, 0.6);
     --card-border-hover: var(--accent);
     
-    /* Ombres : Plus marquées pour détacher les cartes */
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    --card-shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.12);
+    /* Ombres */
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+    --card-shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.1);
     
-    /* Performance */
-    --card-backdrop: none; /* Plus besoin de flou si le fond est opaque */
+    /* Performance : Réactivation du flou */
+    --card-backdrop: blur(16px); /* FLOU AUGMENTÉ */
     
     /* NOUVEAU : Couleur du texte au survol des cartes */
     --text-highlight: var(--accent);
@@ -36,21 +36,22 @@
     /* Bouton CV : forcer le texte en blanc */
     --button-text-primary: #ffffff;
     
-    /* Navbar & Icônes Accueil */
-    --nav-bg: rgba(255, 255, 255, 0.9);
-    --tech-icon-bg: #ffffff;
+    /* Navbar & Icônes Accueil : Plus translucide */
+    --nav-bg: rgba(255, 255, 255, 0.7);
+    --tech-icon-bg: rgba(255, 255, 255, 0.7);
 }
 
 /* Application des corrections */
 :root.light .main-nav {
     background: var(--nav-bg);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    backdrop-filter: blur(16px); /* FLOU AUGMENTÉ */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 :root.light .tech-icon-wrapper {
     background: var(--tech-icon-bg);
-    border-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    border-color: rgba(255, 255, 255, 0.5);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
@@ -59,4 +60,10 @@
 }
 :root.light .btn-download:hover {
     color: var(--button-text-primary) !important;
+}
+
+/* Correction spécifique pour la modale en mode clair pour qu'elle soit aussi "glossy" */
+:root.light .modal-content {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
 }

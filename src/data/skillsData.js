@@ -1,93 +1,119 @@
 export const skills = [
+  // --- SYSTÈMES & RÉSEAUX ---
   {
-    name: 'HTML',
-    level: 96,
-    icon: 'https://cdn.simpleicons.org/html5/66ff99',
-    category: 'Frontend & UI',
-    description: 'Structure sémantique, accessibilité, SEO technique'
+    name: 'Linux Administration',
+    level: 85,
+    icon: 'https://cdn.simpleicons.org/linux',
+    category: 'Systèmes & Réseaux',
+    description: 'Gestion des droits, stockage et paquets (Deb/RPM).'
   },
   {
-    name: 'CSS',
-    level: 93,
-    icon: 'https://cdn.simpleicons.org/css3/66ff99',
-    category: 'Frontend & UI',
-    description: 'Flexbox, grid, animations et design responsive'
+    name: 'Réseaux & Protocoles',
+    level: 80,
+    icon: 'https://cdn.simpleicons.org/cisco',
+    category: 'Systèmes & Réseaux',
+    description: 'Maîtrise TCP/IP, DNS, DHCP, SSH, VLAN et routage.'
   },
   {
-    name: 'JavaScript',
-    level: 78,
-    icon: 'https://cdn.simpleicons.org/javascript/66ff99',
-    category: 'Frontend & UI',
-    description: 'ES6+, asynchronicité, tooling (Vite, Webpack)'
+    name: 'Scripting (Bash/Perl)',
+    level: 80,
+    icon: 'https://cdn.simpleicons.org/gnubash',
+    category: 'Systèmes & Réseaux',
+    description: 'Automatisation des tâches d\'administration système.'
   },
   {
-    name: 'React',
-    level: 68,
-    icon: 'https://cdn.simpleicons.org/react/66ff99',
-    category: 'Frontend & UI',
-    description: 'Hooks, composants modulaires, intégration API'
+    name: 'Ruby',
+    level: 65,
+    icon: 'https://cdn.simpleicons.org/ruby',
+    category: 'Systèmes & Réseaux',
+    description: 'Scripting orienté objet pour l\'automatisation.'
   },
   {
-    name: 'Java',
+    name: 'Sécurité (iptables)',
     level: 70,
-    icon: 'https://cdn.simpleicons.org/java/66ff99',
-    category: 'Backend & Langages',
-    description: 'POO, Spring Boot, tests unitaires (JUnit)'
+    icon: 'https://cdn.simpleicons.org/kalilinux',
+    category: 'Systèmes & Réseaux',
+    description: 'Mise en place de pare-feu et filtrage de paquets.'
   },
-  {
-    name: 'PHP',
-    level: 72,
-    icon: 'https://cdn.simpleicons.org/php/66ff99',
-    category: 'Backend & Langages',
-    description: 'APIs REST, MVC, sécurisation sessions & cookies'
-  },
-  {
-    name: 'C',
-    level: 62,
-    icon: 'https://cdn.simpleicons.org/c/66ff99',
-    category: 'Backend & Langages',
-    description: 'Gestion mémoire, programmation système Unix'
-  },
-  {
-    name: 'VBA',
-    level: 78,
-    icon: 'https://cdn.simpleicons.org/microsoft/66ff99',
-    category: 'Backend & Langages',
-    description: 'Automatisation Excel, génération de documents'
-  },
-  {
-    name: 'Linux (Bash)',
-    level: 88,
-    icon: 'https://cdn.simpleicons.org/linux/66ff99',
-    category: 'Ops & Infra',
-    description: 'Scripts shell, administration, surveillance services'
-  },
+
+  // --- VIRTUALISATION & SERVICES ---
   {
     name: 'Docker',
-    level: 90,
-    icon: 'https://cdn.simpleicons.org/docker/66ff99',
-    category: 'Ops & Infra',
-    description: 'Images légères, orchestration compose, CI/CD'
+    level: 85,
+    icon: 'https://cdn.simpleicons.org/docker',
+    category: 'Virtualisation & Services',
+    description: 'Création d\'images et orchestration avec Docker Compose.'
   },
   {
     name: 'Kubernetes',
+    level: 70,
+    icon: 'https://cdn.simpleicons.org/kubernetes',
+    category: 'Virtualisation & Services',
+    description: 'Déploiement et gestion de clusters (Pods, Services).'
+  },
+  {
+    name: 'Serveurs Web',
+    level: 75,
+    icon: 'https://cdn.simpleicons.org/apache',
+    category: 'Virtualisation & Services',
+    description: 'Installation et configuration d\'Apache et NGINX.'
+  },
+  {
+    name: 'Services (LDAP/NFS)',
+    level: 70,
+    icon: 'https://cdn.simpleicons.org/gnu',
+    category: 'Virtualisation & Services',
+    description: 'Annuaires centralisés et partage de fichiers réseau.'
+  },
+  {
+    name: 'CI/CD & Git',
+    level: 80,
+    icon: 'https://cdn.simpleicons.org/git',
+    category: 'Virtualisation & Services',
+    description: 'Gestion de version et création de pipelines d\'intégration.'
+  },
+
+  // --- DÉVELOPPEMENT & WEB ---
+  {
+    name: 'Java (POO)',
+    level: 75,
+    icon: 'https://cdn.simpleicons.org/coffeescript', /* Tentative avec CoffeeScript (tasse) */
+    category: 'Dév & Web',
+    description: 'Conception objet et développement d\'applications.'
+  },
+  {
+    name: 'PHP',
+    level: 70,
+    icon: 'https://cdn.simpleicons.org/php',
+    category: 'Dév & Web',
+    description: 'Développement backend et sécurisation d\'apps web.'
+  },
+  {
+    name: 'HTML / CSS',
+    level: 85,
+    icon: 'https://cdn.simpleicons.org/html5',
+    category: 'Dév & Web',
+    description: 'Intégration web responsive et accessible.'
+  },
+  {
+    name: 'JavaScript / React',
+    level: 60,
+    icon: 'https://cdn.simpleicons.org/react',
+    category: 'Dév & Web',
+    description: 'Développement d\'interfaces utilisateur dynamiques.'
+  },
+  {
+    name: 'SQL (Oracle/MySQL)',
+    level: 80,
+    icon: 'https://cdn.simpleicons.org/mysql',
+    category: 'Dév & Web',
+    description: 'Conception et modélisation de bases de données.'
+  },
+  {
+    name: 'C (Système)',
     level: 65,
-    icon: 'https://cdn.simpleicons.org/kubernetes/66ff99',
-    category: 'Ops & Infra',
-    description: 'Déploiements, services, observabilité de base'
-  },
-  {
-    name: 'Git',
-    level: 95,
-    icon: 'https://cdn.simpleicons.org/git/66ff99',
-    category: 'Ops & Infra',
-    description: 'Gitflow, PR, intégration continue et revue de code'
-  },
-  {
-    name: 'SQL',
-    level: 90,
-    icon: 'https://cdn.simpleicons.org/mysql/66ff99',
-    category: 'Data & SGBD',
-    description: 'Modélisation relationnelle, requêtes optimisées, transactions'
+    icon: 'https://cdn.simpleicons.org/c',
+    category: 'Dév & Web',
+    description: 'Programmation système bas niveau sous Unix.'
   }
-]; 
+];

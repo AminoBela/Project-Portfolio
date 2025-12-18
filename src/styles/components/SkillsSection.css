@@ -155,6 +155,7 @@
     flex-direction: column;
     gap: 0.85rem;
     transition: all 0.3s ease;
+    min-height: 130px; /* Hauteur minimale pour l'alignement */
 }
 
 .skill-card:hover {
@@ -177,10 +178,15 @@
     gap: 0.85rem;
 }
 
-.skill-logo {
+/* --- NOUVEAU : Masque CSS pour les logos --- */
+.skill-logo-mask {
     width: 30px;
     height: 30px;
-    object-fit: contain;
+    background-color: var(--accent); /* La couleur de l'icône */
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    transition: background-color 0.3s ease;
 }
 
 .skill-card__name {
@@ -195,6 +201,7 @@
     color: var(--text-secondary);
     line-height: 1.5;
     margin: 0.25rem 0;
+    flex-grow: 1;
 }
 
 .skill-card__level {

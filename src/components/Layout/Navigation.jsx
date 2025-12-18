@@ -8,6 +8,7 @@ const navLinks = [
     { href: '#parcours', label: 'Parcours' },
     { href: '#competences', label: 'Compétences' },
     { href: '#projets', label: 'Projets' },
+    { href: '#contact', label: 'Contact' }, // --- AJOUT DU LIEN ---
 ];
 
 // Animation de la carte centrale

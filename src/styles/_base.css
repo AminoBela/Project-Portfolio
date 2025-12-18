@@ -22,13 +22,18 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text);
-  /* CORRECTION : Utilisation de la variable pour le fond */
   background: var(--bg-primary); 
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   cursor: none !important;
   transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --- NOUVEAU : COULEUR DE SÉLECTION --- */
+::selection {
+  background-color: var(--accent);
+  color: var(--bg-primary);
 }
 
 /* Styles pour les éléments interactifs */
@@ -110,6 +115,30 @@ button {
   }
 }
 
+/* --- SCROLLBAR PERSONNALISÉE --- */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(102, 255, 153, 0.2);
+  border-radius: 5px;
+  border: 2px solid var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) var(--bg-primary);
+}
+
 /* --- Barre de Progression de Lecture --- */
 .progress-bar {
     position: fixed;
@@ -117,12 +146,14 @@ button {
     left: 0;
     right: 0;
     height: 4px;
-    background: var(--accent);
+    background: linear-gradient(90deg, var(--accent) 0%, #4ade80 50%, #60a5fa 100%);
     transform-origin: 0%;
     z-index: var(--z-fixed);
+    box-shadow: 0 0 10px var(--accent);
+    border-radius: 0 4px 4px 0;
 }
 
-/* --- NOUVEAU : Bouton Retour en Haut --- */
+/* --- Bouton Retour en Haut --- */
 .scroll-to-top {
     position: fixed;
     bottom: 2rem;
@@ -140,4 +171,5 @@ button {
     justify-content: center;
     box-shadow: var(--card-shadow);
     z-index: var(--z-fixed);
+    transition: none !important;
 }

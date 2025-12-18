@@ -5,20 +5,45 @@ export function useScrollspy() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      { threshold: 0.2 } // Seuil réduit pour une meilleure détection
-    );
+    const observerOptions = {
+      rootMargin: '-20% 0px -60% 0px', // Ajusté pour mieux détecter le haut de la section
+      threshold: 0
+    };
 
-    sections.forEach((section) => observer.observe(section));
-    return () => sections.forEach((section) => observer.unobserve(section));
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Fonction pour attacher l'observateur aux sections
+    const observeSections = () => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach((section) => observer.observe(section));
+    };
+
+    // 1. Observer immédiatement
+    observeSections();
+
+    // 2. Observer à nouveau quand le DOM change (pour le Lazy Loading)
+    const mutationObserver = new MutationObserver(() => {
+      observeSections();
+    });
+
+    mutationObserver.observe(document.body, {
+      childList: true,
+      subtree: true
+    });
+
+    // Nettoyage
+    return () => {
+      observer.disconnect();
+      mutationObserver.disconnect();
+    };
   }, []);
 
   const toggleMenu = () => {

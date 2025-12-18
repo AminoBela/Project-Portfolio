@@ -75,10 +75,10 @@ section {
   text-fill-color: transparent;
 }
 
-/* --- NOUVEAU FOOTER --- */
+/* --- NOUVEAU FOOTER (Compact) --- */
 .footer {
-  margin-top: 6rem;
-  padding: 3rem 0;
+  margin-top: 0; /* SUPPRESSION DE LA MARGE */
+  padding: 2rem 0;
   background: transparent;
   border-top: 1px solid var(--card-border);
 }

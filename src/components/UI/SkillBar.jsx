@@ -18,12 +18,13 @@ export default function SkillBar({ skill, style }) {
             <header className="skill-card__header">
                 <div className="skill-card__identity">
                     {skill.icon && (
-                        <img
-                            src={skill.icon}
-                            alt={skill.name}
-                            className="skill-logo"
-                            loading="lazy"
-                        />
+                        <div 
+                            className="skill-logo-mask"
+                            style={{
+                                maskImage: `url(${skill.icon})`,
+                                WebkitMaskImage: `url(${skill.icon})`,
+                            }}
+                        ></div>
                     )}
                     <div>
                         <h4 className="skill-card__name">{skill.name}</h4>
@@ -34,9 +35,10 @@ export default function SkillBar({ skill, style }) {
                 </span>
             </header>
             
-            {/* --- AJOUT DE LA DESCRIPTION --- */}
             {skill.description && (
-                <p className="skill-card__description">{skill.description}</p>
+                <p className="skill-card__description">
+                    {skill.description}
+                </p>
             )}
 
             <div className="skill-bar-track">

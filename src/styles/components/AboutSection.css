@@ -1,23 +1,79 @@
 /* src/styles/components/AboutSection.css */
-.about-bio-card, .stat-card, .detail-card {
+.about-bio-card, .stat-card, .detail-card, .internship-card {
     background: var(--card-bg);
     backdrop-filter: var(--card-backdrop);
     -webkit-backdrop-filter: var(--card-backdrop);
     
     border: 1px solid var(--card-border);
-    border-top: 1px solid var(--card-border-top);
-    
     border-radius: 16px;
     padding: 1.5rem;
     box-shadow: var(--card-shadow);
     transition: all 0.3s ease;
 }
 
-.about-bio-card:hover, .stat-card:hover, .detail-card:hover {
+.about-bio-card:hover, .stat-card:hover, .detail-card:hover, .internship-card:hover {
     transform: translateY(-5px);
     background: var(--card-bg-hover);
     border-color: var(--card-border-hover);
     box-shadow: var(--card-shadow-hover);
+}
+
+/* --- NOUVEAU : CARTE RECHERCHE DE STAGE --- */
+.internship-card {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent);
+}
+
+.internship-icon {
+    font-size: 2rem;
+    color: var(--accent);
+    background: rgba(102, 255, 153, 0.1);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.internship-content h4 {
+    font-size: 1.2rem;
+    color: var(--color-text);
+    margin-bottom: 0.5rem;
+}
+
+.internship-content p {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.internship-details {
+    display: flex;
+    justify-content: space-between; /* Pour espacer les éléments */
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.internship-details span {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.click-hint {
+    color: var(--accent);
+    font-weight: bold;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.internship-card:hover .click-hint {
+    opacity: 1;
 }
 
 .about-section {
@@ -226,7 +282,7 @@
 }
 
 .stat-card:hover .stat-value {
-    color: #fff;
+    color: var(--text-highlight);
 }
 
 .stat-label {

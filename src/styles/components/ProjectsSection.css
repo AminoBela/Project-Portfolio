@@ -23,7 +23,7 @@
 .skills-tab {
     padding: 0.6rem 1.5rem;
     background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(102, 255, 153, 0.1);
+    border: 1px solid var(--card-border);
     border-radius: 999px;
     color: var(--text-secondary);
     font-size: 0.95rem;
@@ -37,7 +37,6 @@
     color: var(--color-text);
     border-color: var(--accent);
     background: rgba(102, 255, 153, 0.05);
-    transform: translateY(-2px);
 }
 
 .skills-tab.skills-tab--active {
@@ -172,4 +171,18 @@
     background-color: var(--accent-color);
     color: #000 !important;
     box-shadow: 0 0 15px var(--accent-color);
+}
+
+/* --- CORRECTION COULEURS EN MODE CLAIR --- */
+:root.light .project-card__subtitle,
+:root.light .tag {
+    filter: brightness(0.8) saturate(1.2);
+}
+
+:root.light .project-card__icon-placeholder {
+    filter: brightness(0.9);
+}
+
+:root.light .project-card__cta:hover {
+    color: #fff !important; /* Texte blanc sur fond de couleur assombri */
 }
