@@ -27,72 +27,72 @@ const BOOT_TEXT = [
     "> ACCESS GRANTED."
 ];
 
-// --- COMPOSANT DE DÉMARRAGE (ROBUSTE & BEAU) ---
-const InitialBootScreen = ({ onComplete }) => {
+// --- COMPOSANT DE DÉMARRAGE (ULTRA ROBUSTE) ---
+const InitialBootScreen = ({ onComplete, isVisible }) => {
     const [displayedLines, setDisplayedLines] = useState([]);
     const [progress, setProgress] = useState(0);
     
-    // Refs pour gérer l'animation sans dépendre des re-rendus
     const lineIndexRef = useRef(0);
     const lastTimeRef = useRef(Date.now());
     const progressRef = useRef(0);
     const animationFrameRef = useRef(null);
 
     const animate = useCallback(() => {
+        if (!isVisible) return; // Stop si plus visible
+
         const now = Date.now();
         const deltaTime = now - lastTimeRef.current;
 
-        // Animation du texte (toutes les 400ms environ)
-        if (deltaTime > 400 && lineIndexRef.current < BOOT_TEXT.length) {
+        if (deltaTime > 300 && lineIndexRef.current < BOOT_TEXT.length) {
             setDisplayedLines(prev => [...prev, BOOT_TEXT[lineIndexRef.current]]);
             lineIndexRef.current++;
             lastTimeRef.current = now;
         }
 
-        // Animation de la barre de progression (plus fluide)
         if (progressRef.current < 100) {
-            progressRef.current += 0.8; // Vitesse de progression
+            progressRef.current += 1;
             setProgress(Math.min(100, progressRef.current));
         }
 
-        // Condition de fin
         if (lineIndexRef.current >= BOOT_TEXT.length && progressRef.current >= 100) {
-            // Petit délai avant de fermer pour lire la dernière ligne
-            setTimeout(onComplete, 600);
-            return; // Stop l'animation
+            setTimeout(onComplete, 500);
+            return;
         }
 
         animationFrameRef.current = requestAnimationFrame(animate);
-    }, [onComplete]);
+    }, [onComplete, isVisible]);
 
     useEffect(() => {
-        animationFrameRef.current = requestAnimationFrame(animate);
+        if (isVisible) {
+            animationFrameRef.current = requestAnimationFrame(animate);
+        }
         return () => cancelAnimationFrame(animationFrameRef.current);
-    }, [animate]);
+    }, [animate, isVisible]);
+
+    // Si on n'est pas visible, on ne rend rien (ou on rend un div vide caché)
+    if (!isVisible) return null;
 
     return (
-        <motion.div
-            className="boot-screen"
-            initial={{ opacity: 1 }}
-            exit={{ opacity: 0, filter: 'blur(10px)' }}
-            transition={{ duration: 0.8 }}
-            onClick={onComplete} // Cliquer n'importe où pour passer
+        <div
+            onClick={onComplete}
             style={{
                 position: 'fixed',
                 inset: 0,
                 backgroundColor: '#0a0c10',
                 color: '#66ff99',
                 fontFamily: "'Fira Code', monospace",
-                zIndex: 10000,
+                zIndex: 99999, // Z-index très élevé
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 padding: '2rem',
                 overflow: 'hidden',
-                cursor: 'pointer' // Indique qu'on peut cliquer
+                cursor: 'pointer',
+                pointerEvents: 'all', // Force les événements de pointeur
+                touchAction: 'manipulation' // Améliore la réactivité tactile
             }}
         >
-            {/* Scanlines effect */}
+            {/* Scanlines effect (CSS pur pour performance) */}
             <div style={{
                 position: 'absolute',
                 top: 0, left: 0, width: '100%', height: '100%',
@@ -105,10 +105,8 @@ const InitialBootScreen = ({ onComplete }) => {
             <div style={{ maxWidth: '800px', width: '100%', margin: '0 auto 10vh auto', position: 'relative', zIndex: 3 }}>
                 <div style={{ marginBottom: '2rem', minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                     {displayedLines.map((line, index) => (
-                        <motion.div 
+                        <div 
                             key={index}
-                            initial={{ opacity: 0, x: -10 }}
-                            animate={{ opacity: 1, x: 0 }}
                             style={{ 
                                 marginBottom: '0.5rem', 
                                 fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
@@ -117,18 +115,18 @@ const InitialBootScreen = ({ onComplete }) => {
                             }}
                         >
                             {line}
-                        </motion.div>
+                        </div>
                     ))}
                 </div>
 
-                {/* Barre de progression */}
                 <div style={{ width: '100%', height: '4px', background: '#333', marginTop: '1rem' }}>
-                    <motion.div 
+                    <div 
                         style={{ 
                             height: '100%', 
                             background: '#66ff99',
                             width: `${progress}%`,
-                            boxShadow: '0 0 10px #66ff99'
+                            boxShadow: '0 0 10px #66ff99',
+                            transition: 'width 0.1s linear' // Transition CSS fluide
                         }} 
                     />
                 </div>
@@ -137,19 +135,21 @@ const InitialBootScreen = ({ onComplete }) => {
                     <span>{Math.floor(progress)}%</span>
                 </div>
                 
-                {/* Indication pour passer */}
                 <div style={{ 
                     position: 'absolute', 
                     bottom: '-30px', 
                     right: 0, 
-                    fontSize: '0.7rem', 
-                    color: '#444',
-                    opacity: 0.7 
+                    fontSize: '0.8rem', 
+                    color: '#666',
+                    padding: '10px',
+                    border: '1px solid #333',
+                    borderRadius: '4px',
+                    background: 'rgba(0,0,0,0.5)'
                 }}>
                     [TAP TO SKIP]
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 };
 
@@ -275,8 +275,8 @@ function App() {
         }, 500);
     };
 
-    // Utilisation de useCallback pour stabiliser la fonction et éviter le redémarrage de l'effet
     const handleBootComplete = useCallback(() => {
+        console.log("Boot sequence completed/skipped");
         setIsBootSequenceFinished(true);
     }, []);
 
@@ -288,14 +288,14 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Sécurité : Forcer la fin du boot après 8 secondes max (un peu plus long car l'animation est plus lente)
+    // Sécurité : Forcer la fin du boot après 7 secondes max
     useEffect(() => {
         const safetyTimer = setTimeout(() => {
             if (!isBootSequenceFinished) {
                 console.warn("Boot sequence timed out, forcing completion.");
                 setIsBootSequenceFinished(true);
             }
-        }, 8000);
+        }, 7000);
         return () => clearTimeout(safetyTimer);
     }, [isBootSequenceFinished]);
 
@@ -306,11 +306,13 @@ function App() {
         <>
             <CustomCursor />
             
-            <AnimatePresence mode="wait">
-                {showBootScreen && (
-                    <InitialBootScreen onComplete={handleBootComplete} />
-                )}
-            </AnimatePresence>
+            {/* On retire AnimatePresence pour éviter les bugs de démontage sur mobile */}
+            {showBootScreen && (
+                <InitialBootScreen 
+                    onComplete={handleBootComplete} 
+                    isVisible={showBootScreen}
+                />
+            )}
 
             <AnimatePresence>
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
