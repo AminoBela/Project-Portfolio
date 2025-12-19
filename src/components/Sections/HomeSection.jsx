@@ -1,15 +1,25 @@
 import React, { useMemo } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';
 import { technologies } from '../../data/technologies';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
 
 const HomeSection = () => {
-    const animatedTitle = useTypingEffect(
-        ['Admin. Système', 'Futur DevOps', 'Technicien Infra'],
-        { typeSpeed: 100, deleteSpeed: 80, delay: 2000 }
-    );
+    const { t, ready } = useTranslation(); // On récupère l'état "ready"
+
+    // On s'assure que les mots ne sont définis que lorsque les traductions sont prêtes
+    const animatedWords = useMemo(() => {
+        if (!ready) return ['...']; // Valeur temporaire pendant le chargement
+        return [
+            t('home_subtitle_1'),
+            t('home_subtitle_2'),
+            t('home_subtitle_3')
+        ];
+    }, [t, ready]); // Le hook se relancera quand "ready" deviendra true
+
+    const animatedTitle = useTypingEffect(animatedWords, { typeSpeed: 100, deleteSpeed: 80, delay: 2000 });
 
     const techCloudStyles = useMemo(() => {
         const positions = [];
@@ -82,20 +92,19 @@ const HomeSection = () => {
                     animate="visible"
                 >
                     <motion.h1 className="home-title" variants={itemVariants}>
-                        Amin Belalia
+                        {t('home_greeting')}
                     </motion.h1>
                     <motion.h2 className="home-subtitle" variants={itemVariants}>
-                        <span className="home-subtitle-static">Je suis</span>
+                        <span className="home-subtitle-static">{t('home_i_am')}</span>
                         <span className="home-subtitle-dynamic">{animatedTitle}</span>
                         <span className="home-cursor">|</span>
                     </motion.h2>
                     <motion.p className="home-description" variants={itemVariants}>
-                        Étudiant en 3ème année de BUT Informatique, parcours DACS. 
-                        Passionné par l'automatisation, le déploiement et la sécurisation des infrastructures.
+                        {t('home_description')}
                     </motion.p>
                     <motion.div className="home-btn-group" variants={itemVariants}>
-                        <Button href="#projets" primary>&gt; Mes Projets</Button>
-                        <Button href={cvPdf} download secondary>&gt; Mon CV</Button>
+                        <Button href="#projets" primary>{t('home_btn_projects')}</Button>
+                        <Button href={cvPdf} download secondary>{t('home_btn_cv')}</Button>
                     </motion.div>
                 </motion.div>
 

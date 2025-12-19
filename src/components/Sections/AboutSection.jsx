@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
 import '../../styles/components.css';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
-import Modal from '../UI/Modal'; // Import de la modale
+import Modal from '../UI/Modal';
 
 const highlights = [
     { icon: 'fa-network-wired', label: 'Réseau', value: 'TCP/IP' },
@@ -15,6 +16,7 @@ const highlights = [
 const languages = ['Français', 'Anglais', 'Espagnol', 'Valencien', 'Arabe'];
 
 export default function AboutSection() {
+    const { t } = useTranslation();
     const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
 
     return (
@@ -27,13 +29,12 @@ export default function AboutSection() {
             viewport={{ once: true }}
         >
             <div className="about-container-redesigned">
-                {/* Colonne Gauche : Visuel & Intro */}
                 <div className="about-visual-column">
                     <motion.div className="about-photo-wrapper" variants={childVariants}>
                         <div className="photo-blob"></div>
                         <img src={photo} alt="Amin Belalia" className="about-photo-redesigned" />
                         <div className="photo-badge">
-                            <span className="status-dot"></span> Disponible
+                            <span className="status-dot"></span> {t('about_available')}
                         </div>
                     </motion.div>
                     
@@ -41,9 +42,7 @@ export default function AboutSection() {
                         <h2 className="about-title-redesigned">
                             <span className="highlight-text">Amin</span> <br /> Belalia
                         </h2>
-                        <p className="about-tagline">
-                            Étudiant en BUT Informatique, parcours DACS.
-                        </p>
+                        <p className="about-tagline">{t('about_tagline')}</p>
                         <div className="about-actions">
                             <a href={cvPdf} className="btn-download" target="_blank" rel="noopener noreferrer">
                                 <i className="fa-solid fa-download"></i> CV
@@ -58,37 +57,28 @@ export default function AboutSection() {
                     </motion.div>
                 </div>
 
-                {/* Colonne Droite : Contenu Détaillé */}
                 <div className="about-content-column">
                     <motion.div className="about-bio-card" variants={childVariants}>
-                        <h3><i className="fa-solid fa-user-astronaut"></i> Bio</h3>
-                        <p>
-                            Actuellement en 3ème année de BUT Informatique, parcours DACS (Déploiement d'Applications Communicantes et Sécurisées), 
-                            je me spécialise dans l'administration système et réseau, la virtualisation et la sécurisation des infrastructures. 
-                            Mon objectif est de garantir la disponibilité, la performance et la sécurité des applications.
-                        </p>
+                        <h3><i className="fa-solid fa-user-astronaut"></i> {t('about_bio_title')}</h3>
+                        <p>{t('about_bio_text')}</p>
                     </motion.div>
 
-                    {/* --- CARTE RECHERCHE DE STAGE (CLIQUABLE) --- */}
                     <motion.div 
                         className="internship-card" 
                         variants={childVariants}
                         onClick={() => setIsInternshipModalOpen(true)}
-                        style={{ cursor: 'pointer' }} // Fallback CSS
-                        data-cursor="pointer" // Active le curseur personnalisé
+                        data-cursor="pointer"
                         whileHover={{ scale: 1.02 }}
                     >
                         <div className="internship-icon">
                             <i className="fa-solid fa-briefcase"></i>
                         </div>
                         <div className="internship-content">
-                            <h4>Recherche de Stage</h4>
-                            <p>
-                                Stage de fin d'études en <strong>Admin Sys / Réseau / Virtualisation</strong>.
-                            </p>
+                            <h4>{t('about_internship_title')}</h4>
+                            <p dangerouslySetInnerHTML={{ __html: t('about_internship_desc') }} />
                             <div className="internship-details">
-                                <span><i className="fa-regular fa-calendar"></i> 13 Avril 2026</span>
-                                <span className="click-hint">En savoir plus &rarr;</span>
+                                <span><i className="fa-regular fa-calendar"></i> {t('about_internship_date')}</span>
+                                <span className="click-hint" dangerouslySetInnerHTML={{ __html: t('about_internship_more') }} />
                             </div>
                         </div>
                     </motion.div>
@@ -105,16 +95,16 @@ export default function AboutSection() {
 
                     <div className="about-details-grid">
                         <motion.div className="detail-card" variants={childVariants}>
-                            <h4><i className="fa-solid fa-layer-group"></i> Compétences Clés</h4>
+                            <h4><i className="fa-solid fa-layer-group"></i> {t('about_skills_title')}</h4>
                             <ul>
-                                <li>Admin. Linux, Scripting (Bash, Perl, Ruby)</li>
-                                <li>Virtualisation (Conteneurs, Hyperviseurs)</li>
-                                <li>Admin. Réseau (Routage, iptables, VPN)</li>
+                                <li>{t('about_skills_1')}</li>
+                                <li>{t('about_skills_2')}</li>
+                                <li>{t('about_skills_3')}</li>
                             </ul>
                         </motion.div>
                         
                         <motion.div className="detail-card" variants={childVariants}>
-                            <h4><i className="fa-solid fa-earth-europe"></i> Langues</h4>
+                            <h4><i className="fa-solid fa-earth-europe"></i> {t('about_languages_title')}</h4>
                             <div className="lang-tags">
                                 {languages.map(l => <span key={l}>{l}</span>)}
                             </div>
@@ -123,56 +113,51 @@ export default function AboutSection() {
                 </div>
             </div>
 
-            {/* --- MODALE STAGE --- */}
             <Modal isOpen={isInternshipModalOpen} onClose={() => setIsInternshipModalOpen(false)}>
                 <div className="modal-hero" style={{ background: 'linear-gradient(135deg, rgba(102, 255, 153, 0.15) 0%, rgba(0,0,0,0) 100%)', borderBottom: '1px solid rgba(102, 255, 153, 0.3)' }}>
                     <div className="modal-hero__content">
                         <span className="modal-hero__badge" style={{ backgroundColor: 'var(--accent)', color: 'var(--bg-primary)' }}>
-                            Stage de Fin d'Études
+                            {t('modal_internship_badge')}
                         </span>
-                        <h2>Recherche de Stage</h2>
-                        <p className="expanded-card-subtitle">Administration Système & Réseau • Virtualisation • Déploiement</p>
+                        <h2>{t('modal_internship_title')}</h2>
+                        <p className="expanded-card-subtitle">{t('modal_internship_subtitle')}</p>
                     </div>
                 </div>
 
                 <div className="modal-body">
                     <div className="stats-grid">
                         <div className="stat-box">
-                            <span className="stat-label">Début</span>
-                            <span className="stat-value">13 Avril 2026</span>
+                            <span className="stat-label">{t('modal_internship_start')}</span>
+                            <span className="stat-value">{t('about_internship_date')}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Durée</span>
-                            <span className="stat-value">14 Semaines</span>
+                            <span className="stat-label">{t('modal_internship_duration')}</span>
+                            <span className="stat-value">{t('modal_internship_duration_value')}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Lieu</span>
-                            <span className="stat-value">Luxembourg / Lorraine</span>
+                            <span className="stat-label">{t('modal_internship_location')}</span>
+                            <span className="stat-value">{t('modal_internship_location_value')}</span>
                         </div>
                     </div>
 
                     <div className="tech-section">
                         <div className="tech-stack">
-                            <h4><i className="fa-solid fa-location-dot"></i> Mobilité</h4>
-                            <p className="project-full-desc">
-                                Je recherche activement au <strong>Luxembourg</strong>, ainsi que dans les secteurs de <strong>Longwy, Metz et Nancy</strong>.
-                                <br />
-                                Permis B et véhicule personnel.
-                            </p>
+                            <h4><i className="fa-solid fa-location-dot"></i> {t('modal_internship_mobility_title')}</h4>
+                            <p className="project-full-desc" dangerouslySetInnerHTML={{ __html: t('modal_internship_mobility_desc') }} />
                         </div>
 
                         <div className="tech-stack" style={{ marginTop: '2rem' }}>
-                            <h4><i className="fa-solid fa-bullseye"></i> Missions Recherchées</h4>
+                            <h4><i className="fa-solid fa-bullseye"></i> {t('modal_internship_missions_title')}</h4>
                             <ul className="highlights-list">
-                                <li><span>✓</span> Administration et maintenance de serveurs Linux/Windows</li>
-                                <li><span>✓</span> Gestion d'infrastructures virtualisées (VMware, Proxmox)</li>
-                                <li><span>✓</span> Déploiement de conteneurs (Docker, Kubernetes)</li>
-                                <li><span>✓</span> Configuration d'équipements réseaux et sécurité</li>
+                                <li><span>✓</span> {t('modal_internship_mission_1')}</li>
+                                <li><span>✓</span> {t('modal_internship_mission_2')}</li>
+                                <li><span>✓</span> {t('modal_internship_mission_3')}</li>
+                                <li><span>✓</span> {t('modal_internship_mission_4')}</li>
                             </ul>
                         </div>
 
                         <div className="tech-stack" style={{ marginTop: '2rem' }}>
-                            <h4><i className="fa-solid fa-address-card"></i> Me Contacter</h4>
+                            <h4><i className="fa-solid fa-address-card"></i> {t('modal_internship_contact_title')}</h4>
                             <div className="contact-buttons" style={{ justifyContent: 'flex-start' }}>
                                 <a href="mailto:abelaliabendjafar@gmail.com" className="btn-download">
                                     <i className="fa-solid fa-envelope"></i> abelaliabendjafar@gmail.com

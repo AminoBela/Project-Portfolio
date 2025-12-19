@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import ThemeToggleButton from './ThemeToggleButton';
-
-const navLinks = [
-    { href: '#accueil', label: 'Accueil' },
-    { href: '#about', label: 'À propos' },
-    { href: '#parcours', label: 'Parcours' },
-    { href: '#competences', label: 'Compétences' },
-    { href: '#projets', label: 'Projets' },
-    { href: '#contact', label: 'Contact' },
-];
 
 const menuVariants = {
     closed: { opacity: 0, scale: 0.95, y: -20 },
@@ -38,7 +30,21 @@ const overlayVariants = {
 };
 
 function Navigation({ activeSection, toggleTheme, theme }) {
+    const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    const navLinks = [
+        { href: '#accueil', label: t('nav_home') },
+        { href: '#about', label: t('nav_about') },
+        { href: '#parcours', label: t('nav_experience') },
+        { href: '#competences', label: t('nav_skills') },
+        { href: '#projets', label: t('nav_projects') },
+        { href: '#contact', label: t('nav_contact') },
+    ];
+
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng);
+    };
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -81,6 +87,11 @@ function Navigation({ activeSection, toggleTheme, theme }) {
                     </ul>
 
                     <div className="main-nav__actions">
+                        <div className="language-selector">
+                            <button onClick={() => changeLanguage('fr')} className={i18n.language === 'fr' ? 'active' : ''}>FR</button>
+                            <button onClick={() => changeLanguage('en')} className={i18n.language === 'en' ? 'active' : ''}>EN</button>
+                            <button onClick={() => changeLanguage('es')} className={i18n.language === 'es' ? 'active' : ''}>ES</button>
+                        </div>
                         <ThemeToggleButton toggleTheme={toggleTheme} theme={theme} />
                         <button className={`main-nav__toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} data-cursor="pointer">
                             <span className="burger-bar"></span>
@@ -118,6 +129,12 @@ function Navigation({ activeSection, toggleTheme, theme }) {
                                     </motion.li>
                                 ))}
                             </ul>
+                            {/* Sélecteur de langue pour mobile */}
+                            <div className="language-selector-mobile">
+                                <button onClick={() => changeLanguage('fr')} className={i18n.language === 'fr' ? 'active' : ''}>FR</button>
+                                <button onClick={() => changeLanguage('en')} className={i18n.language === 'en' ? 'active' : ''}>EN</button>
+                                <button onClick={() => changeLanguage('es')} className={i18n.language === 'es' ? 'active' : ''}>ES</button>
+                            </div>
                         </motion.div>
                     </motion.div>
                 )}

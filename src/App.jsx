@@ -1,30 +1,37 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
+import ExperienceEducationSection from './components/Sections/ExperienceEducationSection';
+import SkillsSection from './components/Sections/SkillsSection';
+import ProjectsSection from './components/Sections/ProjectsSection';
+import ContactSection from './components/Sections/ContactSection'; // Importation
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
-import ScrollProgressBar from './components/UI/ScrollProgressBar';
-import ScrollToTop from './components/UI/ScrollToTop';
 import { navVariants } from './utils/framerMotionVariants';
 
-// --- LAZY LOADING ---
-const ExperienceEducationSection = React.lazy(() => import('./components/Sections/ExperienceEducationSection'));
-const SkillsSection = React.lazy(() => import('./components/Sections/SkillsSection'));
-const ProjectsSection = React.lazy(() => import('./components/Sections/ProjectsSection'));
-const ContactSection = React.lazy(() => import('./components/Sections/ContactSection'));
-
-// --- Composant de chargement ---
-const LoadingFallback = () => (
-    <div style={{ display: 'flex', justifyContent: 'center', padding: '4rem' }}>
-        <p className="terminal-text">Chargement...</p>
+// Composant de chargement simple
+const LoadingScreen = () => (
+    <div style={{ 
+      display: 'flex', 
+      justifyContent: 'center', 
+      alignItems: 'center', 
+      height: '100vh', 
+      backgroundColor: '#10141a', 
+      color: '#66ff99',
+      fontFamily: 'monospace',
+      fontSize: '1.5rem'
+    }}>
+      Chargement...
     </div>
 );
 
 function App() {
+    const { t, i18n } = useTranslation();
     const { theme, toggleTheme } = useTheme();
     const { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen } = useScrollspy();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -37,10 +44,13 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    if (!i18n.isInitialized) {
+        return <LoadingScreen />;
+    }
+
     return (
         <>
             <CustomCursor />
-            <ScrollProgressBar />
             <div className="site-background">
                 <div className="orb orb--1" />
                 <div className="orb orb--2" />
@@ -62,7 +72,6 @@ function App() {
                         toggleMenu={toggleMenu}
                         toggleTheme={toggleTheme}
                         theme={theme}
-                        isScrolled={isScrolled}
                         onNavLinkClick={() => setIsMenuOpen(false)}
                     />
                 </motion.nav>
@@ -70,16 +79,13 @@ function App() {
                 <main>
                     <HomeSection />
                     <AboutSection />
-                    <Suspense fallback={<LoadingFallback />}>
-                        <ExperienceEducationSection />
-                        <SkillsSection />
-                        <ProjectsSection />
-                        <ContactSection />
-                    </Suspense>
+                    <ExperienceEducationSection />
+                    <SkillsSection />
+                    <ProjectsSection />
+                    <ContactSection /> {/* Ajout de la section Contact */}
                 </main>
                 <Footer />
             </div>
-            <ScrollToTop />
         </>
     );
 }
