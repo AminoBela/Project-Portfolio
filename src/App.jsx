@@ -27,8 +27,8 @@ const BOOT_TEXT = [
     "> ACCESS GRANTED."
 ];
 
-// --- COMPOSANT DE DÉMARRAGE (ULTRA ROBUSTE) ---
-const InitialBootScreen = ({ onComplete, isVisible }) => {
+// --- COMPOSANT DE DÉMARRAGE (PC UNIQUEMENT) ---
+const InitialBootScreen = ({ onComplete }) => {
     const [displayedLines, setDisplayedLines] = useState([]);
     const [progress, setProgress] = useState(0);
     
@@ -38,8 +38,6 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
     const animationFrameRef = useRef(null);
 
     const animate = useCallback(() => {
-        if (!isVisible) return; // Stop si plus visible
-
         const now = Date.now();
         const deltaTime = now - lastTimeRef.current;
 
@@ -50,30 +48,29 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
         }
 
         if (progressRef.current < 100) {
-            progressRef.current += 1;
+            progressRef.current += 0.8;
             setProgress(Math.min(100, progressRef.current));
         }
 
         if (lineIndexRef.current >= BOOT_TEXT.length && progressRef.current >= 100) {
-            setTimeout(onComplete, 500);
+            setTimeout(onComplete, 600);
             return;
         }
 
         animationFrameRef.current = requestAnimationFrame(animate);
-    }, [onComplete, isVisible]);
+    }, [onComplete]);
 
     useEffect(() => {
-        if (isVisible) {
-            animationFrameRef.current = requestAnimationFrame(animate);
-        }
+        animationFrameRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(animationFrameRef.current);
-    }, [animate, isVisible]);
-
-    // Si on n'est pas visible, on ne rend rien (ou on rend un div vide caché)
-    if (!isVisible) return null;
+    }, [animate]);
 
     return (
-        <div
+        <motion.div
+            className="boot-screen"
+            initial={{ opacity: 1 }}
+            exit={{ opacity: 0, filter: 'blur(10px)' }}
+            transition={{ duration: 0.8 }}
             onClick={onComplete}
             style={{
                 position: 'fixed',
@@ -81,18 +78,15 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
                 backgroundColor: '#0a0c10',
                 color: '#66ff99',
                 fontFamily: "'Fira Code', monospace",
-                zIndex: 99999, // Z-index très élevé
+                zIndex: 10000,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'flex-end',
                 padding: '2rem',
                 overflow: 'hidden',
-                cursor: 'pointer',
-                pointerEvents: 'all', // Force les événements de pointeur
-                touchAction: 'manipulation' // Améliore la réactivité tactile
+                cursor: 'pointer'
             }}
         >
-            {/* Scanlines effect (CSS pur pour performance) */}
             <div style={{
                 position: 'absolute',
                 top: 0, left: 0, width: '100%', height: '100%',
@@ -105,8 +99,10 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
             <div style={{ maxWidth: '800px', width: '100%', margin: '0 auto 10vh auto', position: 'relative', zIndex: 3 }}>
                 <div style={{ marginBottom: '2rem', minHeight: '300px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end' }}>
                     {displayedLines.map((line, index) => (
-                        <div 
+                        <motion.div 
                             key={index}
+                            initial={{ opacity: 0, x: -10 }}
+                            animate={{ opacity: 1, x: 0 }}
                             style={{ 
                                 marginBottom: '0.5rem', 
                                 fontSize: 'clamp(0.9rem, 2vw, 1.1rem)',
@@ -115,18 +111,17 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
                             }}
                         >
                             {line}
-                        </div>
+                        </motion.div>
                     ))}
                 </div>
 
                 <div style={{ width: '100%', height: '4px', background: '#333', marginTop: '1rem' }}>
-                    <div 
+                    <motion.div 
                         style={{ 
                             height: '100%', 
                             background: '#66ff99',
                             width: `${progress}%`,
-                            boxShadow: '0 0 10px #66ff99',
-                            transition: 'width 0.1s linear' // Transition CSS fluide
+                            boxShadow: '0 0 10px #66ff99'
                         }} 
                     />
                 </div>
@@ -139,21 +134,18 @@ const InitialBootScreen = ({ onComplete, isVisible }) => {
                     position: 'absolute', 
                     bottom: '-30px', 
                     right: 0, 
-                    fontSize: '0.8rem', 
-                    color: '#666',
-                    padding: '10px',
-                    border: '1px solid #333',
-                    borderRadius: '4px',
-                    background: 'rgba(0,0,0,0.5)'
+                    fontSize: '0.7rem', 
+                    color: '#444',
+                    opacity: 0.7 
                 }}>
                     [TAP TO SKIP]
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 
-// Composant de transition de langue (Style Cyberpunk/Terminal)
+// Composant de transition de langue
 const LanguageTransitionOverlay = () => {
     const [text, setText] = useState('INITIALIZING...');
     
@@ -252,6 +244,17 @@ function App() {
     
     // Nouvel état pour gérer la fin de l'animation de boot
     const [isBootSequenceFinished, setIsBootSequenceFinished] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    // Détection mobile
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     // --- SEO & ACCESSIBILITÉ ---
     useEffect(() => {
@@ -276,7 +279,6 @@ function App() {
     };
 
     const handleBootComplete = useCallback(() => {
-        console.log("Boot sequence completed/skipped");
         setIsBootSequenceFinished(true);
     }, []);
 
@@ -288,38 +290,35 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Sécurité : Forcer la fin du boot après 7 secondes max
+    // Si on est sur mobile, on considère le boot comme fini immédiatement
     useEffect(() => {
-        const safetyTimer = setTimeout(() => {
-            if (!isBootSequenceFinished) {
-                console.warn("Boot sequence timed out, forcing completion.");
-                setIsBootSequenceFinished(true);
-            }
-        }, 7000);
-        return () => clearTimeout(safetyTimer);
-    }, [isBootSequenceFinished]);
+        if (isMobile) {
+            setIsBootSequenceFinished(true);
+        }
+    }, [isMobile]);
 
-    // On affiche l'écran de boot tant que l'animation n'est pas finie OU que i18n n'est pas prêt
-    const showBootScreen = !isBootSequenceFinished || !i18n.isInitialized;
+    // On affiche l'écran de boot SEULEMENT SI :
+    // 1. Ce n'est pas fini
+    // 2. i18n est prêt
+    // 3. Ce n'est PAS un mobile
+    const showBootScreen = !isBootSequenceFinished && i18n.isInitialized && !isMobile;
 
     return (
         <>
             <CustomCursor />
             
-            {/* On retire AnimatePresence pour éviter les bugs de démontage sur mobile */}
-            {showBootScreen && (
-                <InitialBootScreen 
-                    onComplete={handleBootComplete} 
-                    isVisible={showBootScreen}
-                />
-            )}
+            <AnimatePresence mode="wait">
+                {showBootScreen && (
+                    <InitialBootScreen onComplete={handleBootComplete} />
+                )}
+            </AnimatePresence>
 
             <AnimatePresence>
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
 
-            {/* On n'affiche le contenu principal que lorsque le boot est fini */}
-            {!showBootScreen && (
+            {/* On affiche le contenu si le boot est fini OU si on est sur mobile */}
+            {(isBootSequenceFinished || isMobile) && (
                 <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
