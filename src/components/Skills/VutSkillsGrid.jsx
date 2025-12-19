@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { vutSkills } from '../../data/vutSkills';
 import Button from '../UI/Button';
 
 function VutSkillsGrid() {
+    const { t } = useTranslation();
     const gridRef = useRef(null);
 
     useEffect(() => {
@@ -31,21 +33,21 @@ function VutSkillsGrid() {
 
     return (
         <>
-            <h2 className="terminal-command">&gt; Compétences BUT</h2>
+            <h2 className="terminal-command">&gt; {t('skills_vut_title')}</h2>
             <div className="skills-cards-grid" ref={gridRef}>
                 {vutSkills.map((skill, idx) => (
                     <div key={idx} className="skills-card">
-                        <div className="skills-card-title">{skill.name}</div>
+                        <div className="skills-card-title">{t(skill.name)}</div>
                         <div className="skills-card-stars">
                             {Array.from({ length: 5 }).map((_, i) =>
                                 <span key={i} className={`star${i < skill.stars ? ' star--filled' : ''}`}>★</span>
                             )}
                         </div>
-                        <div className="skills-card-comment">{skill.comment}</div>
+                        <div className="skills-card-comment">{t(skill.comment)}</div>
                         <div className="skills-card-link">
                             {skill.github && skill.github.startsWith('http') ?
-                                <Button href={skill.github} target="_blank" secondary>Projet</Button>
-                                : <span className="skills-card-na">N/A</span>
+                                <Button href={skill.github} target="_blank" secondary>{t('skills_vut_project_button')}</Button>
+                                : <span className="skills-card-na">{t('skills_vut_na')}</span>
                             }
                         </div>
                     </div>

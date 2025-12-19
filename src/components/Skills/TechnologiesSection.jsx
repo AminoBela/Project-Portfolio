@@ -1,16 +1,25 @@
 import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
 import { motion, AnimatePresence } from 'framer-motion';
 
 function TechnologiesSection() {
+    const { t } = useTranslation();
+
+    const categoryOrder = [
+        'Systèmes & Réseaux',
+        'Virtualisation & Services',
+        'Dév & Web'
+    ];
+
+    const categoryKeys = {
+        'Systèmes & Réseaux': 'skills_cat_sysnet',
+        'Virtualisation & Services': 'skills_cat_virt_services',
+        'Dév & Web': 'skills_cat_dev_web'
+    };
+
     const groupedSkills = useMemo(() => {
-        const order = [
-            'Frontend & UI',
-            'Backend & Langages',
-            'Ops & Infra',
-            'Data & SGBD'
-        ];
         const buckets = skills.reduce((acc, skill) => {
             const key = skill.category || 'Autres';
             acc[key] = acc[key] || [];
@@ -18,12 +27,12 @@ function TechnologiesSection() {
             return acc;
         }, {});
 
-        return Object.entries(buckets)
-            .sort((a, b) => order.indexOf(a[0]) - order.indexOf(b[0]))
-            .map(([category, items]) => ({
+        return categoryOrder
+            .map(category => ({
                 category,
-                items: items.sort((a, b) => b.level - a.level)
-            }));
+                items: (buckets[category] || []).sort((a, b) => b.level - a.level)
+            }))
+            .filter(group => group.items.length > 0);
     }, []);
 
     const [activeTab, setActiveTab] = useState(groupedSkills[0]?.category);
@@ -32,7 +41,6 @@ function TechnologiesSection() {
         return groupedSkills.find(group => group.category === activeTab)?.items || [];
     }, [activeTab, groupedSkills]);
 
-    // Variants pour l'animation des cartes
     const cardVariants = {
         hidden: { opacity: 0, y: 20 },
         visible: (i) => ({
@@ -57,12 +65,12 @@ function TechnologiesSection() {
 
     return (
         <>
-            <h2 className="terminal-command" style={{ marginTop: '2.2rem' }}>&gt; Technologies</h2>
+            <h2 className="terminal-command" style={{ marginTop: '2.2rem' }}>&gt; {t('technologies_title')}</h2>
             <div className="skills-legend">
-                <span><span className="legend-dot legend-dot--expert" />Expert</span>
-                <span><span className="legend-dot legend-dot--advanced" />Avancé</span>
-                <span><span className="legend-dot legend-dot--confirmed" />Confirmé</span>
-                <span><span className="legend-dot legend-dot--progress" />En progression</span>
+                <span><span className="legend-dot legend-dot--expert" />{t('legend_expert')}</span>
+                <span><span className="legend-dot legend-dot--advanced" />{t('legend_advanced')}</span>
+                <span><span className="legend-dot legend-dot--confirmed" />{t('legend_confirmed')}</span>
+                <span><span className="legend-dot legend-dot--progress" />{t('legend_progress')}</span>
             </div>
 
             <div className="skills-tabs">
@@ -72,7 +80,7 @@ function TechnologiesSection() {
                         className={`skills-tab ${activeTab === category ? 'skills-tab--active' : ''}`}
                         onClick={() => setActiveTab(category)}
                     >
-                        {category}
+                        {t(categoryKeys[category])}
                     </button>
                 ))}
             </div>
@@ -81,14 +89,14 @@ function TechnologiesSection() {
                 <AnimatePresence mode="wait">
                     {activeSkills.map((skill, index) => (
                         <motion.div
-                            key={skill.name} // La clé doit être unique pour l'animation
+                            key={skill.name}
                             custom={index}
                             variants={cardVariants}
                             initial="hidden"
                             animate="visible"
                             exit="exit"
                         >
-                            <SkillBar skill={skill} />
+                            <SkillBar skill={skill} t={t} />
                         </motion.div>
                     ))}
                 </AnimatePresence>

@@ -1,49 +1,47 @@
 import React from 'react';
 
-function getLevelLabel(level) {
-    if (level >= 90) return 'Expert';
-    if (level >= 75) return 'Avancé';
-    if (level >= 60) return 'Confirmé';
-    if (level >= 45) return 'Intermédiaire';
-    return 'En progression';
-}
+const SkillBar = ({ skill, t }) => {
+    // Fonction pour déterminer le libellé et la classe CSS du niveau
+    const getLevelInfo = (level) => {
+        if (level >= 85) return { label: 'legend_expert', css: 'expert' };
+        if (level >= 75) return { label: 'legend_advanced', css: 'avancé' }; // Attention à l'accent dans le CSS
+        if (level >= 60) return { label: 'legend_confirmed', css: 'confirmé' }; // Attention à l'accent dans le CSS
+        return { label: 'legend_progress', css: 'en-progression' };
+    };
 
-export default function SkillBar({ skill, style }) {
-    const level = Math.max(0, Math.min(skill.level ?? 0, 100));
-    const indicatorPosition = `${level}%`;
-    const levelLabel = getLevelLabel(level);
+    const { label, css } = getLevelInfo(skill.level);
 
     return (
-        <article className="skill-card" style={style}>
-            <header className="skill-card__header">
+        <div className="skill-card">
+            <div className="skill-card__header">
                 <div className="skill-card__identity">
-                    {skill.icon && (
-                        <div 
-                            className="skill-logo-mask"
-                            style={{
-                                maskImage: `url(${skill.icon})`,
-                                WebkitMaskImage: `url(${skill.icon})`,
-                            }}
-                        ></div>
-                    )}
-                    <div>
-                        <h4 className="skill-card__name">{skill.name}</h4>
-                    </div>
+                    {/* Utilisation de mask-image pour colorer l'icône avec --accent */}
+                    <div 
+                        className="skill-logo-mask" 
+                        style={{ 
+                            maskImage: `url(${skill.icon})`,
+                            WebkitMaskImage: `url(${skill.icon})`
+                        }} 
+                    />
+                    <h3 className="skill-card__name">{skill.name}</h3>
                 </div>
-                <span className={`skill-card__level skill-card__level--${levelLabel.toLowerCase().replace(' ', '-')}`}>
-                    {levelLabel}
+                <span className={`skill-card__level skill-card__level--${css}`}>
+                    {t ? t(label) : label}
                 </span>
-            </header>
-            
-            {skill.description && (
-                <p className="skill-card__description">
-                    {skill.description}
-                </p>
-            )}
-
-            <div className="skill-bar-track">
-                <div className="skill-bar-fill" style={{ width: indicatorPosition }} />
             </div>
-        </article>
+            
+            <p className="skill-card__description">
+                {t ? t(skill.description) : skill.description}
+            </p>
+            
+            <div className="skill-bar-track">
+                <div 
+                    className="skill-bar-fill" 
+                    style={{ width: `${skill.level}%` }}
+                ></div>
+            </div>
+        </div>
     );
-}
+};
+
+export default SkillBar;

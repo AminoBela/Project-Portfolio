@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { timelineData } from '../../data/experienceEducationData';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
-import Modal from '../UI/Modal'; // On réutilise le composant Modal des projets
+import Modal from '../UI/Modal';
 
-// --- CARTE COMPACTE (TIMELINE) ---
-const TimelineCard = ({ item, onSelect }) => (
+const TimelineCard = ({ item, onSelect, t }) => (
     <motion.div
         className="timeline-card-compact"
         onClick={() => onSelect(item)}
@@ -17,14 +17,14 @@ const TimelineCard = ({ item, onSelect }) => (
             <div className="timeline-card-compact-icon">
                 <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
             </div>
-            <h3 className="timeline-card-compact-title">{item.title}</h3>
+            <h3 className="timeline-card-compact-title">{t(item.title)}</h3>
         </div>
-        <span className="timeline-card-compact-period">{item.period}</span>
+        <span className="timeline-card-compact-period">{t(item.period)}</span>
     </motion.div>
 );
 
-// --- Composant principal de la section ---
 function ExperienceEducationSection() {
+    const { t } = useTranslation();
     const [selectedItem, setSelectedItem] = useState(null);
 
     return (
@@ -38,7 +38,7 @@ function ExperienceEducationSection() {
         >
             <div className="container">
                 <motion.h2 variants={childVariants} className="terminal-command">
-                    &gt; Mon Parcours
+                    &gt; {t('experience_title')} & {t('education_title')}
                 </motion.h2>
 
                 <div className="timeline-container">
@@ -47,57 +47,54 @@ function ExperienceEducationSection() {
                              <div className="timeline-icon-wrapper">
                                 <i className={`fa-solid ${item.type === 'experience' ? 'fa-briefcase' : 'fa-graduation-cap'}`}></i>
                             </div>
-                            <TimelineCard item={item} onSelect={setSelectedItem} />
+                            <TimelineCard item={item} onSelect={setSelectedItem} t={t} />
                         </div>
                     ))}
                 </div>
             </div>
 
-            {/* --- MODALE (Exactement comme pour les projets) --- */}
             <Modal isOpen={!!selectedItem} onClose={() => setSelectedItem(null)}>
                 {selectedItem && (
                     <>
-                        {/* --- HERO HEADER --- */}
                         <div className="modal-hero" style={{ 
                             background: `linear-gradient(135deg, ${selectedItem.color || '#66ff99'}22 0%, rgba(0,0,0,0) 100%)`, 
                             borderBottom: `1px solid ${selectedItem.color || '#66ff99'}44` 
                         }}>
                             <div className="modal-hero__content">
                                 {selectedItem.logo && <img src={selectedItem.logo} alt="" className="expanded-card-logo" />}
-                                <h2>{selectedItem.title}</h2>
-                                <p className="expanded-card-subtitle">{selectedItem.company || selectedItem.institution} • {selectedItem.location}</p>
+                                <h2>{t(selectedItem.title)}</h2>
+                                <p className="expanded-card-subtitle">{t(selectedItem.company || selectedItem.institution)} • {t(selectedItem.location)}</p>
                             </div>
                         </div>
 
                         <div className="modal-body">
-                            {/* --- DASHBOARD --- */}
                             <div className="stats-grid">
                                 <div className="stat-box">
-                                    <span className="stat-label">Période</span>
-                                    <span className="stat-value">{selectedItem.period}</span>
+                                    <span className="stat-label">{t('modal_internship_duration')}</span>
+                                    <span className="stat-value">{t(selectedItem.period)}</span>
                                 </div>
                                 <div className="stat-box">
                                     <span className="stat-label">Type</span>
-                                    <span className="stat-value">{selectedItem.type === 'experience' ? 'Expérience' : 'Formation'}</span>
+                                    <span className="stat-value">{selectedItem.type === 'experience' ? t('experience_title') : t('education_title')}</span>
                                 </div>
                             </div>
 
-                            {/* --- DESCRIPTION & DÉTAILS --- */}
                             <div className="tech-section">
-                                {selectedItem.description && <p className="project-full-desc">{selectedItem.description}</p>}
+                                {selectedItem.description && <p className="project-full-desc">{t(selectedItem.description)}</p>}
                                 
                                 {selectedItem.details && (
                                     <>
+                                        {selectedItem.details.intro && <p className="project-full-desc">{t(selectedItem.details.intro)}</p>}
                                         <div className="tech-stack">
-                                            <h4>Technologies Clés</h4>
+                                            <h4>{t('about_skills_title')}</h4>
                                             <div className="project-tags large">
-                                                {selectedItem.details.tech.map(t => <span key={t} className="tag">{t}</span>)}
+                                                {selectedItem.details.tech.map(t_tech => <span key={t_tech} className="tag">{t_tech}</span>)}
                                             </div>
                                         </div>
                                         <div className="tech-stack" style={{marginTop: '2rem'}}>
-                                            <h4>Points Marquants</h4>
+                                            <h4>{t('modal_internship_missions_title')}</h4>
                                             <ul className="highlights-list">
-                                                {selectedItem.details.highlights.map((h, i) => <li key={i}><span>✓</span> {h}</li>)}
+                                                {selectedItem.details.highlights.map((h, i) => <li key={i}><span>✓</span> {t(h)}</li>)}
                                             </ul>
                                         </div>
                                     </>

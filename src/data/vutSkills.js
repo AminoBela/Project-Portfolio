@@ -1,38 +1,38 @@
 export const vutSkills = [
     {
-        name: "Réaliser un développement d’application",
+        name: "skills_vut_1_name",
         stars: 3,
-        comment: "Réalisation d'applications web (Node.js, React) et mobiles, avec gestion d'API REST que developpement d'applications en JAVA",
+        comment: "skills_vut_1_comment",
         github: "https://github.com/AminoBela/Project-S3.01"
     },
     {
-        name: "Optimiser des applications informatiques",
+        name: "skills_vut_2_name",
         stars: 3,
-        comment: "Mise en place de conteneurs Docker, tests de charge (Siege), et optimisation des performances backend.",
+        comment: "skills_vut_2_comment",
         github: "https://github.com/AminoBela/Project-S4.02"
     },
     {
-        name: "Administrer des systèmes informatiques communicants complexes",
+        name: "skills_vut_3_name",
         stars: 5,
-        comment: "Installation de clusters Kubernetes, surveillance avec Prometheus/Grafana, et configuration réseau avancée.",
+        comment: "skills_vut_3_comment",
         github: "https://github.com/AminoBela/Project-S3.03"
     },
     {
-        name: "Gérer des données de l’information",
+        name: "skills_vut_4_name",
         stars: 3,
-        comment: "\tConception de bases de données relationnelles, manipulation en SQL.",
+        comment: "skills_vut_4_comment",
         github: "Pas de projet spécifique."
     },
     {
-        name: "Conduire un projet",
+        name: "skills_vut_5_name",
         stars: 4,
-        comment: "Suivi de projet avec Git, méthodes Agile et livrables réguliers.",
+        comment: "skills_vut_5_comment",
         github: "Pas de projet spécifique."
     },
     {
-        name: "Collaborer dans une équipe informatique",
+        name: "skills_vut_6_name",
         stars: 4,
-        comment: "Utilisation de GitHub en équipe, intégration continue (GitHub Actions) et déploiement sur serveurs Linux.",
+        comment: "skills_vut_6_comment",
         github: "Pas de projet spécifique."
     }
 ];

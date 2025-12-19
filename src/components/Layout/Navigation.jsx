@@ -29,7 +29,8 @@ const overlayVariants = {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
-function Navigation({ activeSection, toggleTheme, theme }) {
+// On ajoute onLanguageChange aux props
+function Navigation({ activeSection, toggleTheme, theme, onLanguageChange }) {
     const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -42,8 +43,13 @@ function Navigation({ activeSection, toggleTheme, theme }) {
         { href: '#contact', label: t('nav_contact') },
     ];
 
+    // On utilise la fonction passée en prop si elle existe, sinon fallback
     const changeLanguage = (lng) => {
-        i18n.changeLanguage(lng);
+        if (onLanguageChange) {
+            onLanguageChange(lng);
+        } else {
+            i18n.changeLanguage(lng);
+        }
     };
 
     const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -70,21 +76,23 @@ function Navigation({ activeSection, toggleTheme, theme }) {
                         <div className="main-nav__logo">AB</div>
                     </a>
 
-                    <ul className="main-nav__list--desktop">
+                    {/* Ajout de layout pour animer le conteneur des liens */}
+                    <motion.ul className="main-nav__list--desktop" layout>
                         {navLinks.map(link => {
                             const isActive = activeSection === link.href.substring(1);
                             return (
-                                <li key={link.href} style={{ position: 'relative' }}>
+                                <motion.li key={link.href} style={{ position: 'relative' }} layout>
                                     <a href={link.href} className={`main-nav__link ${isActive ? 'is-active' : ''}`} onClick={handleNavLinkClick} data-cursor="pointer">
-                                        {link.label}
+                                        {/* Animer le changement de texte */}
+                                        <motion.span layout>{link.label}</motion.span>
                                         {isActive && (
                                             <motion.div layoutId="nav-highlight" className="nav-highlight" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
                                         )}
                                     </a>
-                                </li>
+                                </motion.li>
                             );
                         })}
-                    </ul>
+                    </motion.ul>
 
                     <div className="main-nav__actions">
                         <div className="language-selector">
@@ -93,7 +101,7 @@ function Navigation({ activeSection, toggleTheme, theme }) {
                             <button onClick={() => changeLanguage('es')} className={i18n.language === 'es' ? 'active' : ''}>ES</button>
                         </div>
                         <ThemeToggleButton toggleTheme={toggleTheme} theme={theme} />
-                        <button className={`main-nav__toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? 'Fermer le menu' : 'Ouvrir le menu'} data-cursor="pointer">
+                        <button className={`main-nav__toggle ${isMenuOpen ? 'is-active' : ''}`} onClick={toggleMenu} aria-label={isMenuOpen ? t('nav_close_menu') : t('nav_open_menu')} data-cursor="pointer">
                             <span className="burger-bar"></span>
                             <span className="burger-bar"></span>
                             <span className="burger-bar"></span>

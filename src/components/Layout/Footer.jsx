@@ -1,10 +1,13 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 function Footer() {
+    const { t } = useTranslation();
+
     return (
         <footer className="footer">
             <div className="container footer__inner">
-                <span className="footer__copy">&copy; {new Date().getFullYear()} Amin Belalia. Tous droits réservés.</span>
+                <span className="footer__copy">&copy; {new Date().getFullYear()} Amin Belalia. {t('footer_rights')}</span>
                 <div className="footer__socials">
                     <a href="mailto:abelaliabendjafar@gmail.com" className="footer__social-link" aria-label="Email">
                         <i className="fas fa-envelope"></i>

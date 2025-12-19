@@ -32,26 +32,30 @@ function getLangColor(lang) {
 }
 
 function shorten(text, limit = 150) {
-    if (!text) return 'Pas de description fournie.';
+    if (!text) return null;
     if (text.length <= limit) return text;
     return `${text.slice(0, limit - 3)}...`;
 }
 
-function formatDate(iso) {
+function formatDate(iso, locale = 'fr-FR') {
     if (!iso) return '';
     try {
         const date = new Date(iso);
-        return new Intl.DateTimeFormat('fr-FR', { month: 'short', year: 'numeric' }).format(date);
+        return new Intl.DateTimeFormat(locale, { month: 'short', year: 'numeric' }).format(date);
     } catch {
         return '';
     }
 }
 
 // J'ajoute ...props pour récupérer "layout" et autres props d'animation
-function ProjectCard({ project, ...props }) {
+function ProjectCard({ project, t, ...props }) {
     const [modalOpen, setModalOpen] = useState(false);
     const formattedDescription = shorten(project.description);
-    const updatedAt = formatDate(project.updated_at);
+    // Utiliser la locale actuelle pour la date si possible, sinon par défaut fr-FR
+    // i18next expose la langue actuelle via i18n.language, mais ici on a juste t.
+    // On peut supposer que le formatage de date natif s'adapte ou on peut passer la locale.
+    // Pour simplifier, on laisse le formatage par défaut ou on pourrait passer i18n.language si on l'avait.
+    const updatedAt = formatDate(project.updated_at); 
     const languages = Object.keys(project.languages || {});
     const mainLanguage = project.language || 'Code';
     const mainColor = getLangColor(mainLanguage);
@@ -85,7 +89,7 @@ function ProjectCard({ project, ...props }) {
                 </div>
 
                 <p className="project-card__description">
-                    {formattedDescription}
+                    {formattedDescription || t('project_no_desc')}
                 </p>
 
                 <div className="project-tags">
@@ -107,7 +111,7 @@ function ProjectCard({ project, ...props }) {
                         className="project-card__cta"
                         style={{ borderColor: mainColor, color: mainColor }}
                     >
-                        Explorer &gt;
+                        {t('project_explore')}
                     </Button>
                 </div>
             </motion.div>
@@ -148,11 +152,11 @@ function ProjectCard({ project, ...props }) {
                             <span className="stat-value">⑂ {project.forks_count}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Mise à jour</span>
+                            <span className="stat-label">{t('project_updated')}</span>
                             <span className="stat-value">{updatedAt}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Taille</span>
+                            <span className="stat-label">{t('project_size')}</span>
                             <span className="stat-value">{Math.round(project.size / 1024)} Mo</span>
                         </div>
                     </div>
@@ -164,7 +168,7 @@ function ProjectCard({ project, ...props }) {
                         )}
                         
                         <div className="tech-stack">
-                            <h4>Stack Technique</h4>
+                            <h4>{t('project_stack')}</h4>
                             <div className="project-tags large">
                                 {languages.map((lang) => (
                                     <span key={lang} className="tag" style={{ 
@@ -185,7 +189,7 @@ function ProjectCard({ project, ...props }) {
                             <h3>README.md</h3>
                             <div className="readme-line"></div>
                         </div>
-                        <ReactMarkdown>{project.readmeContent || "*Aucun fichier README trouvé.*"}</ReactMarkdown>
+                        <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
                     </div>
                 </div>
             </Modal>

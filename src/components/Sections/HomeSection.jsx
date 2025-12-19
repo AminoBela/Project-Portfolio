@@ -7,63 +7,48 @@ import { technologies } from '../../data/technologies';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
 
 const HomeSection = () => {
-    const { t, ready } = useTranslation(); // On récupère l'état "ready"
+    const { t, ready } = useTranslation();
 
-    // On s'assure que les mots ne sont définis que lorsque les traductions sont prêtes
     const animatedWords = useMemo(() => {
-        if (!ready) return ['...']; // Valeur temporaire pendant le chargement
+        if (!ready) return ['...'];
         return [
             t('home_subtitle_1'),
             t('home_subtitle_2'),
             t('home_subtitle_3')
         ];
-    }, [t, ready]); // Le hook se relancera quand "ready" deviendra true
+    }, [t, ready]);
 
     const animatedTitle = useTypingEffect(animatedWords, { typeSpeed: 100, deleteSpeed: 80, delay: 2000 });
 
+    // Positions prédéfinies pour éviter les chevauchements
+    // Ces positions sont en pourcentage par rapport au conteneur
+    const fixedPositions = [
+        { top: 5, left: 10 },
+        { top: 15, left: 65 },
+        { top: 35, left: 35 },
+        { top: 45, left: 85 },
+        { top: 65, left: 15 },
+        { top: 75, left: 60 },
+        { top: 25, left: 90 }, // Ajusté
+        { top: 55, left: 5 },
+    ];
+
     const techCloudStyles = useMemo(() => {
-        const positions = [];
-        const iconSize = 160; 
-        const containerWidth = 400;
-        const containerHeight = 450;
         const animationNames = ['float-1', 'float-2', 'float-3'];
 
         return technologies.map((tech, index) => {
-            let newPos;
-            let isOverlapping;
-            let attempts = 0;
-
-            do {
-                newPos = {
-                    top: 10 + Math.random() * 70,
-                    left: 10 + Math.random() * 70,
-                };
-
-                const newPosPx = {
-                    x: (newPos.left / 100) * containerWidth,
-                    y: (newPos.top / 100) * containerHeight,
-                };
-
-                isOverlapping = positions.some(pos => {
-                    const posPx = {
-                        x: (pos.left / 100) * containerWidth,
-                        y: (pos.top / 100) * containerHeight,
-                    };
-                    const distance = Math.sqrt(Math.pow(posPx.x - newPosPx.x, 2) + Math.pow(posPx.y - newPosPx.y, 2));
-                    return distance < iconSize;
-                });
-
-                attempts++;
-            } while (isOverlapping && attempts < 200);
-
-            positions.push(newPos);
+            // On utilise la position fixe correspondante, ou une position par défaut si on dépasse 8
+            const pos = fixedPositions[index] || { 
+                top: Math.random() * 80, 
+                left: Math.random() * 80 
+            };
 
             const animationName = animationNames[index % animationNames.length];
 
             return {
                 ...tech,
-                top: `${newPos.top}%`,
-                left: `${newPos.left}%`,
+                top: `${pos.top}%`,
+                left: `${pos.left}%`,
                 animation: `${animationName} ${8 + Math.random() * 8}s ease-in-out infinite alternate`
             };
         });
@@ -114,10 +99,10 @@ const HomeSection = () => {
                             key={tech.name}
                             className="tech-icon-wrapper"
                             variants={{
-                                hidden: { opacity: 0 },
-                                visible: { opacity: 1 }
+                                hidden: { opacity: 0, scale: 0 },
+                                visible: { opacity: 1, scale: 1 }
                             }}
-                            transition={{ duration: 0.5 }}
+                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
                             style={{
                                 top: tech.top,
                                 left: tech.left,

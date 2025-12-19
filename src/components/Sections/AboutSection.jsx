@@ -8,12 +8,12 @@ import { sectionVariants, childVariants } from '../../utils/framerMotionVariants
 import Modal from '../UI/Modal';
 
 const highlights = [
-    { icon: 'fa-network-wired', label: 'Réseau', value: 'TCP/IP' },
-    { icon: 'fa-linux', label: 'Système', value: 'Linux/Unix' },
-    { icon: 'fa-database', label: 'Données', value: 'SQL' },
+    { icon: 'fa-network-wired', label: 'about_highlight_network', value: 'TCP/IP' },
+    { icon: 'fa-linux', label: 'about_highlight_system', value: 'Unix' },
+    { icon: 'fa-database', label: 'about_highlight_data', value: 'SQL' },
 ];
 
-const languages = ['Français', 'Anglais', 'Espagnol', 'Valencien', 'Arabe'];
+const languages = ['lang_french', 'lang_english', 'lang_spanish', 'lang_valencian', 'lang_arabic'];
 
 export default function AboutSection() {
     const { t } = useTranslation();
@@ -88,7 +88,7 @@ export default function AboutSection() {
                             <div key={metric.label} className="stat-card">
                                 <i className={`fa-solid ${metric.icon}`}></i>
                                 <span className="stat-value">{metric.value}</span>
-                                <span className="stat-label">{metric.label}</span>
+                                <span className="stat-label">{t(metric.label)}</span>
                             </div>
                         ))}
                     </motion.div>
@@ -106,7 +106,7 @@ export default function AboutSection() {
                         <motion.div className="detail-card" variants={childVariants}>
                             <h4><i className="fa-solid fa-earth-europe"></i> {t('about_languages_title')}</h4>
                             <div className="lang-tags">
-                                {languages.map(l => <span key={l}>{l}</span>)}
+                                {languages.map(l => <span key={l}>{t(l)}</span>)}
                             </div>
                         </motion.div>
                     </div>

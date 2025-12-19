@@ -1,21 +1,23 @@
 import React, { useState, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from '../UI/ProjectCard';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
 
 function ProjectsSection() {
+  const { t } = useTranslation();
   const { projects, loading, error } = useGithubRepos('AminoBela');
-  const [activeFilter, setActiveFilter] = useState('Tous');
+  const [activeFilter, setActiveFilter] = useState('All');
 
   const categories = useMemo(() => {
-    if (!projects) return ['Tous'];
+    if (!projects) return ['All'];
     const langs = new Set(projects.map(p => p.language).filter(Boolean));
-    return ['Tous', ...Array.from(langs).sort()];
+    return ['All', ...Array.from(langs).sort()];
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
-    if (activeFilter === 'Tous') return projects;
+    if (activeFilter === 'All') return projects;
     return projects.filter(project => project.language === activeFilter);
   }, [projects, activeFilter]);
 
@@ -30,10 +32,10 @@ function ProjectsSection() {
     >
       <div className="container">
         <motion.h2 variants={childVariants} className="terminal-command">
-          &gt; Mes projets
+          &gt; {t('projects_title')}
         </motion.h2>
 
-        {loading && <p className="terminal-text loading-message">Chargement des projets...</p>}
+        {loading && <p className="terminal-text loading-message">{t('projects_loading')}</p>}
         {error && <p className="terminal-text error-message">{error}</p>}
 
         {!loading && !error && projects.length > 0 && (
@@ -46,7 +48,7 @@ function ProjectsSection() {
                   onClick={() => setActiveFilter(category)}
                   className={`skills-tab ${activeFilter === category ? 'skills-tab--active' : ''}`}
                 >
-                  {category}
+                  {category === 'All' ? t('projects_filter_all') : category}
                 </button>
               ))}
             </motion.div>
@@ -66,6 +68,7 @@ function ProjectsSection() {
                             <ProjectCard 
                                 key={project.id} 
                                 project={project}
+                                t={t}
                             />
                         ))}
                     </motion.div>
@@ -73,7 +76,7 @@ function ProjectsSection() {
             </div>
 
             {filteredProjects.length === 0 && (
-              <p className="terminal-text">Aucun projet trouvé pour ce filtre.</p>
+              <p className="terminal-text">{t('projects_not_found')}</p>
             )}
           </>
         )}
