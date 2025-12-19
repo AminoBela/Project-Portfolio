@@ -12,31 +12,33 @@ import ProjectsSection from './components/Sections/ProjectsSection';
 import ContactSection from './components/Sections/ContactSection';
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
+import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import { navVariants } from './utils/framerMotionVariants';
+
+// --- CONSTANTES ---
+const BOOT_TEXT = [
+    "> INITIALIZING KERNEL...",
+    "> LOADING MODULES: REACT, VITE, FRAMER_MOTION...",
+    "> MOUNTING VIRTUAL DOM...",
+    "> CHECKING NETWORK INTERFACES... [OK]",
+    "> LOADING ASSETS... [OK]",
+    "> CONFIGURING LOCALES (FR, EN, ES)... [OK]",
+    "> STARTING PORTFOLIO_V1.0 SERVICE...",
+    "> ACCESS GRANTED."
+];
 
 // --- COMPOSANT DE DÉMARRAGE (BOOT SEQUENCE) ---
 const InitialBootScreen = ({ onComplete }) => {
     const [lines, setLines] = useState([]);
     const [progress, setProgress] = useState(0);
 
-    const bootText = [
-        "> INITIALIZING KERNEL...",
-        "> LOADING MODULES: REACT, VITE, FRAMER_MOTION...",
-        "> MOUNTING VIRTUAL DOM...",
-        "> CHECKING NETWORK INTERFACES... [OK]",
-        "> LOADING ASSETS... [OK]",
-        "> CONFIGURING LOCALES (FR, EN, ES)... [OK]",
-        "> STARTING PORTFOLIO_V1.0 SERVICE...",
-        "> ACCESS GRANTED."
-    ];
-
     useEffect(() => {
         let lineIndex = 0;
         
         // Animation des lignes de texte
         const textInterval = setInterval(() => {
-            if (lineIndex < bootText.length) {
-                setLines(prev => [...prev, bootText[lineIndex]]);
+            if (lineIndex < BOOT_TEXT.length) {
+                setLines(prev => [...prev, BOOT_TEXT[lineIndex]]);
                 lineIndex++;
             } else {
                 clearInterval(textInterval);
@@ -70,17 +72,14 @@ const InitialBootScreen = ({ onComplete }) => {
             transition={{ duration: 0.8 }}
             style={{
                 position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100vh',
+                inset: 0,
                 backgroundColor: '#0a0c10',
                 color: '#66ff99',
                 fontFamily: "'Fira Code', monospace",
                 zIndex: 10000,
                 display: 'flex',
                 flexDirection: 'column',
-                justifyContent: 'flex-end', // Texte en bas comme un boot
+                justifyContent: 'flex-end',
                 padding: '2rem',
                 overflow: 'hidden'
             }}
@@ -164,10 +163,7 @@ const LanguageTransitionOverlay = () => {
             transition={{ duration: 0.2 }}
             style={{
                 position: 'fixed',
-                top: 0,
-                left: 0,
-                width: '100%',
-                height: '100%',
+                inset: 0,
                 backgroundColor: 'rgba(16, 20, 26, 0.98)',
                 backdropFilter: 'blur(20px)',
                 zIndex: 9999,
@@ -237,6 +233,20 @@ function App() {
     // Nouvel état pour gérer la fin de l'animation de boot
     const [isBootSequenceFinished, setIsBootSequenceFinished] = useState(false);
 
+    // --- SEO & ACCESSIBILITÉ ---
+    useEffect(() => {
+        // Met à jour l'attribut lang du HTML
+        document.documentElement.lang = i18n.language;
+        
+        // Met à jour le titre de la page (optionnel, tu peux personnaliser)
+        const titles = {
+            fr: 'Amin Belalia | Portfolio',
+            en: 'Amin Belalia | Portfolio',
+            es: 'Amin Belalia | Portafolio'
+        };
+        document.title = titles[i18n.language] || 'Amin Belalia | Portfolio';
+    }, [i18n.language]);
+
     const handleLanguageChange = (lng) => {
         if (i18n.language === lng) return;
         setIsLangSwitching(true);
@@ -255,6 +265,17 @@ function App() {
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Sécurité : Forcer la fin du boot après 6 secondes max
+    useEffect(() => {
+        const safetyTimer = setTimeout(() => {
+            if (!isBootSequenceFinished) {
+                console.warn("Boot sequence timed out, forcing completion.");
+                setIsBootSequenceFinished(true);
+            }
+        }, 6000);
+        return () => clearTimeout(safetyTimer);
+    }, [isBootSequenceFinished]);
 
     // On affiche l'écran de boot tant que l'animation n'est pas finie OU que i18n n'est pas prêt
     const showBootScreen = !isBootSequenceFinished || !i18n.isInitialized;
@@ -317,6 +338,7 @@ function App() {
                             <ContactSection />
                         </main>
                         <Footer />
+                        <ScrollToTopButton />
                     </div>
                 </motion.div>
             )}
