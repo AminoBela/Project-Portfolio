@@ -168,7 +168,19 @@
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .timeline-container::before { left: 20px; margin-left: -1px; }
-    .timeline-item { width: 100%; padding-left: 60px; padding-right: 1rem; }
+    .timeline-item { 
+        width: 100%; 
+        padding-left: 50px; /* Espace pour la ligne */
+        padding-right: 1rem;
+        margin-bottom: 1rem; /* Espace entre les cartes sur mobile */
+    }
     .timeline-item.right { left: 0%; }
     .timeline-icon-wrapper { left: 0; }
+    .expanded-card {
+        padding: 1.5rem; /* Padding réduit sur mobile */
+    }
+    .expanded-card-header {
+        flex-direction: column; /* Header en colonne sur mobile */
+        align-items: flex-start;
+    }
 }

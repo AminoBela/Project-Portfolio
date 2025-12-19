@@ -78,7 +78,8 @@
 
 .about-section {
     padding: 6rem 1rem;
-    overflow: hidden;
+    overflow: hidden; /* Empêche tout débordement horizontal global */
+    width: 100%; /* S'assure que la section ne dépasse pas */
 }
 
 .about-container-redesigned {
@@ -88,6 +89,7 @@
     align-items: center;
     max-width: 1200px;
     margin: 0 auto;
+    width: 100%; /* S'assure que le conteneur ne dépasse pas */
 }
 
 .about-visual-column {
@@ -95,6 +97,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+    width: 100%; /* S'assure que la colonne ne dépasse pas */
 }
 
 .about-photo-wrapper {
@@ -103,6 +106,7 @@
     height: 280px;
     display: grid;
     place-items: center;
+    max-width: 100%; /* Empêche l'image de dépasser sur très petits écrans */
 }
 
 .photo-blob {
@@ -159,6 +163,7 @@
 
 .about-intro-text {
     text-align: center;
+    width: 100%; /* S'assure que le texte ne dépasse pas */
 }
 
 .about-title-redesigned {
@@ -183,6 +188,7 @@
     display: flex;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne si nécessaire */
 }
 
 /* --- BOUTONS AMÉLIORÉS --- */
@@ -232,6 +238,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    width: 100%; /* S'assure que la colonne ne dépasse pas */
 }
 
 .about-bio-card h3 {
@@ -335,8 +342,17 @@
 @media (max-width: 900px) {
     .about-container-redesigned {
         grid-template-columns: 1fr;
+        gap: 3rem;
     }
     .about-details-grid {
         grid-template-columns: 1fr;
+    }
+    .about-photo-wrapper {
+        width: 220px; /* Réduction de la taille sur mobile */
+        height: 220px;
+    }
+    .about-stats-row {
+        grid-template-columns: 1fr; /* Une seule colonne pour les stats sur mobile */
+        gap: 1rem;
     }
 }

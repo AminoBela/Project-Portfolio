@@ -115,4 +115,7 @@
     .home-tech-cloud {
         display: none;
     }
+    .home-title {
+        font-size: clamp(2rem, 10vw, 3rem); /* Police légèrement réduite sur mobile */
+    }
 }

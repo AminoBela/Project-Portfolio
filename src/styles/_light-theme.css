@@ -17,8 +17,8 @@
     --card-bg-hover: rgba(255, 255, 255, 0.85);
     
     /* Bordures */
-    --card-border: rgba(255, 255, 255, 0.4);
-    --card-border-top: rgba(255, 255, 255, 0.6);
+    --card-border: rgba(0, 0, 0, 0.1);
+    --card-border-top: rgba(0, 0, 0, 0.15);
     --card-border-hover: var(--accent);
     
     /* Ombres */
@@ -45,13 +45,13 @@
 :root.light .main-nav {
     background: var(--nav-bg);
     backdrop-filter: blur(16px); /* FLOU AUGMENTÉ */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 :root.light .tech-icon-wrapper {
     background: var(--tech-icon-bg);
     backdrop-filter: blur(5px);
-    border-color: rgba(255, 255, 255, 0.5);
+    border-color: rgba(0, 0, 0, 0.1);
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
 }
 
@@ -63,7 +63,21 @@
 }
 
 /* Correction spécifique pour la modale en mode clair pour qu'elle soit aussi "glossy" */
-:root.light .modal-content {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
+:root.light .mobile-menu-overlay {
+    background: rgba(248, 249, 250, 0.8); /* Fond clair pour l'overlay */
+}
+
+:root.light .main-nav__mobile-container {
+    background: rgba(255, 255, 255, 0.85); /* Fond de carte clair */
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+:root.light .burger-bar {
+    background-color: var(--color-text);
+}
+
+/* Correction du curseur en thème clair */
+:root.light .cursor-outline.is-pointer {
+    background-color: rgba(0, 86, 179, 0.2); /* Bleu avec transparence */
+    border-color: rgba(0, 86, 179, 0.2);
 }

@@ -8,10 +8,9 @@ const navLinks = [
     { href: '#parcours', label: 'Parcours' },
     { href: '#competences', label: 'Compétences' },
     { href: '#projets', label: 'Projets' },
-    { href: '#contact', label: 'Contact' }, // --- AJOUT DU LIEN ---
+    { href: '#contact', label: 'Contact' },
 ];
 
-// Animation de la carte centrale
 const menuVariants = {
     closed: { opacity: 0, scale: 0.95, y: -20 },
     open: { 
@@ -28,7 +27,6 @@ const menuVariants = {
     }
 };
 
-// Animation des liens
 const linkVariants = {
     closed: { opacity: 0, x: -20 },
     open: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 200 } }
