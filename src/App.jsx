@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
@@ -34,21 +34,27 @@ const InitialBootScreen = ({ onComplete }) => {
 
     useEffect(() => {
         let lineIndex = 0;
-        
+        let textInterval;
+        let progressInterval;
+
         // Animation des lignes de texte
-        const textInterval = setInterval(() => {
+        textInterval = setInterval(() => {
             if (lineIndex < BOOT_TEXT.length) {
-                setLines(prev => [...prev, BOOT_TEXT[lineIndex]]);
+                setLines(prev => {
+                    // Évite les doublons si le composant se re-rend
+                    if (prev.length > lineIndex) return prev;
+                    return [...prev, BOOT_TEXT[lineIndex]];
+                });
                 lineIndex++;
             } else {
                 clearInterval(textInterval);
                 // Fin de l'animation
                 setTimeout(onComplete, 800);
             }
-        }, 300); // Vitesse d'apparition des lignes
+        }, 300);
 
         // Animation de la barre de progression
-        const progressInterval = setInterval(() => {
+        progressInterval = setInterval(() => {
             setProgress(prev => {
                 if (prev >= 100) {
                     clearInterval(progressInterval);
@@ -59,8 +65,8 @@ const InitialBootScreen = ({ onComplete }) => {
         }, 150);
 
         return () => {
-            clearInterval(textInterval);
-            clearInterval(progressInterval);
+            if (textInterval) clearInterval(textInterval);
+            if (progressInterval) clearInterval(progressInterval);
         };
     }, [onComplete]);
 
@@ -235,10 +241,7 @@ function App() {
 
     // --- SEO & ACCESSIBILITÉ ---
     useEffect(() => {
-        // Met à jour l'attribut lang du HTML
         document.documentElement.lang = i18n.language;
-        
-        // Met à jour le titre de la page (optionnel, tu peux personnaliser)
         const titles = {
             fr: 'Amin Belalia | Portfolio',
             en: 'Amin Belalia | Portfolio',
@@ -257,6 +260,11 @@ function App() {
             }, 800);
         }, 500);
     };
+
+    // Utilisation de useCallback pour stabiliser la fonction et éviter le redémarrage de l'effet
+    const handleBootComplete = useCallback(() => {
+        setIsBootSequenceFinished(true);
+    }, []);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -286,7 +294,7 @@ function App() {
             
             <AnimatePresence mode="wait">
                 {showBootScreen && (
-                    <InitialBootScreen onComplete={() => setIsBootSequenceFinished(true)} />
+                    <InitialBootScreen onComplete={handleBootComplete} />
                 )}
             </AnimatePresence>
 
