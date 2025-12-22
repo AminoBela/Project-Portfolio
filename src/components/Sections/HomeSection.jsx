@@ -1,13 +1,15 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';
 import { technologies } from '../../data/technologies';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
+import PdfViewerModal from '../UI/PdfViewerModal'; // Import de la nouvelle modale
 
 const HomeSection = () => {
     const { t, ready } = useTranslation();
+    const [isCvModalOpen, setIsCvModalOpen] = useState(false);
 
     const animatedWords = useMemo(() => {
         if (!ready) return ['...'];
@@ -20,8 +22,6 @@ const HomeSection = () => {
 
     const animatedTitle = useTypingEffect(animatedWords, { typeSpeed: 100, deleteSpeed: 80, delay: 2000 });
 
-    // Positions prédéfinies pour éviter les chevauchements
-    // Ces positions sont en pourcentage par rapport au conteneur
     const fixedPositions = [
         { top: 5, left: 10 },
         { top: 15, left: 65 },
@@ -29,7 +29,7 @@ const HomeSection = () => {
         { top: 45, left: 85 },
         { top: 65, left: 15 },
         { top: 75, left: 60 },
-        { top: 25, left: 90 }, // Ajusté
+        { top: 25, left: 90 },
         { top: 55, left: 5 },
     ];
 
@@ -37,7 +37,6 @@ const HomeSection = () => {
         const animationNames = ['float-1', 'float-2', 'float-3'];
 
         return technologies.map((tech, index) => {
-            // On utilise la position fixe correspondante, ou une position par défaut si on dépasse 8
             const pos = fixedPositions[index] || { 
                 top: Math.random() * 80, 
                 left: Math.random() * 80 
@@ -68,53 +67,63 @@ const HomeSection = () => {
     };
 
     return (
-        <section id="accueil" className="home-section">
-            <div className="home-grid">
-                <motion.div
-                    className="home-content-left"
-                    variants={containerVariants}
-                    initial="hidden"
-                    animate="visible"
-                >
-                    <motion.h1 className="home-title" variants={itemVariants}>
-                        {t('home_greeting')}
-                    </motion.h1>
-                    <motion.h2 className="home-subtitle" variants={itemVariants}>
-                        <span className="home-subtitle-static">{t('home_i_am')}</span>
-                        <span className="home-subtitle-dynamic">{animatedTitle}</span>
-                        <span className="home-cursor">|</span>
-                    </motion.h2>
-                    <motion.p className="home-description" variants={itemVariants}>
-                        {t('home_description')}
-                    </motion.p>
-                    <motion.div className="home-btn-group" variants={itemVariants}>
-                        <Button href="#projets" primary>{t('home_btn_projects')}</Button>
-                        <Button href={cvPdf} download secondary>{t('home_btn_cv')}</Button>
-                    </motion.div>
-                </motion.div>
-
-                <motion.div className="home-tech-cloud" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } }}>
-                    {techCloudStyles.map((tech) => (
-                        <motion.div
-                            key={tech.name}
-                            className="tech-icon-wrapper"
-                            variants={{
-                                hidden: { opacity: 0, scale: 0 },
-                                visible: { opacity: 1, scale: 1 }
-                            }}
-                            transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                            style={{
-                                top: tech.top,
-                                left: tech.left,
-                                animation: tech.animation
-                            }}
-                        >
-                            <img src={tech.icon} alt={tech.name} className="tech-icon" />
+        <>
+            <section id="accueil" className="home-section">
+                <div className="home-grid">
+                    <motion.div
+                        className="home-content-left"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
+                        <motion.h1 className="home-title" variants={itemVariants}>
+                            {t('home_greeting')}
+                        </motion.h1>
+                        <motion.h2 className="home-subtitle" variants={itemVariants}>
+                            <span className="home-subtitle-static">{t('home_i_am')}</span>
+                            <span className="home-subtitle-dynamic">{animatedTitle}</span>
+                            <span className="home-cursor">|</span>
+                        </motion.h2>
+                        <motion.p className="home-description" variants={itemVariants}>
+                            {t('home_description')}
+                        </motion.p>
+                        <motion.div className="home-btn-group" variants={itemVariants}>
+                            <Button href="#projets" primary>{t('home_btn_projects')}</Button>
+                            {/* Le bouton ouvre maintenant la modale */}
+                            <Button onClick={() => setIsCvModalOpen(true)} secondary>{t('home_btn_cv')}</Button>
                         </motion.div>
-                    ))}
-                </motion.div>
-            </div>
-        </section>
+                    </motion.div>
+
+                    <motion.div className="home-tech-cloud" initial="hidden" animate="visible" variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.8 } } }}>
+                        {techCloudStyles.map((tech) => (
+                            <motion.div
+                                key={tech.name}
+                                className="tech-icon-wrapper"
+                                variants={{
+                                    hidden: { opacity: 0, scale: 0 },
+                                    visible: { opacity: 1, scale: 1 }
+                                }}
+                                transition={{ type: "spring", stiffness: 200, damping: 15 }}
+                                style={{
+                                    top: tech.top,
+                                    left: tech.left,
+                                    animation: tech.animation
+                                }}
+                            >
+                                <img src={tech.icon} alt={tech.name} className="tech-icon" />
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </div>
+            </section>
+
+            {/* Ajout de la modale PDF */}
+            <PdfViewerModal 
+                isOpen={isCvModalOpen} 
+                onClose={() => setIsCvModalOpen(false)} 
+                pdfFile={cvPdf} 
+            />
+        </>
     );
 };
 
