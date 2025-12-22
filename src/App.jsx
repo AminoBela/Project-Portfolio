@@ -271,6 +271,14 @@ function App() {
         document.title = titles[i18n.language] || 'Amin Belalia | Portfolio';
     }, [i18n.language]);
 
+    // --- EASTER EGG HINT ---
+    useEffect(() => {
+        console.log(
+            "%c👋 Hey Dev! Looking for secrets? Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A",
+            "color: #66ff99; font-family: monospace; font-size: 14px; background: #10141a; padding: 10px; border-radius: 5px;"
+        );
+    }, []);
+
     const handleLanguageChange = (lng) => {
         if (i18n.language === lng) return;
         setIsLangSwitching(true);
