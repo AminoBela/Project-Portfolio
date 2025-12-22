@@ -168,5 +168,9 @@
   "contact_location_label": "Localisation",
   "contact_location_value": "Luxembourg / Metz / Nancy",
 
-  "footer_rights": "Tous droits réservés."
+  "footer_rights": "Tous droits réservés.",
+
+  "banner_status": "RECHERCHE ACTIVE",
+  "banner_text": "Stage Admin Sys / DevOps - Avril 2026",
+  "banner_cta": "Me contacter"
 }

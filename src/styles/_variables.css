@@ -37,6 +37,9 @@
     /* NOUVEAU : Couleur du texte au survol des cartes */
     --text-highlight: #ffffff; /* Blanc en mode sombre */
     
+    /* Highlight Navbar */
+    --nav-highlight-bg: rgba(102, 255, 153, 0.1);
+
     /* Typographie */
     --font-primary: 'Fira Code', monospace;
     --font-code: 'Fira Code', monospace;

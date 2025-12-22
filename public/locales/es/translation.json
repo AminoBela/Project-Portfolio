@@ -12,7 +12,7 @@
   "home_i_am": "Soy un",
   "home_subtitle_1": "Administrador de Sistemas",
   "home_subtitle_2": "Futuro DevOps",
-  "home_subtitle_3": "Técnico infra",
+  "home_subtitle_3": "Técnico de Infraestructura",
   "home_description": "Estudiante de 3er año de Informática, especialidad DACS. Apasionado por la automatización, el despliegue y la seguridad de las infraestructuras.",
   "home_btn_projects": "> Mis Proyectos",
   "home_btn_cv": "> Mi CV",
@@ -168,5 +168,9 @@
   "contact_location_label": "Ubicación",
   "contact_location_value": "Luxemburgo / Metz / Nancy",
 
-  "footer_rights": "Todos los derechos reservados."
+  "footer_rights": "Todos los derechos reservados.",
+
+  "banner_status": "BÚSQUEDA ACTIVA",
+  "banner_text": "Prácticas Admin Sis / DevOps - Abril 2026",
+  "banner_cta": "Contactarme"
 }

@@ -4,7 +4,8 @@ import Modal from './Modal';
 import Button from './Button';
 
 const PdfViewerModal = ({ isOpen, onClose, pdfFile }) => {
-    if (!isOpen) return null;
+    // On retire le retour null conditionnel pour laisser l'animation de sortie se jouer
+    // if (!isOpen) return null;
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
@@ -19,13 +20,12 @@ const PdfViewerModal = ({ isOpen, onClose, pdfFile }) => {
                     padding: '1rem',
                     borderBottom: '1px solid var(--card-border)',
                     display: 'flex',
-                    justifyContent: 'space-between', // Espace entre les éléments
+                    justifyContent: 'space-between',
                     alignItems: 'center',
                     flexShrink: 0,
                     gap: '1rem',
-                    paddingRight: '4rem' // Marge de sécurité ENORME pour le bouton fermer
+                    paddingRight: '4rem'
                 }}>
-                    {/* Bouton à gauche pour éviter tout conflit à droite */}
                     <Button 
                         href={pdfFile} 
                         download="CV_Amin_Belalia.pdf" 
@@ -43,7 +43,7 @@ const PdfViewerModal = ({ isOpen, onClose, pdfFile }) => {
                         whiteSpace: 'nowrap',
                         overflow: 'hidden',
                         textOverflow: 'ellipsis',
-                        textAlign: 'right' // Aligné à droite vers le bouton fermer mais avec le padding
+                        textAlign: 'right'
                     }}>
                         Mon CV
                     </h3>
@@ -81,7 +81,6 @@ const PdfViewerModal = ({ isOpen, onClose, pdfFile }) => {
                 </div>
             </div>
             
-            {/* Style pour cacher le texte du bouton sur mobile si besoin */}
             <style>{`
                 @media (max-width: 600px) {
                     .btn-text { display: none; }

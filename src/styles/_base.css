@@ -104,6 +104,19 @@ button {
   opacity: 1;
 }
 
+/* --- MODE MATRIX --- */
+.cursor-dot.is-matrix {
+    background-color: #0F0 !important;
+    z-index: 100000 !important; /* Au-dessus de tout */
+    box-shadow: 0 0 10px #0F0;
+}
+
+.cursor-outline.is-matrix {
+    border-color: #0F0 !important;
+    z-index: 100000 !important;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+}
+
 /* 4. Désactivation totale du curseur sur mobile via CSS */
 @media (max-width: 768px) {
   html, body {

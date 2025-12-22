@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const CustomCursor = () => {
+const CustomCursor = ({ isMatrixMode }) => {
     const cursorDotRef = useRef(null);
     const cursorOutlineRef = useRef(null);
     const requestRef = useRef(null);
-    const [mousePosition, setMousePosition] = useState({ x: -100, y: -100 });
+    
+    const mousePositionRef = useRef({ x: -100, y: -100 });
+    
     const [isPointer, setIsPointer] = useState(false);
     const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
-        // Détection robuste des appareils tactiles
         if (window.matchMedia("(pointer: coarse)").matches) {
             setIsTouchDevice(true);
             return;
         }
 
         const handleMouseMove = (e) => {
-            setMousePosition({ x: e.clientX, y: e.clientY });
+            mousePositionRef.current = { x: e.clientX, y: e.clientY };
         };
 
         const handleMouseOver = (e) => {
@@ -45,16 +46,17 @@ const CustomCursor = () => {
     useEffect(() => {
         if (isTouchDevice) return;
 
-        let lastX = mousePosition.x;
-        let lastY = mousePosition.y;
+        let lastX = -100;
+        let lastY = -100;
 
         const animate = () => {
-            // Lissage du mouvement
-            lastX += (mousePosition.x - lastX) * 0.1;
-            lastY += (mousePosition.y - lastY) * 0.1;
+            const { x, y } = mousePositionRef.current;
+
+            lastX += (x - lastX) * 0.1;
+            lastY += (y - lastY) * 0.1;
 
             if (cursorDotRef.current) {
-                cursorDotRef.current.style.transform = `translate3d(${mousePosition.x}px, ${mousePosition.y}px, 0)`;
+                cursorDotRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
             }
             if (cursorOutlineRef.current) {
                 cursorOutlineRef.current.style.transform = `translate3d(${lastX}px, ${lastY}px, 0)`;
@@ -67,9 +69,8 @@ const CustomCursor = () => {
         return () => {
             cancelAnimationFrame(requestRef.current);
         };
-    }, [mousePosition, isTouchDevice]);
+    }, [isTouchDevice]);
 
-    // Ne rend absolument rien sur les appareils tactiles
     if (isTouchDevice) {
         return null;
     }
@@ -78,11 +79,11 @@ const CustomCursor = () => {
         <>
             <div
                 ref={cursorOutlineRef}
-                className={`cursor-outline ${isPointer ? 'is-pointer' : ''}`}
+                className={`cursor-outline ${isPointer ? 'is-pointer' : ''} ${isMatrixMode ? 'is-matrix' : ''}`}
             />
             <div
                 ref={cursorDotRef}
-                className={`cursor-dot ${isPointer ? 'is-pointer' : ''}`}
+                className={`cursor-dot ${isPointer ? 'is-pointer' : ''} ${isMatrixMode ? 'is-matrix' : ''}`}
             />
         </>
     );

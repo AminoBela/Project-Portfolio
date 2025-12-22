@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
+import { useKonamiCode } from './hooks/useKonamiCode';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
@@ -13,6 +14,9 @@ import ContactSection from './components/Sections/ContactSection';
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton";
+import InternshipBanner from "./components/UI/InternshipBanner";
+import InternshipModal from "./components/UI/InternshipModal";
+import MatrixRain from "./components/UI/MatrixRain";
 import { navVariants } from './utils/framerMotionVariants';
 
 // --- CONSTANTES ---
@@ -239,14 +243,15 @@ function App() {
     const { t, i18n } = useTranslation();
     const { theme, toggleTheme } = useTheme();
     const { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen } = useScrollspy();
+    const { isTriggered: isMatrixMode, setIsTriggered: setIsMatrixMode } = useKonamiCode();
+    
     const [isScrolled, setIsScrolled] = useState(false);
     const [isLangSwitching, setIsLangSwitching] = useState(false);
-    
-    // Nouvel état pour gérer la fin de l'animation de boot
     const [isBootSequenceFinished, setIsBootSequenceFinished] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
+    const [isBannerVisible, setIsBannerVisible] = useState(true);
 
-    // Détection mobile
     useEffect(() => {
         const checkMobile = () => {
             setIsMobile(window.innerWidth < 768);
@@ -256,7 +261,6 @@ function App() {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // --- SEO & ACCESSIBILITÉ ---
     useEffect(() => {
         document.documentElement.lang = i18n.language;
         const titles = {
@@ -290,22 +294,22 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    // Si on est sur mobile, on considère le boot comme fini immédiatement
     useEffect(() => {
         if (isMobile) {
             setIsBootSequenceFinished(true);
         }
     }, [isMobile]);
 
-    // On affiche l'écran de boot SEULEMENT SI :
-    // 1. Ce n'est pas fini
-    // 2. i18n est prêt
-    // 3. Ce n'est PAS un mobile
     const showBootScreen = !isBootSequenceFinished && i18n.isInitialized && !isMobile;
+    const bannerHeight = isBannerVisible ? '50px' : '0px';
 
     return (
         <>
-            <CustomCursor />
+            <CustomCursor isMatrixMode={isMatrixMode} />
+            
+            <AnimatePresence>
+                {isMatrixMode && <MatrixRain onClose={() => setIsMatrixMode(false)} />}
+            </AnimatePresence>
             
             <AnimatePresence mode="wait">
                 {showBootScreen && (
@@ -317,7 +321,6 @@ function App() {
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
 
-            {/* On affiche le contenu si le boot est fini OU si on est sur mobile */}
             {(isBootSequenceFinished || isMobile) && (
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -333,6 +336,12 @@ function App() {
                     </div>
 
                     <div>
+                        <InternshipBanner 
+                            isVisible={isBannerVisible}
+                            onClose={() => setIsBannerVisible(false)}
+                            onOpenModal={() => setIsInternshipModalOpen(true)} 
+                        />
+
                         <motion.nav
                             variants={navVariants}
                             initial="hidden"
@@ -340,6 +349,7 @@ function App() {
                             className={`main-nav ${isScrolled ? 'main-nav--scrolled' : ''}`}
                             layout
                             transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                            style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }} 
                         >
                             <Navigation
                                 activeSection={activeSection}
@@ -352,9 +362,9 @@ function App() {
                             />
                         </motion.nav>
 
-                        <main>
+                        <main style={{ paddingTop: bannerHeight, transition: 'padding-top 0.5s ease' }}>
                             <HomeSection />
-                            <AboutSection />
+                            <AboutSection onOpenInternshipModal={() => setIsInternshipModalOpen(true)} />
                             <ExperienceEducationSection />
                             <SkillsSection />
                             <ProjectsSection />
@@ -362,6 +372,11 @@ function App() {
                         </main>
                         <Footer />
                         <ScrollToTopButton />
+                        
+                        <InternshipModal 
+                            isOpen={isInternshipModalOpen} 
+                            onClose={() => setIsInternshipModalOpen(false)} 
+                        />
                     </div>
                 </motion.div>
             )}

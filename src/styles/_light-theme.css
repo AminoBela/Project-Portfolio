@@ -31,6 +31,9 @@
     /* NOUVEAU : Couleur du texte au survol des cartes */
     --text-highlight: var(--accent);
     
+    /* Highlight Navbar */
+    --nav-highlight-bg: rgba(0, 86, 179, 0.1); /* Bleu transparent */
+    
     /* --- CORRECTIONS SPÉCIFIQUES --- */
     
     /* Bouton CV : forcer le texte en blanc */
