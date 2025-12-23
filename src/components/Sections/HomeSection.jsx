@@ -1,11 +1,13 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';
 import { technologies } from '../../data/technologies';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
-import PdfViewerModal from '../UI/PdfViewerModal'; // Import de la nouvelle modale
+
+// Lazy Loading de la modale PDF
+const PdfViewerModal = React.lazy(() => import('../UI/PdfViewerModal'));
 
 const HomeSection = () => {
     const { t, ready } = useTranslation();
@@ -89,7 +91,6 @@ const HomeSection = () => {
                         </motion.p>
                         <motion.div className="home-btn-group" variants={itemVariants}>
                             <Button href="#projets" primary>{t('home_btn_projects')}</Button>
-                            {/* Le bouton ouvre maintenant la modale */}
                             <Button onClick={() => setIsCvModalOpen(true)} secondary>{t('home_btn_cv')}</Button>
                         </motion.div>
                     </motion.div>
@@ -117,12 +118,16 @@ const HomeSection = () => {
                 </div>
             </section>
 
-            {/* Ajout de la modale PDF */}
-            <PdfViewerModal 
-                isOpen={isCvModalOpen} 
-                onClose={() => setIsCvModalOpen(false)} 
-                pdfFile={cvPdf} 
-            />
+            {/* Chargement différé de la modale PDF */}
+            <Suspense fallback={null}>
+                {isCvModalOpen && (
+                    <PdfViewerModal 
+                        isOpen={isCvModalOpen} 
+                        onClose={() => setIsCvModalOpen(false)} 
+                        pdfFile={cvPdf} 
+                    />
+                )}
+            </Suspense>
         </>
     );
 };

@@ -26,6 +26,7 @@
     background: repeating-linear-gradient(180deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 2px, transparent 4px);
     mix-blend-mode: overlay; opacity: 0.15;
     animation: scan 9s linear infinite;
+    will-change: transform; /* Optimisation GPU */
 }
 
 /* Masquer les effets "tech" trop marqués en mode clair pour plus de propreté */
@@ -35,18 +36,24 @@
     opacity: 0.05; /* Très subtil en mode clair */
 }
 
-@keyframes scan { from { transform: translateY(-10%); } to { transform: translateY(10%); } }
+@keyframes scan { from { transform: translate3d(0, -10%, 0); } to { transform: translate3d(0, 10%, 0); } }
+
 .site-background .orb {
     position: absolute; filter: blur(28px);
     width: 360px; height: 360px; border-radius: 50%;
     opacity: 0.45;
+    will-change: transform; /* Optimisation GPU */
+    backface-visibility: hidden;
+    transform: translate3d(0, 0, 0); /* Force l'accélération matérielle */
 }
 .orb--1 { left: -80px; top: -80px; background: radial-gradient(circle at 30% 30%, rgba(102,255,153,0.55), rgba(46,134,171,0.25)); animation: float1 9s ease-in-out infinite; }
 .orb--2 { right: -120px; bottom: -120px; background: radial-gradient(circle at 70% 70%, rgba(46,134,171,0.45), rgba(102,255,153,0.2)); animation: float2 11s ease-in-out infinite; }
 .orb--3 { left: 50%; bottom: 10%; transform: translateX(-50%); width: 220px; height: 220px; background: radial-gradient(circle at 50% 50%, rgba(148, 163, 184, 0.25), rgba(102,255,153,0.15)); animation: float3 13s ease-in-out infinite; }
-@keyframes float1 { 0%{transform: translate(0,0)} 50%{transform: translate(14px, -10px)} 100%{transform: translate(0,0)} }
-@keyframes float2 { 0%{transform: translate(0,0)} 50%{transform: translate(-12px, 12px)} 100%{transform: translate(0,0)} }
-@keyframes float3 { 0%{transform: translate(-50%,0)} 50%{transform: translate(calc(-50% + 10px), -8px)} 100%{transform: translate(-50%,0)} }
+
+/* Utilisation de translate3d pour forcer le GPU */
+@keyframes float1 { 0%{transform: translate3d(0,0,0)} 50%{transform: translate3d(14px, -10px, 0)} 100%{transform: translate3d(0,0,0)} }
+@keyframes float2 { 0%{transform: translate3d(0,0,0)} 50%{transform: translate3d(-12px, 12px, 0)} 100%{transform: translate3d(0,0,0)} }
+@keyframes float3 { 0%{transform: translate3d(-50%,0,0)} 50%{transform: translate3d(calc(-50% + 10px), -8px, 0)} 100%{transform: translate3d(-50%,0,0)} }
 
 /* --- Layout Général --- */
 .container {
