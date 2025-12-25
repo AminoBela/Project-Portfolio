@@ -14,7 +14,6 @@ import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import InternshipBanner from "./components/UI/InternshipBanner";
-import BootScreen from "./components/UI/BootScreen";
 import LanguageTransitionOverlay from "./components/UI/LanguageTransitionOverlay";
 import { navVariants } from './utils/framerMotionVariants';
 
@@ -47,19 +46,8 @@ function App() {
     
     const [isScrolled, setIsScrolled] = useState(false);
     const [isLangSwitching, setIsLangSwitching] = useState(false);
-    const [isBootSequenceFinished, setIsBootSequenceFinished] = useState(false);
-    const [isMobile, setIsMobile] = useState(false);
     const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
     const [isBannerVisible, setIsBannerVisible] = useState(true);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
 
     useEffect(() => {
         document.documentElement.lang = i18n.language;
@@ -89,10 +77,6 @@ function App() {
         }, 500);
     };
 
-    const handleBootComplete = useCallback(() => {
-        setIsBootSequenceFinished(true);
-    }, []);
-
     const handleOpenInternshipModal = useCallback(() => {
         setIsInternshipModalOpen(true);
     }, []);
@@ -109,13 +93,6 @@ function App() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    useEffect(() => {
-        if (isMobile) {
-            setIsBootSequenceFinished(true);
-        }
-    }, [isMobile]);
-
-    const showBootScreen = !isBootSequenceFinished && i18n.isInitialized && !isMobile;
     const bannerHeight = isBannerVisible ? '50px' : '0px';
 
     return (
@@ -130,74 +107,66 @@ function App() {
                 )}
             </AnimatePresence>
             
-            <AnimatePresence mode="wait">
-                {showBootScreen && (
-                    <BootScreen onComplete={handleBootComplete} />
-                )}
-            </AnimatePresence>
-
             <AnimatePresence>
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
 
-            {(isBootSequenceFinished || isMobile) && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1 }}
-                >
-                    <div className="site-background">
-                        <div className="orb orb--1" />
-                        <div className="orb orb--2" />
-                        <div className="orb orb--3" />
-                        <div className="hero-grid" />
-                        <div className="scanline" />
-                    </div>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+            >
+                <div className="site-background">
+                    <div className="orb orb--1" />
+                    <div className="orb orb--2" />
+                    <div className="orb orb--3" />
+                    <div className="hero-grid" />
+                    <div className="scanline" />
+                </div>
 
-                    <div>
-                        <InternshipBanner 
-                            isVisible={isBannerVisible}
-                            onClose={() => setIsBannerVisible(false)}
-                            onOpenModal={handleOpenInternshipModal} 
+                <div>
+                    <InternshipBanner 
+                        isVisible={isBannerVisible}
+                        onClose={() => setIsBannerVisible(false)}
+                        onOpenModal={handleOpenInternshipModal} 
+                    />
+
+                    <motion.nav
+                        variants={navVariants}
+                        initial="hidden"
+                        animate="visible"
+                        className={`main-nav ${isScrolled ? 'main-nav--scrolled' : ''}`}
+                        layout
+                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
+                        style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }} 
+                    >
+                        <Navigation
+                            activeSection={activeSection}
+                            isMenuOpen={isMenuOpen}
+                            toggleMenu={toggleMenu}
+                            toggleTheme={toggleTheme}
+                            theme={theme}
+                            onNavLinkClick={() => setIsMenuOpen(false)}
+                            onLanguageChange={handleLanguageChange}
                         />
+                    </motion.nav>
 
-                        <motion.nav
-                            variants={navVariants}
-                            initial="hidden"
-                            animate="visible"
-                            className={`main-nav ${isScrolled ? 'main-nav--scrolled' : ''}`}
-                            layout
-                            transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                            style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }} 
-                        >
-                            <Navigation
-                                activeSection={activeSection}
-                                isMenuOpen={isMenuOpen}
-                                toggleMenu={toggleMenu}
-                                toggleTheme={toggleTheme}
-                                theme={theme}
-                                onNavLinkClick={() => setIsMenuOpen(false)}
-                                onLanguageChange={handleLanguageChange}
-                            />
-                        </motion.nav>
+                    <MainContent 
+                        onOpenInternshipModal={handleOpenInternshipModal} 
+                        bannerHeight={bannerHeight} 
+                    />
 
-                        <MainContent 
-                            onOpenInternshipModal={handleOpenInternshipModal} 
-                            bannerHeight={bannerHeight} 
+                    <Footer />
+                    <ScrollToTopButton />
+                    
+                    <Suspense fallback={null}>
+                        <InternshipModal 
+                            isOpen={isInternshipModalOpen} 
+                            onClose={() => setIsInternshipModalOpen(false)} 
                         />
-
-                        <Footer />
-                        <ScrollToTopButton />
-                        
-                        <Suspense fallback={null}>
-                            <InternshipModal 
-                                isOpen={isInternshipModalOpen} 
-                                onClose={() => setIsInternshipModalOpen(false)} 
-                            />
-                        </Suspense>
-                    </div>
-                </motion.div>
-            )}
+                    </Suspense>
+                </div>
+            </motion.div>
         </>
     );
 }

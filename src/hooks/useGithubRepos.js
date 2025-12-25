@@ -1,6 +1,7 @@
 // src/hooks/useGithubRepos.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { decodeBase64 } from '../utils/stringUtils';
 
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
@@ -29,17 +30,7 @@ export function useGithubRepos(username) {
             let readmeContent = '';
             try {
               const readmeResponse = await axiosInstance.get(`https://api.github.com/repos/${username}/${repo.name}/readme`);
-              
-              // --- CORRECTION DÉFINITIVE ENCODAGE (TextDecoder) ---
-              const contentBase64 = readmeResponse.data.content.replace(/\n/g, '');
-              const binaryString = window.atob(contentBase64);
-              const bytes = new Uint8Array(binaryString.length);
-              for (let i = 0; i < binaryString.length; i++) {
-                bytes[i] = binaryString.charCodeAt(i);
-              }
-              readmeContent = new TextDecoder('utf-8').decode(bytes);
-              // ----------------------------------------------------
-
+              readmeContent = decodeBase64(readmeResponse.data.content);
             } catch (e) {
               console.warn(`Could not fetch README for ${repo.name}`);
             }
