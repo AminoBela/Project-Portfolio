@@ -11,7 +11,7 @@ export const educationData = [
         location: 'cesi_location',
         period: 'cesi_period',
         description: 'cesi_desc',
-        logo: 'https://www.cesi.fr/wp-content/uploads/2021/03/logo-cesi.png',
+        logo: 'https://upload.wikimedia.org/wikipedia/fr/e/ef/Logo_cesi_2022.png',
         details: null,
         color: '#bd93f9' // Violet pour le futur
     },
