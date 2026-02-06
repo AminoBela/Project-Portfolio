@@ -7,22 +7,23 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  
-  background: rgba(20, 30, 48, 0.7);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(102, 255, 153, 0.2);
+
+  background: var(--card-bg);
+  /* Variable standard */
+  backdrop-filter: var(--card-backdrop);
+  border: 1px solid var(--card-border);
   color: var(--color-text);
 }
 
 .button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-  border-color: rgba(102, 255, 153, 0.4);
+  border-color: rgba(var(--accent-rgb), 0.4);
   color: var(--accent);
 }
 
@@ -30,7 +31,7 @@
 .button--primary {
   background: var(--accent);
   /* Utilisation de la variable pour la couleur du texte */
-  color: var(--button-text-primary, #000); 
+  color: var(--button-text-primary);
   border-color: var(--accent);
 }
 
@@ -38,64 +39,56 @@
   background: var(--accent-hover);
   border-color: var(--accent-hover);
   /* La couleur du texte ne change pas au survol */
-  color: var(--button-text-primary, #000);
+  color: var(--button-text-primary);
 }
 
 /* --- BOUTON SECONDAIRE --- */
 .button--secondary {
   background: transparent;
-  border-color: rgba(102, 255, 153, 0.4);
+  border-color: rgba(var(--accent-rgb), 0.4);
   color: var(--accent);
 }
 
 .button--secondary:hover {
-  background: rgba(102, 255, 153, 0.1);
-  border-color: rgba(102, 255, 153, 0.6);
+  background: rgba(var(--accent-rgb), 0.1);
+  border-color: rgba(var(--accent-rgb), 0.6);
 }
 
 /* --- CORRECTION POUR LE THÈME CLAIR --- */
-/* On s'assure que le texte du bouton primaire reste lisible en mode clair */
-:root.light .button--primary {
-    color: #ffffff !important; /* Forcer le texte en blanc */
-}
-:root.light .button--primary:hover {
-    color: #ffffff !important; /* Forcer le texte en blanc au survol */
-}
+/* Géré via variables */
 
 /* --- SCROLL TO TOP BUTTON --- */
 .scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
-    background-color: var(--accent);
-    color: #1e1e1e; /* Couleur par défaut (Dark mode) */
-    border: none;
-    cursor: pointer;
-    z-index: 99;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-shadow: 0 4px 12px rgba(102, 255, 153, 0.3);
-    font-size: 1.2rem;
-    
-    /* Transition d'apparition gérée par CSS */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(20px) scale(0.8);
-    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+  color: #1e1e1e;
+  /* Couleur par défaut (Dark mode) */
+  border: none;
+  cursor: pointer;
+  z-index: 99;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
+  font-size: 1.2rem;
+
+  /* Transition d'apparition gérée par CSS */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
 .scroll-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
 }
 
 /* Correction spécifique pour le bouton ScrollToTop en mode clair */
-:root.light .scroll-to-top {
-    color: #ffffff !important; /* Flèche blanche */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
+/* Géré via variables */

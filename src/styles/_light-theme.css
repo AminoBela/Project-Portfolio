@@ -1,86 +1,124 @@
-/* --- Thème Clair : Surcharge des variables --- */
+/* src/styles/_light-theme.css */
+/* --- Thème Clair : Plus doux pour les yeux --- */
 :root.light {
-    /* --- COULEURS FONCTIONNELLES --- */
-    --accent: #0056b3;
-    --accent-hover: #004085;
-    --color-text: #212529;
-    --text-secondary: #495057;
-    
-    /* --- VARIABLES D'ARCHITECTURE (LIGHT MODE) --- */
-    
-    /* Fond global : Gris perle doux pour le contraste */
-    --bg-primary: #e9ecef; 
-    --bg-secondary: #f8f9fa;
-    
-    /* CARTES : Retour au Glassmorphism (Translucide + Flou) */
-    --card-bg: rgba(255, 255, 255, 0.65);
-    --card-bg-hover: rgba(255, 255, 255, 0.85);
-    
-    /* Bordures */
-    --card-border: rgba(0, 0, 0, 0.1);
-    --card-border-top: rgba(0, 0, 0, 0.15);
+    /* --- ACCENT : Vert/Cyan plus visible et cohérent --- */
+    --accent: #00897b;
+    --accent-hover: #00695c;
+    --accent-rgb: 0, 137, 123;
+
+    /* --- TEXTE : Contraste fort mais pas noir pur --- */
+    --color-text: #1a2332;
+    --text-secondary: #4a5568;
+
+    /* --- FONDS : Gris chaud, moins agressif que le blanc pur --- */
+    --bg-primary: #f0f2f5;
+    --bg-secondary: #e8ecf0;
+    --grid-pattern-color: rgba(0, 0, 0, 0.03);
+
+    /* --- CARTES : Blanc légèrement teinté, bonne lisibilité --- */
+    --card-bg: rgba(255, 255, 255, 0.85);
+    --card-bg-hover: rgba(255, 255, 255, 0.95);
+
+    /* --- BORDURES : Visibles mais subtiles --- */
+    --card-border: rgba(0, 40, 80, 0.1);
+    --card-border-top: rgba(0, 40, 80, 0.15);
     --card-border-hover: var(--accent);
-    
-    /* Ombres */
-    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-    --card-shadow-hover: 0 12px 35px rgba(0, 0, 0, 0.1);
-    
-    /* Performance : Réactivation du flou */
-    --card-backdrop: blur(16px); /* FLOU AUGMENTÉ */
-    
-    /* NOUVEAU : Couleur du texte au survol des cartes */
+
+    /* --- OMBRES : Plus présentes pour démarquer les cartes --- */
+    --card-shadow: 0 4px 20px rgba(0, 40, 80, 0.08);
+    --card-shadow-hover: 0 8px 30px rgba(0, 40, 80, 0.12);
+
+    /* Performance : Flou du glassmorphism */
+    --card-backdrop: blur(16px);
+
+    /* Highlight */
     --text-highlight: var(--accent);
-    
-    /* Highlight Navbar */
-    --nav-highlight-bg: rgba(0, 86, 179, 0.1); /* Bleu transparent */
-    
-    /* --- CORRECTIONS SPÉCIFIQUES --- */
-    
-    /* Bouton CV : forcer le texte en blanc */
+
+    /* --- NAVBAR : Fond plus visible --- */
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --nav-highlight-bg: rgba(0, 137, 123, 0.12);
+
+    /* --- AUTRES COMPOSANTS --- */
+    --tech-icon-bg: rgba(255, 255, 255, 0.9);
+    --mobile-menu-overlay: rgba(240, 242, 245, 0.9);
+    --mobile-menu-bg: rgba(255, 255, 255, 0.95);
+
+    /* Boutons */
     --button-text-primary: #ffffff;
-    
-    /* Navbar & Icônes Accueil : Plus translucide */
-    --nav-bg: rgba(255, 255, 255, 0.7);
-    --tech-icon-bg: rgba(255, 255, 255, 0.7);
+
+    /* Curseur */
+    --cursor-pointer-bg: rgba(0, 137, 123, 0.15);
+    --cursor-pointer-border: rgba(0, 137, 123, 0.25);
+
+    /* Burger Menu */
+    --burger-bar-bg: var(--color-text);
+
+    /* Filtres */
+    --filter-saturate: saturate(1.1);
+    --filter-brightness: brightness(0.95);
+
+    /* Modal */
+    --modal-backdrop: rgba(26, 35, 50, 0.4);
+    --code-bg: rgba(0, 40, 80, 0.06);
+    --code-color: #d63384;
+    --pre-bg: #f8fafc;
+    --pre-color: #1a2332;
+    --badge-color: #ffffff;
+
+    /* Table */
+    --table-header-bg: rgba(0, 137, 123, 0.08);
+    --table-row-even-bg: rgba(0, 40, 80, 0.03);
 }
 
-/* Application des corrections */
-:root.light .main-nav {
-    background: var(--nav-bg);
-    backdrop-filter: blur(16px); /* FLOU AUGMENTÉ */
-    border: 1px solid rgba(0, 0, 0, 0.1);
+/* --- Améliorations spécifiques Light Mode --- */
+:root.light .education-card,
+:root.light .timeline-card-compact,
+:root.light .project-card {
+    box-shadow: var(--card-shadow);
 }
 
-:root.light .tech-icon-wrapper {
-    background: var(--tech-icon-bg);
-    backdrop-filter: blur(5px);
-    border-color: rgba(0, 0, 0, 0.1);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+:root.light .education-card:hover,
+:root.light .timeline-card-compact:hover,
+:root.light .project-card:hover {
+    box-shadow: var(--card-shadow-hover);
 }
 
-:root.light .btn-download {
-    color: var(--button-text-primary) !important;
-}
-:root.light .btn-download:hover {
-    color: var(--button-text-primary) !important;
-}
-
-/* Correction spécifique pour la modale en mode clair pour qu'elle soit aussi "glossy" */
-:root.light .mobile-menu-overlay {
-    background: rgba(248, 249, 250, 0.8); /* Fond clair pour l'overlay */
+/* Tags plus visibles en light */
+:root.light .tag {
+    background: rgba(0, 137, 123, 0.1);
+    color: #00695c;
+    border: 1px solid rgba(0, 137, 123, 0.2);
 }
 
-:root.light .main-nav__mobile-container {
-    background: rgba(255, 255, 255, 0.85); /* Fond de carte clair */
-    border-color: rgba(0, 0, 0, 0.1);
+/* Badges status */
+:root.light .education-card__badge {
+    background: rgba(255, 255, 255, 0.9);
 }
 
-:root.light .burger-bar {
-    background-color: var(--color-text);
+:root.light .education-card--current .education-card__badge {
+    color: #00897b;
+    border-color: rgba(0, 137, 123, 0.4);
+    box-shadow: 0 0 10px rgba(0, 137, 123, 0.2);
 }
 
-/* Correction du curseur en thème clair */
-:root.light .cursor-outline.is-pointer {
-    background-color: rgba(0, 86, 179, 0.2); /* Bleu avec transparence */
-    border-color: rgba(0, 86, 179, 0.2);
+:root.light .education-card--future .education-card__badge {
+    color: #7c4dff;
+    border-color: rgba(124, 77, 255, 0.4);
+}
+
+/* Aura effects plus subtils en light */
+:root.light .education-card--current::before,
+:root.light .education-card--future::before {
+    opacity: 0.4;
+}
+
+/* Timeline dates */
+:root.light .timeline-card-compact-period {
+    color: var(--accent);
+}
+
+/* Section titles */
+:root.light .education-roadmap__title,
+:root.light .section__title span {
+    color: var(--accent);
 }

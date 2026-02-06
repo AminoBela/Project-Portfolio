@@ -1,0 +1,497 @@
+/* src/styles/components/EducationRoadmap.css - APPLE INTELLIGENCE AURA DESIGN */
+
+/* --- AURORA GRADIENT ANIMATION --- */
+@keyframes aurora-flow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes aura-pulse {
+
+    0%,
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+}
+
+@keyframes float-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 40px rgba(var(--card-accent-rgb), 0.3);
+    }
+
+    50% {
+        box-shadow: 0 0 60px rgba(var(--card-accent-rgb), 0.5);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+/* --- ROADMAP CONTAINER --- */
+.education-roadmap {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    padding: 2.5rem;
+    background: radial-gradient(ellipse at top center, rgba(var(--accent-rgb), 0.04) 0%, transparent 50%);
+    border-radius: var(--radius-xl);
+    position: relative;
+}
+
+.education-roadmap__title {
+    font-size: 1rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 700;
+}
+
+.education-roadmap__title i {
+    font-size: 1.1rem;
+    filter: drop-shadow(0 0 12px rgba(var(--accent-rgb), 0.7));
+}
+
+/* --- ROADMAP CARDS GRID --- */
+.education-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+/* --- EDUCATION CARD BASE --- */
+.education-card {
+    background: linear-gradient(160deg, var(--card-bg) 0%, rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.03) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 1.75rem;
+    padding-top: 3rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+    min-height: 220px;
+}
+
+/* Aura overlay */
+.education-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at top center, rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.1) 0%, transparent 60%);
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+/* Top gradient bar */
+.education-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--card-accent-color, var(--accent)),
+            transparent);
+    opacity: 0.8;
+}
+
+.education-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.4);
+}
+
+.education-card:hover::before {
+    opacity: 1;
+}
+
+/* --- STATUS VARIANTS --- */
+
+/* PAST - Subtle gray */
+.education-card--past {
+    --card-accent-color: #6272a4;
+    --card-accent-rgb: 98, 114, 164;
+    opacity: 0.65;
+}
+
+.education-card--past:hover {
+    opacity: 0.9;
+}
+
+/* CURRENT - Apple Intelligence Green Aura */
+.education-card--current {
+    --card-accent-color: #50fa7b;
+    --card-accent-rgb: 80, 250, 123;
+    border-color: rgba(80, 250, 123, 0.25);
+    animation: aura-pulse 4s ease-in-out infinite;
+}
+
+.education-card--current::before {
+    background:
+        radial-gradient(ellipse at top left, rgba(80, 250, 123, 0.15) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(139, 233, 253, 0.1) 0%, transparent 50%);
+    opacity: 1;
+}
+
+.education-card--current::after {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #50fa7b 20%,
+            #8be9fd 50%,
+            #50fa7b 80%,
+            transparent 100%);
+    background-size: 200% 100%;
+    animation: aurora-flow 4s ease infinite;
+}
+
+/* CURRENT Shimmer effect */
+.education-card--current .education-card__shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+/* FUTURE - Purple/Pink Aurora */
+.education-card--future {
+    --card-accent-color: #bd93f9;
+    --card-accent-rgb: 189, 147, 249;
+    border-style: solid;
+    border-color: rgba(189, 147, 249, 0.2);
+    animation: float-glow 5s ease-in-out infinite;
+}
+
+.education-card--future::before {
+    background:
+        radial-gradient(ellipse at top center, rgba(189, 147, 249, 0.2) 0%, transparent 40%),
+        radial-gradient(ellipse at bottom left, rgba(255, 121, 198, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at top right, rgba(139, 233, 253, 0.1) 0%, transparent 40%);
+    opacity: 1;
+}
+
+.education-card--future::after {
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #ff79c6 15%,
+            #bd93f9 35%,
+            #8be9fd 65%,
+            #bd93f9 85%,
+            transparent 100%);
+    height: 5px;
+    background-size: 300% 100%;
+    animation: aurora-flow 6s ease infinite;
+}
+
+/* --- CARD HEADER --- */
+.education-card__header {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 2;
+}
+
+.education-card__logo {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 6px;
+    flex-shrink: 0;
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.25),
+        0 0 20px rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.2);
+}
+
+.education-card__logo-placeholder {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--card-accent-color, var(--accent)) 0%, rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.7) 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #000;
+    flex-shrink: 0;
+    box-shadow:
+        0 8px 20px rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.4);
+}
+
+.education-card__header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.education-card__title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--color-text);
+    margin: 0 0 0.35rem 0;
+    line-height: 1.25;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.education-card__institution {
+    font-size: 0.9rem;
+    color: var(--card-accent-color, var(--accent));
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-shadow: 0 0 15px rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.4);
+}
+
+/* --- STATUS BADGE --- */
+.education-card__badge {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-full);
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 3;
+}
+
+.education-card--past .education-card__badge {
+    background: rgba(98, 114, 164, 0.25);
+    color: #8b9dc3;
+    border: 1px solid rgba(98, 114, 164, 0.4);
+}
+
+.education-card--current .education-card__badge {
+    background: rgba(80, 250, 123, 0.15);
+    color: #50fa7b;
+    border: 1px solid rgba(80, 250, 123, 0.4);
+    box-shadow:
+        0 0 15px rgba(80, 250, 123, 0.4),
+        inset 0 0 10px rgba(80, 250, 123, 0.1);
+    animation: aura-pulse 2s ease-in-out infinite;
+}
+
+.education-card--future .education-card__badge {
+    background: linear-gradient(135deg, rgba(189, 147, 249, 0.2) 0%, rgba(255, 121, 198, 0.15) 100%);
+    color: #d4b3ff;
+    border: 1px solid rgba(189, 147, 249, 0.4);
+    box-shadow:
+        0 0 20px rgba(189, 147, 249, 0.3),
+        0 0 40px rgba(255, 121, 198, 0.2);
+}
+
+/* --- CARD CONTENT --- */
+.education-card__period {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.education-card__period i {
+    color: var(--card-accent-color, var(--accent));
+    font-size: 0.8rem;
+    filter: drop-shadow(0 0 6px rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.5));
+}
+
+.education-card__description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    position: relative;
+    z-index: 2;
+}
+
+/* --- ALTERNANCE CARD - APPLE INTELLIGENCE AURORA --- */
+.alternance-card {
+    background: linear-gradient(160deg, rgba(189, 147, 249, 0.06) 0%, rgba(255, 121, 198, 0.03) 50%, rgba(80, 250, 123, 0.03) 100%);
+    border: 1px solid rgba(189, 147, 249, 0.25);
+    border-radius: 20px;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    margin-top: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Aurora background */
+.alternance-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(ellipse at 20% 20%, rgba(189, 147, 249, 0.15) 0%, transparent 40%),
+        radial-gradient(ellipse at 80% 80%, rgba(255, 121, 198, 0.12) 0%, transparent 40%),
+        radial-gradient(ellipse at 50% 50%, rgba(80, 250, 123, 0.08) 0%, transparent 50%);
+    opacity: 0.7;
+    transition: opacity 0.4s ease;
+}
+
+/* Top aurora bar */
+.alternance-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent 0%,
+            #bd93f9 20%,
+            #ff79c6 40%,
+            #50fa7b 60%,
+            #8be9fd 80%,
+            transparent 100%);
+    background-size: 200% 100%;
+    animation: aurora-flow 5s ease infinite;
+}
+
+.alternance-card:hover {
+    border-color: #bd93f9;
+    transform: translateY(-4px);
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.2),
+        0 0 25px rgba(189, 147, 249, 0.2),
+        0 0 40px rgba(255, 121, 198, 0.1);
+}
+
+.alternance-card:hover::before {
+    opacity: 1;
+}
+
+.alternance-card__icon {
+    width: 56px;
+    height: 56px;
+    background: linear-gradient(135deg, rgba(189, 147, 249, 0.3) 0%, rgba(255, 121, 198, 0.2) 100%);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: #d4b3ff;
+    flex-shrink: 0;
+    box-shadow:
+        0 0 25px rgba(189, 147, 249, 0.3),
+        inset 0 0 15px rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 1;
+}
+
+.alternance-card__content {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+}
+
+.alternance-card__content h4 {
+    font-size: 1.15rem;
+    color: var(--color-text);
+    margin: 0 0 0.5rem 0;
+    font-weight: 700;
+}
+
+.alternance-card__content p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.5;
+}
+
+.alternance-card__cta {
+    color: #bd93f9;
+    font-weight: 700;
+    margin-top: 0.6rem;
+    display: inline-block;
+    transition: all 0.4s ease;
+    font-size: 0.9rem;
+    text-shadow: 0 0 15px rgba(189, 147, 249, 0.5);
+}
+
+.alternance-card:hover .alternance-card__cta {
+    transform: translateX(8px);
+    color: #ff79c6;
+    text-shadow: 0 0 20px rgba(255, 121, 198, 0.6);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .education-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .education-roadmap {
+        padding: 1.5rem;
+    }
+
+    .education-card {
+        min-height: 180px;
+        padding: 1.5rem;
+        padding-top: 2.5rem;
+    }
+
+    .alternance-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 1.5rem;
+    }
+}

@@ -9,6 +9,13 @@ function ProjectsSection() {
   const { t } = useTranslation();
   const { projects, loading, error } = useGithubRepos('AminoBela');
   const [activeFilter, setActiveFilter] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const PROJECTS_PER_PAGE = 6;
+
+  // Reset page when filter changes
+  React.useEffect(() => {
+    setCurrentPage(1);
+  }, [activeFilter]);
 
   const categories = useMemo(() => {
     if (!projects) return ['All'];
@@ -21,6 +28,19 @@ function ProjectsSection() {
     return projects.filter(project => project.language === activeFilter);
   }, [projects, activeFilter]);
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
+  const currentProjects = filteredProjects.slice(
+    (currentPage - 1) * PROJECTS_PER_PAGE,
+    currentPage * PROJECTS_PER_PAGE
+  );
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    // Scroll léger vers le haut de la grille si nécessaire, ou pas pour garder le flow
+    // document.getElementById('projets').scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <motion.section
       id="projets"
@@ -32,7 +52,7 @@ function ProjectsSection() {
     >
       <div className="container">
         <motion.h2 variants={childVariants} className="terminal-command">
-          &gt; {t('projects_title')}
+          {t('projects_title')}
         </motion.h2>
 
         {loading && <p className="terminal-text loading-message">{t('projects_loading')}</p>}
@@ -53,26 +73,42 @@ function ProjectsSection() {
               ))}
             </motion.div>
 
-            {/* --- GRILLE DE PROJETS --- */}
-            <div style={{ minHeight: '300px' }}>
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeFilter}
-                        className="project-grid-inner"
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
-                        transition={{ duration: 0.3, ease: "easeOut" }}
+            {/* --- GRILLE DE PROJETS (Hauteur Min pour Stabilité) --- */}
+            <div style={{ minHeight: '800px', display: 'flex', flexDirection: 'column' }}>
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentPage + activeFilter}
+                  className="project-grid-inner"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {currentProjects.map((project) => (
+                    <ProjectCard
+                      key={project.id}
+                      project={project}
+                      t={t}
+                    />
+                  ))}
+                </motion.div>
+              </AnimatePresence>
+
+              {/* --- PAGINATION CONTROLS --- */}
+              {totalPages > 1 && (
+                <div className="pagination-controls">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => handlePageChange(page)}
+                      className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
+                      aria-label={`Page ${page}`}
                     >
-                        {filteredProjects.map((project) => (
-                            <ProjectCard 
-                                key={project.id} 
-                                project={project}
-                                t={t}
-                            />
-                        ))}
-                    </motion.div>
-                </AnimatePresence>
+                      {page}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             {filteredProjects.length === 0 && (

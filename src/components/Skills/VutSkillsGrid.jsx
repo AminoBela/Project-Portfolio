@@ -33,7 +33,7 @@ function VutSkillsGrid() {
 
     return (
         <>
-            <h2 className="terminal-command">&gt; {t('skills_vut_title')}</h2>
+            <h2 className="terminal-command">{t('skills_vut_title')}</h2>
             <div className="skills-cards-grid" ref={gridRef}>
                 {vutSkills.map((skill, idx) => (
                     <div key={idx} className="skills-card">

@@ -1,28 +1,63 @@
-// On trie les données par ordre antichronologique pour un affichage logique
-export const timelineData = [
-    // --- EXPERIENCES ---
+// Données séparées pour une meilleure organisation
+
+// --- FORMATIONS (avec status: past/current/future) ---
+export const educationData = [
     {
-        id: 'poste', // ID unique pour l'animation
-        type: 'experience',
-        title: 'poste_title',
-        company: 'poste_company',
-        location: 'poste_location',
-        period: 'poste_period',
-        description: 'poste_desc',
-        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/La_Poste_2022.svg/langfr-2560px-La_Poste_2022.svg.png',
-        details: null
+        id: 'cesi',
+        type: 'education',
+        status: 'future', // 🔮 FUTUR
+        title: 'cesi_title',
+        institution: 'cesi_institution',
+        location: 'cesi_location',
+        period: 'cesi_period',
+        description: 'cesi_desc',
+        logo: 'https://www.cesi.fr/wp-content/uploads/2021/03/logo-cesi.png',
+        details: null,
+        color: '#bd93f9' // Violet pour le futur
     },
     {
-        id: 'crous',
-        type: 'experience',
-        title: 'crous_title',
-        company: 'crous_company',
-        location: 'crous_location',
-        period: 'crous_period',
-        description: 'crous_desc',
-        logo: 'https://pbs.twimg.com/profile_images/1871548296432418816/JqhgFUlI_400x400.jpg',
-        details: null
+        id: 'but',
+        type: 'education',
+        status: 'current', // 🟢 ACTUEL
+        title: 'but_title',
+        institution: 'but_institution',
+        location: 'but_location',
+        period: 'but_period',
+        description: 'but_desc',
+        logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
+        details: null,
+        color: '#50fa7b' // Vert accent
     },
+    {
+        id: 'polytech',
+        type: 'education',
+        status: 'past', // ⬜ PASSÉ
+        title: 'polytech_title',
+        institution: 'polytech_institution',
+        location: 'polytech_location',
+        period: 'polytech_period',
+        description: 'polytech_desc',
+        logo: 'https://yt3.googleusercontent.com/dlfb9W3nYcX5-uBro9MdZNfjbv_crHLKwWP2WMCw5bh5tTd2gIJes_RpwFw1MJQsph6sjSx3rXQ=s900-c-k-c0x00ffffff-no-rj',
+        details: null,
+        color: '#6272a4' // Gris
+    },
+    {
+        id: 'bac',
+        type: 'education',
+        status: 'past', // ⬜ PASSÉ
+        title: 'bac_title',
+        institution: 'bac_institution',
+        location: 'bac_location',
+        period: 'bac_period',
+        description: 'bac_desc',
+        logo: null,
+        details: null,
+        color: '#6272a4' // Gris
+    }
+];
+
+// --- EXPÉRIENCES PROFESSIONNELLES ---
+export const experiencesData = [
     {
         id: 'ela',
         type: 'experience',
@@ -45,6 +80,28 @@ export const timelineData = [
         }
     },
     {
+        id: 'crous',
+        type: 'experience',
+        title: 'crous_title',
+        company: 'crous_company',
+        location: 'crous_location',
+        period: 'crous_period',
+        description: 'crous_desc',
+        logo: 'https://pbs.twimg.com/profile_images/1871548296432418816/JqhgFUlI_400x400.jpg',
+        details: null
+    },
+    {
+        id: 'poste',
+        type: 'experience',
+        title: 'poste_title',
+        company: 'poste_company',
+        location: 'poste_location',
+        period: 'poste_period',
+        description: 'poste_desc',
+        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/La_Poste_2022.svg/langfr-2560px-La_Poste_2022.svg.png',
+        details: null
+    },
+    {
         id: 'iss',
         type: 'experience',
         title: 'iss_title',
@@ -54,50 +111,8 @@ export const timelineData = [
         description: 'iss_desc',
         logo: 'https://www.developmentaid.org/files/organizationLogos/iss-facility-services-sa-120962.jpg',
         details: null
-    },
-
-    // --- FORMATIONS ---
-    {
-        id: 'but',
-        type: 'education',
-        title: 'but_title',
-        institution: 'but_institution',
-        location: 'but_location',
-        period: 'but_period',
-        description: 'but_desc',
-        logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
-        details: null
-    },
-    {
-        id: 'polytech',
-        type: 'education',
-        title: 'polytech_title',
-        institution: 'polytech_institution',
-        location: 'polytech_location',
-        period: 'polytech_period',
-        description: 'polytech_desc',
-        logo: 'https://yt3.googleusercontent.com/dlfb9W3nYcX5-uBro9MdZNfjbv_crHLKwWP2WMCw5bh5tTd2gIJes_RpwFw1MJQsph6sjSx3rXQ=s900-c-k-c0x00ffffff-no-rj',
-        details: null
-    },
-    {
-        id: 'bac',
-        type: 'education',
-        title: 'bac_title',
-        institution: 'bac_institution',
-        location: 'bac_location',
-        period: 'bac_period',
-        description: 'bac_desc',
-        logo: null,
-        details: null
     }
-].sort((a, b) => {
-    const getYear = (period) => {
-        const yearPart = period.split(' - ')[0].split(' ').pop();
-        if (yearPart === 'Actuel' || yearPart === 'Present') return new Date().getFullYear() + 1;
-        const year = parseInt(yearPart, 10);
-        return isNaN(year) ? 0 : year;
-    };
-    // Note: The sorting logic might need adjustment if period formats differ significantly between languages.
-    // For "Sept. 2023 - Actuel", this should be fine.
-    return getYear(b.period) - getYear(a.period);
-});
+];
+
+// Export combiné pour rétrocompatibilité (si utilisé quelque part)
+export const timelineData = [...experiencesData, ...educationData];

@@ -85,7 +85,7 @@ export const fr = {
   "iss_title": "Agent de nettoyage",
   "iss_company": "ISS Luxembourg",
   "iss_location": "Gares du Luxembourg",
-  "iss_period": "Étés 2020 - 2023",
+  "iss_period": "Étés 2020 - 2025",
   "iss_desc": "Nettoyage et entretien des infrastructures ferroviaires pendant les périodes estivales.",
 
   "but_title": "BUT Informatique - Parcours DACS",
@@ -105,6 +105,19 @@ export const fr = {
   "bac_location": "Longwy",
   "bac_period": "2019 - 2022",
   "bac_desc": "Spécialités : Mathématiques, Sciences de l’Ingénieur, et Physique.",
+  "cesi_title": "Mastère Manager des SI & Cybersécurité",
+  "cesi_institution": "CESI École d'Ingénieurs",
+  "cesi_location": "Nancy",
+  "cesi_period": "2026 - 2028",
+  "cesi_desc": "Formation en alternance spécialisée en management des systèmes d'information et cybersécurité.",
+
+  "education_status_past": "Terminé",
+  "education_status_current": "En cours",
+  "education_status_future": "À venir",
+
+  "alternance_search_title": "Recherche d'Alternance",
+  "alternance_search_desc": "Je recherche une alternance pour mon Mastère en <strong>Management des SI & Cybersécurité</strong> à partir de septembre 2026.",
+  "alternance_search_more": "En savoir plus &rarr;",
 
   "skills_vut_title": "Compétences BUT",
   "skills_vut_project_button": "Projet",

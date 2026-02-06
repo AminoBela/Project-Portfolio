@@ -65,7 +65,7 @@ function TechnologiesSection() {
 
     return (
         <>
-            <h2 className="terminal-command" style={{ marginTop: '2.2rem' }}>&gt; {t('technologies_title')}</h2>
+            <h2 className="terminal-command" style={{ marginTop: '2.2rem' }}>{t('technologies_title')}</h2>
             <div className="skills-legend">
                 <span><span className="legend-dot legend-dot--expert" />{t('legend_expert')}</span>
                 <span><span className="legend-dot legend-dot--advanced" />{t('legend_advanced')}</span>

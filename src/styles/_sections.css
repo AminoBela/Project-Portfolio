@@ -14,10 +14,12 @@
     color: var(--text-secondary);
     margin-bottom: 2rem;
 }
+
 .skills-legend span {
     display: inline-flex;
     align-items: center;
 }
+
 .legend-dot {
     display: inline-block;
     width: 12px;
@@ -26,10 +28,26 @@
     margin-right: 0.5rem;
     box-shadow: 0 0 10px, 0 0 20px;
 }
-.legend-dot--expert { background: #4ade80; box-shadow: 0 0 10px #4ade80, 0 0 20px #4ade80; }
-.legend-dot--advanced { background: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa; }
-.legend-dot--confirmed { background: #fbbf24; box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24; }
-.legend-dot--progress { background: #94a3b8; box-shadow: 0 0 10px #94a3b8, 0 0 20px #94a3b8; }
+
+.legend-dot--expert {
+    background: var(--color-skill-expert);
+    box-shadow: 0 0 10px var(--color-skill-expert), 0 0 20px var(--color-skill-expert);
+}
+
+.legend-dot--advanced {
+    background: var(--color-skill-advanced);
+    box-shadow: 0 0 10px var(--color-skill-advanced), 0 0 20px var(--color-skill-advanced);
+}
+
+.legend-dot--confirmed {
+    background: var(--color-skill-confirmed);
+    box-shadow: 0 0 10px var(--color-skill-confirmed), 0 0 20px var(--color-skill-confirmed);
+}
+
+.legend-dot--progress {
+    background: var(--color-skill-basic);
+    box-shadow: 0 0 10px var(--color-skill-basic), 0 0 20px var(--color-skill-basic);
+}
 
 /* --- Grille des compétences (Technologies) --- */
 .skills-grid-wide {
@@ -50,6 +68,7 @@
     .skills-grid-wide {
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     }
+
     .project-grid {
         grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     }

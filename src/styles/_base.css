@@ -22,7 +22,7 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   color: var(--color-text);
-  background: var(--bg-primary); 
+  background: var(--bg-primary);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,7 +37,9 @@ body {
 }
 
 /* Styles pour les éléments interactifs */
-a, button, [data-cursor="pointer"] {
+a,
+button,
+[data-cursor="pointer"] {
   cursor: none !important;
 }
 
@@ -71,7 +73,7 @@ button {
   width: 8px;
   height: 8px;
   background-color: var(--accent);
-  margin-left: -4px; 
+  margin-left: -4px;
   margin-top: -4px;
   transition: width 0.3s, height 0.3s, background-color 0.3s;
 }
@@ -99,29 +101,33 @@ button {
   height: 60px;
   margin-left: -30px;
   margin-top: -30px;
-  background-color: rgba(102, 255, 153, 0.1);
+  background-color: rgba(var(--accent-rgb), 0.1);
   border-color: transparent;
   opacity: 1;
 }
 
 /* --- MODE MATRIX --- */
 .cursor-dot.is-matrix {
-    background-color: #0F0 !important;
-    z-index: 100000 !important; /* Au-dessus de tout */
-    box-shadow: 0 0 10px #0F0;
+  background-color: #0F0 !important;
+  z-index: 100000 !important;
+  /* Au-dessus de tout */
+  box-shadow: 0 0 10px #0F0;
 }
 
 .cursor-outline.is-matrix {
-    border-color: #0F0 !important;
-    z-index: 100000 !important;
-    box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  border-color: #0F0 !important;
+  z-index: 100000 !important;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
 /* 4. Désactivation totale du curseur sur mobile via CSS */
 @media (max-width: 768px) {
-  html, body {
+
+  html,
+  body {
     cursor: auto !important;
   }
+
   .cursor-dot,
   .cursor-outline {
     display: none !important;
@@ -138,7 +144,7 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(102, 255, 153, 0.2);
+  background: rgba(var(--accent-rgb), 0.2);
   border-radius: 5px;
   border: 2px solid var(--bg-primary);
 }
@@ -154,35 +160,35 @@ button {
 
 /* --- Barre de Progression de Lecture --- */
 .progress-bar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, var(--accent) 0%, #4ade80 50%, #60a5fa 100%);
-    transform-origin: 0%;
-    z-index: var(--z-fixed);
-    box-shadow: 0 0 10px var(--accent);
-    border-radius: 0 4px 4px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--color-skill-expert) 50%, var(--color-skill-advanced) 100%);
+  transform-origin: 0%;
+  z-index: var(--z-fixed);
+  box-shadow: 0 0 10px var(--accent);
+  border-radius: 0 4px 4px 0;
 }
 
 /* --- Bouton Retour en Haut --- */
 .scroll-to-top {
-    position: fixed;
-    bottom: 2rem;
-    right: 2rem;
-    width: 50px;
-    height: 50px;
-    background: var(--card-bg);
-    color: var(--accent);
-    border: 1px solid var(--card-border);
-    border-radius: 50%;
-    font-size: 1.5rem;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--card-shadow);
-    z-index: var(--z-fixed);
-    transition: none !important;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--card-bg);
+  color: var(--accent);
+  border: 1px solid var(--card-border);
+  border-radius: 50%;
+  font-size: 1.5rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--card-shadow);
+  z-index: var(--z-fixed);
+  transition: none !important;
 }

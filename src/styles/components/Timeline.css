@@ -1,152 +1,200 @@
-/* --- TIMELINE STRUCTURE --- */
+/* --- EXPERIENCES SECTION - MATCHING FORMATIONS AURA STYLE --- */
+
+@keyframes experience-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.15);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(var(--accent-rgb), 0.25);
+    }
+}
+
+@keyframes aurora-border {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* --- MAIN CONTAINER --- */
 .timeline-container {
-    position: relative;
-    max-width: 900px;
-    margin: 4rem auto;
-    padding: 0 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 1rem 0 3rem;
+    padding: 0;
 }
 
 .timeline-container::before {
-    content: '';
-    position: absolute;
-    width: 2px;
-    background-color: var(--card-border);
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    margin-left: -1px;
+    display: none;
+}
+
+/* --- GRID WRAPPER --- */
+.timeline-items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
 }
 
 .timeline-item {
-    padding: 1rem 0;
     position: relative;
-    width: 50%;
+    width: 100%;
+    left: auto !important;
+    padding: 0 !important;
 }
-
-.timeline-item.left { left: 0; padding-right: 30px; }
-.timeline-item.right { left: 50%; padding-left: 30px; }
 
 .timeline-icon-wrapper {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 40px;
-    height: 40px;
-    background: var(--bg-secondary);
-    border: 2px solid var(--accent);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10;
-    font-size: 1.2rem;
-    color: var(--accent);
-    box-shadow: 0 0 15px rgba(102, 255, 153, 0.3);
-    transition: all 0.3s ease;
+    display: none;
 }
 
-.timeline-item:hover .timeline-icon-wrapper {
-    box-shadow: 0 0 25px rgba(102, 255, 153, 0.6);
-    transform: translateY(-50%) scale(1.1);
-    background: var(--accent);
-    color: var(--bg-primary);
-}
-
-.timeline-item.left .timeline-icon-wrapper { right: -21px; }
-.timeline-item.right .timeline-icon-wrapper { left: -21px; }
-
-/* --- NOUVELLE CARTE COMPACTE --- */
+/* --- EXPERIENCE CARD (Matching formation style) --- */
 .timeline-card-compact {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 20px; /* Coins bien arrondis */
-    padding: 1.5rem;
+    background: linear-gradient(160deg, var(--card-bg) 0%, rgba(var(--accent-rgb), 0.03) 100%);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: 20px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    box-shadow: var(--card-shadow);
-    overflow: hidden; /* Important pour le border-radius */
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Aura overlay */
+.timeline-card-compact::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: radial-gradient(ellipse at top center, rgba(var(--accent-rgb), 0.08) 0%, transparent 60%);
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+/* Top gradient bar */
+.timeline-card-compact::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--accent),
+            transparent);
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
 }
 
 .timeline-card-compact:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--card-shadow-hover);
-    border-color: var(--accent);
+    transform: translateY(-4px);
+    border-color: rgba(var(--accent-rgb), 0.3);
+    animation: experience-glow 3s ease-in-out infinite;
 }
 
+.timeline-card-compact:hover::before {
+    opacity: 1;
+}
+
+.timeline-card-compact:hover::after {
+    opacity: 1;
+}
+
+/* --- CARD HEADER --- */
 .timeline-card-compact-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 1rem;
-    margin-bottom: 0.5rem;
-}
-
-.timeline-card-compact-icon {
-    background-color: var(--accent);
-    color: var(--bg-primary);
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    font-size: 1rem;
+    margin-bottom: 0.75rem;
+    position: relative;
+    z-index: 2;
 }
 
 .timeline-card-compact-title {
     font-size: 1.1rem;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--color-text);
     margin: 0;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
 .timeline-card-compact-period {
-    display: block;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    padding-left: calc(36px + 1rem); /* Aligner avec le titre */
-}
-
-/* --- NOUVELLE CARTE DÉTAILLÉE (MODALE) --- */
-.expanded-card-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.7);
-    /* On retire le backdrop-filter ici pour la performance, on le gère autrement si besoin */
-    display: flex;
-    justify-content: center;
+    display: inline-flex;
     align-items: center;
-    z-index: 1000;
-    padding: 1rem;
-}
-
-.expanded-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: 20px;
-    box-shadow: 0 0 40px rgba(0,0,0,0.5);
-    width: 100%;
-    max-width: 800px;
-    max-height: 90vh;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 600;
     position: relative;
+    z-index: 2;
+    text-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
 }
 
-.expanded-card-logo {
-    width: 64px;
-    height: 64px;
+.timeline-card-compact-period::before {
+    content: '📅';
+    font-size: 0.8rem;
+}
+
+/* --- CARD ICON --- */
+.timeline-card-icon {
+    position: absolute;
+    bottom: 1.25rem;
+    right: 1.25rem;
+    width: 42px;
+    height: 42px;
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), 0.15) 0%, rgba(139, 233, 253, 0.08) 100%);
     border-radius: 12px;
-    object-fit: contain;
-    background: #fff;
-    padding: 8px;
-    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    color: var(--accent);
+    box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.15);
+    transition: all 0.4s ease;
+    z-index: 2;
 }
 
-.expanded-card-subtitle {
-    color: var(--text-secondary);
-    font-size: 1rem;
+.timeline-card-compact:hover .timeline-card-icon {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.35);
+    background: linear-gradient(135deg, var(--accent) 0%, #8be9fd 100%);
+    color: #000;
+}
+
+/* --- MODAL EXPERIENCE ICON FIX --- */
+.expanded-card-logo {
+    width: 56px !important;
+    height: 56px !important;
+    max-width: 56px !important;
+    border-radius: 14px;
+    object-fit: contain;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+}
+
+.modal-hero i {
+    font-size: 1.2rem !important;
 }
 
 .highlights-list {
@@ -154,33 +202,37 @@
     padding-left: 0;
     display: flex;
     flex-direction: column;
-    gap: 0.8rem;
+    gap: 0.6rem;
     color: var(--text-secondary);
     line-height: 1.6;
 }
 
+.highlights-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+}
+
 .highlights-list li span {
     color: var(--accent);
-    margin-right: 0.75rem;
     font-weight: bold;
+    flex-shrink: 0;
 }
 
 /* --- RESPONSIVE --- */
 @media (max-width: 768px) {
-    .timeline-container::before { left: 20px; margin-left: -1px; }
-    .timeline-item { 
-        width: 100%; 
-        padding-left: 50px; /* Espace pour la ligne */
-        padding-right: 1rem;
-        margin-bottom: 1rem; /* Espace entre les cartes sur mobile */
+    .timeline-items {
+        grid-template-columns: 1fr;
     }
-    .timeline-item.right { left: 0%; }
-    .timeline-icon-wrapper { left: 0; }
-    .expanded-card {
-        padding: 1.5rem; /* Padding réduit sur mobile */
+
+    .timeline-card-compact {
+        min-height: 120px;
+        padding: 1.5rem;
     }
-    .expanded-card-header {
-        flex-direction: column; /* Header en colonne sur mobile */
-        align-items: flex-start;
+
+    .timeline-card-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
     }
 }

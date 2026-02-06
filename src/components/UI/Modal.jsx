@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import '../../styles/Modal.css';
 
@@ -8,25 +9,25 @@ const backdropVariants = {
 };
 
 const modalVariants = {
-  hidden: { 
+  hidden: {
     opacity: 0,
     scale: 0.9,
     y: 50,
   },
-  visible: { 
+  visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { 
-      duration: 0.4, 
+    transition: {
+      duration: 0.4,
       ease: [0.25, 0.1, 0.25, 1.0]
-    } 
+    }
   },
-  exit: { 
+  exit: {
     opacity: 0,
     scale: 0.9,
     y: 50,
-    transition: { duration: 0.3, ease: "easeOut" } 
+    transition: { duration: 0.3, ease: "easeOut" }
   },
 };
 
@@ -45,7 +46,9 @@ function Modal({ isOpen, onClose, children }) {
     };
   }, [isOpen]);
 
-  return (
+  // Utilisation de React Portal pour rendre le modal directement sous document.body
+  // Cela évite les problèmes de stacking context créés par perspective ou transform
+  return ReactDOM.createPortal(
     <AnimatePresence>
       {isOpen && (
         <motion.div
@@ -69,7 +72,8 @@ function Modal({ isOpen, onClose, children }) {
           </motion.div>
         </motion.div>
       )}
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 }
 

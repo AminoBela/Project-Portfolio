@@ -5,4 +5,5 @@
 @import './components/Timeline.css';
 @import './components/Buttons.css';
 @import './components/ProjectsSection.css';
-@import './components/ContactSection.css'; /* --- IMPORT --- */
+@import './components/ContactSection.css';
+@import './components/EducationRoadmap.css';

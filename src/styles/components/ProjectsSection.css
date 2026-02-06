@@ -3,7 +3,13 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
+    grid-auto-rows: 360px;
+    /* Ajustement final : 360px pour éliminer le vide */
+    perspective: 1000px;
+    /* Perspective pour l'effet 3D */
+    flex-grow: 1;
+    /* Pour pousser la pagination vers le bas si besoin */
 }
 
 /* --- Styles des onglets de filtre --- */
@@ -24,7 +30,7 @@
     padding: 0.6rem 1.5rem;
     background: rgba(255, 255, 255, 0.03);
     border: 1px solid var(--card-border);
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     color: var(--text-secondary);
     font-size: 0.95rem;
     font-weight: 500;
@@ -36,40 +42,70 @@
 .skills-tab:hover {
     color: var(--color-text);
     border-color: var(--accent);
-    background: rgba(102, 255, 153, 0.05);
+    background: rgba(var(--accent-rgb), 0.05);
 }
 
 .skills-tab.skills-tab--active {
-    color: #1e1e1e;
+    color: var(--button-text-primary);
     background: var(--accent);
     border-color: var(--accent);
-    box-shadow: 0 4px 15px rgba(102, 255, 153, 0.3);
+    box-shadow: 0 4px 15px rgba(var(--accent-rgb), 0.3);
     font-weight: 600;
-}
-
-:root.light .skills-tab.skills-tab--active {
-    color: #ffffff;
 }
 
 
 /* --- Carte de Projet --- */
 .project-card {
     background: var(--card-bg);
+    backdrop-filter: var(--card-backdrop);
+    /* Ensure standard blur */
+    -webkit-backdrop-filter: var(--card-backdrop);
     border: 1px solid var(--card-border);
-    border-radius: 20px;
+    border-radius: var(--radius-xl);
     padding: 2rem;
+    /* Retour au padding confortable */
     box-shadow: var(--card-shadow);
-    transition: all 0.3s ease;
+
+    /* 3D Transition Settings */
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+        box-shadow 0.4s ease,
+        border-color 0.3s ease,
+        background-color 0.3s ease;
+
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    /* Retour au gap standard */
     overflow: hidden;
+    position: relative;
+    height: 100%;
+    /* S'assure de remplir la case de la grille */
+}
+
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-xl);
+    box-shadow: inset 0 0 20px rgba(var(--accent-rgb), 0.03);
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+
+.project-card:hover::after {
+    opacity: 1;
 }
 
 .project-card:hover {
-    transform: translateY(-8px);
+    /* Hover subtil - géré uniquement par CSS */
+    transform: translateY(-3px);
     background: var(--card-bg-hover);
-    box-shadow: 0 0 20px rgba(102, 255, 153, 0.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 0 10px rgba(var(--accent-rgb), 0.08);
+
+    /* Bordure dynamique selon la couleur injectée --accent-color, sinon accent global */
+    border-color: var(--accent-color, var(--accent));
 }
 
 /* --- En-tête de la Carte --- */
@@ -77,42 +113,64 @@
     display: flex;
     align-items: center;
     gap: 1rem;
+    transform: translateZ(20px);
+    /* Profondeur 3D pour le contenu */
+    height: 60px;
+    /* Augmenté pour contenir titre (2 lignes) + sous-titre sans couper */
+    margin-bottom: 0.5rem;
+    /* Petit espace avant la description */
 }
 
 .project-card__icon {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     object-fit: contain;
+    flex-shrink: 0;
 }
 
 .project-card__icon-placeholder {
     width: 40px;
     height: 40px;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: 1.5rem;
     font-weight: bold;
     color: #000;
+    flex-shrink: 0;
 }
 
 .project-card__header-text {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 0.2rem;
+    /* Très léger gap pour pas que ce soit collé moche, mais quasi nul */
 }
 
 .project-card__title {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     font-weight: 600;
     color: var(--color-text);
-    line-height: 1.2;
+    line-height: 1.25;
+
+    /* 2 lignes max mais PAS de height fixe sur le titre lui-même */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0;
 }
 
 .project-card__subtitle {
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: 500;
+    line-height: 1;
+    /* Compact */
+    margin-top: 0;
 }
 
 /* --- Contenu de la Carte --- */
@@ -120,19 +178,36 @@
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    flex-grow: 1;
+    /* flex-grow: 1; <-- Retiré car hauteur fixe définie ci-dessous */
     margin: 0.5rem 0;
+    transform: translateZ(10px);
+    /* Profondeur subtile */
+
+    /* Limite à 3 lignes pour garantir l'uniformité */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    height: 4.8em;
+    /* Force 3 lignes même si le texte est court */
+    flex-shrink: 0;
+    /* Empêche le rétrécissement */
 }
 
 .project-tags {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    transform: translateZ(15px);
+    min-height: 28px;
+    /* Réserve l'espace pour une ligne de tags */
+    align-content: flex-start;
 }
 
 .tag {
     padding: 0.3rem 0.8rem;
-    border-radius: 999px;
+    border-radius: var(--radius-full);
     border: 1px solid;
     font-size: 0.75rem;
     font-weight: 500;
@@ -142,12 +217,14 @@
 /* --- Pied de la Carte --- */
 .project-card__footer {
     margin-top: auto;
+    /* Ancrage en bas pour alignement uniforme */
     padding-top: 1rem;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
     border-top: 1px solid var(--card-border);
+    transform: translateZ(10px);
 }
 
 .project-stats {
@@ -161,28 +238,73 @@
     background: transparent;
     border: 1px solid;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
+    color: var(--color-text);
+    /* S'adapte au thème */
 }
 
 .project-card__cta:hover {
-    background-color: var(--accent-color);
+    /* Utilisation de la couleur DYNAMIQUE injectée via style={{ '--accent-color': ... }} */
+    background-color: var(--accent-color, var(--accent));
+    border-color: var(--accent-color, var(--accent)) !important;
+    /* Force override */
     color: #000 !important;
-    box-shadow: 0 0 15px var(--accent-color);
+    /* Noir pour meilleure lisibilité sur couleurs claires */
+    box-shadow: 0 0 15px var(--accent-color, var(--accent));
+    transform: scale(1.02);
+}
+
+/* --- PAGINATION CONTROLS --- */
+.pagination-controls {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(var(--accent-rgb), 0.1);
+}
+
+.pagination-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--card-border);
+    background: var(--card-bg);
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pagination-btn:hover {
+    border-color: var(--accent);
+    color: var(--color-text);
+    transform: translateY(-2px);
+    background: var(--card-bg-hover);
+}
+
+.pagination-btn.active {
+    background: var(--accent);
+    color: var(--button-text-primary);
+    border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.4);
+    transform: scale(1.1);
 }
 
 /* --- CORRECTION COULEURS EN MODE CLAIR --- */
-:root.light .project-card__subtitle,
-:root.light .tag {
-    filter: brightness(0.8) saturate(1.2);
+.project-card__subtitle,
+.tag {
+    filter: var(--filter-brightness) var(--filter-saturate);
 }
 
-:root.light .project-card__icon-placeholder {
-    filter: brightness(0.9);
+.project-card__icon-placeholder {
+    filter: var(--filter-brightness);
 }
 
-:root.light .project-card__cta:hover {
-    color: #fff !important; /* Texte blanc sur fond de couleur assombri */
-}
+/* Le reste est géré via variables */

@@ -55,21 +55,21 @@ function ProjectCard({ project, t, ...props }) {
     // i18next expose la langue actuelle via i18n.language, mais ici on a juste t.
     // On peut supposer que le formatage de date natif s'adapte ou on peut passer la locale.
     // Pour simplifier, on laisse le formatage par défaut ou on pourrait passer i18n.language si on l'avait.
-    const updatedAt = formatDate(project.updated_at); 
+    const updatedAt = formatDate(project.updated_at);
     const languages = Object.keys(project.languages || {});
     const mainLanguage = project.language || 'Code';
     const mainColor = getLangColor(mainLanguage);
-    
+
     // Image favicon ou fallback
-    const projectImage = project.homepage 
-        ? `https://www.google.com/s2/favicons?domain=${project.homepage}&sz=64` 
+    const projectImage = project.homepage
+        ? `https://www.google.com/s2/favicons?domain=${project.homepage}&sz=64`
         : null;
 
     return (
         <>
             <motion.div
                 variants={childVariants}
-                whileHover={{ y: -8, borderColor: mainColor }}
+                // Hover géré par CSS uniquement
                 className="project-card"
                 style={{ '--accent-color': mainColor }}
                 {...props} // On applique les props ici (ex: layout)
@@ -118,7 +118,7 @@ function ProjectCard({ project, t, ...props }) {
 
             <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
                 {/* --- HERO HEADER --- */}
-                <div className="modal-hero" style={{ 
+                <div className="modal-hero" style={{
                     background: `linear-gradient(135deg, ${mainColor}22 0%, rgba(0,0,0,0) 100%)`,
                     borderBottom: `1px solid ${mainColor}44`
                 }}>
@@ -139,7 +139,7 @@ function ProjectCard({ project, t, ...props }) {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="modal-body">
                     {/* --- DASHBOARD STATS --- */}
                     <div className="stats-grid">
@@ -166,13 +166,13 @@ function ProjectCard({ project, t, ...props }) {
                         {project.description && (
                             <p className="project-full-desc">{project.description}</p>
                         )}
-                        
+
                         <div className="tech-stack">
                             <h4>{t('project_stack')}</h4>
                             <div className="project-tags large">
                                 {languages.map((lang) => (
-                                    <span key={lang} className="tag" style={{ 
-                                        backgroundColor: `${getLangColor(lang)}15`, 
+                                    <span key={lang} className="tag" style={{
+                                        backgroundColor: `${getLangColor(lang)}15`,
                                         color: getLangColor(lang),
                                         borderColor: `${getLangColor(lang)}40`
                                     }}>

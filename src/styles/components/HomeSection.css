@@ -47,7 +47,9 @@
 }
 
 @keyframes blink {
-    50% { opacity: 0; }
+    50% {
+        opacity: 0;
+    }
 }
 
 .home-description {
@@ -67,14 +69,14 @@
     position: relative;
     width: 100%;
     /* Hauteur augmentée pour plus d'espace vertical */
-    height: 450px; 
+    height: 450px;
 }
 
 .tech-icon-wrapper {
     position: absolute;
-    background: rgba(20, 30, 48, 0.7);
+    background: var(--tech-icon-bg);
     backdrop-filter: blur(10px);
-    border: 1px solid rgba(102, 255, 153, 0.15);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
     border-radius: 50%;
     width: 80px;
     height: 80px;
@@ -88,20 +90,37 @@
     width: 40px;
     height: 40px;
     object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(102, 255, 153, 0.3));
+    filter: drop-shadow(0 0 8px rgba(var(--accent-rgb), 0.3));
 }
 
 @keyframes float-1 {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(0, -20px); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(0, -20px);
+    }
 }
+
 @keyframes float-2 {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(15px, 15px); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(15px, 15px);
+    }
 }
+
 @keyframes float-3 {
-    0% { transform: translate(0, 0); }
-    100% { transform: translate(-15px, 10px); }
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(-15px, 10px);
+    }
 }
 
 @media (max-width: 900px) {
@@ -109,13 +128,17 @@
         grid-template-columns: 1fr;
         text-align: center;
     }
+
     .home-content-left {
         align-items: center;
     }
+
     .home-tech-cloud {
         display: none;
     }
+
     .home-title {
-        font-size: clamp(2rem, 10vw, 3rem); /* Police légèrement réduite sur mobile */
+        font-size: clamp(2rem, 10vw, 3rem);
+        /* Police légèrement réduite sur mobile */
     }
 }

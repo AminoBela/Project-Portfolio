@@ -4,26 +4,30 @@
 .modal-backdrop {
   position: fixed;
   inset: 0;
-  background-color: rgba(10, 12, 18, 0.7);
+  background-color: var(--modal-backdrop);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000;
+  z-index: 9999;
+  /* Fixe le chevauchement avec la navbar */
   padding: 1rem;
 }
 
 /* 2. Le contenu, qui n'a plus à gérer le flou lui-même */
 .modal-content {
-  background: var(--card-bg); /* Applique la couleur semi-transparente */
+  background: var(--card-bg);
+  /* Applique la couleur semi-transparente */
   /* backdrop-filter: var(--card-backdrop); <-- SUPPRIMÉ, c'est la cause du bug */
   border: 1px solid var(--card-border);
   border-radius: 20px;
-  box-shadow: 0 0 40px rgba(0,0,0,0.5);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
   width: 100%;
   max-width: 800px;
   max-height: 90vh;
+  margin: auto;
+  /* Sécurité pour le centrage */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -37,7 +41,7 @@
   right: 1rem;
   width: 40px;
   height: 40px;
-  background: rgba(0,0,0,0.2);
+  background: rgba(0, 0, 0, 0.2);
   border: 1px solid var(--card-border);
   border-radius: 50%;
   color: var(--text-secondary);
@@ -47,11 +51,13 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s ease;
-  z-index: 10;
+  z-index: 100;
+  /* Augmenté pour être sûr d'être clickable */
 }
+
 .modal-close-button:hover {
   color: var(--color-text);
-  background: rgba(127,127,127,0.2);
+  background: rgba(127, 127, 127, 0.2);
   transform: rotate(90deg);
 }
 
@@ -74,6 +80,7 @@
   font-size: 0.9rem;
   font-weight: 600;
   display: inline-block;
+  color: var(--badge-color);
 }
 
 .modal-hero__actions {
@@ -81,7 +88,8 @@
   gap: 1rem;
 }
 
-.btn-github, .btn-demo {
+.btn-github,
+.btn-demo {
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   text-decoration: none;
@@ -93,6 +101,7 @@
   background-color: var(--color-text);
   color: var(--bg-primary);
 }
+
 .btn-github:hover {
   opacity: 0.8;
 }
@@ -100,6 +109,7 @@
 .btn-demo {
   border: 1px solid;
 }
+
 .btn-demo:hover {
   background-color: var(--accent-color);
   color: #000 !important;
@@ -112,34 +122,42 @@
 
 /* --- DASHBOARD STATS --- */
 .stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   padding: 1.5rem 0;
   border-top: 1px solid var(--card-border);
   border-bottom: 1px solid var(--card-border);
 }
 
 .stat-box {
+  flex: 1 1 auto;
+  min-width: 100px;
   background: var(--bg-primary);
-  padding: 1rem;
+  padding: 0.75rem 1rem;
   border-radius: 12px;
   border: 1px solid var(--card-border);
+  text-align: center;
 }
 
 .stat-label {
   display: block;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   color: var(--text-secondary);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .stat-value {
   display: block;
-  font-size: 1.2rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: var(--color-text);
+  white-space: nowrap;
 }
+
+
 
 /* --- TECH SECTION --- */
 .tech-section {
@@ -193,48 +211,115 @@
 }
 
 /* (Le reste du CSS pour le contenu Markdown reste le même) */
-.markdown-body h1, .markdown-body h2, .markdown-body h3, .markdown-body h4 { color: var(--color-text); border-bottom: 1px solid var(--card-border); padding-bottom: 0.5rem; margin-top: 1.5rem; margin-bottom: 1rem; }
-.markdown-body p { margin-bottom: 1rem; color: var(--text-secondary); }
-.markdown-body a { color: var(--accent); text-decoration: none; }
-.markdown-body a:hover { text-decoration: underline; }
-.markdown-body ul, .markdown-body ol { padding-left: 2rem; margin-bottom: 1rem; }
-.markdown-body li { margin-bottom: 0.5rem; }
-.markdown-body pre { background-color: #0d1117; border: 1px solid var(--card-border); border-radius: 8px; padding: 1rem; margin: 1.5rem 0; overflow-x: auto; font-size: 0.9rem; font-family: 'Fira Code', monospace; }
-.markdown-body code { font-family: 'Fira Code', monospace; background-color: rgba(102, 255, 153, 0.1); color: var(--accent); padding: 0.2em 0.4em; border-radius: 4px; font-size: 85%; }
-.markdown-body pre code { background-color: transparent; color: inherit; padding: 0; font-size: inherit; }
-.markdown-body blockquote { border-left: 4px solid var(--accent); padding-left: 1rem; margin-left: 0; color: var(--text-secondary); font-style: italic; }
-.markdown-body img { max-width: 100%; height: auto; border-radius: 8px; margin: 1rem 0; }
-.markdown-body hr { border: 0; height: 1px; background-color: var(--card-border); margin: 2rem 0; }
-.markdown-body table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; display: block; overflow-x: auto; }
-.markdown-body th, .markdown-body td { border: 1px solid var(--card-border); padding: 0.75rem 1rem; text-align: left; }
-.markdown-body th { background-color: rgba(102, 255, 153, 0.05); color: var(--color-text); font-weight: 600; }
-.markdown-body tr:nth-child(even) { background-color: rgba(255, 255, 255, 0.02); }
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  color: var(--color-text);
+  border-bottom: 1px solid var(--card-border);
+  padding-bottom: 0.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body p {
+  margin-bottom: 1rem;
+  color: var(--text-secondary);
+}
+
+.markdown-body a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body ul,
+.markdown-body ol {
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+}
+
+.markdown-body li {
+  margin-bottom: 0.5rem;
+}
+
+.markdown-body pre {
+  background-color: var(--pre-bg);
+  color: var(--pre-color);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  font-family: 'Fira Code', monospace;
+}
+
+.markdown-body code {
+  font-family: 'Fira Code', monospace;
+  background-color: var(--code-bg);
+  color: var(--code-color);
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-size: 85%;
+}
+
+.markdown-body pre code {
+  background-color: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: inherit;
+}
+
+.markdown-body blockquote {
+  border-left: 4px solid var(--accent);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.markdown-body hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--card-border);
+  margin: 2rem 0;
+}
+
+.markdown-body table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  display: block;
+  overflow-x: auto;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--card-border);
+  padding: 0.75rem 1rem;
+  text-align: left;
+}
+
+.markdown-body th {
+  background-color: var(--table-header-bg);
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.markdown-body tr:nth-child(even) {
+  background-color: var(--table-row-even-bg);
+}
 
 /* --- AJUSTEMENTS POUR LE THÈME CLAIR --- */
-:root.light .modal-backdrop {
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-:root.light .modal-hero__badge {
-    color: #fff !important;
-}
-
-:root.light .markdown-body pre {
-    background-color: #f6f8fa;
-    color: #24292e;
-}
-
-.light .btn-github {
-    background-color: var(--color-text);
-    color: var(--bg-primary);
-}
-
-:root.light .markdown-body code {
-    background-color: rgba(27, 31, 35, 0.05);
-    color: #e06c75;
-}
-
-:root.light .markdown-body pre code {
-    background-color: transparent;
-    color: inherit;
-}
+/* Géré via variables */

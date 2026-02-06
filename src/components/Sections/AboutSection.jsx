@@ -19,8 +19,8 @@ export default function AboutSection({ onOpenInternshipModal }) {
     const { t } = useTranslation();
 
     return (
-        <motion.section 
-            id="about" 
+        <motion.section
+            id="about"
             className="about-section"
             variants={sectionVariants}
             initial="hidden"
@@ -36,7 +36,7 @@ export default function AboutSection({ onOpenInternshipModal }) {
                             <span className="status-dot"></span> {t('about_available')}
                         </div>
                     </motion.div>
-                    
+
                     <motion.div className="about-intro-text" variants={childVariants}>
                         <h2 className="about-title-redesigned">
                             <span className="highlight-text">Amin</span> <br /> Belalia
@@ -62,12 +62,12 @@ export default function AboutSection({ onOpenInternshipModal }) {
                         <p>{t('about_bio_text')}</p>
                     </motion.div>
 
-                    <motion.div 
-                        className="internship-card" 
+                    <motion.div
+                        className="internship-card"
                         variants={childVariants}
                         onClick={onOpenInternshipModal} // Utilisation de la prop
                         data-cursor="pointer"
-                        whileHover={{ scale: 1.02 }}
+                    // Hover géré par CSS
                     >
                         <div className="internship-icon">
                             <i className="fa-solid fa-briefcase"></i>
@@ -101,7 +101,7 @@ export default function AboutSection({ onOpenInternshipModal }) {
                                 <li>{t('about_skills_3')}</li>
                             </ul>
                         </motion.div>
-                        
+
                         <motion.div className="detail-card" variants={childVariants}>
                             <h4><i className="fa-solid fa-earth-europe"></i> {t('about_languages_title')}</h4>
                             <div className="lang-tags">

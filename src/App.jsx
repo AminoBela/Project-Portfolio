@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
-import { useScrollspy } from './hooks/useScrollspy';
-import { useKonamiCode } from './hooks/useKonamiCode';
+import { useAppLogic } from './hooks/useAppLogic';
+import { navVariants } from './utils/framerMotionVariants';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
@@ -15,7 +14,7 @@ import CustomCursor from "./components/UI/CustomCursor";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import InternshipBanner from "./components/UI/InternshipBanner";
 import LanguageTransitionOverlay from "./components/UI/LanguageTransitionOverlay";
-import { navVariants } from './utils/framerMotionVariants';
+
 
 // Lazy Loading
 const ProjectsSection = React.lazy(() => import('./components/Sections/ProjectsSection'));
@@ -39,66 +38,30 @@ const MainContent = React.memo(({ onOpenInternshipModal, bannerHeight }) => {
 });
 
 function App() {
-    const { t, i18n } = useTranslation();
     const { theme, toggleTheme } = useTheme();
-    const { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen } = useScrollspy();
-    const { isTriggered: isMatrixMode, setIsTriggered: setIsMatrixMode } = useKonamiCode();
-    
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isLangSwitching, setIsLangSwitching] = useState(false);
-    const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
-    const [isBannerVisible, setIsBannerVisible] = useState(true);
-
-    useEffect(() => {
-        document.documentElement.lang = i18n.language;
-        const titles = {
-            fr: 'Amin Belalia | Portfolio',
-            en: 'Amin Belalia | Portfolio',
-            es: 'Amin Belalia | Portafolio'
-        };
-        document.title = titles[i18n.language] || 'Amin Belalia | Portfolio';
-    }, [i18n.language]);
-
-    useEffect(() => {
-        console.log(
-            "%c👋 Hey Dev! Looking for secrets? Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A",
-            "color: #66ff99; font-family: monospace; font-size: 14px; background: #10141a; padding: 10px; border-radius: 5px;"
-        );
-    }, []);
-
-    const handleLanguageChange = (lng) => {
-        if (i18n.language === lng) return;
-        setIsLangSwitching(true);
-        setTimeout(() => {
-            i18n.changeLanguage(lng);
-            setTimeout(() => {
-                setIsLangSwitching(false);
-            }, 800);
-        }, 500);
-    };
-
-    const handleOpenInternshipModal = useCallback(() => {
-        setIsInternshipModalOpen(true);
-    }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrolled = window.scrollY > 50;
-            setIsScrolled(prev => {
-                if (prev !== scrolled) return scrolled;
-                return prev;
-            });
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
+    const {
+        isScrolled,
+        isLangSwitching,
+        isInternshipModalOpen,
+        isBannerVisible,
+        isMatrixMode,
+        activeSection,
+        isMenuOpen,
+        setIsMatrixMode,
+        setIsMenuOpen,
+        toggleMenu,
+        handleLanguageChange,
+        handleOpenInternshipModal,
+        closeBanner,
+        closeInternshipModal
+    } = useAppLogic();
 
     const bannerHeight = isBannerVisible ? '50px' : '0px';
 
     return (
         <>
             <CustomCursor isMatrixMode={isMatrixMode} />
-            
+
             <AnimatePresence>
                 {isMatrixMode && (
                     <Suspense fallback={null}>
@@ -106,7 +69,7 @@ function App() {
                     </Suspense>
                 )}
             </AnimatePresence>
-            
+
             <AnimatePresence>
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
@@ -125,10 +88,10 @@ function App() {
                 </div>
 
                 <div>
-                    <InternshipBanner 
+                    <InternshipBanner
                         isVisible={isBannerVisible}
-                        onClose={() => setIsBannerVisible(false)}
-                        onOpenModal={handleOpenInternshipModal} 
+                        onClose={closeBanner}
+                        onOpenModal={handleOpenInternshipModal}
                     />
 
                     <motion.nav
@@ -138,7 +101,7 @@ function App() {
                         className={`main-nav ${isScrolled ? 'main-nav--scrolled' : ''}`}
                         layout
                         transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }} 
+                        style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }}
                     >
                         <Navigation
                             activeSection={activeSection}
@@ -151,18 +114,18 @@ function App() {
                         />
                     </motion.nav>
 
-                    <MainContent 
-                        onOpenInternshipModal={handleOpenInternshipModal} 
-                        bannerHeight={bannerHeight} 
+                    <MainContent
+                        onOpenInternshipModal={handleOpenInternshipModal}
+                        bannerHeight={bannerHeight}
                     />
 
                     <Footer />
                     <ScrollToTopButton />
-                    
+
                     <Suspense fallback={null}>
-                        <InternshipModal 
-                            isOpen={isInternshipModalOpen} 
-                            onClose={() => setIsInternshipModalOpen(false)} 
+                        <InternshipModal
+                            isOpen={isInternshipModalOpen}
+                            onClose={closeInternshipModal}
                         />
                     </Suspense>
                 </div>

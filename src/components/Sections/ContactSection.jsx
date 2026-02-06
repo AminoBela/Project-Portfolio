@@ -25,7 +25,7 @@ const ContactSection = () => {
         >
             <div className="container">
                 <motion.h2 variants={childVariants} className="terminal-command">
-                    &gt; {t('contact_title')}
+                    {t('contact_title')}
                 </motion.h2>
 
                 <motion.div className="contact-card-wrapper" variants={childVariants}>
@@ -64,10 +64,10 @@ const ContactSection = () => {
                             </div>
 
                             {/* LINKEDIN */}
-                            <a 
-                                href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
+                            <a
+                                href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/"
+                                target="_blank"
+                                rel="noopener noreferrer"
                                 className="contact-item"
                             >
                                 <div className="icon-box">
