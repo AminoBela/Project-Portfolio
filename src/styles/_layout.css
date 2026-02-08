@@ -1,9 +1,7 @@
-/* --- Arrière-plan Global --- */
 .site-background {
   position: fixed;
   inset: 0;
   z-index: -1;
-  /* Utilisation des variables pour le dégradé de fond */
   background: radial-gradient(1200px 700px at 20% 10%, rgba(var(--accent-rgb), 0.03), transparent 60%),
     radial-gradient(900px 600px at 80% 80%, rgba(var(--accent-secondary-rgb), 0.04), transparent 65%),
     linear-gradient(120deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
@@ -14,11 +12,9 @@
 .site-background .hero-grid {
   position: absolute;
   inset: 0;
-  /* Dot Matrix Pattern (Pro & Modern) */
   background-image: radial-gradient(var(--grid-pattern-color) 1px, transparent 1px);
   background-size: 32px 32px;
   mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 80%);
-  /* Vignette plus profonde */
   opacity: 0.35;
 }
 
@@ -30,10 +26,7 @@
   opacity: 0.15;
   animation: scan 9s linear infinite;
   will-change: transform;
-  /* Optimisation GPU */
 }
-
-/* Masquer les effets "tech" trop marqués via opacity variable ? Non, on garde ça simple. */
 
 @keyframes scan {
   from {
@@ -53,10 +46,8 @@
   border-radius: 50%;
   opacity: 0.45;
   will-change: transform;
-  /* Optimisation GPU */
   backface-visibility: hidden;
   transform: translate3d(0, 0, 0);
-  /* Force l'accélération matérielle */
 }
 
 .orb--1 {
@@ -83,7 +74,6 @@
   animation: float3 13s ease-in-out infinite;
 }
 
-/* Utilisation de translate3d pour forcer le GPU */
 @keyframes float1 {
   0% {
     transform: translate3d(0, 0, 0)
@@ -126,7 +116,6 @@
   }
 }
 
-/* --- Layout Général --- */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -139,8 +128,6 @@ section {
   padding: var(--space-4) 0;
 }
 
-/* --- Titres de section --- */
-/* --- Titres de section (Tech Header) --- */
 .terminal-command {
   font-family: var(--font-code);
   font-size: clamp(1.8rem, 4vw, 2.5rem);
@@ -154,17 +141,14 @@ section {
   gap: 0.8rem;
   width: fit-content;
   text-shadow: 0 0 15px rgba(var(--accent-rgb), 0.3);
-  /* Glow initial */
   transition: text-shadow 0.3s ease;
 }
 
 .terminal-command:hover {
   text-shadow: 2px 2px var(--color-danger), -2px -2px var(--color-info);
-  /* Tech Split Effect */
   animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) both infinite;
 }
 
-/* Préfixe "Prompt" */
 .terminal-command::before {
   content: ">_";
   color: var(--accent);
@@ -174,7 +158,6 @@ section {
   animation: promptPulse 1.5s infinite alternate;
 }
 
-/* Ligne technique décorative en dessous */
 .terminal-command::after {
   content: "";
   position: absolute;
@@ -189,7 +172,6 @@ section {
   transform-origin: left;
 }
 
-/* Animations des titres */
 @keyframes promptPulse {
   0% {
     opacity: 0.6;
@@ -240,10 +222,8 @@ section {
   }
 }
 
-/* --- NOUVEAU FOOTER (Compact) --- */
 .footer {
   margin-top: 0;
-  /* SUPPRESSION DE LA MARGE */
   padding: 2rem 0;
   background: transparent;
   border-top: 1px solid var(--card-border);
@@ -296,7 +276,6 @@ section {
 @media (max-width: 768px) {
   .container {
     padding: 0 var(--space-3);
-    /* 1rem de marge latérale */
   }
 
   section {
@@ -313,6 +292,5 @@ section {
 @media (max-width: 480px) {
   .container {
     padding: 0 var(--space-3);
-    /* Maintenir 1rem de marge */
   }
 }

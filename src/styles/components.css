@@ -1,4 +1,3 @@
-/* Ce fichier est maintenant un point d'entrée pour les composants */
 @import './components/AboutSection.css';
 @import './components/SkillsSection.css';
 @import './components/HomeSection.css';
@@ -7,3 +6,4 @@
 @import './components/ProjectsSection.css';
 @import './components/ContactSection.css';
 @import './components/EducationRoadmap.css';
+@import './Modal.css';

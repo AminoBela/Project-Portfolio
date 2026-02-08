@@ -1,18 +1,13 @@
-/* --- Grille de Projets --- */
 .project-grid-inner {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     margin-top: 1.5rem;
     grid-auto-rows: 360px;
-    /* Ajustement final : 360px pour éliminer le vide */
     perspective: 1000px;
-    /* Perspective pour l'effet 3D */
     flex-grow: 1;
-    /* Pour pousser la pagination vers le bas si besoin */
 }
 
-/* --- Styles des onglets de filtre --- */
 .skills-tabs {
     display: flex;
     justify-content: center;
@@ -53,34 +48,25 @@
     font-weight: 600;
 }
 
-
-/* --- Carte de Projet --- */
 .project-card {
     background: var(--card-bg);
     backdrop-filter: var(--card-backdrop);
-    /* Ensure standard blur */
     -webkit-backdrop-filter: var(--card-backdrop);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-xl);
     padding: 2rem;
-    /* Retour au padding confortable */
     box-shadow: var(--card-shadow);
-
-    /* 3D Transition Settings */
     transform-style: preserve-3d;
     transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
         box-shadow 0.4s ease,
         border-color 0.3s ease,
         background-color 0.3s ease;
-
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    /* Retour au gap standard */
     overflow: hidden;
     position: relative;
     height: 100%;
-    /* S'assure de remplir la case de la grille */
 }
 
 .project-card::after {
@@ -99,26 +85,19 @@
 }
 
 .project-card:hover {
-    /* Hover subtil - géré uniquement par CSS */
     transform: translateY(-3px);
     background: var(--card-bg-hover);
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15), 0 0 10px rgba(var(--accent-rgb), 0.08);
-
-    /* Bordure dynamique selon la couleur injectée --accent-color, sinon accent global */
     border-color: var(--accent-color, var(--accent));
 }
 
-/* --- En-tête de la Carte --- */
 .project-card__header {
     display: flex;
     align-items: center;
     gap: 1rem;
     transform: translateZ(20px);
-    /* Profondeur 3D pour le contenu */
     height: 60px;
-    /* Augmenté pour contenir titre (2 lignes) + sous-titre sans couper */
     margin-bottom: 0.5rem;
-    /* Petit espace avant la description */
 }
 
 .project-card__icon {
@@ -147,7 +126,6 @@
     flex-direction: column;
     justify-content: center;
     gap: 0.2rem;
-    /* Très léger gap pour pas que ce soit collé moche, mais quasi nul */
 }
 
 .project-card__title {
@@ -155,8 +133,6 @@
     font-weight: 600;
     color: var(--color-text);
     line-height: 1.25;
-
-    /* 2 lignes max mais PAS de height fixe sur le titre lui-même */
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -169,30 +145,22 @@
     font-size: 0.85rem;
     font-weight: 500;
     line-height: 1;
-    /* Compact */
     margin-top: 0;
 }
 
-/* --- Contenu de la Carte --- */
 .project-card__description {
     font-size: 0.95rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    /* flex-grow: 1; <-- Retiré car hauteur fixe définie ci-dessous */
     margin: 0.5rem 0;
     transform: translateZ(10px);
-    /* Profondeur subtile */
-
-    /* Limite à 3 lignes pour garantir l'uniformité */
     display: -webkit-box;
     -webkit-line-clamp: 3;
     line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     height: 4.8em;
-    /* Force 3 lignes même si le texte est court */
     flex-shrink: 0;
-    /* Empêche le rétrécissement */
 }
 
 .project-tags {
@@ -201,7 +169,6 @@
     gap: 0.5rem;
     transform: translateZ(15px);
     min-height: 28px;
-    /* Réserve l'espace pour une ligne de tags */
     align-content: flex-start;
 }
 
@@ -214,10 +181,8 @@
     transition: all 0.2s ease;
 }
 
-/* --- Pied de la Carte --- */
 .project-card__footer {
     margin-top: auto;
-    /* Ancrage en bas pour alignement uniforme */
     padding-top: 1rem;
     display: flex;
     align-items: center;
@@ -243,21 +208,16 @@
     cursor: pointer;
     transition: all 0.2s ease;
     color: var(--color-text);
-    /* S'adapte au thème */
 }
 
 .project-card__cta:hover {
-    /* Utilisation de la couleur DYNAMIQUE injectée via style={{ '--accent-color': ... }} */
     background-color: var(--accent-color, var(--accent));
     border-color: var(--accent-color, var(--accent)) !important;
-    /* Force override */
     color: #000 !important;
-    /* Noir pour meilleure lisibilité sur couleurs claires */
     box-shadow: 0 0 15px var(--accent-color, var(--accent));
     transform: scale(1.02);
 }
 
-/* --- PAGINATION CONTROLS --- */
 .pagination-controls {
     display: flex;
     justify-content: center;
@@ -297,7 +257,6 @@
     transform: scale(1.1);
 }
 
-/* --- CORRECTION COULEURS EN MODE CLAIR --- */
 .project-card__subtitle,
 .tag {
     filter: var(--filter-brightness) var(--filter-saturate);
@@ -306,5 +265,3 @@
 .project-card__icon-placeholder {
     filter: var(--filter-brightness);
 }
-
-/* Le reste est géré via variables */

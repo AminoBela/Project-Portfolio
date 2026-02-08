@@ -1,28 +1,22 @@
-/* src/styles/_navigation.css */
 .main-nav {
   position: fixed;
   top: 1rem;
   left: 50%;
   transform: translateX(-50%);
   width: auto;
-  /* État initial transparent */
   background: rgba(var(--accent-rgb), 0.02);
-  /* Très léger fond par défaut pour la visibilité */
   backdrop-filter: blur(4px);
   border: 1px solid rgba(var(--accent-rgb), 0.15);
-  /* Ajout d'une bordure subtile pour le relief demandé */
   border-radius: var(--radius-full);
   z-index: 1000;
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  /* Ombre très légère */
 }
 
 .main-nav--scrolled {
   background: var(--nav-bg);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(var(--accent-rgb), 0.25);
-  /* Bordure un peu plus marquée au scroll */
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
@@ -83,7 +77,6 @@
   right: 0;
   bottom: 0;
   background: var(--nav-highlight-bg);
-  /* Utilisation de la variable */
   border-radius: var(--radius-full);
   z-index: -1;
 }
@@ -111,7 +104,7 @@
 
 .theme-toggle-button:hover {
   background-color: rgba(var(--accent-rgb), 0.1);
-  transform: rotate(15deg);
+  transform: rotate(8deg);
   border-color: var(--accent);
 }
 
@@ -122,7 +115,6 @@
   border-radius: var(--radius-full);
 }
 
-/* --- Sélecteur de Langue (Desktop) --- */
 .language-selector {
   display: flex;
   gap: 0.5rem;
@@ -152,7 +144,6 @@
   color: #1e1e1e;
 }
 
-/* --- Sélecteur de Langue (Mobile) --- */
 .language-selector-mobile {
   margin-top: 2rem;
   padding-top: 2rem;
@@ -161,20 +152,15 @@
   display: flex;
   justify-content: center;
   gap: 0.8rem;
-  /* Espacement légèrement augmenté */
 }
 
-/* On applique les mêmes styles que pour le desktop */
 .language-selector-mobile button {
   background: rgba(0, 0, 0, 0.2);
-  /* Fond léger par défaut */
   border: 1px solid transparent;
   color: var(--text-secondary);
   font-weight: 600;
   padding: 0.5rem 1rem;
-  /* Plus grand pour le tactile */
   border-radius: 12px;
-  /* Coins arrondis mais pas pilule complète */
   cursor: pointer;
   transition: all 0.3s ease;
   font-size: 1rem;
@@ -193,7 +179,6 @@
   box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
 }
 
-/* --- BOUTON BURGER AMÉLIORÉ --- */
 .main-nav__toggle {
   display: none;
   position: relative;
@@ -205,7 +190,6 @@
   z-index: 2001;
   cursor: none;
   padding: 10px;
-  /* Espace interne pour les barres */
   transition: all 0.3s ease;
 }
 
@@ -240,14 +224,11 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
-/* --- MENU "SPOTLIGHT" AMÉLIORÉ --- */
 .mobile-menu-overlay {
   position: fixed;
   inset: 0;
   background: var(--mobile-menu-overlay);
-  /* Fond plus opaque */
   backdrop-filter: blur(15px);
-  /* Flou plus prononcé */
   -webkit-backdrop-filter: blur(15px);
   z-index: 1999;
   display: flex;
@@ -261,7 +242,6 @@
   width: auto;
   min-width: 280px;
   background: var(--mobile-menu-bg);
-  /* Fond de carte légèrement transparent */
   border: 1px solid var(--card-border);
   border-radius: 24px;
   box-shadow: var(--card-shadow-hover);
@@ -303,7 +283,6 @@
   font-weight: 700;
 }
 
-/* --- RESPONSIVE --- */
 @media screen and (max-width: 992px) {
   .main-nav__list--desktop {
     display: none;
@@ -315,6 +294,5 @@
 
   .language-selector {
     display: none;
-    /* Cacher le sélecteur desktop sur mobile */
   }
 }

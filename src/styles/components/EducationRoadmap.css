@@ -1,6 +1,3 @@
-/* src/styles/components/EducationRoadmap.css - APPLE INTELLIGENCE AURA DESIGN */
-
-/* --- AURORA GRADIENT ANIMATION --- */
 @keyframes aurora-flow {
     0% {
         background-position: 0% 50%;
@@ -51,7 +48,6 @@
     }
 }
 
-/* --- ROADMAP CONTAINER --- */
 .education-roadmap {
     display: flex;
     flex-direction: column;
@@ -80,14 +76,12 @@
     filter: drop-shadow(0 0 12px rgba(var(--accent-rgb), 0.7));
 }
 
-/* --- ROADMAP CARDS GRID --- */
 .education-cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
 }
 
-/* --- EDUCATION CARD BASE --- */
 .education-card {
     background: linear-gradient(160deg, var(--card-bg) 0%, rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.03) 100%);
     backdrop-filter: blur(24px);
@@ -103,7 +97,6 @@
     min-height: 220px;
 }
 
-/* Aura overlay */
 .education-card::before {
     content: '';
     position: absolute;
@@ -114,7 +107,6 @@
     transition: opacity 0.4s ease;
 }
 
-/* Top gradient bar */
 .education-card::after {
     content: '';
     position: absolute;
@@ -130,7 +122,7 @@
 }
 
 .education-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.4);
 }
 
@@ -138,9 +130,6 @@
     opacity: 1;
 }
 
-/* --- STATUS VARIANTS --- */
-
-/* PAST - Subtle gray */
 .education-card--past {
     --card-accent-color: #6272a4;
     --card-accent-rgb: 98, 114, 164;
@@ -151,7 +140,6 @@
     opacity: 0.9;
 }
 
-/* CURRENT - Apple Intelligence Green Aura */
 .education-card--current {
     --card-accent-color: #50fa7b;
     --card-accent-rgb: 80, 250, 123;
@@ -177,7 +165,6 @@
     animation: aurora-flow 4s ease infinite;
 }
 
-/* CURRENT Shimmer effect */
 .education-card--current .education-card__shimmer {
     position: absolute;
     top: 0;
@@ -188,7 +175,6 @@
     animation: shimmer 3s ease-in-out infinite;
 }
 
-/* FUTURE - Purple/Pink Aurora */
 .education-card--future {
     --card-accent-color: #bd93f9;
     --card-accent-rgb: 189, 147, 249;
@@ -218,7 +204,6 @@
     animation: aurora-flow 6s ease infinite;
 }
 
-/* --- CARD HEADER --- */
 .education-card__header {
     display: flex;
     align-items: flex-start;
@@ -284,7 +269,6 @@
     text-shadow: 0 0 15px rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.4);
 }
 
-/* --- STATUS BADGE --- */
 .education-card__badge {
     position: absolute;
     top: 0.75rem;
@@ -325,7 +309,6 @@
         0 0 40px rgba(255, 121, 198, 0.2);
 }
 
-/* --- CARD CONTENT --- */
 .education-card__period {
     font-size: 0.85rem;
     color: var(--text-secondary);
@@ -356,7 +339,6 @@
     z-index: 2;
 }
 
-/* --- ALTERNANCE CARD - APPLE INTELLIGENCE AURORA --- */
 .alternance-card {
     background: linear-gradient(160deg, rgba(189, 147, 249, 0.06) 0%, rgba(255, 121, 198, 0.03) 50%, rgba(80, 250, 123, 0.03) 100%);
     border: 1px solid rgba(189, 147, 249, 0.25);
@@ -372,7 +354,6 @@
     overflow: hidden;
 }
 
-/* Aurora background */
 .alternance-card::before {
     content: '';
     position: absolute;
@@ -385,7 +366,6 @@
     transition: opacity 0.4s ease;
 }
 
-/* Top aurora bar */
 .alternance-card::after {
     content: '';
     position: absolute;
@@ -406,7 +386,7 @@
 
 .alternance-card:hover {
     border-color: #bd93f9;
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow:
         0 15px 35px rgba(0, 0, 0, 0.2),
         0 0 25px rgba(189, 147, 249, 0.2),
@@ -471,7 +451,6 @@
     text-shadow: 0 0 20px rgba(255, 121, 198, 0.6);
 }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 900px) {
     .education-cards {
         grid-template-columns: 1fr;

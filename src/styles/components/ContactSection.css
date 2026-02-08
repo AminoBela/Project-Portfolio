@@ -1,6 +1,5 @@
 .contact-section {
     padding: 4rem 0 2rem;
-    /* Remis un peu d'espace en bas */
     margin-bottom: 0;
 }
 
@@ -8,25 +7,22 @@
     background: var(--card-bg);
     border: 1px solid var(--card-border);
     border-radius: var(--radius-xl);
-    /* Coins arrondis partout */
     box-shadow: var(--card-shadow);
     backdrop-filter: var(--card-backdrop);
     -webkit-backdrop-filter: var(--card-backdrop);
     overflow: hidden;
     max-width: 900px;
     margin: 2rem auto;
-    /* Marge en bas aussi */
     position: relative;
     transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease;
 }
 
 .contact-card-wrapper:hover {
-    transform: translateY(-5px);
+    transform: translateY(-3px);
     box-shadow: var(--card-shadow-hover);
     border-color: var(--accent);
 }
 
-/* Effet de lueur holographique */
 .contact-card-wrapper::before {
     content: '';
     position: absolute;
@@ -154,7 +150,7 @@
 .contact-item:not(.no-hover):hover {
     background: var(--card-bg-hover);
     border-color: var(--accent);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .icon-box {

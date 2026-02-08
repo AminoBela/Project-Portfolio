@@ -1,4 +1,3 @@
-/* src/styles/components/Buttons.css */
 .button {
   display: inline-block;
   padding: 0.75rem 1.5rem;
@@ -12,25 +11,21 @@
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-
   background: var(--card-bg);
-  /* Variable standard */
   backdrop-filter: var(--card-backdrop);
   border: 1px solid var(--card-border);
   color: var(--color-text);
 }
 
 .button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
   border-color: rgba(var(--accent-rgb), 0.4);
   color: var(--accent);
 }
 
-/* --- BOUTON PRIMAIRE --- */
 .button--primary {
   background: var(--accent);
-  /* Utilisation de la variable pour la couleur du texte */
   color: var(--button-text-primary);
   border-color: var(--accent);
 }
@@ -38,11 +33,11 @@
 .button--primary:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
-  /* La couleur du texte ne change pas au survol */
   color: var(--button-text-primary);
+  box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4);
+  filter: brightness(1.1);
 }
 
-/* --- BOUTON SECONDAIRE --- */
 .button--secondary {
   background: transparent;
   border-color: rgba(var(--accent-rgb), 0.4);
@@ -54,10 +49,6 @@
   border-color: rgba(var(--accent-rgb), 0.6);
 }
 
-/* --- CORRECTION POUR LE THÈME CLAIR --- */
-/* Géré via variables */
-
-/* --- SCROLL TO TOP BUTTON --- */
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
@@ -67,7 +58,6 @@
   border-radius: 50%;
   background-color: var(--accent);
   color: #1e1e1e;
-  /* Couleur par défaut (Dark mode) */
   border: none;
   cursor: pointer;
   z-index: 99;
@@ -76,8 +66,6 @@
   align-items: center;
   box-shadow: 0 4px 12px rgba(var(--accent-rgb), 0.3);
   font-size: 1.2rem;
-
-  /* Transition d'apparition gérée par CSS */
   opacity: 0;
   visibility: hidden;
   transform: translateY(20px) scale(0.8);
@@ -89,6 +77,3 @@
   visibility: visible;
   transform: translateY(0) scale(1);
 }
-
-/* Correction spécifique pour le bouton ScrollToTop en mode clair */
-/* Géré via variables */

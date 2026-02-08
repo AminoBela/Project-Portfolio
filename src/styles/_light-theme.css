@@ -1,63 +1,45 @@
-/* src/styles/_light-theme.css */
-/* --- Thème Clair : Plus doux pour les yeux --- */
 :root.light {
-    /* --- ACCENT : Vert/Cyan plus visible et cohérent --- */
     --accent: #00897b;
     --accent-hover: #00695c;
     --accent-rgb: 0, 137, 123;
 
-    /* --- TEXTE : Contraste fort mais pas noir pur --- */
     --color-text: #1a2332;
     --text-secondary: #4a5568;
 
-    /* --- FONDS : Gris chaud, moins agressif que le blanc pur --- */
     --bg-primary: #f0f2f5;
     --bg-secondary: #e8ecf0;
     --grid-pattern-color: rgba(0, 0, 0, 0.03);
 
-    /* --- CARTES : Blanc légèrement teinté, bonne lisibilité --- */
     --card-bg: rgba(255, 255, 255, 0.85);
     --card-bg-hover: rgba(255, 255, 255, 0.95);
 
-    /* --- BORDURES : Visibles mais subtiles --- */
     --card-border: rgba(0, 40, 80, 0.1);
     --card-border-top: rgba(0, 40, 80, 0.15);
     --card-border-hover: var(--accent);
 
-    /* --- OMBRES : Plus présentes pour démarquer les cartes --- */
     --card-shadow: 0 4px 20px rgba(0, 40, 80, 0.08);
     --card-shadow-hover: 0 8px 30px rgba(0, 40, 80, 0.12);
 
-    /* Performance : Flou du glassmorphism */
     --card-backdrop: blur(16px);
-
-    /* Highlight */
     --text-highlight: var(--accent);
 
-    /* --- NAVBAR : Fond plus visible --- */
     --nav-bg: rgba(255, 255, 255, 0.9);
     --nav-highlight-bg: rgba(0, 137, 123, 0.12);
 
-    /* --- AUTRES COMPOSANTS --- */
     --tech-icon-bg: rgba(255, 255, 255, 0.9);
     --mobile-menu-overlay: rgba(240, 242, 245, 0.9);
     --mobile-menu-bg: rgba(255, 255, 255, 0.95);
 
-    /* Boutons */
     --button-text-primary: #ffffff;
 
-    /* Curseur */
     --cursor-pointer-bg: rgba(0, 137, 123, 0.15);
     --cursor-pointer-border: rgba(0, 137, 123, 0.25);
 
-    /* Burger Menu */
     --burger-bar-bg: var(--color-text);
 
-    /* Filtres */
     --filter-saturate: saturate(1.1);
     --filter-brightness: brightness(0.95);
 
-    /* Modal */
     --modal-backdrop: rgba(26, 35, 50, 0.4);
     --code-bg: rgba(0, 40, 80, 0.06);
     --code-color: #d63384;
@@ -65,12 +47,10 @@
     --pre-color: #1a2332;
     --badge-color: #ffffff;
 
-    /* Table */
     --table-header-bg: rgba(0, 137, 123, 0.08);
     --table-row-even-bg: rgba(0, 40, 80, 0.03);
 }
 
-/* --- Améliorations spécifiques Light Mode --- */
 :root.light .education-card,
 :root.light .timeline-card-compact,
 :root.light .project-card {
@@ -83,14 +63,12 @@
     box-shadow: var(--card-shadow-hover);
 }
 
-/* Tags plus visibles en light */
 :root.light .tag {
     background: rgba(0, 137, 123, 0.1);
     color: #00695c;
     border: 1px solid rgba(0, 137, 123, 0.2);
 }
 
-/* Badges status */
 :root.light .education-card__badge {
     background: rgba(255, 255, 255, 0.9);
 }
@@ -106,18 +84,15 @@
     border-color: rgba(124, 77, 255, 0.4);
 }
 
-/* Aura effects plus subtils en light */
 :root.light .education-card--current::before,
 :root.light .education-card--future::before {
     opacity: 0.4;
 }
 
-/* Timeline dates */
 :root.light .timeline-card-compact-period {
     color: var(--accent);
 }
 
-/* Section titles */
 :root.light .education-roadmap__title,
 :root.light .section__title span {
     color: var(--accent);

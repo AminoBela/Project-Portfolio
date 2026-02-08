@@ -145,44 +145,44 @@ function ExperienceEducationSection() {
                 }}>
                     <div className="modal-hero__content">
                         <span className="modal-hero__badge" style={{ backgroundColor: '#bd93f9', color: '#000' }}>
-                            Alternance 2026-2028
+                            {t('alternance_badge')}
                         </span>
                         <h2>{t('alternance_search_title')}</h2>
-                        <p className="expanded-card-subtitle">Mastère Manager des SI & Cybersécurité • CESI Nancy</p>
+                        <p className="expanded-card-subtitle">{t('alternance_subtitle')}</p>
                     </div>
                 </div>
 
                 <div className="modal-body">
                     <div className="stats-grid">
                         <div className="stat-box">
-                            <span className="stat-label">Début</span>
-                            <span className="stat-value">Sept. 2026</span>
+                            <span className="stat-label">{t('alternance_start_label')}</span>
+                            <span className="stat-value">{t('alternance_start_value')}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Durée</span>
-                            <span className="stat-value">2 ans</span>
+                            <span className="stat-label">{t('alternance_duration_label')}</span>
+                            <span className="stat-value">{t('alternance_duration_value')}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Rythme</span>
-                            <span className="stat-value">3/1 sem.</span>
+                            <span className="stat-label">{t('alternance_rhythm_label')}</span>
+                            <span className="stat-value">{t('alternance_rhythm_value')}</span>
                         </div>
                         <div className="stat-box">
-                            <span className="stat-label">Lieu</span>
-                            <span className="stat-value">Nancy</span>
+                            <span className="stat-label">{t('alternance_location_label')}</span>
+                            <span className="stat-value">{t('alternance_location_value')}</span>
                         </div>
                     </div>
 
                     <div className="tech-section">
                         <p className="project-full-desc">
-                            Je recherche une entreprise pour effectuer mon alternance dans le cadre de mon Mastère
-                            <strong> Manager des Systèmes d'Information et Cybersécurité</strong> au CESI Nancy.
+                            {t('alternance_intro')}
+                            <strong> {t('alternance_program')}</strong> {t('alternance_school')}
                         </p>
                         <p className="project-full-desc" style={{ marginTop: '0.5rem', fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                            📅 Rythme : <strong>3 semaines en entreprise</strong> / <strong>1 semaine en école</strong>
+                            {t('alternance_rhythm_detail')} <strong>{t('alternance_rhythm_enterprise')}</strong> / <strong>{t('alternance_rhythm_school')}</strong>
                         </p>
 
                         <div className="tech-stack">
-                            <h4>Domaines recherchés</h4>
+                            <h4>{t('alternance_domains_title')}</h4>
                             <div className="project-tags large">
                                 {['Cybersécurité', 'Admin Système', 'DevOps', 'Cloud', 'Management SI', 'Infrastructure'].map(tag => (
                                     <span key={tag} className="tag" style={{ borderColor: '#bd93f9', color: '#bd93f9' }}>{tag}</span>
@@ -191,11 +191,11 @@ function ExperienceEducationSection() {
                         </div>
 
                         <div className="modal-hero__actions" style={{ marginTop: '2rem' }}>
-                            <a href="mailto:amin.belalia@gmail.com" className="btn-github">
-                                Me contacter ↗
+                            <a href="mailto:abelaliabendjafar@gmail.com" className="btn-github">
+                                {t('alternance_cta_contact')}
                             </a>
                             <a href="https://linkedin.com/in/aminbelalia" target="_blank" rel="noopener noreferrer" className="btn-demo" style={{ color: '#bd93f9', borderColor: '#bd93f9' }}>
-                                LinkedIn ↗
+                                {t('alternance_cta_linkedin')}
                             </a>
                         </div>
                     </div>

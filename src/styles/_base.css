@@ -1,6 +1,3 @@
-/* src/styles/_base.css */
-
-/* 1. Reset moderne */
 *,
 *::before,
 *::after {
@@ -9,7 +6,6 @@
   padding: 0;
 }
 
-/* 2. Styles de base HTML et Body */
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -30,13 +26,11 @@ body {
   transition: background-color 0.5s ease, color 0.5s ease;
 }
 
-/* --- NOUVEAU : COULEUR DE SÉLECTION --- */
 ::selection {
   background-color: var(--accent);
   color: var(--bg-primary);
 }
 
-/* Styles pour les éléments interactifs */
 a,
 button,
 [data-cursor="pointer"] {
@@ -58,7 +52,6 @@ button {
   transition: all 0.3s ease;
 }
 
-/* 3. Design du Curseur Personnalisé */
 .cursor-dot,
 .cursor-outline {
   position: fixed;
@@ -106,11 +99,9 @@ button {
   opacity: 1;
 }
 
-/* --- MODE MATRIX --- */
 .cursor-dot.is-matrix {
   background-color: #0F0 !important;
   z-index: 100000 !important;
-  /* Au-dessus de tout */
   box-shadow: 0 0 10px #0F0;
 }
 
@@ -120,7 +111,6 @@ button {
   box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
 }
 
-/* 4. Désactivation totale du curseur sur mobile via CSS */
 @media (max-width: 768px) {
 
   html,
@@ -134,7 +124,6 @@ button {
   }
 }
 
-/* --- SCROLLBAR PERSONNALISÉE --- */
 ::-webkit-scrollbar {
   width: 10px;
 }
@@ -158,7 +147,6 @@ button {
   scrollbar-color: var(--accent) var(--bg-primary);
 }
 
-/* --- Barre de Progression de Lecture --- */
 .progress-bar {
   position: fixed;
   top: 0;
@@ -172,7 +160,6 @@ button {
   border-radius: 0 4px 4px 0;
 }
 
-/* --- Bouton Retour en Haut --- */
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;

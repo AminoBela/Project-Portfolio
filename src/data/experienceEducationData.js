@@ -1,11 +1,8 @@
-// Données séparées pour une meilleure organisation
-
-// --- FORMATIONS (avec status: past/current/future) ---
 export const educationData = [
     {
         id: 'cesi',
         type: 'education',
-        status: 'future', // 🔮 FUTUR
+        status: 'future',
         title: 'cesi_title',
         institution: 'cesi_institution',
         location: 'cesi_location',
@@ -13,12 +10,12 @@ export const educationData = [
         description: 'cesi_desc',
         logo: 'https://upload.wikimedia.org/wikipedia/fr/e/ef/Logo_cesi_2022.png',
         details: null,
-        color: '#bd93f9' // Violet pour le futur
+        color: '#bd93f9'
     },
     {
         id: 'but',
         type: 'education',
-        status: 'current', // 🟢 ACTUEL
+        status: 'current',
         title: 'but_title',
         institution: 'but_institution',
         location: 'but_location',
@@ -26,12 +23,12 @@ export const educationData = [
         description: 'but_desc',
         logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
         details: null,
-        color: '#50fa7b' // Vert accent
+        color: '#50fa7b'
     },
     {
         id: 'polytech',
         type: 'education',
-        status: 'past', // ⬜ PASSÉ
+        status: 'past',
         title: 'polytech_title',
         institution: 'polytech_institution',
         location: 'polytech_location',
@@ -39,12 +36,12 @@ export const educationData = [
         description: 'polytech_desc',
         logo: 'https://yt3.googleusercontent.com/dlfb9W3nYcX5-uBro9MdZNfjbv_crHLKwWP2WMCw5bh5tTd2gIJes_RpwFw1MJQsph6sjSx3rXQ=s900-c-k-c0x00ffffff-no-rj',
         details: null,
-        color: '#6272a4' // Gris
+        color: '#6272a4'
     },
     {
         id: 'bac',
         type: 'education',
-        status: 'past', // ⬜ PASSÉ
+        status: 'past',
         title: 'bac_title',
         institution: 'bac_institution',
         location: 'bac_location',
@@ -52,11 +49,10 @@ export const educationData = [
         description: 'bac_desc',
         logo: null,
         details: null,
-        color: '#6272a4' // Gris
+        color: '#6272a4'
     }
 ];
 
-// --- EXPÉRIENCES PROFESSIONNELLES ---
 export const experiencesData = [
     {
         id: 'ela',
@@ -114,5 +110,4 @@ export const experiencesData = [
     }
 ];
 
-// Export combiné pour rétrocompatibilité (si utilisé quelque part)
 export const timelineData = [...experiencesData, ...educationData];

@@ -1,4 +1,3 @@
-/* src/styles/components/AboutSection.css */
 .about-bio-card,
 .stat-card,
 .detail-card,
@@ -6,18 +5,15 @@
     background: var(--card-bg);
     backdrop-filter: var(--card-backdrop);
     -webkit-backdrop-filter: var(--card-backdrop);
-
     border: 1px solid var(--card-border);
     border-radius: var(--radius-lg);
     padding: 1.5rem;
     box-shadow: var(--card-shadow);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    /* Transition fluide standard */
     position: relative;
     overflow: hidden;
 }
 
-/* Effet Glow Interne Standard */
 .about-bio-card::after,
 .stat-card::after,
 .detail-card::after,
@@ -49,7 +45,6 @@
     box-shadow: var(--card-shadow-hover);
 }
 
-/* --- NOUVEAU : CARTE RECHERCHE DE STAGE --- */
 .internship-card {
     display: flex;
     align-items: center;
@@ -85,7 +80,6 @@
 .internship-details {
     display: flex;
     justify-content: space-between;
-    /* Pour espacer les éléments */
     align-items: center;
     font-size: 0.9rem;
     color: var(--text-secondary);
@@ -111,9 +105,7 @@
 .about-section {
     padding: 6rem 1rem;
     overflow: hidden;
-    /* Empêche tout débordement horizontal global */
     width: 100%;
-    /* S'assure que la section ne dépasse pas */
 }
 
 .about-container-redesigned {
@@ -124,7 +116,6 @@
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
-    /* S'assure que le conteneur ne dépasse pas */
 }
 
 .about-visual-column {
@@ -133,7 +124,6 @@
     align-items: center;
     gap: 2rem;
     width: 100%;
-    /* S'assure que la colonne ne dépasse pas */
 }
 
 .about-photo-wrapper {
@@ -143,7 +133,6 @@
     display: grid;
     place-items: center;
     max-width: 100%;
-    /* Empêche l'image de dépasser sur très petits écrans */
 }
 
 .photo-blob {
@@ -186,7 +175,6 @@
     bottom: 20px;
     right: 20px;
     background: var(--card-bg-hover);
-    /* Remplacer par variable */
     backdrop-filter: blur(5px);
     border: 1px solid rgba(var(--accent-rgb), 0.2);
     border-radius: var(--radius-full);
@@ -210,7 +198,6 @@
 .about-intro-text {
     text-align: center;
     width: 100%;
-    /* S'assure que le texte ne dépasse pas */
 }
 
 .about-title-redesigned {
@@ -236,10 +223,8 @@
     justify-content: center;
     gap: 1rem;
     flex-wrap: wrap;
-    /* Permet aux boutons de passer à la ligne si nécessaire */
 }
 
-/* --- BOUTONS AMÉLIORÉS --- */
 .btn-download,
 .btn-social {
     display: flex;
@@ -264,8 +249,9 @@
 
 .btn-download:hover {
     background: var(--accent-hover);
-    transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(var(--accent-rgb), 0.4);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4);
+    filter: brightness(1.1);
 }
 
 .btn-social {
@@ -280,7 +266,7 @@
     background: var(--card-bg-hover);
     border-color: var(--card-border-hover);
     color: var(--accent);
-    transform: translateY(-4px);
+    transform: translateY(-2px);
 }
 
 .about-content-column {
@@ -288,7 +274,6 @@
     flex-direction: column;
     gap: 2rem;
     width: 100%;
-    /* S'assure que la colonne ne dépasse pas */
 }
 
 .about-bio-card h3 {
@@ -326,7 +311,7 @@
 }
 
 .stat-card:hover i {
-    transform: scale(1.1);
+    transform: scale(1.05);
     color: #fff;
     text-shadow: 0 0 10px var(--accent);
 }
@@ -401,13 +386,11 @@
 
     .about-photo-wrapper {
         width: 220px;
-        /* Réduction de la taille sur mobile */
         height: 220px;
     }
 
     .about-stats-row {
         grid-template-columns: 1fr;
-        /* Une seule colonne pour les stats sur mobile */
         gap: 1rem;
     }
 }

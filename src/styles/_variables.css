@@ -1,5 +1,4 @@
 :root {
-    /* --- PALETTE DE BASE (Terminal / Dark) --- */
     --terminal-black: #282a36;
     --terminal-green: #50fa7b;
     --terminal-cyan: #8be9fd;
@@ -7,80 +6,50 @@
     --terminal-white: #f8f8f2;
     --terminal-gray: #44475a;
 
-    /* --- COULEURS FONCTIONNELLES --- */
     --accent: var(--terminal-green);
+    --accent-hover: #50e070;
     --color-text: var(--terminal-white);
     --text-secondary: #9aa4b2;
 
-    /* --- COULEURS BASE RGB (Pour usage avec alpha) --- */
     --accent-rgb: 102, 255, 153;
-    /* #66ff99 */
     --accent-secondary-rgb: 46, 134, 171;
-    /* #2e86ab */
     --grid-pattern-color: rgba(102, 255, 153, 0.2);
-    /* Couleur par défaut du pattern (Dark) */
 
-    /* --- COULEURS UI --- */
     --color-success: #2ecc71;
     --color-warning: #fbbf24;
     --color-danger: #ff5f56;
     --color-info: #60a5fa;
     --color-neutral: #94a3b8;
 
-    /* --- COULEURS SKILLS --- */
     --color-skill-expert: #4ade80;
     --color-skill-expert-rgb: 74, 222, 128;
-
     --color-skill-advanced: #60a5fa;
     --color-skill-advanced-rgb: 96, 165, 250;
-
     --color-skill-confirmed: #fbbf24;
     --color-skill-confirmed-rgb: 251, 191, 36;
-
     --color-skill-basic: #94a3b8;
     --color-skill-basic-rgb: 148, 163, 184;
 
-    /* --- COULEURS TERMINAL DOTS --- */
     --dot-red: #ff5f56;
     --dot-yellow: #ffbd2e;
     --dot-green: #27c93f;
 
-    /* --- VARIABLES D'ARCHITECTURE (Glassmorphism) --- */
-
-    /* Fond global */
     --bg-primary: #1e1e1e;
     --bg-secondary: #252525;
 
-    /* CARTES : Effet verre fumé */
-    /* CARTES : Effet verre fumé */
     --card-bg: rgba(20, 24, 32, 0.3);
-    /* Opacité réduite pour laisser passer le flou */
     --card-bg-hover: rgba(28, 33, 44, 0.5);
-
-    /* Bordures - Utilisation de RGB pour alpha */
-    /* Bordures - Utilisation de RGB pour alpha */
     --card-border: rgba(var(--accent-rgb), 0.2);
-    /* Plus marqué pour l'effet relief */
     --card-border-top: rgba(var(--accent-rgb), 0.3);
     --card-border-hover: rgba(var(--accent-rgb), 0.6);
 
-    /* Ombres & Glow */
     --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    /* Ombre douce standard Global */
     --card-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(var(--accent-rgb), 0.15);
 
-    /* Performance : Activation du flou */
     --card-backdrop: blur(16px);
-    /* FLOU AUGMENTÉ */
-
-    /* NOUVEAU : Couleur du texte au survol des cartes */
     --text-highlight: #ffffff;
-    /* Blanc en mode sombre */
-
-    /* Highlight Navbar */
     --nav-highlight-bg: rgba(var(--accent-rgb), 0.1);
 
-    /* --- VARIABLES SEMANTIQUES (THEME) --- */
     --nav-bg: rgba(15, 23, 42, 0.75);
     --tech-icon-bg: rgba(20, 30, 48, 0.7);
     --mobile-menu-overlay: rgba(10, 12, 18, 0.85);
@@ -90,11 +59,9 @@
     --cursor-pointer-border: transparent;
     --burger-bar-bg: var(--color-text);
 
-    /* Filtres pour le mode clair (par défaut inactifs en dark mode) */
     --filter-saturate: none;
     --filter-brightness: none;
 
-    /* Markdown / Modal Content */
     --modal-backdrop: rgba(10, 12, 18, 0.7);
     --code-bg: rgba(102, 255, 153, 0.1);
     --code-color: var(--accent);
@@ -105,12 +72,10 @@
     --blockquote-border: var(--accent);
     --badge-color: var(--color-text);
 
-    /* Typographie */
     --font-primary: 'Fira Code', monospace;
     --font-code: 'Fira Code', monospace;
     --text-base: 1rem;
 
-    /* Espacements */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 1rem;
@@ -119,14 +84,12 @@
     --space-6: 3rem;
     --space-8: 4rem;
 
-    /* Rayons de bordure */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
     --radius-full: 999px;
 
-    /* Z-index */
     --z-cursor: 99999;
     --z-fixed: 1000;
 }

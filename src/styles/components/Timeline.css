@@ -1,5 +1,3 @@
-/* --- EXPERIENCES SECTION - MATCHING FORMATIONS AURA STYLE --- */
-
 @keyframes experience-glow {
 
     0%,
@@ -26,7 +24,6 @@
     }
 }
 
-/* --- MAIN CONTAINER --- */
 .timeline-container {
     display: flex;
     flex-direction: column;
@@ -39,7 +36,6 @@
     display: none;
 }
 
-/* --- GRID WRAPPER --- */
 .timeline-items {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -57,7 +53,6 @@
     display: none;
 }
 
-/* --- EXPERIENCE CARD (Matching formation style) --- */
 .timeline-card-compact {
     background: linear-gradient(160deg, var(--card-bg) 0%, rgba(var(--accent-rgb), 0.03) 100%);
     backdrop-filter: blur(24px);
@@ -75,7 +70,6 @@
     justify-content: space-between;
 }
 
-/* Aura overlay */
 .timeline-card-compact::before {
     content: '';
     position: absolute;
@@ -86,7 +80,6 @@
     transition: opacity 0.4s ease;
 }
 
-/* Top gradient bar */
 .timeline-card-compact::after {
     content: '';
     position: absolute;
@@ -103,7 +96,7 @@
 }
 
 .timeline-card-compact:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     border-color: rgba(var(--accent-rgb), 0.3);
     animation: experience-glow 3s ease-in-out infinite;
 }
@@ -116,7 +109,6 @@
     opacity: 1;
 }
 
-/* --- CARD HEADER --- */
 .timeline-card-compact-header {
     display: flex;
     align-items: flex-start;
@@ -156,7 +148,6 @@
     font-size: 0.8rem;
 }
 
-/* --- CARD ICON --- */
 .timeline-card-icon {
     position: absolute;
     bottom: 1.25rem;
@@ -176,13 +167,12 @@
 }
 
 .timeline-card-compact:hover .timeline-card-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.35);
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.3);
     background: linear-gradient(135deg, var(--accent) 0%, #8be9fd 100%);
     color: #000;
 }
 
-/* --- MODAL EXPERIENCE ICON FIX --- */
 .expanded-card-logo {
     width: 56px !important;
     height: 56px !important;
@@ -219,7 +209,6 @@
     flex-shrink: 0;
 }
 
-/* --- RESPONSIVE --- */
 @media (max-width: 768px) {
     .timeline-items {
         grid-template-columns: 1fr;

@@ -1,10 +1,8 @@
-/* --- SECTION COMPÉTENCES --- */
 .skills-section {
     padding-top: 4.5rem;
     padding-bottom: 2.1rem;
 }
 
-/* --- GRILLE COMPÉTENCES VUT (Style "Certification Pro") --- */
 .skills-cards-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -44,13 +42,12 @@
 }
 
 .skills-card:hover {
-    transform: translateY(-5px) scale(1.01);
+    transform: translateY(-3px);
     background: var(--card-bg-hover);
     box-shadow: var(--card-shadow-hover);
     border-color: var(--accent);
 }
 
-/* Badge "Validé" décoratif */
 .skills-card::before {
     content: '✓';
     position: absolute;
@@ -75,10 +72,8 @@
     color: var(--color-text);
     margin-bottom: 0.5rem;
     padding-right: 2rem;
-    /* Pour ne pas chevaucher le badge */
 }
 
-/* ÉTOILES JAUNES */
 .skills-card-stars {
     font-size: 1.4rem;
     letter-spacing: 0.15em;
@@ -92,7 +87,6 @@
 
 .skills-card-stars .star {
     color: rgba(128, 128, 128, 0.3);
-    /* Gris clair pour les étoiles vides */
 }
 
 .skills-card-comment {
@@ -104,7 +98,6 @@
     border-left: 3px solid var(--accent);
     padding-left: 1rem;
     margin-left: -1rem;
-    /* Pour aligner visuellement */
 }
 
 .skills-card-link {
@@ -113,7 +106,6 @@
     border-top: 1px solid var(--card-border);
 }
 
-/* --- SECTION TECHNOLOGIES --- */
 .technologies-wrapper {
     margin-top: 4rem;
 }
@@ -160,7 +152,6 @@
     gap: 1.5rem;
 }
 
-/* --- STYLE DES CARTES TECHNOLOGIES --- */
 .skill-card {
     background: var(--card-bg);
     backdrop-filter: var(--card-backdrop);
@@ -175,7 +166,6 @@
     min-height: 130px;
     position: relative;
     overflow: hidden;
-    /* Hauteur minimale pour l'alignement */
 }
 
 .skill-card::after {
@@ -194,7 +184,7 @@
 }
 
 .skill-card:hover {
-    transform: translateY(-5px) scale(1.02);
+    transform: translateY(-3px);
     background: var(--card-bg-hover);
     border-color: var(--accent);
     box-shadow: var(--card-shadow-hover);
@@ -213,12 +203,10 @@
     gap: 0.85rem;
 }
 
-/* --- NOUVEAU : Masque CSS pour les logos --- */
 .skill-logo-mask {
     width: 30px;
     height: 30px;
     background-color: var(--accent);
-    /* La couleur de l'icône */
     mask-size: contain;
     mask-repeat: no-repeat;
     mask-position: center;

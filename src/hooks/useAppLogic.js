@@ -13,7 +13,6 @@ export const useAppLogic = () => {
     const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
     const [isBannerVisible, setIsBannerVisible] = useState(true);
 
-    // Document Title & Language Effect
     useEffect(() => {
         document.documentElement.lang = i18n.language;
         const titles = {
@@ -24,7 +23,6 @@ export const useAppLogic = () => {
         document.title = titles[i18n.language] || 'Amin Belalia | Portfolio';
     }, [i18n.language]);
 
-    // Konami Code Hint Effect
     useEffect(() => {
         console.log(
             "%c👋 Hey Dev! Looking for secrets? Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A",
@@ -32,7 +30,6 @@ export const useAppLogic = () => {
         );
     }, []);
 
-    // Scroll Effect
     useEffect(() => {
         const handleScroll = () => {
             const scrolled = window.scrollY > 50;
@@ -69,7 +66,6 @@ export const useAppLogic = () => {
     }, []);
 
     return {
-        // State
         isScrolled,
         isLangSwitching,
         isInternshipModalOpen,
@@ -77,8 +73,6 @@ export const useAppLogic = () => {
         isMatrixMode,
         activeSection,
         isMenuOpen,
-
-        // Actions
         setIsMatrixMode,
         setIsMenuOpen,
         toggleMenu,
@@ -86,8 +80,6 @@ export const useAppLogic = () => {
         handleOpenInternshipModal,
         closeBanner,
         closeInternshipModal,
-
-        // Data
         t,
         i18n
     };
