@@ -5,7 +5,6 @@ import Modal from '../UI/Modal';
 import ReactMarkdown from 'react-markdown';
 import { childVariants } from '../../utils/framerMotionVariants';
 
-// Couleurs officielles GitHub pour les langages
 const LANGUAGE_COLORS = {
     JavaScript: '#f1e05a',
     TypeScript: '#2b7489',
@@ -28,7 +27,7 @@ const LANGUAGE_COLORS = {
 };
 
 function getLangColor(lang) {
-    return LANGUAGE_COLORS[lang] || '#66ff99'; // Vert par défaut
+    return LANGUAGE_COLORS[lang] || '#66ff99';
 }
 
 function shorten(text, limit = 150) {
@@ -47,20 +46,14 @@ function formatDate(iso, locale = 'fr-FR') {
     }
 }
 
-// J'ajoute ...props pour récupérer "layout" et autres props d'animation
 function ProjectCard({ project, t, ...props }) {
     const [modalOpen, setModalOpen] = useState(false);
     const formattedDescription = shorten(project.description);
-    // Utiliser la locale actuelle pour la date si possible, sinon par défaut fr-FR
-    // i18next expose la langue actuelle via i18n.language, mais ici on a juste t.
-    // On peut supposer que le formatage de date natif s'adapte ou on peut passer la locale.
-    // Pour simplifier, on laisse le formatage par défaut ou on pourrait passer i18n.language si on l'avait.
     const updatedAt = formatDate(project.updated_at);
     const languages = Object.keys(project.languages || {});
     const mainLanguage = project.language || 'Code';
     const mainColor = getLangColor(mainLanguage);
 
-    // Image favicon ou fallback
     const projectImage = project.homepage
         ? `https://www.google.com/s2/favicons?domain=${project.homepage}&sz=64`
         : null;
@@ -69,10 +62,9 @@ function ProjectCard({ project, t, ...props }) {
         <>
             <motion.div
                 variants={childVariants}
-                // Hover géré par CSS uniquement
                 className="project-card"
                 style={{ '--accent-color': mainColor }}
-                {...props} // On applique les props ici (ex: layout)
+                {...props}
             >
                 <div className="project-card__header">
                     {projectImage ? (
@@ -117,7 +109,6 @@ function ProjectCard({ project, t, ...props }) {
             </motion.div>
 
             <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
-                {/* --- HERO HEADER --- */}
                 <div className="modal-hero" style={{
                     background: `linear-gradient(135deg, ${mainColor}22 0%, rgba(0,0,0,0) 100%)`,
                     borderBottom: `1px solid ${mainColor}44`
@@ -141,7 +132,6 @@ function ProjectCard({ project, t, ...props }) {
                 </div>
 
                 <div className="modal-body">
-                    {/* --- DASHBOARD STATS --- */}
                     <div className="stats-grid">
                         <div className="stat-box">
                             <span className="stat-label">Stars</span>
@@ -161,7 +151,6 @@ function ProjectCard({ project, t, ...props }) {
                         </div>
                     </div>
 
-                    {/* --- DESCRIPTION & TECH --- */}
                     <div className="tech-section">
                         {project.description && (
                             <p className="project-full-desc">{project.description}</p>
@@ -183,7 +172,6 @@ function ProjectCard({ project, t, ...props }) {
                         </div>
                     </div>
 
-                    {/* --- README --- */}
                     <div className="markdown-body">
                         <div className="readme-header">
                             <h3>README.md</h3>

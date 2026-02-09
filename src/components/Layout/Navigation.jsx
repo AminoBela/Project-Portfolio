@@ -5,17 +5,17 @@ import ThemeToggleButton from './ThemeToggleButton';
 
 const menuVariants = {
     closed: { opacity: 0, scale: 0.95, y: -20 },
-    open: { 
-        opacity: 1, 
+    open: {
+        opacity: 1,
         scale: 1,
         y: 0,
-        transition: { 
-            type: 'spring', 
-            stiffness: 300, 
+        transition: {
+            type: 'spring',
+            stiffness: 300,
             damping: 30,
             staggerChildren: 0.08,
             delayChildren: 0.15
-        } 
+        }
     }
 };
 
@@ -29,7 +29,6 @@ const overlayVariants = {
     visible: { opacity: 1, scale: 1, transition: { duration: 0.3 } },
 };
 
-// On ajoute onLanguageChange aux props
 function Navigation({ activeSection, toggleTheme, theme, onLanguageChange }) {
     const { t, i18n } = useTranslation();
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,7 +42,6 @@ function Navigation({ activeSection, toggleTheme, theme, onLanguageChange }) {
         { href: '#contact', label: t('nav_contact') },
     ];
 
-    // On utilise la fonction passée en prop si elle existe, sinon fallback
     const changeLanguage = (lng) => {
         if (onLanguageChange) {
             onLanguageChange(lng);
@@ -76,14 +74,12 @@ function Navigation({ activeSection, toggleTheme, theme, onLanguageChange }) {
                         <div className="main-nav__logo">AB</div>
                     </a>
 
-                    {/* Ajout de layout pour animer le conteneur des liens */}
                     <motion.ul className="main-nav__list--desktop" layout>
                         {navLinks.map(link => {
                             const isActive = activeSection === link.href.substring(1);
                             return (
                                 <motion.li key={link.href} style={{ position: 'relative' }} layout>
                                     <a href={link.href} className={`main-nav__link ${isActive ? 'is-active' : ''}`} onClick={handleNavLinkClick} data-cursor="pointer">
-                                        {/* Animer le changement de texte */}
                                         <motion.span layout>{link.label}</motion.span>
                                         {isActive && (
                                             <motion.div layoutId="nav-highlight" className="nav-highlight" transition={{ type: "spring", stiffness: 300, damping: 30 }} />
@@ -137,7 +133,6 @@ function Navigation({ activeSection, toggleTheme, theme, onLanguageChange }) {
                                     </motion.li>
                                 ))}
                             </ul>
-                            {/* Sélecteur de langue pour mobile */}
                             <div className="language-selector-mobile">
                                 <button onClick={() => changeLanguage('fr')} className={i18n.language === 'fr' ? 'active' : ''}>FR</button>
                                 <button onClick={() => changeLanguage('en')} className={i18n.language === 'en' ? 'active' : ''}>EN</button>

@@ -33,6 +33,7 @@ export const es = {
   "about_highlight_network": "Red",
   "about_highlight_system": "Sistema",
   "about_highlight_data": "Datos",
+  "about_highlight_devops": "DevOps",
   "lang_french": "Francés",
   "lang_english": "Inglés",
   "lang_spanish": "Español",
@@ -205,5 +206,26 @@ export const es = {
 
   "banner_status": "BÚSQUEDA ACTIVA",
   "banner_text": "Prácticas Admin Sis / DevOps - Abril 2026",
-  "banner_cta": "Contactarme"
+  "banner_cta": "Contactarme",
+
+  "engagements_title": "Compromisos",
+  "engagements_intro": "Más allá de mis estudios, participo activamente en la vida de mi centro y apoyo a otros estudiantes.",
+  "engagement_jpo_title": "Jornadas de Puertas Abiertas",
+  "engagement_jpo_desc": "Recepción y orientación de visitantes durante las jornadas del IUT. Presentación de formaciones y demostraciones técnicas.",
+  "engagement_oriaction_title": "Feria Oriaction",
+  "engagement_oriaction_desc": "Representación del IUT en la feria de orientación Oriaction. Intercambios con los estudiantes de bachillerato.",
+  "engagement_crous_title": "Estudiante Referente Residencia",
+  "engagement_crous_desc": "Acogida e integración de nuevos residentes. Organización de eventos y gestión de problemas cotidianos.",
+
+  "hobbies_title": "Intereses",
+  "hobbies_intro": "Más allá del código, esto es lo que me apasiona.",
+  "hobby_motorsport": "Motorsport",
+  "hobby_homelab": "Homelab",
+  "hobby_travel": "Viajes",
+  "hobby_mechanic": "Mecánica Auto",
+
+  "stats_years": "Años de estudio",
+  "stats_technologies": "Tecnologías",
+  "stats_projects": "Proyectos",
+  "stats_languages": "Idiomas"
 };

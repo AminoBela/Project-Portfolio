@@ -12,6 +12,7 @@ export const useAppLogic = () => {
     const [isLangSwitching, setIsLangSwitching] = useState(false);
     const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
     const [isBannerVisible, setIsBannerVisible] = useState(true);
+    const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
     useEffect(() => {
         document.documentElement.lang = i18n.language;
@@ -42,6 +43,17 @@ export const useAppLogic = () => {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.ctrlKey && e.shiftKey && e.key === 'T') {
+                e.preventDefault();
+                setIsTerminalOpen(prev => !prev);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, []);
+
     const handleLanguageChange = useCallback((lng) => {
         if (i18n.language === lng) return;
         setIsLangSwitching(true);
@@ -65,12 +77,17 @@ export const useAppLogic = () => {
         setIsInternshipModalOpen(false);
     }, []);
 
+    const closeTerminal = useCallback(() => {
+        setIsTerminalOpen(false);
+    }, []);
+
     return {
         isScrolled,
         isLangSwitching,
         isInternshipModalOpen,
         isBannerVisible,
         isMatrixMode,
+        isTerminalOpen,
         activeSection,
         isMenuOpen,
         setIsMatrixMode,
@@ -80,6 +97,7 @@ export const useAppLogic = () => {
         handleOpenInternshipModal,
         closeBanner,
         closeInternshipModal,
+        closeTerminal,
         t,
         i18n
     };

@@ -9,12 +9,11 @@ import { sectionVariants, childVariants } from '../../utils/framerMotionVariants
 const highlights = [
     { icon: 'fa-network-wired', label: 'about_highlight_network', value: 'TCP/IP' },
     { icon: 'fa-linux', label: 'about_highlight_system', value: 'Unix' },
-    { icon: 'fa-database', label: 'about_highlight_data', value: 'SQL' },
+    { icon: 'fa-docker', label: 'about_highlight_devops', value: 'Docker' },
 ];
 
 const languages = ['lang_french', 'lang_english', 'lang_spanish', 'lang_valencian', 'lang_arabic'];
 
-// On accepte la prop onOpenInternshipModal
 export default function AboutSection({ onOpenInternshipModal }) {
     const { t } = useTranslation();
 
@@ -65,9 +64,8 @@ export default function AboutSection({ onOpenInternshipModal }) {
                     <motion.div
                         className="internship-card"
                         variants={childVariants}
-                        onClick={onOpenInternshipModal} // Utilisation de la prop
+                        onClick={onOpenInternshipModal}
                         data-cursor="pointer"
-                    // Hover géré par CSS
                     >
                         <div className="internship-icon">
                             <i className="fa-solid fa-briefcase"></i>

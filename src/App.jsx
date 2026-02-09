@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, Suspense } from 'react';
+import React, { Suspense } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTheme } from './hooks/useTheme';
 import { useAppLogic } from './hooks/useAppLogic';
@@ -8,6 +8,8 @@ import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
 import ExperienceEducationSection from './components/Sections/ExperienceEducationSection';
 import SkillsSection from './components/Sections/SkillsSection';
+import EngagementsSection from './components/Sections/EngagementsSection';
+import HobbiesSection from './components/Sections/HobbiesSection';
 import ContactSection from './components/Sections/ContactSection';
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
@@ -15,23 +17,23 @@ import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import InternshipBanner from "./components/UI/InternshipBanner";
 import LanguageTransitionOverlay from "./components/UI/LanguageTransitionOverlay";
 
-
-// Lazy Loading
 const ProjectsSection = React.lazy(() => import('./components/Sections/ProjectsSection'));
 const InternshipModal = React.lazy(() => import('./components/UI/InternshipModal'));
 const MatrixRain = React.lazy(() => import('./components/UI/MatrixRain'));
+const TerminalMode = React.lazy(() => import('./components/UI/TerminalMode'));
 
-// Composant MainContent mémorisé
 const MainContent = React.memo(({ onOpenInternshipModal, bannerHeight }) => {
     return (
         <main style={{ paddingTop: bannerHeight, transition: 'padding-top 0.5s ease' }}>
             <HomeSection />
             <AboutSection onOpenInternshipModal={onOpenInternshipModal} />
             <ExperienceEducationSection />
+            <EngagementsSection />
             <SkillsSection />
             <Suspense fallback={<div style={{ height: '300px' }}></div>}>
                 <ProjectsSection />
             </Suspense>
+            <HobbiesSection />
             <ContactSection />
         </main>
     );
@@ -45,6 +47,7 @@ function App() {
         isInternshipModalOpen,
         isBannerVisible,
         isMatrixMode,
+        isTerminalOpen,
         activeSection,
         isMenuOpen,
         setIsMatrixMode,
@@ -53,7 +56,8 @@ function App() {
         handleLanguageChange,
         handleOpenInternshipModal,
         closeBanner,
-        closeInternshipModal
+        closeInternshipModal,
+        closeTerminal
     } = useAppLogic();
 
     const bannerHeight = isBannerVisible ? '50px' : '0px';
@@ -126,6 +130,14 @@ function App() {
                         <InternshipModal
                             isOpen={isInternshipModalOpen}
                             onClose={closeInternshipModal}
+                        />
+                    </Suspense>
+
+                    <Suspense fallback={null}>
+                        <TerminalMode
+                            isOpen={isTerminalOpen}
+                            onClose={closeTerminal}
+                            onMatrixMode={() => setIsMatrixMode(true)}
                         />
                     </Suspense>
                 </div>

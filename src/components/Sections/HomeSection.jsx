@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';
 import { useTypingEffect } from '../../hooks/useTypingEffect';
-import TechCloud from '../UI/TechCloud'; // Import du nouveau composant
+import TechCloud from '../UI/TechCloud';
+import AnimatedStats from '../UI/AnimatedStats';
 
-// Lazy Loading de la modale PDF
 const PdfViewerModal = React.lazy(() => import('../UI/PdfViewerModal'));
 
 const HomeSection = () => {
@@ -62,20 +62,21 @@ const HomeSection = () => {
                             <Button href="#projets" primary>{t('home_btn_projects')}</Button>
                             <Button onClick={() => setIsCvModalOpen(true)} secondary>{t('home_btn_cv')}</Button>
                         </motion.div>
+                        <motion.div variants={itemVariants}>
+                            <AnimatedStats />
+                        </motion.div>
                     </motion.div>
 
-                    {/* Utilisation du composant TechCloud */}
                     <TechCloud />
                 </div>
             </section>
 
-            {/* Chargement différé de la modale PDF */}
             <Suspense fallback={null}>
                 {isCvModalOpen && (
-                    <PdfViewerModal 
-                        isOpen={isCvModalOpen} 
-                        onClose={() => setIsCvModalOpen(false)} 
-                        pdfFile={cvPdf} 
+                    <PdfViewerModal
+                        isOpen={isCvModalOpen}
+                        onClose={() => setIsCvModalOpen(false)}
+                        pdfFile={cvPdf}
                     />
                 )}
             </Suspense>

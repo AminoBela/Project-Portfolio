@@ -33,6 +33,7 @@ export const en = {
   "about_highlight_network": "Network",
   "about_highlight_system": "System",
   "about_highlight_data": "Data",
+  "about_highlight_devops": "DevOps",
   "lang_french": "French",
   "lang_english": "English",
   "lang_spanish": "Spanish",
@@ -205,5 +206,26 @@ export const en = {
 
   "banner_status": "ACTIVELY LOOKING",
   "banner_text": "SysAdmin / DevOps Internship - April 2026",
-  "banner_cta": "Contact Me"
+  "banner_cta": "Contact Me",
+
+  "engagements_title": "Commitments",
+  "engagements_intro": "Beyond my studies, I actively contribute to my school's community and help other students.",
+  "engagement_jpo_title": "Open House Days",
+  "engagement_jpo_desc": "Welcoming and guiding visitors during IUT Nancy-Charlemagne's open days. Presenting programs and technical demonstrations.",
+  "engagement_oriaction_title": "Oriaction Fair",
+  "engagement_oriaction_desc": "Representing the IUT at the Oriaction orientation fair. Discussing IT programs with high school students.",
+  "engagement_crous_title": "Residence Student Representative",
+  "engagement_crous_desc": "Welcoming and integrating new residents. Organizing events and handling daily issues.",
+
+  "hobbies_title": "Interests",
+  "hobbies_intro": "Beyond coding, here's what I'm passionate about.",
+  "hobby_motorsport": "Motorsport",
+  "hobby_homelab": "Homelab",
+  "hobby_travel": "Travel",
+  "hobby_mechanic": "Car Mechanics",
+
+  "stats_years": "Years of study",
+  "stats_technologies": "Technologies",
+  "stats_projects": "Projects",
+  "stats_languages": "Languages"
 };

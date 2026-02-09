@@ -33,6 +33,7 @@ export const fr = {
   "about_highlight_network": "Réseau",
   "about_highlight_system": "Système",
   "about_highlight_data": "Données",
+  "about_highlight_devops": "DevOps",
   "lang_french": "Français",
   "lang_english": "Anglais",
   "lang_spanish": "Espagnol",
@@ -204,5 +205,26 @@ export const fr = {
 
   "banner_status": "RECHERCHE ACTIVE",
   "banner_text": "Stage Admin Sys / DevOps - Avril 2026",
-  "banner_cta": "Me contacter"
+  "banner_cta": "Me contacter",
+
+  "engagements_title": "Engagements",
+  "engagements_intro": "Au-delà de mes études, je m'investis activement dans la vie de mon établissement et auprès des autres étudiants.",
+  "engagement_jpo_title": "Journées Portes Ouvertes",
+  "engagement_jpo_desc": "Accueil et orientation des visiteurs lors des JPO de l'IUT Nancy-Charlemagne. Présentation des formations et démonstrations techniques.",
+  "engagement_oriaction_title": "Salon Oriaction",
+  "engagement_oriaction_desc": "Représentation de l'IUT Nancy-Charlemagne au salon d'orientation Oriaction. Échanges avec les lycéens sur les filières informatiques.",
+  "engagement_crous_title": "Étudiant Référent Résidence",
+  "engagement_crous_desc": "Accueil et intégration des nouveaux résidents. Organisation d'événements et gestion des problématiques du quotidien.",
+
+  "hobbies_title": "Centres d'intérêt",
+  "hobbies_intro": "En dehors du code, voici ce qui me passionne au quotidien.",
+  "hobby_motorsport": "Motorsport",
+  "hobby_homelab": "Homelab",
+  "hobby_travel": "Voyage",
+  "hobby_mechanic": "Mécanique Auto",
+
+  "stats_years": "Années d'études",
+  "stats_technologies": "Technologies",
+  "stats_projects": "Projets",
+  "stats_languages": "Langues"
 };

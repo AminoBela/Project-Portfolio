@@ -1,0 +1,136 @@
+.terminal-mode-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    padding: 2rem;
+}
+
+.terminal-mode-window {
+    width: 100%;
+    max-width: 800px;
+    max-height: 80vh;
+    background: #1a1a2e;
+    border-radius: 12px;
+    box-shadow:
+        0 25px 80px rgba(0, 0, 0, 0.5),
+        0 0 0 1px rgba(255, 255, 255, 0.1),
+        0 0 60px rgba(80, 250, 123, 0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.terminal-mode-header {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    background: #16213e;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.terminal-mode-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.terminal-btn:hover {
+    opacity: 0.8;
+}
+
+.terminal-btn--close {
+    background: #ff5f56;
+}
+
+.terminal-btn--minimize {
+    background: #ffbd2e;
+}
+
+.terminal-btn--maximize {
+    background: #27ca40;
+}
+
+.terminal-mode-title {
+    flex: 1;
+    text-align: center;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+.terminal-mode-body {
+    flex: 1;
+    padding: 1rem;
+    overflow-y: auto;
+    font-family: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #e0e0e0;
+    min-height: 400px;
+}
+
+.terminal-line {
+    margin-bottom: 0.25rem;
+}
+
+.terminal-line--command {
+    color: #50fa7b;
+}
+
+.terminal-line--output {
+    color: #e0e0e0;
+    white-space: pre;
+}
+
+.terminal-prompt {
+    color: #8be9fd;
+    margin-right: 0.5rem;
+}
+
+.terminal-input-line {
+    display: flex;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.terminal-input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #50fa7b;
+    font-family: inherit;
+    font-size: inherit;
+    caret-color: #50fa7b;
+}
+
+.terminal-input::selection {
+    background: rgba(80, 250, 123, 0.3);
+}
+
+@media (max-width: 600px) {
+    .terminal-mode-overlay {
+        padding: 1rem;
+    }
+
+    .terminal-mode-window {
+        max-height: 90vh;
+    }
+
+    .terminal-mode-body {
+        font-size: 0.8rem;
+        min-height: 300px;
+    }
+}

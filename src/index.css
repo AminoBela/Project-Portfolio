@@ -5,7 +5,6 @@
 @import './styles/_navigation.css';
 @import './styles/_sections.css';
 @import './styles/components.css';
-@import './styles/_terminal-theme.css';
 @import './styles/_light-theme.css';
 
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap');
