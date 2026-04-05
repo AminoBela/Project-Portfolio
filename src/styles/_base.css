@@ -6,6 +6,23 @@
   padding: 0;
 }
 
+/* Fix flicker on elements with backdrop-filter during animations */
+[class*="card"],
+[class*="Card"],
+.timeline-card-compact,
+.engagement-card,
+.hobby-card,
+.stat-card,
+.detail-card,
+.about-bio-card,
+.internship-card,
+.contact-card-wrapper {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 html {
   font-size: 16px;
   scroll-behavior: smooth;
@@ -68,7 +85,8 @@ button {
   background-color: var(--accent);
   margin-left: -4px;
   margin-top: -4px;
-  transition: width 0.3s, height 0.3s, background-color 0.3s;
+  transition: width 0.3s, height 0.3s, background-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.6);
 }
 
 .cursor-outline {
@@ -78,15 +96,17 @@ button {
   opacity: 0.5;
   margin-left: -20px;
   margin-top: -20px;
-  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s, transform 0.1s ease-out;
+  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s, transform 0.1s ease-out, box-shadow 0.3s;
+  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15);
 }
 
 .cursor-dot.is-pointer {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  margin-top: -5px;
-  background-color: var(--color-text);
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  margin-top: -6px;
+  background-color: var(--accent);
+  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.8);
 }
 
 .cursor-outline.is-pointer {
@@ -94,9 +114,10 @@ button {
   height: 60px;
   margin-left: -30px;
   margin-top: -30px;
-  background-color: rgba(var(--accent-rgb), 0.1);
-  border-color: transparent;
+  background-color: rgba(var(--accent-rgb), 0.15);
+  border-color: var(--accent);
   opacity: 1;
+  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.25);
 }
 
 .cursor-dot.is-matrix {
