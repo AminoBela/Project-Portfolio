@@ -230,9 +230,13 @@ export const fr = {
   "hobbies_title": "Centres d'intérêt",
   "hobbies_intro": "En dehors du code, voici ce qui me passionne au quotidien.",
   "hobby_motorsport": "Motorsport",
+  "hobby_motorsport_desc": "F1, rallye et endurance — passionné par la stratégie et la technique.",
   "hobby_homelab": "Homelab",
+  "hobby_homelab_desc": "Serveurs perso, Docker, Proxmox — j'auto-héberge mes services.",
   "hobby_travel": "Voyage",
+  "hobby_travel_desc": "Découvrir de nouvelles cultures et élargir mes horizons.",
   "hobby_mechanic": "Mécanique Auto",
+  "hobby_mechanic_desc": "Entretien et réparation — comprendre comment ça fonctionne.",
 
   "stats_years": "Années d'études",
   "stats_technologies": "Technologies",

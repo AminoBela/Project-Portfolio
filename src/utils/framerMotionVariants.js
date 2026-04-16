@@ -7,26 +7,26 @@ export const navVariants = {
   },
 };
 
+// Aucune animation d'opacité nulle part — uniquement du translateY.
+// backdrop-filter + opacity = clignotement garanti.
 export const childVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { y: 25 },
   visible: {
-    opacity: 1,
     y: 0,
     transition: {
       duration: 0.5,
-      ease: 'easeOut'
+      ease: [0.25, 0.46, 0.45, 0.94]
     }
   },
 };
 
 export const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { y: 40 },
   visible: {
-    opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
-      ease: 'easeOut',
+      duration: 0.5,
+      ease: [0.25, 0.46, 0.45, 0.94],
       staggerChildren: 0.1,
     },
   },
@@ -44,6 +44,7 @@ export const cardHoverVariants = {
   },
 };
 
+// Pour les éléments SANS backdrop-filter (textes, boutons)
 export const fadeInUpVariants = {
   hidden: { opacity: 0, y: 25 },
   visible: {
@@ -57,9 +58,8 @@ export const fadeInUpVariants = {
 };
 
 export const staggerContainerVariants = {
-  hidden: { opacity: 0 },
+  hidden: {},
   visible: {
-    opacity: 1,
     transition: {
       staggerChildren: 0.08,
       delayChildren: 0.1,

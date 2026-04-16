@@ -6,7 +6,7 @@
   padding: 0;
 }
 
-/* Fix flicker on elements with backdrop-filter during animations */
+/* GPU layer promotion for elements with backdrop-filter */
 [class*="card"],
 [class*="Card"],
 .timeline-card-compact,
@@ -16,11 +16,13 @@
 .detail-card,
 .about-bio-card,
 .internship-card,
-.contact-card-wrapper {
+.contact-card-wrapper,
+.education-card,
+.alternance-card,
+.skill-bar-card {
   transform: translateZ(0);
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  perspective: 1000px;
 }
 
 html {

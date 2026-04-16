@@ -18,14 +18,28 @@ function ProjectsSection() {
   }, [activeFilter]);
 
   const categories = useMemo(() => {
-    if (!projects) return ['All'];
-    const langs = new Set(projects.map(p => p.language).filter(Boolean));
+    if (!projects || projects.length === 0) return ['All'];
+    // Utilise TOUTES les langues de chaque repo (pas juste la principale)
+    const langs = new Set();
+    projects.forEach(p => {
+      if (p.languages && typeof p.languages === 'object') {
+        Object.keys(p.languages).forEach(lang => langs.add(lang));
+      } else if (p.language) {
+        langs.add(p.language);
+      }
+    });
     return ['All', ...Array.from(langs).sort()];
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    return projects.filter(project => project.language === activeFilter);
+    // Filtre par toutes les langues du repo, pas juste la principale
+    return projects.filter(project => {
+      if (project.languages && typeof project.languages === 'object') {
+        return Object.keys(project.languages).includes(activeFilter);
+      }
+      return project.language === activeFilter;
+    });
   }, [projects, activeFilter]);
 
   // Pagination logic
@@ -37,8 +51,6 @@ function ProjectsSection() {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
-    // Scroll léger vers le haut de la grille si nécessaire, ou pas pour garder le flow
-    // document.getElementById('projets').scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
@@ -73,11 +85,11 @@ function ProjectsSection() {
               ))}
             </motion.div>
 
-            {/* --- GRILLE DE PROJETS (Hauteur Min pour Stabilité) --- */}
-            <div style={{ minHeight: '800px', display: 'flex', flexDirection: 'column' }}>
+            {/* --- GRILLE DE PROJETS --- */}
+            <div style={{ minHeight: '400px', display: 'flex', flexDirection: 'column' }}>
               <AnimatePresence mode="wait">
                 <motion.div
-                  key={currentPage + activeFilter}
+                  key={`${activeFilter}-${currentPage}`}
                   className="project-grid-inner"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}

@@ -8,38 +8,59 @@ const hobbiesData = [
         id: 'motorsport',
         icon: 'fa-flag-checkered',
         titleKey: 'hobby_motorsport',
-        color: '#ff5555'
+        descKey: 'hobby_motorsport_desc',
+        emoji: '🏎️',
+        color: '#ff5555',
+        gradient: 'linear-gradient(135deg, #ff5555 0%, #ff3333 100%)'
     },
     {
         id: 'homelab',
         icon: 'fa-server',
         titleKey: 'hobby_homelab',
-        color: '#50fa7b'
+        descKey: 'hobby_homelab_desc',
+        emoji: '🖥️',
+        color: '#50fa7b',
+        gradient: 'linear-gradient(135deg, #50fa7b 0%, #3dd68c 100%)'
     },
     {
         id: 'travel',
         icon: 'fa-plane',
         titleKey: 'hobby_travel',
-        color: '#8be9fd'
+        descKey: 'hobby_travel_desc',
+        emoji: '✈️',
+        color: '#8be9fd',
+        gradient: 'linear-gradient(135deg, #8be9fd 0%, #6bc5e0 100%)'
     },
     {
         id: 'mechanic',
         icon: 'fa-wrench',
         titleKey: 'hobby_mechanic',
-        color: '#ffb86c'
+        descKey: 'hobby_mechanic_desc',
+        emoji: '🔧',
+        color: '#ffb86c',
+        gradient: 'linear-gradient(135deg, #ffb86c 0%, #f0a050 100%)'
     }
 ];
 
-const HobbyCard = ({ hobby, t }) => (
+const HobbyCard = ({ hobby, t, index }) => (
     <motion.div
         className="hobby-card"
         variants={childVariants}
-        style={{ '--hobby-color': hobby.color }}
+        style={{ '--hobby-color': hobby.color, '--hobby-gradient': hobby.gradient }}
+        whileHover={{ y: -8, scale: 1.03 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-        <div className="hobby-card__icon">
-            <i className={`fa-solid ${hobby.icon}`}></i>
+        <div className="hobby-card__emoji">{hobby.emoji}</div>
+        <div className="hobby-card__icon-ring">
+            <div className="hobby-card__icon">
+                <i className={`fa-solid ${hobby.icon}`}></i>
+            </div>
         </div>
-        <span className="hobby-card__title">{t(hobby.titleKey)}</span>
+        <div className="hobby-card__content">
+            <h3 className="hobby-card__title">{t(hobby.titleKey)}</h3>
+            <p className="hobby-card__desc">{t(hobby.descKey)}</p>
+        </div>
+        <div className="hobby-card__shine"></div>
     </motion.div>
 );
 
@@ -65,8 +86,8 @@ export default function HobbiesSection() {
                 </motion.p>
 
                 <div className="hobbies-grid">
-                    {hobbiesData.map((hobby) => (
-                        <HobbyCard key={hobby.id} hobby={hobby} t={t} />
+                    {hobbiesData.map((hobby, index) => (
+                        <HobbyCard key={hobby.id} hobby={hobby} t={t} index={index} />
                     ))}
                 </div>
             </div>

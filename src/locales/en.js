@@ -231,9 +231,13 @@ export const en = {
   "hobbies_title": "Interests",
   "hobbies_intro": "Beyond coding, here's what I'm passionate about.",
   "hobby_motorsport": "Motorsport",
+  "hobby_motorsport_desc": "F1, rally & endurance — passionate about strategy and engineering.",
   "hobby_homelab": "Homelab",
+  "hobby_homelab_desc": "Personal servers, Docker, Proxmox — self-hosting my own services.",
   "hobby_travel": "Travel",
+  "hobby_travel_desc": "Discovering new cultures and broadening my horizons.",
   "hobby_mechanic": "Car Mechanics",
+  "hobby_mechanic_desc": "Maintenance and repair — understanding how things work.",
 
   "stats_years": "Years of study",
   "stats_technologies": "Technologies",

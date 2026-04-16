@@ -20,8 +20,8 @@ const StatItem = ({ stat, t }) => {
         <motion.div
             ref={ref}
             className="stat-item"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ y: 20 }}
+            whileInView={{ y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >

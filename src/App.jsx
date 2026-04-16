@@ -91,11 +91,7 @@ function App() {
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
 
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
-            >
+            <div>
                 <div className="site-background">
                     <div className="orb orb--1" />
                     <div className="orb orb--2" />
@@ -154,7 +150,7 @@ function App() {
                         />
                     </Suspense>
                 </div>
-            </motion.div>
+            </div>
         </>
     );
 }
