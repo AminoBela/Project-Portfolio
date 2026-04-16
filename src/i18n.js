@@ -26,6 +26,10 @@ i18n
     react: {
       useSuspense: false,
     },
+    // Performance : pas de détection à chaque rendu
+    detection: {
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;

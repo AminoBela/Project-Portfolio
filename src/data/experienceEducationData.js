@@ -55,6 +55,27 @@ export const educationData = [
 
 export const experiencesData = [
     {
+        id: 'udl',
+        type: 'experience',
+        status: 'current',
+        title: 'udl_title',
+        company: 'udl_company',
+        location: 'udl_location',
+        period: 'udl_period',
+        description: 'udl_desc',
+        logo: 'https://upload.wikimedia.org/wikipedia/fr/3/38/Logo_UL_Lorraine.png',
+        details: {
+            intro: "udl_details_intro",
+            tech: ["Docker", "Linux", "Bash", "Supervision", "Prometheus", "Grafana"],
+            highlights: [
+                "udl_details_highlight_1",
+                "udl_details_highlight_2",
+                "udl_details_highlight_3",
+                "udl_details_highlight_4"
+            ]
+        }
+    },
+    {
         id: 'ela',
         type: 'experience',
         title: 'ela_title',

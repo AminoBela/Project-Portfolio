@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
 export function useScrollspy() {
   const [activeSection, setActiveSection] = useState('accueil');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const observerRef = useRef(null);
 
   useEffect(() => {
     const observerOptions = {
-      rootMargin: '-20% 0px -60% 0px', // Ajusté pour mieux détecter le haut de la section
+      rootMargin: '-20% 0px -60% 0px',
       threshold: 0
     };
 
@@ -18,37 +19,41 @@ export function useScrollspy() {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    observerRef.current = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Fonction pour attacher l'observateur aux sections
-    const observeSections = () => {
-      const sections = document.querySelectorAll('section');
-      sections.forEach((section) => observer.observe(section));
-    };
+    // Observer les sections existantes
+    const sections = document.querySelectorAll('section');
+    sections.forEach((section) => observerRef.current.observe(section));
 
-    // 1. Observer immédiatement
-    observeSections();
+    // MutationObserver limité : observe seulement les enfants directs de main
+    // au lieu de tout le body avec subtree (beaucoup plus performant)
+    const mainEl = document.querySelector('main');
+    let mutationObserver = null;
 
-    // 2. Observer à nouveau quand le DOM change (pour le Lazy Loading)
-    const mutationObserver = new MutationObserver(() => {
-      observeSections();
-    });
+    if (mainEl) {
+      mutationObserver = new MutationObserver(() => {
+        // Re-observer les nouvelles sections (lazy loaded)
+        const newSections = document.querySelectorAll('section');
+        newSections.forEach((section) => {
+          observerRef.current.observe(section);
+        });
+      });
 
-    mutationObserver.observe(document.body, {
-      childList: true,
-      subtree: true
-    });
+      mutationObserver.observe(mainEl, {
+        childList: true,
+        subtree: false // Seulement les enfants directs
+      });
+    }
 
-    // Nettoyage
     return () => {
-      observer.disconnect();
-      mutationObserver.disconnect();
+      observerRef.current?.disconnect();
+      mutationObserver?.disconnect();
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
+  const toggleMenu = useCallback(() => {
+    setIsMenuOpen(prev => !prev);
+  }, []);
 
   return { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen };
 }

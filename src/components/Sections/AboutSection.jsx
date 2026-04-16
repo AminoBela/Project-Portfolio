@@ -68,7 +68,7 @@ export default function AboutSection({ onOpenInternshipModal }) {
                         data-cursor="pointer"
                     >
                         <div className="internship-icon">
-                            <i className="fa-solid fa-briefcase"></i>
+                            <i className="fa-solid fa-graduation-cap"></i>
                         </div>
                         <div className="internship-content">
                             <h4>{t('about_internship_title')}</h4>

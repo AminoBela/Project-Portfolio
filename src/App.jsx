@@ -6,35 +6,48 @@ import { navVariants } from './utils/framerMotionVariants';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
-import ExperienceEducationSection from './components/Sections/ExperienceEducationSection';
-import SkillsSection from './components/Sections/SkillsSection';
-import EngagementsSection from './components/Sections/EngagementsSection';
-import HobbiesSection from './components/Sections/HobbiesSection';
-import ContactSection from './components/Sections/ContactSection';
 import Footer from "./components/Layout/Footer";
 import CustomCursor from "./components/UI/CustomCursor";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import InternshipBanner from "./components/UI/InternshipBanner";
 import LanguageTransitionOverlay from "./components/UI/LanguageTransitionOverlay";
 
+// Lazy load des sections below-the-fold
+const ExperienceEducationSection = React.lazy(() => import('./components/Sections/ExperienceEducationSection'));
+const SkillsSection = React.lazy(() => import('./components/Sections/SkillsSection'));
+const EngagementsSection = React.lazy(() => import('./components/Sections/EngagementsSection'));
+const HobbiesSection = React.lazy(() => import('./components/Sections/HobbiesSection'));
+const ContactSection = React.lazy(() => import('./components/Sections/ContactSection'));
 const ProjectsSection = React.lazy(() => import('./components/Sections/ProjectsSection'));
 const InternshipModal = React.lazy(() => import('./components/UI/InternshipModal'));
 const MatrixRain = React.lazy(() => import('./components/UI/MatrixRain'));
 const TerminalMode = React.lazy(() => import('./components/UI/TerminalMode'));
+
+const SectionFallback = () => <div style={{ minHeight: '200px' }} />;
 
 const MainContent = React.memo(({ onOpenInternshipModal, bannerHeight }) => {
     return (
         <main style={{ paddingTop: bannerHeight, transition: 'padding-top 0.5s ease' }}>
             <HomeSection />
             <AboutSection onOpenInternshipModal={onOpenInternshipModal} />
-            <ExperienceEducationSection />
-            <EngagementsSection />
-            <SkillsSection />
-            <Suspense fallback={<div style={{ height: '300px' }}></div>}>
+            <Suspense fallback={<SectionFallback />}>
+                <ExperienceEducationSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <EngagementsSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <SkillsSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
                 <ProjectsSection />
             </Suspense>
-            <HobbiesSection />
-            <ContactSection />
+            <Suspense fallback={<SectionFallback />}>
+                <HobbiesSection />
+            </Suspense>
+            <Suspense fallback={<SectionFallback />}>
+                <ContactSection />
+            </Suspense>
         </main>
     );
 });
