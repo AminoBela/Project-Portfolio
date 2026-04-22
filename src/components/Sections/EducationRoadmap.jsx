@@ -19,7 +19,7 @@ const EducationCard = ({ item, t, onClick }) => {
 
             <div className="education-card__header">
                 {item.logo ? (
-                    <img src={item.logo} alt="" className="education-card__logo" />
+                    <img src={item.logo} alt="" className="education-card__logo" loading="lazy" />
                 ) : (
                     <div className="education-card__logo-placeholder">
                         <i className="fa-solid fa-graduation-cap"></i>

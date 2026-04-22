@@ -83,7 +83,7 @@ function ExperienceEducationSection() {
                             borderBottom: `1px solid ${selectedItem.color || '#66ff99'}44`
                         }}>
                             <div className="modal-hero__content">
-                                {selectedItem.logo && <img src={selectedItem.logo} alt="" className="expanded-card-logo" />}
+                                {selectedItem.logo && <img src={selectedItem.logo} alt="" className="expanded-card-logo" loading="lazy" />}
                                 <h2>{t(selectedItem.title)}</h2>
                                 <p className="expanded-card-subtitle">
                                     {t(selectedItem.company || selectedItem.institution)} • {t(selectedItem.location)}

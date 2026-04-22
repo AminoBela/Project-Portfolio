@@ -202,3 +202,8 @@ button {
   z-index: var(--z-fixed);
   transition: none !important;
 }
+/* --- PERFORMANCE OPTIMIZATIONS --- */
+.defer-rendering {
+  content-visibility: auto;
+  contain-intrinsic-size: 500px;
+}

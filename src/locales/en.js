@@ -5,6 +5,9 @@ export const en = {
   "nav_skills": "Skills",
   "nav_projects": "Projects",
   "nav_contact": "Contact",
+  "nav_more": "More",
+  "nav_engagements": "Commitments",
+  "nav_hobbies": "Interests",
   "nav_close_menu": "Close menu",
   "nav_open_menu": "Open menu",
 

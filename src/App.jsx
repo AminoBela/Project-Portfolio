@@ -107,25 +107,16 @@ function App() {
                         onOpenModal={handleOpenInternshipModal}
                     />
 
-                    <motion.nav
-                        variants={navVariants}
-                        initial="hidden"
-                        animate="visible"
-                        className={`main-nav ${isScrolled ? 'main-nav--scrolled' : ''}`}
-                        layout
-                        transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                        style={{ top: `calc(1rem + ${bannerHeight})`, transition: 'top 0.5s ease' }}
-                    >
-                        <Navigation
-                            activeSection={activeSection}
-                            isMenuOpen={isMenuOpen}
-                            toggleMenu={toggleMenu}
-                            toggleTheme={toggleTheme}
-                            theme={theme}
-                            onNavLinkClick={() => setIsMenuOpen(false)}
-                            onLanguageChange={handleLanguageChange}
-                        />
-                    </motion.nav>
+                    <Navigation
+                        activeSection={activeSection}
+                        isMenuOpen={isMenuOpen}
+                        toggleMenu={toggleMenu}
+                        toggleTheme={toggleTheme}
+                        theme={theme}
+                        onNavLinkClick={() => setIsMenuOpen(false)}
+                        onLanguageChange={handleLanguageChange}
+                        bannerHeight={bannerHeight}
+                    />
 
                     <MainContent
                         onOpenInternshipModal={handleOpenInternshipModal}

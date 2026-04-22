@@ -5,6 +5,9 @@ export const fr = {
   "nav_skills": "Compétences",
   "nav_projects": "Projets",
   "nav_contact": "Contact",
+  "nav_more": "Plus",
+  "nav_engagements": "Engagements",
+  "nav_hobbies": "Centres d'intérêt",
   "nav_close_menu": "Fermer le menu",
   "nav_open_menu": "Ouvrir le menu",
 

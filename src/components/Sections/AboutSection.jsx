@@ -30,7 +30,7 @@ export default function AboutSection({ onOpenInternshipModal }) {
                 <div className="about-visual-column">
                     <motion.div className="about-photo-wrapper" variants={childVariants}>
                         <div className="photo-blob"></div>
-                        <img src={photo} alt="Amin Belalia" className="about-photo-redesigned" />
+                        <img src={photo} alt="Amin Belalia" className="about-photo-redesigned" loading="lazy" />
                         <div className="photo-badge">
                             <span className="status-dot"></span> {t('about_available')}
                         </div>

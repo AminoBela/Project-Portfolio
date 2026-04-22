@@ -5,6 +5,9 @@ export const es = {
   "nav_skills": "Habilidades",
   "nav_projects": "Proyectos",
   "nav_contact": "Contacto",
+  "nav_more": "Más",
+  "nav_engagements": "Compromisos",
+  "nav_hobbies": "Intereses",
   "nav_close_menu": "Cerrar menú",
   "nav_open_menu": "Abrir menú",
 

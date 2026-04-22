@@ -68,7 +68,7 @@ function ProjectCard({ project, t, ...props }) {
             >
                 <div className="project-card__header">
                     {projectImage ? (
-                        <img src={projectImage} alt="" className="project-card__icon" />
+                        <img src={projectImage} alt="" className="project-card__icon" loading="lazy" />
                     ) : (
                         <div className="project-card__icon-placeholder" style={{ backgroundColor: mainColor }}>
                             {mainLanguage[0]}
