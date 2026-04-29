@@ -19,12 +19,10 @@ function ProjectsSection() {
 
   const categories = useMemo(() => {
     if (!projects || projects.length === 0) return ['All'];
-    // Utilise TOUTES les langues de chaque repo (pas juste la principale)
+    // Utilise uniquement la technologie principale
     const langs = new Set();
     projects.forEach(p => {
-      if (p.languages && typeof p.languages === 'object') {
-        Object.keys(p.languages).forEach(lang => langs.add(lang));
-      } else if (p.language) {
+      if (p.language) {
         langs.add(p.language);
       }
     });
@@ -33,13 +31,8 @@ function ProjectsSection() {
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    // Filtre par toutes les langues du repo, pas juste la principale
-    return projects.filter(project => {
-      if (project.languages && typeof project.languages === 'object') {
-        return Object.keys(project.languages).includes(activeFilter);
-      }
-      return project.language === activeFilter;
-    });
+    // Filtre uniquement par la technologie principale
+    return projects.filter(project => project.language === activeFilter);
   }, [projects, activeFilter]);
 
   // Pagination logic
@@ -91,10 +84,14 @@ function ProjectsSection() {
                 <motion.div
                   key={`${activeFilter}-${currentPage}`}
                   className="project-grid-inner"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={{
+                    hidden: { opacity: 0 },
+                    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+                    exit: { opacity: 0, transition: { duration: 0.2 } }
+                  }}
                 >
                   {currentProjects.map((project) => (
                     <ProjectCard

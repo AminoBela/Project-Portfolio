@@ -130,13 +130,44 @@ export const es = {
   "cesi_period": "2026 - 2028",
   "cesi_desc": "Programa de alternancia especializado en gestión de infraestructuras y ciberseguridad de los sistemas de información.",
 
+  "crous_details_intro": "Rol central en la acogida y el apoyo a los estudiantes residentes en la ciudad universitaria, fomentando la cohesión social y la resolución de problemas.",
+  "crous_details_highlight_1": "Gestión de la recepción, integración y asistencia diaria a los residentes.",
+  "crous_details_highlight_2": "Planificación y animación de eventos para fortalecer la cohesión.",
+  "crous_details_highlight_3": "Mediación y resolución de problemas de convivencia.",
+
+  "poste_details_intro": "Trabajo estudiantil de fin de semana que implica la gestión rigurosa y clasificación manual/automática del correo.",
+  "poste_details_highlight_1": "Clasificación y distribución eficiente de paquetes y correo.",
+  "poste_details_highlight_2": "Manejo de máquinas de clasificación automatizadas cumpliendo estrictamente las normas de seguridad.",
+
+  "iss_details_intro": "Trabajo estudiantil de verano consistente en el mantenimiento de instalaciones y el estricto cumplimiento de las normas sanitarias.",
+  "iss_details_highlight_1": "Limpieza integral de oficinas, baños y salas de conferencias.",
+  "iss_details_highlight_2": "Uso de productos industriales y cumplimiento de las normativas de higiene.",
+
+  "cesi_details_intro": "Formación exhaustiva destinada a certificar habilidades de nivel de Máster en la gestión de sistemas de información, ciberseguridad y liderazgo.",
+  "cesi_details_highlight_1": "Diseño y supervisión de arquitecturas de red seguras.",
+  "cesi_details_highlight_2": "Gestión de riesgos y desarrollo de políticas de ciberseguridad.",
+  "cesi_details_highlight_3": "Gestión de proyectos informáticos complejos e infraestructuras.",
+
+  "but_details_intro": "Formación técnica intensiva centrada en la administración de sistemas, la gestión de bases de datos y la arquitectura de redes.",
+  "but_details_highlight_1": "Desarrollo y automatización de tareas de administración.",
+  "but_details_highlight_2": "Diseño y consulta de bases de datos relacionales.",
+  "but_details_highlight_3": "Proyectos prácticos en grupo aplicando metodologías ágiles.",
+
+  "polytech_details_intro": "Exigente ciclo preparatorio centrado en las ciencias fundamentales y la ingeniería.",
+  "polytech_details_highlight_1": "Adquisición de una sólida base en matemáticas avanzadas y física.",
+  "polytech_details_highlight_2": "Introducción a los circuitos eléctricos y modelado de software.",
+
+  "bac_details_intro": "Obtención del título de bachillerato con sólidas especializaciones científicas.",
+  "bac_details_highlight_1": "Especialización avanzada en Matemáticas, Física y Ciencias de la Ingeniería.",
+
+
   "education_status_past": "Completado",
   "education_status_current": "En curso",
   "education_status_future": "Próximo",
 
   "alternance_search_title": "Búsqueda de Alternancia",
   "alternance_search_desc": "Busco una alternancia para mi <strong>Máster pro Manager en Infraestructuras y Ciberseguridad de los SI</strong> a partir de septiembre 2026.",
-  "alternance_search_more": "Saber más &rarr;",
+  "alternance_search_more": "Saber más",
   "alternance_badge": "Alternancia 2026-2028",
   "alternance_subtitle": "Máster pro Manager en Infraestructuras y Ciberseguridad de los SI • CESI Nancy",
   "alternance_start_label": "Inicio",

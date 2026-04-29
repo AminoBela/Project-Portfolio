@@ -9,7 +9,15 @@ export const educationData = [
         period: 'cesi_period',
         description: 'cesi_desc',
         logo: 'https://upload.wikimedia.org/wikipedia/fr/e/ef/Logo_cesi_2022.png',
-        details: null,
+        details: {
+            intro: "cesi_details_intro",
+            tech: ["Cybersécurité", "Management SI", "Réseaux", "Infrastructures"],
+            highlights: [
+                "cesi_details_highlight_1",
+                "cesi_details_highlight_2",
+                "cesi_details_highlight_3"
+            ]
+        },
         color: '#a78bfa'
     },
     {
@@ -22,7 +30,15 @@ export const educationData = [
         period: 'but_period',
         description: 'but_desc',
         logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
-        details: null,
+        details: {
+            intro: "but_details_intro",
+            tech: ["Programmation", "Base de données", "Réseaux", "Web", "Gestion de projet"],
+            highlights: [
+                "but_details_highlight_1",
+                "but_details_highlight_2",
+                "but_details_highlight_3"
+            ]
+        },
         color: '#34d399'
     },
     {
@@ -35,7 +51,14 @@ export const educationData = [
         period: 'polytech_period',
         description: 'polytech_desc',
         logo: 'https://yt3.googleusercontent.com/dlfb9W3nYcX5-uBro9MdZNfjbv_crHLKwWP2WMCw5bh5tTd2gIJes_RpwFw1MJQsph6sjSx3rXQ=s900-c-k-c0x00ffffff-no-rj',
-        details: null,
+        details: {
+            intro: "polytech_details_intro",
+            tech: ["Mathématiques", "Physique", "Sciences de l'ingénieur"],
+            highlights: [
+                "polytech_details_highlight_1",
+                "polytech_details_highlight_2"
+            ]
+        },
         color: '#6272a4'
     },
     {
@@ -48,7 +71,13 @@ export const educationData = [
         period: 'bac_period',
         description: 'bac_desc',
         logo: null,
-        details: null,
+        details: {
+            intro: "bac_details_intro",
+            tech: ["Mathématiques", "Physique-Chimie", "Sciences de l'ingénieur"],
+            highlights: [
+                "bac_details_highlight_1"
+            ]
+        },
         color: '#6272a4'
     }
 ];
@@ -63,7 +92,7 @@ export const experiencesData = [
         location: 'udl_location',
         period: 'udl_period',
         description: 'udl_desc',
-        logo: 'https://upload.wikimedia.org/wikipedia/fr/3/38/Logo_UL_Lorraine.png',
+        logo: 'https://factuel.univ-lorraine.fr/wp-content/uploads/2025/06/sans_titre_-_4.jpg',
         details: {
             intro: "udl_details_intro",
             tech: ["Docker", "Linux", "Bash", "Supervision", "Prometheus", "Grafana"],
@@ -105,7 +134,15 @@ export const experiencesData = [
         period: 'crous_period',
         description: 'crous_desc',
         logo: 'https://pbs.twimg.com/profile_images/1871548296432418816/JqhgFUlI_400x400.jpg',
-        details: null
+        details: {
+            intro: "crous_details_intro",
+            tech: ["Communication", "Gestion de conflit", "Événementiel", "Travail en équipe"],
+            highlights: [
+                "crous_details_highlight_1",
+                "crous_details_highlight_2",
+                "crous_details_highlight_3"
+            ]
+        }
     },
     {
         id: 'poste',
@@ -115,8 +152,15 @@ export const experiencesData = [
         location: 'poste_location',
         period: 'poste_period',
         description: 'poste_desc',
-        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/La_Poste_2022.svg/langfr-2560px-La_Poste_2022.svg.png',
-        details: null
+        logo: 'https://upload.wikimedia.org/wikipedia/fr/thumb/0/0d/La_Poste_2022.svg/1920px-La_Poste_2022.svg.png',
+        details: {
+            intro: "poste_details_intro",
+            tech: ["Autonomie", "Rigueur", "Logistique"],
+            highlights: [
+                "poste_details_highlight_1",
+                "poste_details_highlight_2"
+            ]
+        }
     },
     {
         id: 'iss',
@@ -127,7 +171,14 @@ export const experiencesData = [
         period: 'iss_period',
         description: 'iss_desc',
         logo: 'https://www.developmentaid.org/files/organizationLogos/iss-facility-services-sa-120962.jpg',
-        details: null
+        details: {
+            intro: "iss_details_intro",
+            tech: ["Hygiène", "Rigueur", "Efficacité"],
+            highlights: [
+                "iss_details_highlight_1",
+                "iss_details_highlight_2"
+            ]
+        }
     }
 ];
 

@@ -269,61 +269,91 @@
    ALTERNANCE CARD
    ═══════════════════════════════════════════════ */
 .alternance-card {
-    background: var(--card-bg);
-    border: 1px solid rgba(167, 139, 250, 0.12);
-    border-radius: 18px;
-    padding: 1.75rem;
+    background: linear-gradient(145deg, rgba(var(--card-bg-rgb, 15,23,42), 0.7) 0%, rgba(var(--accent-rgb), 0.03) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
+    border-radius: 20px;
+    padding: 1.75rem 2rem;
     display: flex;
     align-items: center;
-    gap: 1.25rem;
+    gap: 1.5rem;
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    margin-top: 2rem;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.alternance-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), 0.5), transparent);
+    opacity: 0.6;
 }
 
 .alternance-card::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg,
-            transparent 0%,
-            #a78bfa 25%,
-            #f472b6 50%,
-            #38bdf8 75%,
-            transparent 100%);
-    background-size: 200% 100%;
-    animation: aurora-flow 6s linear infinite;
-    opacity: 0.6;
+    inset: 0;
+    background: radial-gradient(circle at 100% 50%, rgba(var(--accent-rgb), 0.08), transparent 50%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
 .alternance-card:hover {
-    border-color: rgba(167, 139, 250, 0.25);
-    transform: translateY(-3px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    border-color: rgba(var(--accent-rgb), 0.35);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 16px rgba(var(--accent-rgb), 0.08);
+}
+
+.alternance-card:hover::after {
+    opacity: 1;
 }
 
 .alternance-card__icon {
-    width: 48px;
-    height: 48px;
-    background: rgba(167, 139, 250, 0.1);
+    width: 52px;
+    height: 52px;
+    background: rgba(var(--accent-rgb), 0.08);
+    border: 1px solid rgba(var(--accent-rgb), 0.12);
     border-radius: 14px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.3rem;
-    color: #c4b5fd;
+    font-size: 1.4rem;
+    color: var(--accent);
     flex-shrink: 0;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.alternance-card__icon::before {
+    content: '';
+    position: absolute;
+    top: -2px; left: -2px; right: -2px; bottom: -2px;
+    border-radius: 16px;
+    background: var(--accent);
+    opacity: 0.1;
+    z-index: -1;
+    animation: pulse-icon 2s infinite;
+}
+
+@keyframes pulse-icon {
+    0% { transform: scale(1); opacity: 0.3; }
+    50% { transform: scale(1.15); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
 }
 
 .alternance-card:hover .alternance-card__icon {
-    background: rgba(167, 139, 250, 0.18);
+    background: rgba(var(--accent-rgb), 0.15);
     transform: scale(1.05);
+    border-color: rgba(var(--accent-rgb), 0.3);
 }
 
 .alternance-card__content {
@@ -334,32 +364,47 @@
 
 .alternance-card__content h4 {
     font-family: var(--font-heading);
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: var(--color-text);
-    margin: 0 0 0.35rem 0;
+    margin: 0 0 0.4rem 0;
     font-weight: 700;
     letter-spacing: -0.02em;
 }
 
 .alternance-card__content p {
-    font-size: 0.88rem;
+    font-size: 0.9rem;
     color: var(--text-secondary);
-    margin: 0;
-    line-height: 1.5;
+    margin: 0 0 0.75rem 0;
+    line-height: 1.6;
 }
 
 .alternance-card__cta {
-    color: #a78bfa;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    margin-top: 0.5rem;
-    display: inline-block;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: rgba(var(--accent-rgb), 0.1);
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
     transition: all 0.3s ease;
-    font-size: 0.85rem;
+}
+
+.alternance-card__cta i {
+    font-size: 0.8em;
+    transition: transform 0.3s ease;
+}
+
+.alternance-card:hover .alternance-card__cta i {
+    transform: translateX(3px);
 }
 
 .alternance-card:hover .alternance-card__cta {
-    transform: translateX(4px);
-    color: #c4b5fd;
+    background: var(--accent);
+    color: var(--bg-primary);
 }
 
 /* ═══════════════════════════════════════════════

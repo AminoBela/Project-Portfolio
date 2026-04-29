@@ -55,7 +55,10 @@ const AlternanceCard = ({ t, onClick }) => (
         <div className="alternance-card__content">
             <h4>{t('alternance_search_title')}</h4>
             <p dangerouslySetInnerHTML={{ __html: t('alternance_search_desc') }} />
-            <span className="alternance-card__cta">{t('alternance_search_more')}</span>
+            <span className="alternance-card__cta">
+                {t('alternance_search_more')}
+                <i className="fa-solid fa-arrow-right"></i>
+            </span>
         </div>
     </motion.div>
 );

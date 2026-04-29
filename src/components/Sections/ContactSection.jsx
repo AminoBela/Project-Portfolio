@@ -49,7 +49,7 @@ const ContactSection = () => {
 
                         <div className="contact-grid">
                             {/* EMAIL AVEC COPIE */}
-                            <div className="contact-item" onClick={handleCopyEmail}>
+                            <a href={`mailto:${email}`} className="contact-item" onClick={handleCopyEmail}>
                                 <div className="icon-box">
                                     <i className="fa-solid fa-envelope"></i>
                                 </div>
@@ -61,7 +61,7 @@ const ContactSection = () => {
                                     <i className={`fa-solid ${copied ? 'fa-check' : 'fa-copy'}`}></i>
                                 </div>
                                 {copied && <span className="copy-feedback">{t('contact_copied')}</span>}
-                            </div>
+                            </a>
 
                             {/* LINKEDIN */}
                             <a

@@ -130,13 +130,44 @@ export const en = {
   "cesi_period": "2026 - 2028",
   "cesi_desc": "Work-study program specializing in infrastructure management and information systems cybersecurity.",
 
+  "crous_details_intro": "Central role in welcoming and supporting students residing in university housing, promoting social connection and problem-solving.",
+  "crous_details_highlight_1": "Managing the reception, integration, and daily assistance of residents.",
+  "crous_details_highlight_2": "Planning and leading events to strengthen team cohesion.",
+  "crous_details_highlight_3": "Mediation and resolving issues related to community living.",
+
+  "poste_details_intro": "Weekend student job involving rigorous management and manual/automatic sorting of mail.",
+  "poste_details_highlight_1": "Efficient sorting and distribution of parcels and mail.",
+  "poste_details_highlight_2": "Operation of automated sorting machines while strictly adhering to safety guidelines.",
+
+  "iss_details_intro": "Summer student job consisting of premises maintenance and strict adherence to health standards.",
+  "iss_details_highlight_1": "Comprehensive cleaning of offices, restrooms, and conference rooms.",
+  "iss_details_highlight_2": "Use of industrial products and compliance with hygiene regulations.",
+
+  "cesi_details_intro": "In-depth training aimed at certifying Master's level skills in IT system management, cybersecurity, and leadership.",
+  "cesi_details_highlight_1": "Design and supervision of secure network architectures.",
+  "cesi_details_highlight_2": "Risk management and development of cybersecurity policies.",
+  "cesi_details_highlight_3": "Management of complex IT projects and infrastructures.",
+
+  "but_details_intro": "Intensive technical training focused on system administration, database management, and network architecture.",
+  "but_details_highlight_1": "Development and automation of administration tasks.",
+  "but_details_highlight_2": "Design and querying of relational databases.",
+  "but_details_highlight_3": "Practical group projects applying agile methodologies.",
+
+  "polytech_details_intro": "Demanding preparatory cycle focused on fundamental sciences and engineering.",
+  "polytech_details_highlight_1": "Acquisition of a solid foundation in advanced mathematics and physics.",
+  "polytech_details_highlight_2": "Introduction to electrical circuits and software modeling.",
+
+  "bac_details_intro": "Graduated with a high school diploma with strong scientific specializations.",
+  "bac_details_highlight_1": "Advanced specialization in Mathematics, Physics, and Engineering Sciences.",
+
+
   "education_status_past": "Completed",
   "education_status_current": "In progress",
   "education_status_future": "Upcoming",
 
   "alternance_search_title": "Work-Study Search",
   "alternance_search_desc": "I am looking for a work-study position for my <strong>Professional Master's in IS Infrastructure & Cybersecurity</strong> starting September 2026.",
-  "alternance_search_more": "Learn more &rarr;",
+  "alternance_search_more": "Learn more",
   "alternance_badge": "Work-Study 2026-2028",
   "alternance_subtitle": "Professional Master's — Manager in IS Infrastructure & Cybersecurity • CESI Nancy",
   "alternance_start_label": "Start",
