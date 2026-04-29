@@ -5,13 +5,13 @@ import Modal from './Modal';
 const InternshipModal = ({ isOpen, onClose }) => {
     const { t } = useTranslation();
 
-    const accentColor = '#bd93f9';
+    const accentColor = '#a78bfa';
 
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <div className="modal-hero" style={{
-                background: `linear-gradient(135deg, rgba(189, 147, 249, 0.15) 0%, rgba(0,0,0,0) 100%)`,
-                borderBottom: `1px solid rgba(189, 147, 249, 0.3)`
+                background: `linear-gradient(135deg, rgba(167, 139, 250, 0.12) 0%, rgba(0,0,0,0) 100%)`,
+                borderBottom: `1px solid rgba(167, 139, 250, 0.25)`
             }}>
                 <div className="modal-hero__content">
                     <span className="modal-hero__badge" style={{ backgroundColor: accentColor, color: '#000' }}>

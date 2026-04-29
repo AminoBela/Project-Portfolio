@@ -11,15 +11,25 @@ const TimelineCard = ({ item, onSelect, t }) => (
         className="timeline-card-compact"
         onClick={() => onSelect(item)}
         variants={childVariants}
-        // Hover géré par CSS
         data-cursor="pointer"
     >
         <div className="timeline-card-compact-header">
-            <h3 className="timeline-card-compact-title">{t(item.title)}</h3>
+            {item.logo && (
+                <img src={item.logo} alt="" className="timeline-card-logo" loading="lazy" />
+            )}
+            <div className="timeline-card-text">
+                <h3 className="timeline-card-compact-title">{t(item.title)}</h3>
+                <span className="timeline-card-company">{t(item.company)}</span>
+            </div>
         </div>
-        <span className="timeline-card-compact-period">{t(item.period)}</span>
-        <div className="timeline-card-icon">
-            <i className="fa-solid fa-briefcase"></i>
+        {item.description && (
+            <p className="timeline-card-desc">{t(item.description)}</p>
+        )}
+        <div className="timeline-card-footer">
+            <span className="timeline-card-compact-period">{t(item.period)}</span>
+            <div className="timeline-card-icon">
+                <i className="fa-solid fa-arrow-up-right-from-square"></i>
+            </div>
         </div>
     </motion.div>
 );
@@ -79,8 +89,8 @@ function ExperienceEducationSection() {
                 {selectedItem && (
                     <>
                         <div className="modal-hero" style={{
-                            background: `linear-gradient(135deg, ${selectedItem.color || '#66ff99'}22 0%, rgba(0,0,0,0) 100%)`,
-                            borderBottom: `1px solid ${selectedItem.color || '#66ff99'}44`
+                            background: `linear-gradient(135deg, ${selectedItem.color || '#818cf8'}22 0%, rgba(0,0,0,0) 100%)`,
+                            borderBottom: `1px solid ${selectedItem.color || '#818cf8'}44`
                         }}>
                             <div className="modal-hero__content">
                                 {selectedItem.logo && <img src={selectedItem.logo} alt="" className="expanded-card-logo" loading="lazy" />}
@@ -126,7 +136,7 @@ function ExperienceEducationSection() {
                                         <div className="tech-stack" style={{ marginTop: '2rem' }}>
                                             <h4>{t('modal_internship_missions_title')}</h4>
                                             <ul className="highlights-list">
-                                                {selectedItem.details.highlights.map((h, i) => <li key={i}><span>✓</span> {t(h)}</li>)}
+                                                {selectedItem.details.highlights.map((h, i) => <li key={i}><span>—</span> {t(h)}</li>)}
                                             </ul>
                                         </div>
                                     </>
@@ -140,11 +150,11 @@ function ExperienceEducationSection() {
             {/* --- MODAL ALTERNANCE --- */}
             <Modal isOpen={showAlternanceModal} onClose={() => setShowAlternanceModal(false)}>
                 <div className="modal-hero" style={{
-                    background: 'linear-gradient(135deg, rgba(189, 147, 249, 0.15) 0%, rgba(0,0,0,0) 100%)',
-                    borderBottom: '1px solid rgba(189, 147, 249, 0.3)'
+                    background: 'linear-gradient(135deg, rgba(167, 139, 250, 0.12) 0%, rgba(0,0,0,0) 100%)',
+                    borderBottom: '1px solid rgba(167, 139, 250, 0.25)'
                 }}>
                     <div className="modal-hero__content">
-                        <span className="modal-hero__badge" style={{ backgroundColor: '#bd93f9', color: '#000' }}>
+                        <span className="modal-hero__badge" style={{ backgroundColor: '#a78bfa', color: '#000' }}>
                             {t('alternance_badge')}
                         </span>
                         <h2>{t('alternance_search_title')}</h2>
@@ -185,7 +195,7 @@ function ExperienceEducationSection() {
                             <h4>{t('alternance_domains_title')}</h4>
                             <div className="project-tags large">
                                 {['Cybersécurité', 'Admin Système', 'DevOps', 'Cloud', 'Management SI', 'Infrastructure'].map(tag => (
-                                    <span key={tag} className="tag" style={{ borderColor: '#bd93f9', color: '#bd93f9' }}>{tag}</span>
+                                    <span key={tag} className="tag" style={{ borderColor: '#a78bfa', color: '#a78bfa' }}>{tag}</span>
                                 ))}
                             </div>
                         </div>
@@ -194,7 +204,7 @@ function ExperienceEducationSection() {
                             <a href="mailto:abelaliabendjafar@gmail.com" className="btn-github">
                                 {t('alternance_cta_contact')}
                             </a>
-                            <a href="https://linkedin.com/in/aminbelalia" target="_blank" rel="noopener noreferrer" className="btn-demo" style={{ color: '#bd93f9', borderColor: '#bd93f9' }}>
+                            <a href="https://linkedin.com/in/aminbelalia" target="_blank" rel="noopener noreferrer" className="btn-demo" style={{ color: '#a78bfa', borderColor: '#a78bfa' }}>
                                 {t('alternance_cta_linkedin')}
                             </a>
                         </div>

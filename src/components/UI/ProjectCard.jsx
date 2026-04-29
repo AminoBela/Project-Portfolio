@@ -27,7 +27,7 @@ const LANGUAGE_COLORS = {
 };
 
 function getLangColor(lang) {
-    return LANGUAGE_COLORS[lang] || '#66ff99';
+    return LANGUAGE_COLORS[lang] || '#818cf8';
 }
 
 function shorten(text, limit = 150) {

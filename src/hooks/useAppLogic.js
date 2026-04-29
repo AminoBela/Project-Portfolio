@@ -27,7 +27,7 @@ export const useAppLogic = () => {
     useEffect(() => {
         console.log(
             "%c👋 Hey Dev! Looking for secrets? Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A",
-            "color: #66ff99; font-family: monospace; font-size: 14px; background: #10141a; padding: 10px; border-radius: 5px;"
+            "color: #818cf8; font-family: monospace; font-size: 14px; background: #0f0f1a; padding: 10px; border-radius: 5px;"
         );
     }, []);
 

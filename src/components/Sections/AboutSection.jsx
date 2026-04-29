@@ -6,13 +6,13 @@ import '../../styles/components.css';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
 
-const highlights = [
-    { icon: 'fa-network-wired', label: 'about_highlight_network', value: 'TCP/IP' },
-    { icon: 'fa-linux', label: 'about_highlight_system', value: 'Unix' },
-    { icon: 'fa-docker', label: 'about_highlight_devops', value: 'Docker' },
+const languagesData = [
+    { key: 'lang_french', code: 'FR', level: 100, levelKey: 'lang_level_bilingual' },
+    { key: 'lang_spanish', code: 'ES', level: 100, levelKey: 'lang_level_bilingual' },
+    { key: 'lang_english', code: 'EN', level: 85, levelKey: 'lang_level_toeic' },
+    { key: 'lang_arabic', code: 'AR', level: 70, levelKey: 'lang_level_good' },
+    { key: 'lang_valencian', code: 'VA', level: 65, levelKey: 'lang_level_good' },
 ];
-
-const languages = ['lang_french', 'lang_english', 'lang_spanish', 'lang_valencian', 'lang_arabic'];
 
 export default function AboutSection({ onOpenInternshipModal }) {
     const { t } = useTranslation();
@@ -26,88 +26,100 @@ export default function AboutSection({ onOpenInternshipModal }) {
             whileInView="visible"
             viewport={{ once: true }}
         >
-            <div className="about-container-redesigned">
-                <div className="about-visual-column">
-                    <motion.div className="about-photo-wrapper" variants={childVariants}>
-                        <div className="photo-blob"></div>
-                        <img src={photo} alt="Amin Belalia" className="about-photo-redesigned" loading="lazy" />
-                        <div className="photo-badge">
-                            <span className="status-dot"></span> {t('about_available')}
-                        </div>
-                    </motion.div>
-
-                    <motion.div className="about-intro-text" variants={childVariants}>
-                        <h2 className="about-title-redesigned">
-                            <span className="highlight-text">Amin</span> <br /> Belalia
-                        </h2>
-                        <p className="about-tagline">{t('about_tagline')}</p>
-                        <div className="about-actions">
-                            <a href={cvPdf} className="btn-download" target="_blank" rel="noopener noreferrer">
-                                <i className="fa-solid fa-download"></i> CV
-                            </a>
-                            <a href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/" className="btn-social" target="_blank" rel="noopener noreferrer">
-                                <i className="fa-brands fa-linkedin-in"></i>
-                            </a>
-                            <a href="mailto:abelaliabendjafar@gmail.com" className="btn-social">
-                                <i className="fa-solid fa-envelope"></i>
-                            </a>
-                        </div>
-                    </motion.div>
-                </div>
-
-                <div className="about-content-column">
-                    <motion.div className="about-bio-card" variants={childVariants}>
-                        <h3><i className="fa-solid fa-user-astronaut"></i> {t('about_bio_title')}</h3>
-                        <p>{t('about_bio_text')}</p>
-                    </motion.div>
-
-                    <motion.div
-                        className="internship-card"
-                        variants={childVariants}
-                        onClick={onOpenInternshipModal}
-                        data-cursor="pointer"
-                    >
-                        <div className="internship-icon">
-                            <i className="fa-solid fa-graduation-cap"></i>
-                        </div>
-                        <div className="internship-content">
-                            <h4>{t('about_internship_title')}</h4>
-                            <p dangerouslySetInnerHTML={{ __html: t('about_internship_desc') }} />
-                            <div className="internship-details">
-                                <span><i className="fa-regular fa-calendar"></i> {t('about_internship_date')}</span>
-                                <span className="click-hint" dangerouslySetInnerHTML={{ __html: t('about_internship_more') }} />
-                            </div>
-                        </div>
-                    </motion.div>
-
-                    <motion.div className="about-stats-row" variants={childVariants}>
-                        {highlights.map((metric) => (
-                            <div key={metric.label} className="stat-card">
-                                <i className={`fa-solid ${metric.icon}`}></i>
-                                <span className="stat-value">{metric.value}</span>
-                                <span className="stat-label">{t(metric.label)}</span>
-                            </div>
-                        ))}
-                    </motion.div>
-
-                    <div className="about-details-grid">
-                        <motion.div className="detail-card" variants={childVariants}>
-                            <h4><i className="fa-solid fa-layer-group"></i> {t('about_skills_title')}</h4>
-                            <ul>
-                                <li>{t('about_skills_1')}</li>
-                                <li>{t('about_skills_2')}</li>
-                                <li>{t('about_skills_3')}</li>
-                            </ul>
-                        </motion.div>
-
-                        <motion.div className="detail-card" variants={childVariants}>
-                            <h4><i className="fa-solid fa-earth-europe"></i> {t('about_languages_title')}</h4>
-                            <div className="lang-tags">
-                                {languages.map(l => <span key={l}>{t(l)}</span>)}
-                            </div>
-                        </motion.div>
+            {/* ── Hero intro row ──────────────────── */}
+            <motion.div className="about-hero" variants={childVariants}>
+                <div className="about-hero__photo-wrap">
+                    <div className="about-hero__glow" />
+                    <img src={photo} alt="Amin Belalia" className="about-hero__photo" loading="lazy" />
+                    <div className="about-hero__badge">
+                        <span className="about-hero__dot" />
+                        {t('about_available')}
                     </div>
                 </div>
+                <div className="about-hero__text">
+                    <h2 className="about-hero__name">
+                        <span className="about-hero__firstname">Amin</span> Belalia
+                    </h2>
+                    <p className="about-hero__tagline">{t('about_tagline')}</p>
+                    <div className="about-hero__actions">
+                        <a href={cvPdf} className="about-btn about-btn--primary" target="_blank" rel="noopener noreferrer">
+                            <i className="fa-solid fa-download" /> CV
+                        </a>
+                        <a href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/" className="about-btn about-btn--ghost" target="_blank" rel="noopener noreferrer">
+                            <i className="fa-brands fa-linkedin-in" />
+                        </a>
+                        <a href="mailto:abelaliabendjafar@gmail.com" className="about-btn about-btn--ghost">
+                            <i className="fa-solid fa-envelope" />
+                        </a>
+                    </div>
+                </div>
+            </motion.div>
+
+            {/* ── Bento grid ─────────────────────── */}
+            <div className="about-bento">
+                {/* Bio — large card */}
+                <motion.div className="bento-card bento-card--bio" variants={childVariants}>
+                    <div className="bento-card__header">
+                        <i className="fa-solid fa-user-astronaut" />
+                        <h3>{t('about_bio_title')}</h3>
+                    </div>
+                    <p>{t('about_bio_text')}</p>
+                </motion.div>
+
+                {/* Internship CTA */}
+                <motion.div
+                    className="bento-card bento-card--cta"
+                    variants={childVariants}
+                    onClick={onOpenInternshipModal}
+                    data-cursor="pointer"
+                >
+                    <div className="bento-cta__icon">
+                        <i className="fa-solid fa-graduation-cap" />
+                    </div>
+                    <h4>{t('about_internship_title')}</h4>
+                    <p dangerouslySetInnerHTML={{ __html: t('about_internship_desc') }} />
+                    <div className="bento-cta__footer">
+                        <span><i className="fa-regular fa-calendar" /> {t('about_internship_date')}</span>
+                        <span className="bento-cta__arrow" dangerouslySetInnerHTML={{ __html: t('about_internship_more') }} />
+                    </div>
+                </motion.div>
+
+                {/* Skills */}
+                <motion.div className="bento-card bento-card--skills" variants={childVariants}>
+                    <div className="bento-card__header">
+                        <i className="fa-solid fa-layer-group" />
+                        <h3>{t('about_skills_title')}</h3>
+                    </div>
+                    <ul className="bento-skills__list">
+                        <li>{t('about_skills_1')}</li>
+                        <li>{t('about_skills_2')}</li>
+                        <li>{t('about_skills_3')}</li>
+                    </ul>
+                </motion.div>
+
+                {/* Languages */}
+                <motion.div className="bento-card bento-card--langs" variants={childVariants}>
+                    <div className="bento-card__header">
+                        <i className="fa-solid fa-earth-europe" />
+                        <h3>{t('about_languages_title')}</h3>
+                    </div>
+                    <div className="bento-langs">
+                        {languagesData.map(lang => (
+                            <div key={lang.key} className="bento-lang-row">
+                                <span className="bento-lang-code">{lang.code}</span>
+                                <div className="bento-lang-info">
+                                    <div className="bento-lang-meta">
+                                        <span className="bento-lang-name">{t(lang.key)}</span>
+                                        <span className="bento-lang-level">{t(lang.levelKey)}</span>
+                                    </div>
+                                    <div className="bento-lang-bar">
+                                        <div className="bento-lang-fill" style={{ width: `${lang.level}%` }} />
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </motion.div>
             </div>
         </motion.section>
     );

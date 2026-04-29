@@ -30,10 +30,10 @@ const COMMANDS = {
             '│            AMIN BELALIA             │',
             '└─────────────────────────────────────┘',
             '',
-            '  📍 Location: Luxembourg / Lorraine',
-            '  🎓 Studies: BUT Informatique - DACS',
-            '  🔧 Focus: System Admin & DevOps',
-            '  🌐 Languages: FR, EN, ES, AR',
+            '  Location: Luxembourg / Lorraine',
+            '  Studies:  BUT Informatique - DACS',
+            '  Focus:    System Admin & DevOps',
+            '  Languages: FR, EN, ES, AR',
             '',
             '  Currently seeking an internship in:',
             '  → System Administration',
@@ -73,9 +73,9 @@ const COMMANDS = {
             '╔═══════════════════════════════════════╗',
             '║            CONTACT INFO               ║',
             '╠═══════════════════════════════════════╣',
-            '║  📧 abelaliabendjafar@gmail.com       ║',
-            '║  💼 linkedin.com/in/amin-belalia-...  ║',
-            '║  🐙 github.com/AminoBela              ║',
+            '║  Email:    abelaliabendjafar@gmail.com   ║',
+            '║  LinkedIn: linkedin.com/in/amin-belalia-...  ║',
+            '║  GitHub:   github.com/AminoBela              ║',
             '╚═══════════════════════════════════════╝',
             ''
         ]
@@ -84,7 +84,7 @@ const COMMANDS = {
         description: 'Admin access',
         execute: (t) => [
             '',
-            '  ⚠️  sudo: permission denied',
+            '  [!] sudo: permission denied',
             '  Nice try! But this terminal is sandboxed.',
             '  Type "help" for available commands.',
             ''

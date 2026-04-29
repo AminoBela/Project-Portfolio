@@ -10,7 +10,7 @@ export const educationData = [
         description: 'cesi_desc',
         logo: 'https://upload.wikimedia.org/wikipedia/fr/e/ef/Logo_cesi_2022.png',
         details: null,
-        color: '#bd93f9'
+        color: '#a78bfa'
     },
     {
         id: 'but',
@@ -23,7 +23,7 @@ export const educationData = [
         description: 'but_desc',
         logo: 'https://ensgsi.univ-lorraine.fr/content/uploads/2023/09/logo-orange-et-rouge.png',
         details: null,
-        color: '#50fa7b'
+        color: '#34d399'
     },
     {
         id: 'polytech',

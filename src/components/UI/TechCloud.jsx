@@ -97,8 +97,7 @@ const TechCloud = () => {
                         animation: tech.animation,
                     }}
                     whileHover={{
-                        scale: 1.2,
-                        boxShadow: '0 0 30px rgba(var(--accent-rgb), 0.5)',
+                        scale: 1.12,
                         zIndex: 10
                     }}
                 >

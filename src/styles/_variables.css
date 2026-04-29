@@ -1,4 +1,5 @@
 :root {
+    /* === LEGACY TERMINAL (kept for TerminalMode only) === */
     --terminal-black: #282a36;
     --terminal-green: #50fa7b;
     --terminal-cyan: #8be9fd;
@@ -6,76 +7,88 @@
     --terminal-white: #f8f8f2;
     --terminal-gray: #44475a;
 
-    --accent: var(--terminal-green);
-    --accent-hover: #50e070;
-    --color-text: var(--terminal-white);
-    --text-secondary: #9aa4b2;
+    /* === ACCENT === */
+    --accent: #818cf8;
+    --accent-hover: #6366f1;
+    --color-text: #eef0f6;
+    --text-secondary: #8890a4;
 
-    --accent-rgb: 102, 255, 153;
-    --accent-secondary-rgb: 46, 134, 171;
-    --grid-pattern-color: rgba(102, 255, 153, 0.2);
+    --accent-rgb: 129, 140, 248;
+    --accent-secondary-rgb: 56, 189, 248;
+    --grid-pattern-color: rgba(129, 140, 248, 0.12);
 
-    --color-success: #2ecc71;
+    /* === SEMANTIC COLORS === */
+    --color-success: #34d399;
     --color-warning: #fbbf24;
-    --color-danger: #ff5f56;
-    --color-info: #60a5fa;
+    --color-danger: #fb7185;
+    --color-info: #38bdf8;
     --color-neutral: #94a3b8;
 
-    --color-skill-expert: #4ade80;
-    --color-skill-expert-rgb: 74, 222, 128;
-    --color-skill-advanced: #60a5fa;
-    --color-skill-advanced-rgb: 96, 165, 250;
+    /* === SKILL LEVELS === */
+    --color-skill-expert: #34d399;
+    --color-skill-expert-rgb: 52, 211, 153;
+    --color-skill-advanced: #38bdf8;
+    --color-skill-advanced-rgb: 56, 189, 248;
     --color-skill-confirmed: #fbbf24;
     --color-skill-confirmed-rgb: 251, 191, 36;
     --color-skill-basic: #94a3b8;
     --color-skill-basic-rgb: 148, 163, 184;
 
-    --dot-red: #ff5f56;
-    --dot-yellow: #ffbd2e;
-    --dot-green: #27c93f;
+    /* === TERMINAL DOTS === */
+    --dot-red: #fb7185;
+    --dot-yellow: #fbbf24;
+    --dot-green: #34d399;
 
-    --bg-primary: #1e1e1e;
-    --bg-secondary: #252525;
+    /* === BACKGROUNDS === */
+    --bg-primary: #0f0f1a;
+    --bg-secondary: #161625;
 
-    --card-bg: rgba(20, 24, 32, 0.3);
-    --card-bg-hover: rgba(28, 33, 44, 0.5);
-    --card-border: rgba(var(--accent-rgb), 0.2);
-    --card-border-top: rgba(var(--accent-rgb), 0.3);
-    --card-border-hover: rgba(var(--accent-rgb), 0.6);
+    /* === CARDS (Glassmorphism) === */
+    --card-bg: rgba(22, 22, 40, 0.45);
+    --card-bg-hover: rgba(30, 30, 55, 0.6);
+    --card-border: rgba(255, 255, 255, 0.08);
+    --card-border-top: rgba(129, 140, 248, 0.2);
+    --card-border-hover: rgba(129, 140, 248, 0.5);
 
-    --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    --card-shadow-hover: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(var(--accent-rgb), 0.15);
+    --card-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+    --card-shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.35), 0 0 24px rgba(129, 140, 248, 0.12);
 
     --card-backdrop: blur(16px);
     --text-highlight: #ffffff;
-    --nav-highlight-bg: rgba(var(--accent-rgb), 0.1);
+    --nav-highlight-bg: rgba(129, 140, 248, 0.12);
 
-    --nav-bg: rgba(20, 20, 20, 0.75);
-    --tech-icon-bg: rgba(20, 30, 48, 0.7);
-    --mobile-menu-overlay: rgba(10, 12, 18, 0.85);
-    --mobile-menu-bg: rgba(20, 30, 48, 0.8);
+    /* === NAVIGATION === */
+    --nav-bg: rgba(15, 15, 26, 0.8);
+    --tech-icon-bg: rgba(22, 22, 40, 0.7);
+    --mobile-menu-overlay: rgba(10, 10, 22, 0.88);
+    --mobile-menu-bg: rgba(22, 22, 40, 0.85);
     --button-text-primary: #000000;
-    --cursor-pointer-bg: rgba(var(--accent-rgb), 0.1);
+    --cursor-pointer-bg: rgba(129, 140, 248, 0.1);
     --cursor-pointer-border: transparent;
     --burger-bar-bg: var(--color-text);
 
+    /* === FILTERS === */
     --filter-saturate: none;
     --filter-brightness: none;
 
-    --modal-backdrop: rgba(10, 12, 18, 0.7);
-    --code-bg: rgba(102, 255, 153, 0.1);
+    /* === MISC === */
+    --modal-backdrop: rgba(10, 10, 22, 0.75);
+    --code-bg: rgba(129, 140, 248, 0.08);
     --code-color: var(--accent);
-    --pre-bg: #0d1117;
+    --pre-bg: #0d0d1a;
     --pre-color: inherit;
-    --table-header-bg: rgba(102, 255, 153, 0.05);
+    --table-header-bg: rgba(129, 140, 248, 0.06);
     --table-row-even-bg: rgba(255, 255, 255, 0.02);
     --blockquote-border: var(--accent);
     --badge-color: var(--color-text);
 
-    --font-primary: 'Fira Code', monospace;
+    /* === TYPOGRAPHY === */
+    --font-primary: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Syne', 'Space Grotesk', sans-serif;
     --font-code: 'Fira Code', monospace;
     --text-base: 1rem;
 
+    /* === SPACING === */
     --space-1: 0.25rem;
     --space-2: 0.5rem;
     --space-3: 1rem;
@@ -84,12 +97,14 @@
     --space-6: 3rem;
     --space-8: 4rem;
 
+    /* === RADII === */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 16px;
     --radius-xl: 20px;
     --radius-full: 999px;
 
+    /* === Z-INDEX === */
     --z-cursor: 99999;
     --z-fixed: 1000;
 }

@@ -11,7 +11,7 @@ const engagementsData = [
         descKey: 'engagement_jpo_desc',
         period: '2026',
         badge: 'IUT Nancy-Charlemagne',
-        color: '#50fa7b'
+        color: '#34d399'
     },
     {
         id: 'oriaction',
@@ -20,7 +20,7 @@ const engagementsData = [
         descKey: 'engagement_oriaction_desc',
         period: '2025',
         badge: 'Salon Orientation',
-        color: '#8be9fd'
+        color: '#38bdf8'
     },
     {
         id: 'crous',
@@ -29,7 +29,7 @@ const engagementsData = [
         descKey: 'engagement_crous_desc',
         period: '2025 - Actuel',
         badge: 'CROUS Lorraine',
-        color: '#bd93f9'
+        color: '#a78bfa'
     }
 ];
 

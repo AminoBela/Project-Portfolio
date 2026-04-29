@@ -57,10 +57,12 @@
 }
 
 .modal-hero__content h2 {
+  font-family: var(--font-heading);
   color: var(--color-text);
-  font-size: 2rem;
+  font-size: 1.8rem;
   margin: 0.5rem 0 1rem;
-  font-weight: 700;
+  font-weight: 800;
+  letter-spacing: -0.03em;
 }
 
 .modal-hero__badge {

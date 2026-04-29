@@ -1,54 +1,54 @@
 :root.light {
-    --accent: #00897b;
-    --accent-hover: #00695c;
-    --accent-rgb: 0, 137, 123;
+    --accent: #4f46e5;
+    --accent-hover: #4338ca;
+    --accent-rgb: 79, 70, 229;
 
-    --color-text: #1a2332;
-    --text-secondary: #4a5568;
+    --color-text: #1a1f36;
+    --text-secondary: #525b78;
 
-    --bg-primary: #f0f2f5;
-    --bg-secondary: #e8ecf0;
-    --grid-pattern-color: rgba(0, 0, 0, 0.03);
+    --bg-primary: #f8f9fc;
+    --bg-secondary: #eef1f8;
+    --grid-pattern-color: rgba(79, 70, 229, 0.04);
 
-    --card-bg: rgba(255, 255, 255, 0.85);
-    --card-bg-hover: rgba(255, 255, 255, 0.95);
+    --card-bg: rgba(255, 255, 255, 0.75);
+    --card-bg-hover: rgba(255, 255, 255, 0.9);
 
-    --card-border: rgba(0, 40, 80, 0.1);
-    --card-border-top: rgba(0, 40, 80, 0.15);
+    --card-border: rgba(79, 70, 229, 0.08);
+    --card-border-top: rgba(79, 70, 229, 0.12);
     --card-border-hover: var(--accent);
 
-    --card-shadow: 0 4px 20px rgba(0, 40, 80, 0.08);
-    --card-shadow-hover: 0 8px 30px rgba(0, 40, 80, 0.12);
+    --card-shadow: 0 4px 24px rgba(79, 70, 229, 0.06);
+    --card-shadow-hover: 0 12px 36px rgba(79, 70, 229, 0.1);
 
     --card-backdrop: blur(16px);
     --text-highlight: var(--accent);
 
-    --nav-bg: rgba(255, 255, 255, 0.9);
-    --nav-highlight-bg: rgba(0, 137, 123, 0.12);
+    --nav-bg: rgba(248, 249, 252, 0.92);
+    --nav-highlight-bg: rgba(79, 70, 229, 0.1);
 
     --tech-icon-bg: rgba(255, 255, 255, 0.9);
-    --mobile-menu-overlay: rgba(240, 242, 245, 0.9);
-    --mobile-menu-bg: rgba(255, 255, 255, 0.95);
+    --mobile-menu-overlay: rgba(248, 249, 252, 0.92);
+    --mobile-menu-bg: rgba(255, 255, 255, 0.96);
 
     --button-text-primary: #ffffff;
 
-    --cursor-pointer-bg: rgba(0, 137, 123, 0.15);
-    --cursor-pointer-border: rgba(0, 137, 123, 0.25);
+    --cursor-pointer-bg: rgba(79, 70, 229, 0.12);
+    --cursor-pointer-border: rgba(79, 70, 229, 0.2);
 
     --burger-bar-bg: var(--color-text);
 
-    --filter-saturate: saturate(1.1);
-    --filter-brightness: brightness(0.95);
+    --filter-saturate: saturate(1.05);
+    --filter-brightness: brightness(0.96);
 
-    --modal-backdrop: rgba(26, 35, 50, 0.4);
-    --code-bg: rgba(0, 40, 80, 0.06);
-    --code-color: #d63384;
-    --pre-bg: #f8fafc;
-    --pre-color: #1a2332;
+    --modal-backdrop: rgba(26, 31, 54, 0.35);
+    --code-bg: rgba(79, 70, 229, 0.06);
+    --code-color: #7c3aed;
+    --pre-bg: #f1f3f9;
+    --pre-color: #1a1f36;
     --badge-color: #ffffff;
 
-    --table-header-bg: rgba(0, 137, 123, 0.08);
-    --table-row-even-bg: rgba(0, 40, 80, 0.03);
+    --table-header-bg: rgba(79, 70, 229, 0.06);
+    --table-row-even-bg: rgba(79, 70, 229, 0.02);
 }
 
 :root.light .education-card,
@@ -64,29 +64,29 @@
 }
 
 :root.light .tag {
-    background: rgba(0, 137, 123, 0.1);
-    color: #00695c;
-    border: 1px solid rgba(0, 137, 123, 0.2);
+    background: rgba(79, 70, 229, 0.08);
+    color: #4338ca;
+    border: 1px solid rgba(79, 70, 229, 0.15);
 }
 
 :root.light .education-card__badge {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.92);
 }
 
 :root.light .education-card--current .education-card__badge {
-    color: #00897b;
-    border-color: rgba(0, 137, 123, 0.4);
-    box-shadow: 0 0 10px rgba(0, 137, 123, 0.2);
+    color: #059669;
+    border-color: rgba(5, 150, 105, 0.35);
+    box-shadow: 0 0 10px rgba(5, 150, 105, 0.15);
 }
 
 :root.light .education-card--future .education-card__badge {
-    color: #7c4dff;
-    border-color: rgba(124, 77, 255, 0.4);
+    color: #7c3aed;
+    border-color: rgba(124, 58, 237, 0.35);
 }
 
 :root.light .education-card--current::before,
 :root.light .education-card--future::before {
-    opacity: 0.4;
+    opacity: 0.35;
 }
 
 :root.light .timeline-card-compact-period {

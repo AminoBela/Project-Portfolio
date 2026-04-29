@@ -9,7 +9,6 @@ const hobbiesData = [
         icon: 'fa-flag-checkered',
         titleKey: 'hobby_motorsport',
         descKey: 'hobby_motorsport_desc',
-        emoji: '🏎️',
         color: '#ff5555',
         gradient: 'linear-gradient(135deg, #ff5555 0%, #ff3333 100%)'
     },
@@ -18,25 +17,22 @@ const hobbiesData = [
         icon: 'fa-server',
         titleKey: 'hobby_homelab',
         descKey: 'hobby_homelab_desc',
-        emoji: '🖥️',
-        color: '#50fa7b',
-        gradient: 'linear-gradient(135deg, #50fa7b 0%, #3dd68c 100%)'
+        color: '#34d399',
+        gradient: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)'
     },
     {
         id: 'travel',
         icon: 'fa-plane',
         titleKey: 'hobby_travel',
         descKey: 'hobby_travel_desc',
-        emoji: '✈️',
-        color: '#8be9fd',
-        gradient: 'linear-gradient(135deg, #8be9fd 0%, #6bc5e0 100%)'
+        color: '#38bdf8',
+        gradient: 'linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%)'
     },
     {
         id: 'mechanic',
         icon: 'fa-wrench',
         titleKey: 'hobby_mechanic',
         descKey: 'hobby_mechanic_desc',
-        emoji: '🔧',
         color: '#ffb86c',
         gradient: 'linear-gradient(135deg, #ffb86c 0%, #f0a050 100%)'
     }
@@ -50,7 +46,7 @@ const HobbyCard = ({ hobby, t, index }) => (
         whileHover={{ y: -8, scale: 1.03 }}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
     >
-        <div className="hobby-card__emoji">{hobby.emoji}</div>
+
         <div className="hobby-card__icon-ring">
             <div className="hobby-card__icon">
                 <i className={`fa-solid ${hobby.icon}`}></i>

@@ -82,56 +82,54 @@ button {
 }
 
 .cursor-dot {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background-color: var(--accent);
-  margin-left: -4px;
-  margin-top: -4px;
-  transition: width 0.3s, height 0.3s, background-color 0.3s, box-shadow 0.3s;
-  box-shadow: 0 0 15px rgba(var(--accent-rgb), 0.6);
+  margin-left: -3px;
+  margin-top: -3px;
+  transition: width 0.2s, height 0.2s, background-color 0.2s;
+  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
 }
 
 .cursor-outline {
-  width: 40px;
-  height: 40px;
-  border: 1px solid var(--accent);
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(var(--accent-rgb), 0.4);
   opacity: 0.5;
-  margin-left: -20px;
-  margin-top: -20px;
-  transition: width 0.3s, height 0.3s, opacity 0.3s, border-color 0.3s, transform 0.1s ease-out, box-shadow 0.3s;
-  box-shadow: 0 0 20px rgba(var(--accent-rgb), 0.15);
+  margin-left: -18px;
+  margin-top: -18px;
+  transition: width 0.2s, height 0.2s, opacity 0.2s, transform 0.08s ease-out;
 }
 
 .cursor-dot.is-pointer {
-  width: 12px;
-  height: 12px;
-  margin-left: -6px;
-  margin-top: -6px;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  margin-top: -5px;
   background-color: var(--accent);
-  box-shadow: 0 0 25px rgba(var(--accent-rgb), 0.8);
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
 }
 
 .cursor-outline.is-pointer {
-  width: 60px;
-  height: 60px;
-  margin-left: -30px;
-  margin-top: -30px;
-  background-color: rgba(var(--accent-rgb), 0.15);
+  width: 50px;
+  height: 50px;
+  margin-left: -25px;
+  margin-top: -25px;
+  background-color: rgba(var(--accent-rgb), 0.08);
   border-color: var(--accent);
-  opacity: 1;
-  box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.25);
+  opacity: 0.8;
 }
 
 .cursor-dot.is-matrix {
-  background-color: #0F0 !important;
+  background-color: #34d399 !important;
   z-index: 100000 !important;
-  box-shadow: 0 0 10px #0F0;
+  box-shadow: 0 0 10px #34d399;
 }
 
 .cursor-outline.is-matrix {
-  border-color: #0F0 !important;
+  border-color: #34d399 !important;
   z-index: 100000 !important;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+  box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
 }
 
 @media (max-width: 768px) {
@@ -148,7 +146,7 @@ button {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -156,13 +154,12 @@ button {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent-rgb), 0.2);
-  border-radius: 5px;
-  border: 2px solid var(--bg-primary);
+  background: rgba(var(--accent-rgb), 0.15);
+  border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+  background: rgba(var(--accent-rgb), 0.3);
 }
 
 * {
@@ -175,35 +172,46 @@ button {
   top: 0;
   left: 0;
   right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, var(--accent) 0%, var(--color-skill-expert) 50%, var(--color-skill-advanced) 100%);
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--color-info) 100%);
   transform-origin: 0%;
   z-index: var(--z-fixed);
-  box-shadow: 0 0 10px var(--accent);
-  border-radius: 0 4px 4px 0;
+  border-radius: 0 2px 2px 0;
 }
 
 .scroll-to-top {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
-  width: 50px;
-  height: 50px;
+  width: 42px;
+  height: 42px;
   background: var(--card-bg);
   color: var(--accent);
-  border: 1px solid var(--card-border);
-  border-radius: 50%;
-  font-size: 1.5rem;
+  border: 1px solid rgba(var(--accent-rgb), 0.1);
+  border-radius: 12px;
+  font-size: 1.2rem;
   font-weight: bold;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: var(--card-shadow);
   z-index: var(--z-fixed);
   transition: none !important;
 }
+
 /* --- PERFORMANCE OPTIMIZATIONS --- */
 .defer-rendering {
   content-visibility: auto;
   contain-intrinsic-size: 500px;
+}
+
+/* ── Reduced Motion ──────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
 }

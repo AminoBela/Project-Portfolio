@@ -38,7 +38,7 @@ const LanguageTransitionOverlay = () => {
                 flexDirection: 'column',
                 justifyContent: 'center',
                 alignItems: 'center',
-                color: '#66ff99',
+                color: '#818cf8',
                 fontFamily: "'Fira Code', monospace",
             }}
         >
@@ -52,7 +52,7 @@ const LanguageTransitionOverlay = () => {
                     fontSize: '2rem', 
                     fontWeight: 'bold', 
                     marginBottom: '1rem',
-                    textShadow: '0 0 10px rgba(102, 255, 153, 0.5)'
+                    textShadow: '0 0 10px rgba(129, 140, 248, 0.5)'
                 }}>
                     {text}
                 </div>
@@ -71,8 +71,8 @@ const LanguageTransitionOverlay = () => {
                                 style={{
                                     width: '100%',
                                     height: '100%',
-                                    background: '#66ff99',
-                                    boxShadow: '0 0 8px #66ff99'
+                                    background: '#818cf8',
+                                    boxShadow: '0 0 8px #818cf8'
                                 }}
                                 initial={{ x: '-100%' }}
                                 animate={{ x: '0%' }}
