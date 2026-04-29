@@ -11,7 +11,8 @@ const axiosInstance = axios.create({
 });
 
 // Cache en mémoire pour éviter les refetch inutiles
-const cache = new Map();
+const memoryCache = new Map();
+const CACHE_KEY = 'github_repos_cache';
 
 export function useGithubRepos(username) {
   const [projects, setProjects] = useState([]);
@@ -26,11 +27,28 @@ export function useGithubRepos(username) {
       return;
     }
 
-    // Vérifie le cache
-    if (cache.has(username)) {
-      setProjects(cache.get(username));
+    // Vérifie le cache mémoire
+    if (memoryCache.has(username)) {
+      setProjects(memoryCache.get(username));
       setLoading(false);
       return;
+    }
+
+    // Vérifie le cache LocalStorage
+    try {
+      const localCache = localStorage.getItem(`${CACHE_KEY}_${username}`);
+      const localCacheTime = localStorage.getItem(`${CACHE_KEY}_${username}_time`);
+      
+      // Si on a un cache de moins de 24h
+      if (localCache && localCacheTime && (Date.now() - parseInt(localCacheTime) < 24 * 60 * 60 * 1000)) {
+        const parsedCache = JSON.parse(localCache);
+        memoryCache.set(username, parsedCache);
+        setProjects(parsedCache);
+        setLoading(false);
+        // On lance quand même le fetch en arrière-plan pour rafraîchir le cache
+      }
+    } catch (e) {
+      console.warn("Erreur de lecture du cache localStorage", e);
     }
 
     // Abort controller pour annuler les requêtes si le composant est démonté
@@ -86,13 +104,32 @@ export function useGithubRepos(username) {
           });
         }
 
-        // Met en cache
-        cache.set(username, projectsWithDetails);
+        // Met en cache mémoire
+        memoryCache.set(username, projectsWithDetails);
+        
+        // Met en cache LocalStorage
+        try {
+          localStorage.setItem(`${CACHE_KEY}_${username}`, JSON.stringify(projectsWithDetails));
+          localStorage.setItem(`${CACHE_KEY}_${username}_time`, Date.now().toString());
+        } catch (e) {
+          console.warn("Erreur d'écriture dans le cache localStorage", e);
+        }
+        
         setProjects(projectsWithDetails);
       } catch (err) {
         if (err.name === 'CanceledError' || err.name === 'AbortError') return;
         console.error('Erreur lors de la récupération des repos GitHub:', err.response ? err.response.data : err.message);
         if (err.response && err.response.status === 403) {
+          // Si quota atteint, on vérifie s'il y a un cache plus ancien qu'on pourrait utiliser quand même
+          try {
+            const oldCache = localStorage.getItem(`${CACHE_KEY}_${username}`);
+            if (oldCache && projects.length === 0) {
+              const parsedOldCache = JSON.parse(oldCache);
+              setProjects(parsedOldCache);
+              setError(null);
+              return;
+            }
+          } catch (e) {}
           setError('Quota API GitHub atteint. Veuillez réessayer plus tard ou utilisez un token personnel.');
         } else {
           setError('Impossible de charger les projets GitHub. Vérifiez votre connexion ou réessayez plus tard.');

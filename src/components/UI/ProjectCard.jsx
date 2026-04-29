@@ -5,6 +5,26 @@ import Modal from '../UI/Modal';
 import ReactMarkdown from 'react-markdown';
 import { childVariants } from '../../utils/framerMotionVariants';
 
+// Charge automatiquement tous les médias (images et vidéos) du dossier projets
+const projectMediaModules = import.meta.glob('../../assets/projects/*.{png,jpg,jpeg,webp,mp4,webm}', { eager: true, query: '?url', import: 'default' });
+
+const getProjectMedia = (repoName) => {
+    const mediaPaths = Object.keys(projectMediaModules);
+    const matchedPath = mediaPaths.find(path => {
+        // Extrait le nom du fichier sans extension (ex: "../../assets/projects/mon-repo.mp4" -> "mon-repo")
+        const filename = path.split('/').pop().split('.')[0];
+        return filename === repoName;
+    });
+    
+    if (matchedPath) {
+        return {
+            url: projectMediaModules[matchedPath],
+            type: matchedPath.match(/\.(mp4|webm)$/i) ? 'video' : 'image'
+        };
+    }
+    return null;
+};
+
 const LANGUAGE_COLORS = {
     JavaScript: '#f1e05a',
     TypeScript: '#2b7489',
@@ -57,6 +77,8 @@ function ProjectCard({ project, t, ...props }) {
     const projectImage = project.homepage
         ? `https://www.google.com/s2/favicons?domain=${project.homepage}&sz=64`
         : null;
+
+    const projectMedia = getProjectMedia(project.name);
 
     return (
         <>
@@ -132,6 +154,16 @@ function ProjectCard({ project, t, ...props }) {
                 </div>
 
                 <div className="modal-body">
+                    {projectMedia && (
+                        <div className="modal-media-container">
+                            {projectMedia.type === 'video' ? (
+                                <video src={projectMedia.url} autoPlay loop muted playsInline className="modal-media-element" />
+                            ) : (
+                                <img src={projectMedia.url} alt={`${project.name} overview`} className="modal-media-element" loading="lazy" />
+                            )}
+                        </div>
+                    )}
+
                     <div className="stats-grid">
                         <div className="stat-box">
                             <span className="stat-label">Stars</span>
