@@ -1,0 +1,286 @@
+/* ═══════════════════════════════════════════════
+   INTERNSHIP BANNER — Premium animated
+   ═══════════════════════════════════════════════ */
+
+.internship-banner {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2000;
+    overflow: hidden;
+    background:
+        linear-gradient(
+            90deg,
+            rgba(15, 15, 26, 0.96) 0%,
+            rgba(22, 22, 40, 0.96) 50%,
+            rgba(15, 15, 26, 0.96) 100%
+        );
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.18);
+    box-shadow:
+        0 4px 24px rgba(0, 0, 0, 0.25),
+        0 0 0 1px rgba(var(--accent-rgb), 0.04) inset;
+}
+
+.internship-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(600px 80px at 20% 50%, rgba(var(--accent-rgb), 0.12), transparent 70%),
+        radial-gradient(500px 80px at 80% 50%, rgba(167, 139, 250, 0.10), transparent 70%);
+    pointer-events: none;
+}
+
+.internship-banner__shimmer {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--accent-rgb), 0.08),
+        rgba(255, 255, 255, 0.05),
+        rgba(var(--accent-rgb), 0.08),
+        transparent
+    );
+    animation: bannerShimmer 6s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes bannerShimmer {
+    0%   { left: -50%; }
+    100% { left: 110%; }
+}
+
+.internship-banner__inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0.55rem 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ── Status (left) ─────────────────────────── */
+.internship-banner__status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+}
+
+.internship-banner__pulse {
+    position: relative;
+    display: inline-flex;
+    width: 10px;
+    height: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.internship-banner__pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.8);
+    animation: bannerPulseDot 1.8s ease-in-out infinite;
+}
+
+.internship-banner__pulse-ring {
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1.5px solid var(--accent);
+    animation: bannerPulseRing 1.8s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+@keyframes bannerPulseDot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.6; transform: scale(0.85); }
+}
+
+@keyframes bannerPulseRing {
+    0%   { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2.4); opacity: 0; }
+}
+
+.internship-banner__status-label {
+    font-family: var(--font-code);
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+}
+
+/* ── Separator ─────────────────────────────── */
+.internship-banner__separator {
+    width: 1px;
+    height: 14px;
+    background: linear-gradient(
+        180deg,
+        transparent 0%,
+        rgba(var(--accent-rgb), 0.35) 50%,
+        transparent 100%
+    );
+    flex-shrink: 0;
+}
+
+/* ── Text ──────────────────────────────────── */
+.internship-banner__text {
+    color: var(--color-text);
+    font-size: 0.88rem;
+    font-weight: 500;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ── CTA Button ────────────────────────────── */
+.internship-banner__cta {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.95rem;
+    background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+    color: var(--button-text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-primary);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    flex-shrink: 0;
+}
+
+.internship-banner__cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.internship-banner__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(var(--accent-rgb), 0.4);
+}
+
+.internship-banner__cta:hover::before {
+    transform: translateX(100%);
+}
+
+.internship-banner__cta-icon {
+    font-size: 0.7em;
+    transition: transform 0.25s ease;
+}
+
+.internship-banner__cta:hover .internship-banner__cta-icon {
+    transform: translateX(2px);
+}
+
+/* ── Close Button ──────────────────────────── */
+.internship-banner__close {
+    width: 28px;
+    height: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1.2rem;
+    line-height: 1;
+    flex-shrink: 0;
+    transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.internship-banner__close:hover {
+    color: var(--color-text);
+    background: rgba(255, 255, 255, 0.06);
+    border-color: rgba(var(--accent-rgb), 0.18);
+    transform: rotate(90deg);
+}
+
+/* ── Light theme ───────────────────────────── */
+:root.light .internship-banner {
+    background:
+        linear-gradient(
+            90deg,
+            rgba(248, 249, 252, 0.96) 0%,
+            rgba(238, 241, 248, 0.96) 50%,
+            rgba(248, 249, 252, 0.96) 100%
+        );
+    border-bottom: 1px solid rgba(var(--accent-rgb), 0.15);
+    box-shadow: 0 4px 16px rgba(79, 70, 229, 0.08);
+}
+
+:root.light .internship-banner__shimmer {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(var(--accent-rgb), 0.06),
+        rgba(255, 255, 255, 0.4),
+        rgba(var(--accent-rgb), 0.06),
+        transparent
+    );
+}
+
+:root.light .internship-banner__close:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+/* ── Reduced motion ────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+    .internship-banner__shimmer,
+    .internship-banner__pulse-dot,
+    .internship-banner__pulse-ring {
+        animation: none;
+    }
+}
+
+/* ── Mobile ────────────────────────────────── */
+@media (max-width: 768px) {
+    .internship-banner__inner {
+        padding: 0.5rem 0.75rem;
+        gap: 0.6rem;
+        flex-wrap: wrap;
+    }
+
+    .internship-banner__separator,
+    .internship-banner__text {
+        display: none;
+    }
+
+    .internship-banner__status-label {
+        font-size: 0.68rem;
+    }
+
+    .internship-banner__cta {
+        margin-left: auto;
+        font-size: 0.72rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
