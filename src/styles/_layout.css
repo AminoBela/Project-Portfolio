@@ -1,3 +1,33 @@
+.spotlight {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    600px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(var(--accent-rgb), 0.10),
+    transparent 40%
+  );
+  mix-blend-mode: screen;
+  will-change: background;
+  contain: layout style paint;
+}
+
+:root.light .spotlight {
+  background: radial-gradient(
+    500px circle at var(--spot-x, 50%) var(--spot-y, 50%),
+    rgba(var(--accent-rgb), 0.07),
+    transparent 40%
+  );
+  mix-blend-mode: multiply;
+}
+
+@media (hover: none) {
+  .spotlight {
+    display: none;
+  }
+}
+
 .site-background {
   position: fixed;
   inset: 0;
@@ -160,11 +190,11 @@ section {
   position: absolute;
   bottom: -8px;
   left: 0;
-  width: 60px;
+  width: 72px;
   height: 2px;
-  background: var(--accent);
-  opacity: 0.5;
+  background: linear-gradient(90deg, var(--accent) 0%, #a78bfa 100%);
   border-radius: 2px;
+  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.4);
 }
 
 @keyframes promptPulse {
@@ -195,9 +225,24 @@ section {
 
 .footer {
   margin-top: 0;
-  padding: 1.5rem 0;
+  padding: 2rem 0 1.5rem;
   background: transparent;
-  border-top: 1px solid rgba(var(--accent-rgb), 0.06);
+  position: relative;
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(var(--accent-rgb), 0.3) 50%,
+    transparent 100%
+  );
 }
 
 .footer__inner {

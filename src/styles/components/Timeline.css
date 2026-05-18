@@ -245,7 +245,7 @@
 .timeline-card-compact:hover .timeline-card-icon {
     transform: scale(1.05);
     background: var(--accent);
-    color: var(--bg-primary);
+    color: var(--button-text-primary);
 }
 
 .expanded-card-logo {

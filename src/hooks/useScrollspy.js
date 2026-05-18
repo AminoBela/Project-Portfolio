@@ -1,8 +1,7 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function useScrollspy() {
   const [activeSection, setActiveSection] = useState('accueil');
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const observerRef = useRef(null);
 
   useEffect(() => {
@@ -21,18 +20,14 @@ export function useScrollspy() {
 
     observerRef.current = new IntersectionObserver(observerCallback, observerOptions);
 
-    // Observer les sections existantes
     const sections = document.querySelectorAll('section');
     sections.forEach((section) => observerRef.current.observe(section));
 
-    // MutationObserver limité : observe seulement les enfants directs de main
-    // au lieu de tout le body avec subtree (beaucoup plus performant)
     const mainEl = document.querySelector('main');
     let mutationObserver = null;
 
     if (mainEl) {
       mutationObserver = new MutationObserver(() => {
-        // Re-observer les nouvelles sections (lazy loaded)
         const newSections = document.querySelectorAll('section');
         newSections.forEach((section) => {
           observerRef.current.observe(section);
@@ -41,7 +36,7 @@ export function useScrollspy() {
 
       mutationObserver.observe(mainEl, {
         childList: true,
-        subtree: false // Seulement les enfants directs
+        subtree: false
       });
     }
 
@@ -51,9 +46,5 @@ export function useScrollspy() {
     };
   }, []);
 
-  const toggleMenu = useCallback(() => {
-    setIsMenuOpen(prev => !prev);
-  }, []);
-
-  return { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen };
+  return { activeSection };
 }

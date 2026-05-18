@@ -1,64 +1,67 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import { useMagnetic } from '../../hooks/useMagnetic';
 
 const hobbiesData = [
     {
         id: 'motorsport',
+        size: 'large',
         icon: 'fa-flag-checkered',
         titleKey: 'hobby_motorsport',
         descKey: 'hobby_motorsport_desc',
-        color: '#ff5555',
-        gradient: 'linear-gradient(135deg, #ff5555 0%, #ff3333 100%)'
+        color: '#fb7185',
+        accent: 'rgba(251, 113, 133, 0.18)'
     },
     {
         id: 'homelab',
+        size: 'tall',
         icon: 'fa-server',
         titleKey: 'hobby_homelab',
         descKey: 'hobby_homelab_desc',
         color: '#34d399',
-        gradient: 'linear-gradient(135deg, #34d399 0%, #10b981 100%)'
+        accent: 'rgba(52, 211, 153, 0.18)'
     },
     {
         id: 'travel',
+        size: 'wide',
         icon: 'fa-plane',
         titleKey: 'hobby_travel',
         descKey: 'hobby_travel_desc',
         color: '#38bdf8',
-        gradient: 'linear-gradient(135deg, #38bdf8 0%, #0ea5e9 100%)'
+        accent: 'rgba(56, 189, 248, 0.18)'
     },
     {
         id: 'mechanic',
+        size: 'small',
         icon: 'fa-wrench',
         titleKey: 'hobby_mechanic',
         descKey: 'hobby_mechanic_desc',
-        color: '#ffb86c',
-        gradient: 'linear-gradient(135deg, #ffb86c 0%, #f0a050 100%)'
+        color: '#fbbf24',
+        accent: 'rgba(251, 191, 36, 0.18)'
     }
 ];
 
-const HobbyCard = ({ hobby, t, index }) => (
-    <motion.div
-        className="hobby-card"
-        variants={childVariants}
-        style={{ '--hobby-color': hobby.color, '--hobby-gradient': hobby.gradient }}
-        whileHover={{ y: -8, scale: 1.03 }}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-    >
-
-        <div className="hobby-card__icon-ring">
-            <div className="hobby-card__icon">
-                <i className={`fa-solid ${hobby.icon}`}></i>
+const HobbyCard = ({ hobby, t }) => {
+    const ref = useMagnetic(0.05);
+    return (
+        <motion.article
+            ref={ref}
+            className={`hobby-card hobby-card--${hobby.size}`}
+            variants={childVariants}
+            style={{ '--hobby-color': hobby.color, '--hobby-accent': hobby.accent }}
+        >
+            <div className="hobby-card__bg" aria-hidden="true" />
+            <div className="hobby-card__icon-wrap">
+                <i className={`fa-solid ${hobby.icon} hobby-card__icon`} aria-hidden="true" />
             </div>
-        </div>
-        <div className="hobby-card__content">
-            <h3 className="hobby-card__title">{t(hobby.titleKey)}</h3>
-            <p className="hobby-card__desc">{t(hobby.descKey)}</p>
-        </div>
-        <div className="hobby-card__shine"></div>
-    </motion.div>
-);
+            <div className="hobby-card__body">
+                <h3 className="hobby-card__title">{t(hobby.titleKey)}</h3>
+                <p className="hobby-card__desc">{t(hobby.descKey)}</p>
+            </div>
+        </motion.article>
+    );
+};
 
 export default function HobbiesSection() {
     const { t } = useTranslation();
@@ -81,9 +84,9 @@ export default function HobbiesSection() {
                     {t('hobbies_intro')}
                 </motion.p>
 
-                <div className="hobbies-grid">
-                    {hobbiesData.map((hobby, index) => (
-                        <HobbyCard key={hobby.id} hobby={hobby} t={t} index={index} />
+                <div className="hobbies-bento">
+                    {hobbiesData.map((hobby) => (
+                        <HobbyCard key={hobby.id} hobby={hobby} t={t} />
                     ))}
                 </div>
             </div>

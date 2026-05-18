@@ -1,69 +1,74 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const ScrollToTopButton = () => {
     const [isVisible, setIsVisible] = useState(false);
+    const [progress, setProgress] = useState(0);
     const ticking = useRef(false);
 
     useEffect(() => {
-        const toggleVisibility = () => {
+        const update = () => {
             if (!ticking.current) {
                 requestAnimationFrame(() => {
-                    setIsVisible(window.scrollY > 300);
+                    const scrollTop = window.scrollY;
+                    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+                    setIsVisible(scrollTop > 600);
+                    setProgress(maxScroll > 0 ? Math.min(1, scrollTop / maxScroll) : 0);
                     ticking.current = false;
                 });
                 ticking.current = true;
             }
         };
 
-        window.addEventListener('scroll', toggleVisibility, { passive: true });
-        return () => window.removeEventListener('scroll', toggleVisibility);
+        window.addEventListener('scroll', update, { passive: true });
+        update();
+        return () => window.removeEventListener('scroll', update);
     }, []);
 
     const scrollToTop = () => {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     };
 
+    const RADIUS = 22;
+    const CIRC = 2 * Math.PI * RADIUS;
+
     return (
-        <div
-            style={{
-                position: 'fixed',
-                bottom: '2rem',
-                right: '2rem',
-                zIndex: 99,
-                /* Gestion de l'apparition par CSS pur (zéro conflit) */
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
-                pointerEvents: isVisible ? 'auto' : 'none',
-                transition: 'opacity 0.3s ease, transform 0.3s ease'
-            }}
-        >
-            <motion.button
-                onClick={scrollToTop}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                style={{
-                    width: '3rem',
-                    height: '3rem',
-                    borderRadius: '50%',
-                    backgroundColor: 'var(--accent)',
-                    color: '#1e1e1e',
-                    border: 'none',
-                    cursor: 'pointer',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    boxShadow: '0 4px 12px rgba(102, 255, 153, 0.3)',
-                    fontSize: '1.2rem'
-                }}
-                aria-label="Retour en haut"
-            >
-                <i className="fa-solid fa-arrow-up"></i>
-            </motion.button>
-        </div>
+        <AnimatePresence>
+            {isVisible && (
+                <motion.button
+                    type="button"
+                    onClick={scrollToTop}
+                    className="back-to-top"
+                    aria-label="Retour en haut"
+                    initial={{ opacity: 0, scale: 0.8, y: 16 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.85, y: 16 }}
+                    transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+                    whileHover={{ y: -3 }}
+                    whileTap={{ scale: 0.92 }}
+                >
+                    <svg className="back-to-top__ring" viewBox="0 0 52 52" aria-hidden="true">
+                        <circle
+                            cx="26"
+                            cy="26"
+                            r={RADIUS}
+                            className="back-to-top__ring-track"
+                        />
+                        <circle
+                            cx="26"
+                            cy="26"
+                            r={RADIUS}
+                            className="back-to-top__ring-fill"
+                            strokeDasharray={CIRC}
+                            strokeDashoffset={CIRC * (1 - progress)}
+                        />
+                    </svg>
+                    <svg className="back-to-top__arrow" viewBox="0 0 24 24" aria-hidden="true">
+                        <polyline points="18 15 12 9 6 15" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </motion.button>
+            )}
+        </AnimatePresence>
     );
 };
 

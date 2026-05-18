@@ -4,14 +4,15 @@ import { useScrollspy } from './useScrollspy';
 import { useKonamiCode } from './useKonamiCode';
 
 export const useAppLogic = () => {
-    const { t, i18n } = useTranslation();
-    const { activeSection, isMenuOpen, toggleMenu, setIsMenuOpen } = useScrollspy();
+    const { i18n } = useTranslation();
+    const { activeSection } = useScrollspy();
     const { isTriggered: isMatrixMode, setIsTriggered: setIsMatrixMode } = useKonamiCode();
 
-    const [isScrolled, setIsScrolled] = useState(false);
     const [isLangSwitching, setIsLangSwitching] = useState(false);
     const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
-    const [isBannerVisible, setIsBannerVisible] = useState(true);
+    const [isBannerVisible, setIsBannerVisible] = useState(() => {
+        return localStorage.getItem('banner_dismissed') !== 'true';
+    });
     const [isTerminalOpen, setIsTerminalOpen] = useState(false);
 
     useEffect(() => {
@@ -29,18 +30,6 @@ export const useAppLogic = () => {
             "%c👋 Hey Dev! Looking for secrets? Try the Konami Code: ↑ ↑ ↓ ↓ ← → ← → B A",
             "color: #818cf8; font-family: monospace; font-size: 14px; background: #0f0f1a; padding: 10px; border-radius: 5px;"
         );
-    }, []);
-
-    useEffect(() => {
-        const handleScroll = () => {
-            const scrolled = window.scrollY > 50;
-            setIsScrolled(prev => {
-                if (prev !== scrolled) return scrolled;
-                return prev;
-            });
-        };
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     useEffect(() => {
@@ -71,6 +60,7 @@ export const useAppLogic = () => {
 
     const closeBanner = useCallback(() => {
         setIsBannerVisible(false);
+        localStorage.setItem('banner_dismissed', 'true');
     }, []);
 
     const closeInternshipModal = useCallback(() => {
@@ -82,23 +72,17 @@ export const useAppLogic = () => {
     }, []);
 
     return {
-        isScrolled,
         isLangSwitching,
         isInternshipModalOpen,
         isBannerVisible,
         isMatrixMode,
         isTerminalOpen,
         activeSection,
-        isMenuOpen,
         setIsMatrixMode,
-        setIsMenuOpen,
-        toggleMenu,
         handleLanguageChange,
         handleOpenInternshipModal,
         closeBanner,
         closeInternshipModal,
         closeTerminal,
-        t,
-        i18n
     };
 };

@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
 
 const ContactSection = () => {
     const { t } = useTranslation();
-    const [copied, setCopied] = useState(false);
+    const [copiedField, setCopiedField] = useState(null);
     const email = "abelaliabendjafar@gmail.com";
+    const phone = "+33 7 52 07 89 99";
+    const phoneTel = "+33752078999";
 
-    const handleCopyEmail = () => {
-        navigator.clipboard.writeText(email);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 2000);
+    const copyToClipboard = (text, field) => {
+        navigator.clipboard.writeText(text);
+        setCopiedField(field);
+        setTimeout(() => setCopiedField(null), 2000);
     };
 
     return (
@@ -45,11 +47,12 @@ const ContactSection = () => {
                         <p className="contact-text">
                             <span className="prompt">root@portfolio:~$</span> echo "{t('contact_echo')}"
                         </p>
-                        <p className="contact-description" dangerouslySetInnerHTML={{ __html: t('contact_desc') }}></p>
+                        <p className="contact-description">
+                            {t('contact_desc_1')}<strong>{t('contact_desc_bold')}</strong>{t('contact_desc_2')}
+                        </p>
 
                         <div className="contact-grid">
-                            {/* EMAIL AVEC COPIE */}
-                            <a href={`mailto:${email}`} className="contact-item" onClick={handleCopyEmail}>
+                            <a href={`mailto:${email}`} className="contact-item" onClick={() => copyToClipboard(email, 'email')}>
                                 <div className="icon-box">
                                     <i className="fa-solid fa-envelope"></i>
                                 </div>
@@ -58,12 +61,25 @@ const ContactSection = () => {
                                     <span className="value">{email}</span>
                                 </div>
                                 <div className="action-icon">
-                                    <i className={`fa-solid ${copied ? 'fa-check' : 'fa-copy'}`}></i>
+                                    <i className={`fa-solid ${copiedField === 'email' ? 'fa-check' : 'fa-copy'}`}></i>
                                 </div>
-                                {copied && <span className="copy-feedback">{t('contact_copied')}</span>}
+                                {copiedField === 'email' && <span className="copy-feedback">{t('contact_copied')}</span>}
                             </a>
 
-                            {/* LINKEDIN */}
+                            <a href={`tel:${phoneTel}`} className="contact-item" onClick={(e) => { e.preventDefault(); copyToClipboard(phone, 'phone'); }}>
+                                <div className="icon-box">
+                                    <i className="fa-solid fa-phone"></i>
+                                </div>
+                                <div className="info-box">
+                                    <span className="label">{t('contact_phone_label') || 'Téléphone'}</span>
+                                    <span className="value">{phone}</span>
+                                </div>
+                                <div className="action-icon">
+                                    <i className={`fa-solid ${copiedField === 'phone' ? 'fa-check' : 'fa-copy'}`}></i>
+                                </div>
+                                {copiedField === 'phone' && <span className="copy-feedback">{t('contact_copied')}</span>}
+                            </a>
+
                             <a
                                 href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/"
                                 target="_blank"
@@ -82,7 +98,6 @@ const ContactSection = () => {
                                 </div>
                             </a>
 
-                            {/* LOCALISATION */}
                             <div className="contact-item no-hover">
                                 <div className="icon-box">
                                     <i className="fa-solid fa-map-pin"></i>

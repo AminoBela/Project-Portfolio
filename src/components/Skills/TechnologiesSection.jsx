@@ -1,8 +1,9 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
 import { motion, AnimatePresence } from 'framer-motion';
+import { staggeredCardVariants } from '../../utils/framerMotionVariants';
 
 function TechnologiesSection() {
     const { t } = useTranslation();
@@ -10,13 +11,15 @@ function TechnologiesSection() {
     const categoryOrder = [
         'Systèmes & Réseaux',
         'Virtualisation & Services',
-        'Dév & Web'
+        'Dév & Web',
+        'Méthodes'
     ];
 
     const categoryKeys = {
         'Systèmes & Réseaux': 'skills_cat_sysnet',
         'Virtualisation & Services': 'skills_cat_virt_services',
-        'Dév & Web': 'skills_cat_dev_web'
+        'Dév & Web': 'skills_cat_dev_web',
+        'Méthodes': 'skills_cat_methods'
     };
 
     const groupedSkills = useMemo(() => {
@@ -40,28 +43,6 @@ function TechnologiesSection() {
     const activeSkills = useMemo(() => {
         return groupedSkills.find(group => group.category === activeTab)?.items || [];
     }, [activeTab, groupedSkills]);
-
-    const cardVariants = {
-        hidden: { opacity: 0, y: 20 },
-        visible: (i) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                delay: i * 0.05,
-                duration: 0.3,
-                ease: 'easeOut'
-            }
-        }),
-        exit: (i) => ({
-            opacity: 0,
-            y: -20,
-            transition: {
-                delay: i * 0.03,
-                duration: 0.2,
-                ease: 'easeIn'
-            }
-        })
-    };
 
     return (
         <>
@@ -91,7 +72,7 @@ function TechnologiesSection() {
                         <motion.div
                             key={skill.name}
                             custom={index}
-                            variants={cardVariants}
+                            variants={staggeredCardVariants}
                             initial="hidden"
                             animate="visible"
                             exit="exit"

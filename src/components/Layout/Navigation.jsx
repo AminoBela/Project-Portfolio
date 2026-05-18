@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import ThemeToggleButton from './ThemeToggleButton';
@@ -9,10 +9,16 @@ function Navigation({ activeSection, toggleTheme, theme, onLanguageChange, banne
     const [isScrolled, setIsScrolled] = useState(false);
 
     useEffect(() => {
+        let ticking = false;
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            if (ticking) return;
+            ticking = true;
+            requestAnimationFrame(() => {
+                setIsScrolled(window.scrollY > 20);
+                ticking = false;
+            });
         };
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
@@ -48,13 +54,11 @@ function Navigation({ activeSection, toggleTheme, theme, onLanguageChange, banne
     };
 
     useEffect(() => {
-        if (isMenuOpen) {
-            document.body.style.overflow = 'hidden';
-        } else {
-            document.body.style.overflow = 'auto';
-        }
+        if (!isMenuOpen) return;
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
         return () => {
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = previousOverflow;
         };
     }, [isMenuOpen]);
 

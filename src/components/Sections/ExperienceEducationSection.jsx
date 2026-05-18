@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { educationData, experiencesData } from '../../data/experienceEducationData';
 import { motion } from 'framer-motion';

@@ -56,17 +56,57 @@
 
 .about-hero__glow {
     position: absolute;
-    inset: -12px;
-    background: linear-gradient(135deg, var(--accent), #a78bfa, var(--color-info));
+    inset: -20px;
+    background:
+        radial-gradient(50% 50% at 30% 30%, rgba(var(--accent-rgb), 0.35), transparent 70%),
+        radial-gradient(50% 50% at 70% 70%, rgba(167, 139, 250, 0.3), transparent 70%);
     border-radius: 50%;
-    opacity: 0.15;
-    filter: blur(20px);
-    animation: aboutGlow 6s ease-in-out infinite alternate;
+    opacity: 0.5;
+    filter: blur(28px);
+    animation: aboutGlow 8s ease-in-out infinite alternate;
+    pointer-events: none;
 }
 
 @keyframes aboutGlow {
-    0%   { opacity: 0.12; transform: scale(0.95); }
-    100% { opacity: 0.22; transform: scale(1.05); }
+    0%   { opacity: 0.3; transform: scale(0.92) rotate(0deg); }
+    100% { opacity: 0.55; transform: scale(1.05) rotate(40deg); }
+}
+
+.about-hero__photo-wrap::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    padding: 3px;
+    background: conic-gradient(
+        from var(--about-photo-angle, 0deg),
+        rgba(var(--accent-rgb), 0.7),
+        rgba(167, 139, 250, 0.5),
+        rgba(56, 189, 248, 0.4),
+        rgba(var(--accent-rgb), 0.7)
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+            mask-composite: exclude;
+    animation: aboutPhotoSpin 10s linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@property --about-photo-angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes aboutPhotoSpin {
+    to { --about-photo-angle: 360deg; }
+}
+
+@supports not (background: conic-gradient(from var(--about-photo-angle), red, blue)) {
+    .about-hero__photo-wrap::before { display: none; }
 }
 
 .about-hero__photo {
@@ -74,10 +114,12 @@
     height: 140px;
     object-fit: cover;
     border-radius: 50%;
-    border: 3px solid rgba(var(--accent-rgb), 0.15);
+    border: 1px solid rgba(var(--accent-rgb), 0.15);
     position: relative;
     z-index: 2;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 4px rgba(var(--accent-rgb), 0.05);
 }
 
 .about-hero__badge {
@@ -143,6 +185,39 @@
     line-height: 1.6;
     margin: 0;
     max-width: 440px;
+}
+
+.about-hero__facts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.5rem 0 0.25rem;
+}
+
+.about-fact {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    font-family: var(--font-code);
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: rgba(var(--accent-rgb), 0.04);
+    border: 1px solid rgba(var(--accent-rgb), 0.12);
+    border-radius: 999px;
+    transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.about-fact:hover {
+    color: var(--color-text);
+    border-color: rgba(var(--accent-rgb), 0.28);
+    background: rgba(var(--accent-rgb), 0.08);
+}
+
+.about-fact__icon {
+    font-size: 0.85em;
+    color: var(--accent);
 }
 
 .about-hero__actions {

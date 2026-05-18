@@ -1,24 +1,14 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
 
 const engagementsData = [
     {
-        id: 'jpo',
-        icon: 'fa-door-open',
-        titleKey: 'engagement_jpo_title',
-        descKey: 'engagement_jpo_desc',
-        period: '2026',
-        badge: 'IUT Nancy-Charlemagne',
-        color: '#34d399'
-    },
-    {
         id: 'oriaction',
         icon: 'fa-compass',
         titleKey: 'engagement_oriaction_title',
         descKey: 'engagement_oriaction_desc',
-        period: '2025',
+        year: '2025',
         badge: 'Salon Orientation',
         color: '#38bdf8'
     },
@@ -27,31 +17,20 @@ const engagementsData = [
         icon: 'fa-house-user',
         titleKey: 'engagement_crous_title',
         descKey: 'engagement_crous_desc',
-        period: '2025 - Actuel',
+        year: '2025 →',
         badge: 'CROUS Lorraine',
         color: '#a78bfa'
+    },
+    {
+        id: 'jpo',
+        icon: 'fa-door-open',
+        titleKey: 'engagement_jpo_title',
+        descKey: 'engagement_jpo_desc',
+        year: '2026',
+        badge: 'IUT Nancy-Charlemagne',
+        color: '#34d399'
     }
 ];
-
-const EngagementCard = ({ engagement, t }) => (
-    <motion.div
-        className="engagement-card"
-        variants={childVariants}
-        style={{ '--engagement-color': engagement.color }}
-    >
-        <div className="engagement-card__icon">
-            <i className={`fa-solid ${engagement.icon}`}></i>
-        </div>
-        <div className="engagement-card__content">
-            <span className="engagement-card__badge">{engagement.badge}</span>
-            <h3 className="engagement-card__title">{t(engagement.titleKey)}</h3>
-            <p className="engagement-card__desc">{t(engagement.descKey)}</p>
-            <span className="engagement-card__period">
-                <i className="fa-regular fa-calendar"></i> {engagement.period}
-            </span>
-        </div>
-    </motion.div>
-);
 
 export default function EngagementsSection() {
     const { t } = useTranslation();
@@ -74,11 +53,42 @@ export default function EngagementsSection() {
                     {t('engagements_intro')}
                 </motion.p>
 
-                <div className="engagements-grid">
-                    {engagementsData.map((engagement) => (
-                        <EngagementCard key={engagement.id} engagement={engagement} t={t} />
-                    ))}
-                </div>
+                <motion.div className="engagements-timeline" variants={childVariants}>
+                    <div className="engagements-timeline__rail" aria-hidden="true" />
+                    <motion.div
+                        className="engagements-timeline__progress"
+                        initial={{ scaleX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        viewport={{ once: true, amount: 0.4 }}
+                        transition={{ duration: 1.8, ease: [0.25, 0.46, 0.45, 0.94], delay: 0.3 }}
+                        aria-hidden="true"
+                    />
+
+                    <ol className="engagements-timeline__items">
+                        {engagementsData.map((engagement, i) => (
+                            <motion.li
+                                key={engagement.id}
+                                className="engagements-timeline__item"
+                                style={{ '--engagement-color': engagement.color }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, amount: 0.5 }}
+                                transition={{ duration: 0.5, delay: 0.4 + i * 0.2, ease: 'easeOut' }}
+                            >
+                                <div className="engagements-timeline__year">{engagement.year}</div>
+                                <div className="engagements-timeline__node" aria-hidden="true">
+                                    <span className="engagements-timeline__node-ring" />
+                                    <i className={`fa-solid ${engagement.icon}`}></i>
+                                </div>
+                                <div className="engagements-timeline__card">
+                                    <span className="engagements-timeline__badge">{engagement.badge}</span>
+                                    <h3 className="engagements-timeline__title">{t(engagement.titleKey)}</h3>
+                                    <p className="engagements-timeline__desc">{t(engagement.descKey)}</p>
+                                </div>
+                            </motion.li>
+                        ))}
+                    </ol>
+                </motion.div>
             </div>
         </motion.section>
     );

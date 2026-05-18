@@ -115,5 +115,35 @@ export const skills = [
     icon: 'https://cdn.simpleicons.org/c',
     category: 'Dév & Web',
     description: 'skill_desc_c'
+  },
+
+  // --- MÉTHODES ---
+  {
+    name: 'Gestion de projet (Agile)',
+    level: 75,
+    icon: 'https://cdn.simpleicons.org/jira',
+    category: 'Méthodes',
+    description: 'skill_desc_agile'
+  },
+  {
+    name: 'ISO 27001',
+    level: 65,
+    icon: 'https://cdn.simpleicons.org/iso',
+    category: 'Méthodes',
+    description: 'skill_desc_iso27001'
+  },
+  {
+    name: 'PCA / PRA',
+    level: 65,
+    icon: 'https://cdn.simpleicons.org/databricks',
+    category: 'Méthodes',
+    description: 'skill_desc_pca_pra'
+  },
+  {
+    name: 'Terraform (IaC)',
+    level: 70,
+    icon: 'https://cdn.simpleicons.org/terraform',
+    category: 'Méthodes',
+    description: 'skill_desc_terraform'
   }
 ];

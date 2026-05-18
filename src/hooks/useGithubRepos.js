@@ -35,17 +35,17 @@ export function useGithubRepos(username) {
     }
 
     // Vérifie le cache LocalStorage
+    let hasCachedData = false;
     try {
       const localCache = localStorage.getItem(`${CACHE_KEY}_${username}`);
       const localCacheTime = localStorage.getItem(`${CACHE_KEY}_${username}_time`);
-      
-      // Si on a un cache de moins de 24h
+
       if (localCache && localCacheTime && (Date.now() - parseInt(localCacheTime) < 24 * 60 * 60 * 1000)) {
         const parsedCache = JSON.parse(localCache);
         memoryCache.set(username, parsedCache);
         setProjects(parsedCache);
         setLoading(false);
-        // On lance quand même le fetch en arrière-plan pour rafraîchir le cache
+        hasCachedData = true;
       }
     } catch (e) {
       console.warn("Erreur de lecture du cache localStorage", e);
@@ -56,7 +56,7 @@ export function useGithubRepos(username) {
     const signal = abortControllerRef.current.signal;
 
     const fetchRepos = async () => {
-      setLoading(true);
+      if (!hasCachedData) setLoading(true);
       setError(null);
 
       try {
@@ -120,16 +120,17 @@ export function useGithubRepos(username) {
         if (err.name === 'CanceledError' || err.name === 'AbortError') return;
         console.error('Erreur lors de la récupération des repos GitHub:', err.response ? err.response.data : err.message);
         if (err.response && err.response.status === 403) {
-          // Si quota atteint, on vérifie s'il y a un cache plus ancien qu'on pourrait utiliser quand même
           try {
             const oldCache = localStorage.getItem(`${CACHE_KEY}_${username}`);
-            if (oldCache && projects.length === 0) {
+            if (oldCache) {
               const parsedOldCache = JSON.parse(oldCache);
               setProjects(parsedOldCache);
               setError(null);
               return;
             }
-          } catch (e) {}
+          } catch {
+            /* cache corrompu — on tombe sur le setError ci-dessous */
+          }
           setError('Quota API GitHub atteint. Veuillez réessayer plus tard ou utilisez un token personnel.');
         } else {
           setError('Impossible de charger les projets GitHub. Vérifiez votre connexion ou réessayez plus tard.');

@@ -1,8 +1,7 @@
 import React, { Suspense } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 import { useTheme } from './hooks/useTheme';
 import { useAppLogic } from './hooks/useAppLogic';
-import { navVariants } from './utils/framerMotionVariants';
 import Navigation from './components/Layout/Navigation';
 import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
@@ -11,6 +10,7 @@ import CustomCursor from "./components/UI/CustomCursor";
 import ScrollToTopButton from "./components/UI/ScrollToTopButton";
 import InternshipBanner from "./components/UI/InternshipBanner";
 import LanguageTransitionOverlay from "./components/UI/LanguageTransitionOverlay";
+import Spotlight from "./components/UI/Spotlight";
 
 // Lazy load des sections below-the-fold
 const ExperienceEducationSection = React.lazy(() => import('./components/Sections/ExperienceEducationSection'));
@@ -55,17 +55,13 @@ const MainContent = React.memo(({ onOpenInternshipModal, bannerHeight }) => {
 function App() {
     const { theme, toggleTheme } = useTheme();
     const {
-        isScrolled,
         isLangSwitching,
         isInternshipModalOpen,
         isBannerVisible,
         isMatrixMode,
         isTerminalOpen,
         activeSection,
-        isMenuOpen,
         setIsMatrixMode,
-        setIsMenuOpen,
-        toggleMenu,
         handleLanguageChange,
         handleOpenInternshipModal,
         closeBanner,
@@ -77,6 +73,7 @@ function App() {
 
     return (
         <>
+            <a href="#accueil" className="skip-link">Skip to content</a>
             <CustomCursor isMatrixMode={isMatrixMode} />
 
             <AnimatePresence>
@@ -91,57 +88,52 @@ function App() {
                 {isLangSwitching && <LanguageTransitionOverlay key="lang-overlay" />}
             </AnimatePresence>
 
-            <div>
-                <div className="site-background">
-                    <div className="orb orb--1" />
-                    <div className="orb orb--2" />
-                    <div className="orb orb--3" />
-                    <div className="hero-grid" />
-                    <div className="scanline" />
-                </div>
+            <Spotlight />
 
-                <div>
-                    <InternshipBanner
-                        isVisible={isBannerVisible}
-                        onClose={closeBanner}
-                        onOpenModal={handleOpenInternshipModal}
-                    />
-
-                    <Navigation
-                        activeSection={activeSection}
-                        isMenuOpen={isMenuOpen}
-                        toggleMenu={toggleMenu}
-                        toggleTheme={toggleTheme}
-                        theme={theme}
-                        onNavLinkClick={() => setIsMenuOpen(false)}
-                        onLanguageChange={handleLanguageChange}
-                        bannerHeight={bannerHeight}
-                    />
-
-                    <MainContent
-                        onOpenInternshipModal={handleOpenInternshipModal}
-                        bannerHeight={bannerHeight}
-                    />
-
-                    <Footer />
-                    <ScrollToTopButton />
-
-                    <Suspense fallback={null}>
-                        <InternshipModal
-                            isOpen={isInternshipModalOpen}
-                            onClose={closeInternshipModal}
-                        />
-                    </Suspense>
-
-                    <Suspense fallback={null}>
-                        <TerminalMode
-                            isOpen={isTerminalOpen}
-                            onClose={closeTerminal}
-                            onMatrixMode={() => setIsMatrixMode(true)}
-                        />
-                    </Suspense>
-                </div>
+            <div className="site-background">
+                <div className="orb orb--1" />
+                <div className="orb orb--2" />
+                <div className="orb orb--3" />
+                <div className="hero-grid" />
+                <div className="scanline" />
             </div>
+
+            <InternshipBanner
+                isVisible={isBannerVisible}
+                onClose={closeBanner}
+                onOpenModal={handleOpenInternshipModal}
+            />
+
+            <Navigation
+                activeSection={activeSection}
+                toggleTheme={toggleTheme}
+                theme={theme}
+                onLanguageChange={handleLanguageChange}
+                bannerHeight={bannerHeight}
+            />
+
+            <MainContent
+                onOpenInternshipModal={handleOpenInternshipModal}
+                bannerHeight={bannerHeight}
+            />
+
+            <Footer />
+            <ScrollToTopButton />
+
+            <Suspense fallback={null}>
+                <InternshipModal
+                    isOpen={isInternshipModalOpen}
+                    onClose={closeInternshipModal}
+                />
+            </Suspense>
+
+            <Suspense fallback={null}>
+                <TerminalMode
+                    isOpen={isTerminalOpen}
+                    onClose={closeTerminal}
+                    onMatrixMode={() => setIsMatrixMode(true)}
+                />
+            </Suspense>
         </>
     );
 }

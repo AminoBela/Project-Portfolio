@@ -1,5 +1,3 @@
-import React from 'react';
-
 const SkillBar = ({ skill, t }) => {
     // Fonction pour déterminer le libellé et la classe CSS du niveau
     const getLevelInfo = (level) => {

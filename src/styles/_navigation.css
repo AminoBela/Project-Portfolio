@@ -153,8 +153,9 @@
 
 .navbar__lang-selector button.active,
 .navbar__mobile-lang button.active {
-  background: var(--accent);
-  color: var(--bg-primary);
+  background: linear-gradient(135deg, var(--accent) 0%, #a78bfa 100%);
+  color: var(--button-text-primary);
+  box-shadow: 0 2px 8px rgba(var(--accent-rgb), 0.35);
 }
 
 /* --- Burger --- */

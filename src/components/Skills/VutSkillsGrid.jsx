@@ -1,56 +1,50 @@
-import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { vutSkills } from '../../data/vutSkills';
-import Button from '../UI/Button';
 
 function VutSkillsGrid() {
     const { t } = useTranslation();
-    const gridRef = useRef(null);
-
-    useEffect(() => {
-        const handleMouseMove = (e) => {
-            const cards = gridRef.current.querySelectorAll('.skills-card');
-            cards.forEach(card => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                card.style.setProperty('--x', `${x}px`);
-                card.style.setProperty('--y', `${y}px`);
-            });
-        };
-
-        const currentGrid = gridRef.current;
-        if (currentGrid) {
-            currentGrid.addEventListener('mousemove', handleMouseMove);
-        }
-
-        return () => {
-            if (currentGrid) {
-                currentGrid.removeEventListener('mousemove', handleMouseMove);
-            }
-        };
-    }, []);
 
     return (
         <>
             <h2 className="terminal-command">{t('skills_vut_title')}</h2>
-            <div className="skills-cards-grid" ref={gridRef}>
+            <p className="skills-section__intro">{t('skills_vut_intro')}</p>
+
+            <div className="competency-grid">
                 {vutSkills.map((skill, idx) => (
-                    <div key={idx} className="skills-card">
-                        <div className="skills-card-title">{t(skill.name)}</div>
-                        <div className="skills-card-stars">
-                            {Array.from({ length: 5 }).map((_, i) =>
-                                <span key={i} className={`star${i < skill.stars ? ' star--filled' : ''}`}>★</span>
-                            )}
-                        </div>
-                        <div className="skills-card-comment">{t(skill.comment)}</div>
-                        <div className="skills-card-link">
-                            {skill.github && skill.github.startsWith('http') ?
-                                <Button href={skill.github} target="_blank" secondary>{t('skills_vut_project_button')}</Button>
-                                : <span className="skills-card-na">{t('skills_vut_na')}</span>
-                            }
-                        </div>
-                    </div>
+                    <motion.article
+                        key={idx}
+                        className="competency-card"
+                        initial={{ opacity: 0, y: 18 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.2 }}
+                        transition={{ delay: idx * 0.06, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    >
+                        <header className="competency-card__head">
+                            <span className="competency-card__icon" aria-hidden="true">
+                                <i className={skill.icon} />
+                            </span>
+                            <span className={`competency-card__level competency-card__level--${skill.level.split('_').pop()}`}>
+                                {t(skill.level)}
+                            </span>
+                        </header>
+
+                        <h3 className="competency-card__title">{t(skill.name)}</h3>
+                        <p className="competency-card__comment">{t(skill.comment)}</p>
+
+                        {skill.github && (
+                            <a
+                                href={skill.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="competency-card__link"
+                            >
+                                <i className="fa-brands fa-github" />
+                                {t('skills_vut_project_button')}
+                                <span aria-hidden="true">↗</span>
+                            </a>
+                        )}
+                    </motion.article>
                 ))}
             </div>
         </>

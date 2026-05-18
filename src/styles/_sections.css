@@ -4,6 +4,36 @@
     padding-bottom: 4rem;
 }
 
+.terminal-section + .terminal-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(60%, 600px);
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(var(--accent-rgb), 0.18) 50%,
+        transparent 100%
+    );
+}
+
+.terminal-section + .terminal-section::after {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
+    opacity: 0.5;
+}
+
 .skills-legend {
     display: flex;
     flex-wrap: wrap;

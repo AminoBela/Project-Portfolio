@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { memo, useState } from 'react';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import ReactMarkdown from 'react-markdown';
-import { childVariants } from '../../utils/framerMotionVariants';
+import { useMagnetic } from '../../hooks/useMagnetic';
 
 // Charge automatiquement tous les médias (images et vidéos) du dossier projets
 const projectMediaModules = import.meta.glob('../../assets/projects/*.{png,jpg,jpeg,webp,mp4,webm}', { eager: true, query: '?url', import: 'default' });
@@ -50,6 +49,15 @@ function getLangColor(lang) {
     return LANGUAGE_COLORS[lang] || '#818cf8';
 }
 
+function isLightColor(hex) {
+    if (!hex || hex.length < 7) return false;
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+    return luminance > 0.6;
+}
+
 function shorten(text, limit = 150) {
     if (!text) return null;
     if (text.length <= limit) return text;
@@ -68,6 +76,8 @@ function formatDate(iso, locale = 'fr-FR') {
 
 function ProjectCard({ project, t, ...props }) {
     const [modalOpen, setModalOpen] = useState(false);
+    const [activeTab, setActiveTab] = useState('overview');
+    const magnetRef = useMagnetic(0.06);
     const formattedDescription = shorten(project.description);
     const updatedAt = formatDate(project.updated_at);
     const languages = Object.keys(project.languages || {});
@@ -82,17 +92,27 @@ function ProjectCard({ project, t, ...props }) {
 
     return (
         <>
-            <motion.div
-                variants={childVariants}
+            <div
+                ref={magnetRef}
                 className="project-card"
                 style={{ '--accent-color': mainColor }}
                 {...props}
             >
+                {projectMedia && (
+                    <div className="project-card__media-preview" aria-hidden="true">
+                        {projectMedia.type === 'video' ? (
+                            <video src={projectMedia.url} autoPlay loop muted playsInline />
+                        ) : (
+                            <img src={projectMedia.url} alt="" loading="lazy" />
+                        )}
+                    </div>
+                )}
+
                 <div className="project-card__header">
                     {projectImage ? (
                         <img src={projectImage} alt="" className="project-card__icon" loading="lazy" />
                     ) : (
-                        <div className="project-card__icon-placeholder" style={{ backgroundColor: mainColor }}>
+                        <div className="project-card__icon-placeholder" style={{ backgroundColor: mainColor, color: isLightColor(mainColor) ? '#000' : '#fff' }}>
                             {mainLanguage[0]}
                         </div>
                     )}
@@ -128,7 +148,7 @@ function ProjectCard({ project, t, ...props }) {
                         {t('project_explore')}
                     </Button>
                 </div>
-            </motion.div>
+            </div>
 
             <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)}>
                 <div className="modal-hero" style={{
@@ -154,67 +174,101 @@ function ProjectCard({ project, t, ...props }) {
                 </div>
 
                 <div className="modal-body">
-                    {projectMedia && (
-                        <div className="modal-media-container">
-                            {projectMedia.type === 'video' ? (
-                                <video src={projectMedia.url} autoPlay loop muted playsInline className="modal-media-element" />
-                            ) : (
-                                <img src={projectMedia.url} alt={`${project.name} overview`} className="modal-media-element" loading="lazy" />
+                    <div className="modal-tabs" role="tablist">
+                        <button
+                            type="button"
+                            role="tab"
+                            className={`modal-tab ${activeTab === 'overview' ? 'modal-tab--active' : ''}`}
+                            onClick={() => setActiveTab('overview')}
+                            aria-selected={activeTab === 'overview'}
+                        >
+                            {t('project_tab_overview') || 'Overview'}
+                        </button>
+                        <button
+                            type="button"
+                            role="tab"
+                            className={`modal-tab ${activeTab === 'tech' ? 'modal-tab--active' : ''}`}
+                            onClick={() => setActiveTab('tech')}
+                            aria-selected={activeTab === 'tech'}
+                        >
+                            {t('project_tab_tech') || 'Tech'}
+                        </button>
+                        <button
+                            type="button"
+                            role="tab"
+                            className={`modal-tab ${activeTab === 'readme' ? 'modal-tab--active' : ''}`}
+                            onClick={() => setActiveTab('readme')}
+                            aria-selected={activeTab === 'readme'}
+                        >
+                            README
+                        </button>
+                    </div>
+
+                    {activeTab === 'overview' && (
+                        <>
+                            {projectMedia && (
+                                <div className="modal-media-container">
+                                    {projectMedia.type === 'video' ? (
+                                        <video src={projectMedia.url} autoPlay loop muted playsInline className="modal-media-element" />
+                                    ) : (
+                                        <img src={projectMedia.url} alt={`${project.name} overview`} className="modal-media-element" loading="lazy" />
+                                    )}
+                                </div>
                             )}
+
+                            <div className="stats-grid">
+                                <div className="stat-box">
+                                    <span className="stat-label">Stars</span>
+                                    <span className="stat-value">★ {project.stargazers_count}</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-label">Forks</span>
+                                    <span className="stat-value">⑂ {project.forks_count}</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-label">{t('project_updated')}</span>
+                                    <span className="stat-value">{updatedAt}</span>
+                                </div>
+                                <div className="stat-box">
+                                    <span className="stat-label">{t('project_size')}</span>
+                                    <span className="stat-value">{Math.round(project.size / 1024)} Mo</span>
+                                </div>
+                            </div>
+
+                            {project.description && (
+                                <p className="project-full-desc">{project.description}</p>
+                            )}
+                        </>
+                    )}
+
+                    {activeTab === 'tech' && (
+                        <div className="tech-section">
+                            <div className="tech-stack">
+                                <h4>{t('project_stack')}</h4>
+                                <div className="project-tags large">
+                                    {languages.map((lang) => (
+                                        <span key={lang} className="tag" style={{
+                                            backgroundColor: `${getLangColor(lang)}15`,
+                                            color: getLangColor(lang),
+                                            borderColor: `${getLangColor(lang)}40`
+                                        }}>
+                                            {lang}
+                                        </span>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     )}
 
-                    <div className="stats-grid">
-                        <div className="stat-box">
-                            <span className="stat-label">Stars</span>
-                            <span className="stat-value">★ {project.stargazers_count}</span>
+                    {activeTab === 'readme' && (
+                        <div className="markdown-body">
+                            <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
                         </div>
-                        <div className="stat-box">
-                            <span className="stat-label">Forks</span>
-                            <span className="stat-value">⑂ {project.forks_count}</span>
-                        </div>
-                        <div className="stat-box">
-                            <span className="stat-label">{t('project_updated')}</span>
-                            <span className="stat-value">{updatedAt}</span>
-                        </div>
-                        <div className="stat-box">
-                            <span className="stat-label">{t('project_size')}</span>
-                            <span className="stat-value">{Math.round(project.size / 1024)} Mo</span>
-                        </div>
-                    </div>
-
-                    <div className="tech-section">
-                        {project.description && (
-                            <p className="project-full-desc">{project.description}</p>
-                        )}
-
-                        <div className="tech-stack">
-                            <h4>{t('project_stack')}</h4>
-                            <div className="project-tags large">
-                                {languages.map((lang) => (
-                                    <span key={lang} className="tag" style={{
-                                        backgroundColor: `${getLangColor(lang)}15`,
-                                        color: getLangColor(lang),
-                                        borderColor: `${getLangColor(lang)}40`
-                                    }}>
-                                        {lang}
-                                    </span>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="markdown-body">
-                        <div className="readme-header">
-                            <h3>README.md</h3>
-                            <div className="readme-line"></div>
-                        </div>
-                        <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
-                    </div>
+                    )}
                 </div>
             </Modal>
         </>
     );
 }
 
-export default ProjectCard;
+export default memo(ProjectCard);

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useTranslation } from 'react-i18next';
 import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
@@ -41,6 +40,22 @@ export default function AboutSection({ onOpenInternshipModal }) {
                         <span className="about-hero__firstname">Amin</span> Belalia
                     </h2>
                     <p className="about-hero__tagline">{t('about_tagline')}</p>
+
+                    <div className="about-hero__facts" aria-label="Quick facts">
+                        <span className="about-fact">
+                            <i className="fa-solid fa-id-card about-fact__icon" aria-hidden="true" />
+                            {t('about_fact_licence') || 'Permis B · Véhicule'}
+                        </span>
+                        <span className="about-fact">
+                            <i className="fa-solid fa-language about-fact__icon" aria-hidden="true" />
+                            {t('about_fact_toeic') || 'TOEIC 870'}
+                        </span>
+                        <span className="about-fact">
+                            <i className="fa-solid fa-location-dot about-fact__icon" aria-hidden="true" />
+                            {t('about_fact_mobility') || 'Lorraine & Alsace'}
+                        </span>
+                    </div>
+
                     <div className="about-hero__actions">
                         <a href={cvPdf} className="about-btn about-btn--primary" target="_blank" rel="noopener noreferrer">
                             <i className="fa-solid fa-download" /> CV

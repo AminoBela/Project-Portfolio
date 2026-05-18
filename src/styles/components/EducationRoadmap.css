@@ -50,6 +50,8 @@
 
 /* ── Base Card ───────────────────────────────── */
 .education-card {
+    --magnet-x: 0px;
+    --magnet-y: 0px;
     background: var(--card-bg);
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
@@ -59,6 +61,7 @@
     padding-top: 2.5rem;
     position: relative;
     overflow: hidden;
+    transform: translate(var(--magnet-x), var(--magnet-y));
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
     min-height: 200px;
@@ -80,7 +83,7 @@
 }
 
 .education-card:hover {
-    transform: translateY(-3px);
+    transform: translate(var(--magnet-x), calc(var(--magnet-y) - 3px));
     border-color: rgba(var(--card-accent-rgb, var(--accent-rgb)), 0.3);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
 }
@@ -112,10 +115,6 @@
     background-size: 200% 100%;
     animation: aurora-flow 6s linear infinite;
     opacity: 0.8;
-}
-
-.education-card--current .education-card__shimmer {
-    display: none; /* Remove costly shimmer animation */
 }
 
 /* ── Future ──────────────────────────────────── */
@@ -269,21 +268,31 @@
    ALTERNANCE CARD
    ═══════════════════════════════════════════════ */
 .alternance-card {
-    background: linear-gradient(145deg, rgba(var(--card-bg-rgb, 15,23,42), 0.7) 0%, rgba(var(--accent-rgb), 0.03) 100%);
+    --magnet-x: 0px;
+    --magnet-y: 0px;
+    background: var(--card-bg);
+    background-image: linear-gradient(145deg, rgba(var(--accent-rgb), 0.04) 0%, rgba(var(--accent-rgb), 0.10) 100%);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(var(--accent-rgb), 0.15);
+    border: 1px solid rgba(var(--accent-rgb), 0.18);
     border-radius: 20px;
     padding: 1.75rem 2rem;
     display: flex;
     align-items: center;
     gap: 1.5rem;
     cursor: pointer;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: translate(var(--magnet-x), var(--magnet-y));
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
     margin-top: 2rem;
     position: relative;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--card-shadow);
+}
+
+:root.light .alternance-card {
+    background-image: linear-gradient(145deg, rgba(var(--accent-rgb), 0.06) 0%, rgba(var(--accent-rgb), 0.12) 100%);
 }
 
 .alternance-card::before {
@@ -307,9 +316,9 @@
 }
 
 .alternance-card:hover {
-    border-color: rgba(var(--accent-rgb), 0.35);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15), 0 0 16px rgba(var(--accent-rgb), 0.08);
+    border-color: rgba(var(--accent-rgb), 0.4);
+    transform: translate(var(--magnet-x), calc(var(--magnet-y) - 4px));
+    box-shadow: var(--card-shadow-hover);
 }
 
 .alternance-card:hover::after {
@@ -404,7 +413,7 @@
 
 .alternance-card:hover .alternance-card__cta {
     background: var(--accent);
-    color: var(--bg-primary);
+    color: var(--button-text-primary);
 }
 
 /* ═══════════════════════════════════════════════

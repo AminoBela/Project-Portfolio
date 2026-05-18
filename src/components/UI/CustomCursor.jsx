@@ -1,45 +1,38 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+
+const POINTER_SELECTOR = 'a, button, [data-cursor="pointer"]';
 
 const CustomCursor = ({ isMatrixMode }) => {
     const cursorDotRef = useRef(null);
     const cursorOutlineRef = useRef(null);
     const requestRef = useRef(null);
-    
     const mousePositionRef = useRef({ x: -100, y: -100 });
-    
-    const [isPointer, setIsPointer] = useState(false);
+    const isPointerRef = useRef(false);
     const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
-        if (window.matchMedia("(pointer: coarse)").matches) {
+        if (window.matchMedia('(pointer: coarse)').matches) {
             setIsTouchDevice(true);
             return;
         }
 
+        const setPointer = (next) => {
+            if (isPointerRef.current === next) return;
+            isPointerRef.current = next;
+            cursorDotRef.current?.classList.toggle('is-pointer', next);
+            cursorOutlineRef.current?.classList.toggle('is-pointer', next);
+        };
+
         const handleMouseMove = (e) => {
             mousePositionRef.current = { x: e.clientX, y: e.clientY };
+            const target = e.target;
+            const isInteractive = target instanceof Element && target.closest(POINTER_SELECTOR) !== null;
+            setPointer(isInteractive);
         };
 
-        const handleMouseOver = (e) => {
-            if (e.target.closest('a, button, [data-cursor="pointer"]')) {
-                setIsPointer(true);
-            }
-        };
-
-        const handleMouseOut = (e) => {
-            if (e.target.closest('a, button, [data-cursor="pointer"]')) {
-                setIsPointer(false);
-            }
-        };
-
-        document.addEventListener('mousemove', handleMouseMove);
-        document.addEventListener('mouseover', handleMouseOver);
-        document.addEventListener('mouseout', handleMouseOut);
-
+        document.addEventListener('mousemove', handleMouseMove, { passive: true });
         return () => {
             document.removeEventListener('mousemove', handleMouseMove);
-            document.removeEventListener('mouseover', handleMouseOver);
-            document.removeEventListener('mouseout', handleMouseOut);
         };
     }, []);
 
@@ -51,7 +44,6 @@ const CustomCursor = ({ isMatrixMode }) => {
 
         const animate = () => {
             const { x, y } = mousePositionRef.current;
-
             lastX += (x - lastX) * 0.1;
             lastY += (y - lastY) * 0.1;
 
@@ -65,26 +57,17 @@ const CustomCursor = ({ isMatrixMode }) => {
         };
 
         requestRef.current = requestAnimationFrame(animate);
-
-        return () => {
-            cancelAnimationFrame(requestRef.current);
-        };
+        return () => cancelAnimationFrame(requestRef.current);
     }, [isTouchDevice]);
 
-    if (isTouchDevice) {
-        return null;
-    }
+    if (isTouchDevice) return null;
+
+    const matrixClass = isMatrixMode ? ' is-matrix' : '';
 
     return (
         <>
-            <div
-                ref={cursorOutlineRef}
-                className={`cursor-outline ${isPointer ? 'is-pointer' : ''} ${isMatrixMode ? 'is-matrix' : ''}`}
-            />
-            <div
-                ref={cursorDotRef}
-                className={`cursor-dot ${isPointer ? 'is-pointer' : ''} ${isMatrixMode ? 'is-matrix' : ''}`}
-            />
+            <div ref={cursorOutlineRef} className={`cursor-outline${matrixClass}`} />
+            <div ref={cursorDotRef} className={`cursor-dot${matrixClass}`} />
         </>
     );
 };

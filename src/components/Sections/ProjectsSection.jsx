@@ -1,115 +1,115 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import ProjectCard from '../UI/ProjectCard';
+import ProjectCardSkeleton from '../UI/ProjectCardSkeleton';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import { childVariants, staggeredCardVariants } from '../../utils/framerMotionVariants';
+
+const PROJECTS_PER_PAGE = 6;
 
 function ProjectsSection() {
   const { t } = useTranslation();
   const { projects, loading, error } = useGithubRepos('AminoBela');
   const [activeFilter, setActiveFilter] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
-  const PROJECTS_PER_PAGE = 6;
 
-  // Reset page when filter changes
-  React.useEffect(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [activeFilter]);
 
   const categories = useMemo(() => {
-    if (!projects || projects.length === 0) return ['All'];
-    // Utilise uniquement la technologie principale
-    const langs = new Set();
-    projects.forEach(p => {
-      if (p.language) {
-        langs.add(p.language);
-      }
-    });
-    return ['All', ...Array.from(langs).sort()];
+    if (!projects || projects.length === 0) return [{ key: 'All', count: 0 }];
+    const counts = projects.reduce((acc, p) => {
+      if (p.language) acc[p.language] = (acc[p.language] || 0) + 1;
+      return acc;
+    }, {});
+    const sorted = Object.entries(counts)
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([key, count]) => ({ key, count }));
+    return [{ key: 'All', count: projects.length }, ...sorted];
   }, [projects]);
 
   const filteredProjects = useMemo(() => {
     if (activeFilter === 'All') return projects;
-    // Filtre uniquement par la technologie principale
     return projects.filter(project => project.language === activeFilter);
   }, [projects, activeFilter]);
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredProjects.length / PROJECTS_PER_PAGE);
   const currentProjects = filteredProjects.slice(
     (currentPage - 1) * PROJECTS_PER_PAGE,
     currentPage * PROJECTS_PER_PAGE
   );
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
+  const viewKey = `${activeFilter}-${currentPage}`;
 
   return (
-    <motion.section
-      id="projets"
-      variants={sectionVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="terminal-section"
-    >
+    <section id="projets" className="terminal-section">
       <div className="container">
-        <motion.h2 variants={childVariants} className="terminal-command">
+        <motion.h2
+          variants={childVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          className="terminal-command"
+        >
           {t('projects_title')}
         </motion.h2>
 
-        {loading && <p className="terminal-text loading-message">{t('projects_loading')}</p>}
+        {loading && (
+          <div className="project-grid-inner" aria-busy="true" aria-label={t('projects_loading')}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <ProjectCardSkeleton key={i} />
+            ))}
+          </div>
+        )}
         {error && <p className="terminal-text error-message">{error}</p>}
 
         {!loading && !error && projects.length > 0 && (
           <>
-            {/* --- BARRE DE FILTRES --- */}
-            <motion.div variants={childVariants} className="skills-tabs">
-              {categories.map((category) => (
+            <motion.div
+              className="skills-tabs"
+              variants={childVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              {categories.map(({ key, count }) => (
                 <button
-                  key={category}
-                  onClick={() => setActiveFilter(category)}
-                  className={`skills-tab ${activeFilter === category ? 'skills-tab--active' : ''}`}
+                  key={key}
+                  onClick={() => setActiveFilter(key)}
+                  className={`skills-tab ${activeFilter === key ? 'skills-tab--active' : ''}`}
                 >
-                  {category === 'All' ? t('projects_filter_all') : category}
+                  {key === 'All' ? t('projects_filter_all') : key}
+                  <span className="skills-tab__count">{count}</span>
                 </button>
               ))}
             </motion.div>
 
-            {/* --- GRILLE DE PROJETS --- */}
-            <div style={{ minHeight: '400px', display: 'flex', flexDirection: 'column' }}>
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${activeFilter}-${currentPage}`}
-                  className="project-grid-inner"
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  variants={{
-                    hidden: { opacity: 0 },
-                    visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
-                    exit: { opacity: 0, transition: { duration: 0.2 } }
-                  }}
-                >
-                  {currentProjects.map((project) => (
-                    <ProjectCard
-                      key={project.id}
-                      project={project}
-                      t={t}
-                    />
+            <div className="project-grid-wrapper">
+              <div className="project-grid-inner">
+                <AnimatePresence mode="wait">
+                  {currentProjects.map((project, index) => (
+                    <motion.div
+                      key={`${viewKey}-${project.id}`}
+                      custom={index}
+                      variants={staggeredCardVariants}
+                      initial="hidden"
+                      animate="visible"
+                      exit="exit"
+                    >
+                      <ProjectCard project={project} t={t} />
+                    </motion.div>
                   ))}
-                </motion.div>
-              </AnimatePresence>
+                </AnimatePresence>
+              </div>
 
-              {/* --- PAGINATION CONTROLS --- */}
               {totalPages > 1 && (
                 <div className="pagination-controls">
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                     <button
                       key={page}
-                      onClick={() => handlePageChange(page)}
+                      onClick={() => setCurrentPage(page)}
                       className={`pagination-btn ${currentPage === page ? 'active' : ''}`}
                       aria-label={`Page ${page}`}
                     >
@@ -126,7 +126,7 @@ function ProjectsSection() {
           </>
         )}
       </div>
-    </motion.section>
+    </section>
   );
 }
 

@@ -1,20 +1,20 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { childVariants } from '../../utils/framerMotionVariants';
+import { useMagnetic } from '../../hooks/useMagnetic';
 
 const EducationCard = ({ item, t, onClick }) => {
     const statusClass = `education-card--${item.status}`;
     const statusLabel = t(`education_status_${item.status}`);
+    const magneticRef = useMagnetic(0.05);
 
     return (
         <motion.div
+            ref={magneticRef}
             className={`education-card ${statusClass}`}
             variants={childVariants}
-            // Hover géré par CSS
             onClick={() => onClick(item)}
             data-cursor="pointer"
         >
-            {item.status === 'current' && <div className="education-card__shimmer" />}
             <span className="education-card__badge">{statusLabel}</span>
 
             <div className="education-card__header">
@@ -41,11 +41,13 @@ const EducationCard = ({ item, t, onClick }) => {
     );
 };
 
-const AlternanceCard = ({ t, onClick }) => (
+const AlternanceCard = ({ t, onClick }) => {
+    const magneticRef = useMagnetic(0.05);
+    return (
     <motion.div
+        ref={magneticRef}
         className="alternance-card"
         variants={childVariants}
-        // Hover géré par CSS
         onClick={onClick}
         data-cursor="pointer"
     >
@@ -61,7 +63,8 @@ const AlternanceCard = ({ t, onClick }) => (
             </span>
         </div>
     </motion.div>
-);
+    );
+};
 
 function EducationRoadmap({ educationData, t, onSelect, onAlternanceClick }) {
     return (
