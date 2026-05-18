@@ -119,35 +119,15 @@
   padding: 0 2rem;
 }
 
-.modal-tabs {
-  display: flex;
-  gap: 0.25rem;
-  padding: 1.25rem 0 0;
-  border-bottom: 1px solid var(--card-border);
-  margin-bottom: 1.5rem;
-}
-
-.modal-tab {
-  padding: 0.5rem 1.2rem;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  color: var(--text-secondary);
-  font-size: 0.88rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  margin-bottom: -1px;
-}
-
-.modal-tab:hover {
+.markdown-body__heading {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
   color: var(--color-text);
-}
-
-.modal-tab--active {
-  color: var(--accent);
-  border-bottom-color: var(--accent);
-  font-weight: 600;
+  margin: 2rem 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--card-border);
+  letter-spacing: -0.01em;
 }
 
 .modal-media-container {

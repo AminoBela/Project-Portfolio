@@ -43,6 +43,7 @@ const LANGUAGE_COLORS = {
     Swift: '#ffac45',
     Kotlin: '#F18E33',
     Dart: '#00B4AB',
+    Dockerfile: '#0db7ed',
 };
 
 function getLangColor(lang) {
@@ -76,7 +77,6 @@ function formatDate(iso, locale = 'fr-FR') {
 
 function ProjectCard({ project, t, ...props }) {
     const [modalOpen, setModalOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState('overview');
     const magnetRef = useMagnetic(0.06);
     const formattedDescription = shorten(project.description);
     const updatedAt = formatDate(project.updated_at);
@@ -174,97 +174,60 @@ function ProjectCard({ project, t, ...props }) {
                 </div>
 
                 <div className="modal-body">
-                    <div className="modal-tabs" role="tablist">
-                        <button
-                            type="button"
-                            role="tab"
-                            className={`modal-tab ${activeTab === 'overview' ? 'modal-tab--active' : ''}`}
-                            onClick={() => setActiveTab('overview')}
-                            aria-selected={activeTab === 'overview'}
-                        >
-                            {t('project_tab_overview') || 'Overview'}
-                        </button>
-                        <button
-                            type="button"
-                            role="tab"
-                            className={`modal-tab ${activeTab === 'tech' ? 'modal-tab--active' : ''}`}
-                            onClick={() => setActiveTab('tech')}
-                            aria-selected={activeTab === 'tech'}
-                        >
-                            {t('project_tab_tech') || 'Tech'}
-                        </button>
-                        <button
-                            type="button"
-                            role="tab"
-                            className={`modal-tab ${activeTab === 'readme' ? 'modal-tab--active' : ''}`}
-                            onClick={() => setActiveTab('readme')}
-                            aria-selected={activeTab === 'readme'}
-                        >
-                            README
-                        </button>
+                    {projectMedia && (
+                        <div className="modal-media-container">
+                            {projectMedia.type === 'video' ? (
+                                <video src={projectMedia.url} autoPlay loop muted playsInline className="modal-media-element" />
+                            ) : (
+                                <img src={projectMedia.url} alt={`${project.name} overview`} className="modal-media-element" loading="lazy" />
+                            )}
+                        </div>
+                    )}
+
+                    <div className="stats-grid">
+                        <div className="stat-box">
+                            <span className="stat-label">Stars</span>
+                            <span className="stat-value">★ {project.stargazers_count}</span>
+                        </div>
+                        <div className="stat-box">
+                            <span className="stat-label">Forks</span>
+                            <span className="stat-value">⑂ {project.forks_count}</span>
+                        </div>
+                        <div className="stat-box">
+                            <span className="stat-label">{t('project_updated')}</span>
+                            <span className="stat-value">{updatedAt}</span>
+                        </div>
+                        <div className="stat-box">
+                            <span className="stat-label">{t('project_size')}</span>
+                            <span className="stat-value">{Math.round(project.size / 1024)} Mo</span>
+                        </div>
                     </div>
 
-                    {activeTab === 'overview' && (
-                        <>
-                            {projectMedia && (
-                                <div className="modal-media-container">
-                                    {projectMedia.type === 'video' ? (
-                                        <video src={projectMedia.url} autoPlay loop muted playsInline className="modal-media-element" />
-                                    ) : (
-                                        <img src={projectMedia.url} alt={`${project.name} overview`} className="modal-media-element" loading="lazy" />
-                                    )}
-                                </div>
-                            )}
-
-                            <div className="stats-grid">
-                                <div className="stat-box">
-                                    <span className="stat-label">Stars</span>
-                                    <span className="stat-value">★ {project.stargazers_count}</span>
-                                </div>
-                                <div className="stat-box">
-                                    <span className="stat-label">Forks</span>
-                                    <span className="stat-value">⑂ {project.forks_count}</span>
-                                </div>
-                                <div className="stat-box">
-                                    <span className="stat-label">{t('project_updated')}</span>
-                                    <span className="stat-value">{updatedAt}</span>
-                                </div>
-                                <div className="stat-box">
-                                    <span className="stat-label">{t('project_size')}</span>
-                                    <span className="stat-value">{Math.round(project.size / 1024)} Mo</span>
-                                </div>
-                            </div>
-
-                            {project.description && (
-                                <p className="project-full-desc">{project.description}</p>
-                            )}
-                        </>
+                    {project.description && (
+                        <p className="project-full-desc">{project.description}</p>
                     )}
 
-                    {activeTab === 'tech' && (
-                        <div className="tech-section">
-                            <div className="tech-stack">
-                                <h4>{t('project_stack')}</h4>
-                                <div className="project-tags large">
-                                    {languages.map((lang) => (
-                                        <span key={lang} className="tag" style={{
-                                            backgroundColor: `${getLangColor(lang)}15`,
-                                            color: getLangColor(lang),
-                                            borderColor: `${getLangColor(lang)}40`
-                                        }}>
-                                            {lang}
-                                        </span>
-                                    ))}
-                                </div>
+                    <div className="tech-section">
+                        <div className="tech-stack">
+                            <h4>{t('project_stack')}</h4>
+                            <div className="project-tags large">
+                                {languages.map((lang) => (
+                                    <span key={lang} className="tag" style={{
+                                        backgroundColor: `${getLangColor(lang)}15`,
+                                        color: getLangColor(lang),
+                                        borderColor: `${getLangColor(lang)}40`
+                                    }}>
+                                        {lang}
+                                    </span>
+                                ))}
                             </div>
                         </div>
-                    )}
+                    </div>
 
-                    {activeTab === 'readme' && (
-                        <div className="markdown-body">
-                            <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
-                        </div>
-                    )}
+                    <div className="markdown-body">
+                        <h4 className="markdown-body__heading">README</h4>
+                        <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
+                    </div>
                 </div>
             </Modal>
         </>
