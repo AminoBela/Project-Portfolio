@@ -146,4 +146,15 @@
     width: 46px;
     height: 46px;
   }
+
+  .button {
+    padding: 0.7rem 1.25rem;
+    font-size: 0.82rem;
+  }
+}
+
+@media (hover: none) {
+  .button:hover {
+    transform: translate(0, 0);
+  }
 }

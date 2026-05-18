@@ -426,15 +426,56 @@
 }
 
 @media (max-width: 768px) {
+    .education-roadmap {
+        gap: 1.25rem;
+    }
+
     .education-card {
-        min-height: 170px;
+        min-height: auto;
         padding: 1.25rem;
         padding-top: 2.25rem;
+    }
+
+    .education-card__title {
+        font-size: 0.92rem;
     }
 
     .alternance-card {
         flex-direction: column;
         text-align: center;
         padding: 1.5rem;
+        gap: 1rem;
+    }
+
+    .alternance-card__content h4 {
+        font-size: 1rem;
+    }
+
+    .alternance-card__content p {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .education-card {
+        padding: 1rem;
+        padding-top: 2rem;
+        border-radius: 14px;
+    }
+
+    .education-card__logo,
+    .education-card__logo-placeholder {
+        width: 36px;
+        height: 36px;
+    }
+
+    .education-card__badge {
+        font-size: 0.55rem;
+        padding: 0.18rem 0.5rem;
+    }
+
+    .alternance-card {
+        padding: 1.25rem 1rem;
+        border-radius: 16px;
     }
 }

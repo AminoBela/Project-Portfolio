@@ -572,8 +572,13 @@
         max-width: 100%;
     }
 
+    .about-hero__facts {
+        justify-content: center;
+    }
+
     .about-hero__actions {
         justify-content: center;
+        flex-wrap: wrap;
     }
 
     .about-hero__photo {
@@ -602,5 +607,40 @@
 
     .bento-card {
         padding: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: 3rem 0.85rem;
+    }
+
+    .about-hero {
+        padding: 1.75rem 1.1rem;
+        gap: 1.25rem;
+        border-radius: 18px;
+    }
+
+    .about-hero__name {
+        font-size: 1.65rem;
+    }
+
+    .about-hero__tagline {
+        font-size: 0.88rem;
+    }
+
+    .about-fact {
+        font-size: 0.65rem;
+        padding: 0.25rem 0.55rem;
+    }
+
+    .about-btn--primary {
+        padding: 0.55rem 1.1rem;
+        font-size: 0.8rem;
+    }
+
+    .bento-card {
+        padding: 1.25rem;
+        border-radius: 16px;
     }
 }

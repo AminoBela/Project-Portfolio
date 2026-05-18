@@ -342,3 +342,92 @@
 .markdown-body tr:nth-child(even) {
   background-color: var(--table-row-even-bg);
 }
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+  .modal-backdrop {
+    padding: 0.5rem;
+  }
+
+  .modal-content {
+    max-height: 95vh;
+    max-height: 95dvh;
+    border-radius: 16px;
+  }
+
+  .modal-hero {
+    padding: 1.5rem 1.25rem;
+    padding-right: 3.5rem;
+  }
+
+  .modal-hero__content h2 {
+    font-size: 1.4rem;
+    margin: 0.5rem 0 0.85rem;
+  }
+
+  .modal-hero__actions {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .btn-github,
+  .btn-demo {
+    padding: 0.55rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-body {
+    padding: 0 1.25rem 1.5rem;
+  }
+
+  .modal-close-button {
+    width: 36px;
+    height: 36px;
+    font-size: 1.3rem;
+    top: 0.75rem;
+    right: 0.75rem;
+  }
+
+  .stats-grid {
+    gap: 0.5rem;
+    padding: 1.25rem 0;
+  }
+
+  .stat-box {
+    min-width: calc(50% - 0.25rem);
+    padding: 0.6rem 0.75rem;
+  }
+
+  .project-full-desc {
+    font-size: 0.95rem;
+  }
+
+  .tech-section {
+    padding: 1.25rem 0;
+  }
+
+  .markdown-body__heading {
+    margin: 1.5rem 0 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-hero {
+    padding: 1.25rem 1rem;
+    padding-right: 3rem;
+  }
+
+  .modal-hero__content h2 {
+    font-size: 1.25rem;
+  }
+
+  .modal-body {
+    padding: 0 1rem 1.25rem;
+  }
+
+  .btn-github,
+  .btn-demo {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+}

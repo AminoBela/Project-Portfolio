@@ -214,5 +214,39 @@
 
     .engagements-timeline__card {
         max-width: none;
+        padding: 1.1rem 1rem;
+    }
+
+    .engagements-timeline__title {
+        font-size: 1rem;
+    }
+
+    .engagements-timeline__desc {
+        font-size: 0.85rem;
+    }
+
+    .engagements-intro {
+        font-size: 0.88rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .engagements-timeline__items {
+        gap: 2rem;
+    }
+
+    .engagements-timeline__year {
+        font-size: 0.7rem;
+        left: 56px;
+    }
+
+    .engagements-timeline__node {
+        width: 36px;
+        height: 36px;
+    }
+
+    .engagements-timeline__rail,
+    .engagements-timeline__progress {
+        left: 18px;
     }
 }

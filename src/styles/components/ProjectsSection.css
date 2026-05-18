@@ -388,3 +388,63 @@
         animation: none;
     }
 }
+
+/* ── Responsive ─────────────────────────────── */
+@media (max-width: 768px) {
+    .project-grid-inner {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .project-card {
+        padding: 1.25rem;
+        min-height: auto;
+    }
+
+    .project-card__title {
+        font-size: 1.05rem;
+    }
+
+    .skills-tabs {
+        margin: 1.25rem 0;
+        padding-bottom: 1.25rem;
+        gap: 0.4rem;
+    }
+
+    .pagination-controls {
+        margin-top: 2rem;
+        gap: 0.35rem;
+    }
+
+    .pagination-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-card {
+        padding: 1.1rem;
+        border-radius: 14px;
+    }
+
+    .project-card__media-preview {
+        height: 130px;
+    }
+
+    .project-card__description {
+        font-size: 0.85rem;
+    }
+
+    .skills-tab {
+        font-size: 0.78rem;
+        padding: 0.35rem 0.85rem;
+    }
+
+    .skills-tab__count {
+        font-size: 0.62rem;
+        padding: 0.02rem 0.4rem;
+    }
+}
