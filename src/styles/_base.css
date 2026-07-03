@@ -236,3 +236,12 @@ body::-webkit-scrollbar {
     scroll-behavior: auto;
   }
 }
+
+/* Fondu discret du contenu lors du changement de langue */
+main {
+  transition: padding-top 0.5s ease, opacity 160ms ease;
+}
+
+main.lang-fading {
+  opacity: 0;
+}

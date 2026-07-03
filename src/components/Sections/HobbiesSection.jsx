@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
-import { useMagnetic } from '../../hooks/useMagnetic';
+import { sectionVariants, childVariants } from '../../utils/motion';
+
 
 const hobbiesData = [
     {
@@ -43,10 +43,10 @@ const hobbiesData = [
 ];
 
 const HobbyCard = ({ hobby, t }) => {
-    const ref = useMagnetic(0.05);
+
     return (
         <motion.article
-            ref={ref}
+           
             className={`hobby-card hobby-card--${hobby.size}`}
             variants={childVariants}
             style={{ '--hobby-color': hobby.color, '--hobby-accent': hobby.accent }}

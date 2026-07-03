@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import Button from '../UI/Button';
 import Modal from '../UI/Modal';
 import ReactMarkdown from 'react-markdown';
-import { useMagnetic } from '../../hooks/useMagnetic';
+
 
 // Charge automatiquement tous les médias (images et vidéos) du dossier projets
 const projectMediaModules = import.meta.glob('../../assets/projects/*.{png,jpg,jpeg,webp,mp4,webm}', { eager: true, query: '?url', import: 'default' });
@@ -77,7 +77,7 @@ function formatDate(iso, locale = 'fr-FR') {
 
 function ProjectCard({ project, t, ...props }) {
     const [modalOpen, setModalOpen] = useState(false);
-    const magnetRef = useMagnetic(0.06);
+
     const formattedDescription = shorten(project.description);
     const updatedAt = formatDate(project.updated_at);
     const languages = Object.keys(project.languages || {});
@@ -93,7 +93,7 @@ function ProjectCard({ project, t, ...props }) {
     return (
         <>
             <div
-                ref={magnetRef}
+               
                 className="project-card"
                 style={{ '--accent-color': mainColor }}
                 {...props}

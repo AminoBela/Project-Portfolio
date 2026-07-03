@@ -1,15 +1,15 @@
 import { motion } from 'motion/react';
-import { childVariants } from '../../utils/framerMotionVariants';
-import { useMagnetic } from '../../hooks/useMagnetic';
+import { childVariants } from '../../utils/motion';
+
 
 const EducationCard = ({ item, t, onClick }) => {
     const statusClass = `education-card--${item.status}`;
     const statusLabel = t(`education_status_${item.status}`);
-    const magneticRef = useMagnetic(0.05);
+
 
     return (
         <motion.div
-            ref={magneticRef}
+
             className={`education-card ${statusClass}`}
             variants={childVariants}
             onClick={() => onClick(item)}
@@ -42,10 +42,10 @@ const EducationCard = ({ item, t, onClick }) => {
 };
 
 const AlternanceCard = ({ t, onClick }) => {
-    const magneticRef = useMagnetic(0.05);
+
     return (
     <motion.div
-        ref={magneticRef}
+
         className="alternance-card"
         variants={childVariants}
         onClick={onClick}

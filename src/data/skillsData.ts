@@ -1,3 +1,5 @@
+import type { Skill } from '../types/content';
+
 export const skills = [
   // --- SYSTÈMES & RÉSEAUX ---
   {
@@ -146,4 +148,4 @@ export const skills = [
     category: 'Méthodes',
     description: 'skill_desc_terraform'
   }
-];
+] satisfies Skill[];

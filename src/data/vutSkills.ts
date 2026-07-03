@@ -1,3 +1,5 @@
+import type { VutSkill } from '../types/content';
+
 export const vutSkills = [
     {
         name: "skills_vut_1_name",
@@ -41,4 +43,4 @@ export const vutSkills = [
         comment: "skills_vut_6_comment",
         github: null
     }
-];
+] satisfies VutSkill[];

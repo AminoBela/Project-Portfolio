@@ -8,6 +8,10 @@
     "jsx": "react-jsx",
     "types": ["vite/client"],
 
+    // Transition : autorise l'import des .jsx legacy depuis les .tsx sans les typechecker
+    "allowJs": true,
+    "checkJs": false,
+
     "strict": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,

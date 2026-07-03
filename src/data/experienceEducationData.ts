@@ -1,3 +1,5 @@
+import type { TimelineEntry } from '../types/content';
+
 export const educationData = [
     {
         id: 'cesi',
@@ -80,7 +82,7 @@ export const educationData = [
         },
         color: '#6272a4'
     }
-];
+] satisfies TimelineEntry[];
 
 export const experiencesData = [
     {
@@ -180,6 +182,6 @@ export const experiencesData = [
             ]
         }
     }
-];
+] satisfies TimelineEntry[];
 
 export const timelineData = [...experiencesData, ...educationData];

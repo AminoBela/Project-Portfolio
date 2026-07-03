@@ -8,13 +8,6 @@ function Footer() {
             <div className="container footer__inner">
                 <span className="footer__copy">
                     &copy; {new Date().getFullYear()} Amin Belalia. {t('footer_rights')}
-                    {/* Indice Konami Code discret */}
-                    <span 
-                        title="↑ ↑ ↓ ↓ ← → ← → B A" 
-                        style={{ marginLeft: '10px', cursor: 'help', opacity: 0.3 }}
-                    >
-                        _
-                    </span>
                 </span>
                 <div className="footer__socials">
                     <a href="mailto:abelaliabendjafar@gmail.com" className="footer__social-link" aria-label="Email">

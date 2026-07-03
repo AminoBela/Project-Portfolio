@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { motion } from 'motion/react';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import { sectionVariants, childVariants } from '../../utils/motion';
 
 const engagementsData = [
     {

@@ -3,7 +3,7 @@ import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
 import '../../styles/components.css';
 import { motion } from 'motion/react';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import { sectionVariants, childVariants } from '../../utils/motion';
 
 const languagesData = [
     { key: 'lang_french', code: 'FR', level: 100, levelKey: 'lang_level_bilingual' },

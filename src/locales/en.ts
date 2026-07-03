@@ -1,3 +1,5 @@
+import type { fr } from './fr';
+
 export const en = {
   "nav_home": "Home",
   "nav_about": "About",
@@ -317,4 +319,4 @@ export const en = {
   "stats_technologies": "Technologies",
   "stats_projects": "Projects",
   "stats_languages": "Languages"
-};
+} satisfies Record<keyof typeof fr, string>;

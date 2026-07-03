@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { educationData, experiencesData } from '../../data/experienceEducationData';
 import { motion } from 'motion/react';
-import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
+import { sectionVariants, childVariants } from '../../utils/motion';
 import Modal from '../UI/Modal';
 import EducationRoadmap from './EducationRoadmap';
 

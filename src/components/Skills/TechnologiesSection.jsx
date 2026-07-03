@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
 import { motion, AnimatePresence } from 'motion/react';
-import { staggeredCardVariants } from '../../utils/framerMotionVariants';
+import { staggeredCardVariants } from '../../utils/motion';
 
 function TechnologiesSection() {
     const { t } = useTranslation();

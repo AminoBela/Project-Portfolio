@@ -1,9 +1,8 @@
-import React, { useMemo, useState, Suspense } from 'react';
+import React, { useState, Suspense } from 'react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';
-import { useTypingEffect } from '../../hooks/useTypingEffect';
 import AnimatedStats from '../UI/AnimatedStats';
 import HeroShowcase from '../UI/HeroShowcase';
 
@@ -27,19 +26,8 @@ const itemVariants = {
 };
 
 const HomeSection = () => {
-    const { t, ready } = useTranslation();
+    const { t } = useTranslation();
     const [isCvModalOpen, setIsCvModalOpen] = useState(false);
-
-    const animatedWords = useMemo(() => {
-        if (!ready) return ['...'];
-        return [
-            t('home_subtitle_1'),
-            t('home_subtitle_2'),
-            t('home_subtitle_3')
-        ];
-    }, [t, ready]);
-
-    const animatedTitle = useTypingEffect(animatedWords, { typeSpeed: 100, deleteSpeed: 80, delay: 2000 });
 
     return (
         <>
@@ -62,8 +50,7 @@ const HomeSection = () => {
 
                         <motion.h2 className="home-subtitle" variants={itemVariants}>
                             <span className="home-subtitle-static">{t('home_i_am')}</span>
-                            <span className="home-subtitle-dynamic">{animatedTitle}</span>
-                            <span className="home-cursor">|</span>
+                            <span className="home-subtitle-dynamic">{t('home_subtitle_1')}</span>
                         </motion.h2>
 
                         <motion.p className="home-description" variants={itemVariants}>

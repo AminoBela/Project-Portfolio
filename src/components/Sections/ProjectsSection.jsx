@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import ProjectCard from '../UI/ProjectCard';
 import ProjectCardSkeleton from '../UI/ProjectCardSkeleton';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
-import { childVariants, staggeredCardVariants } from '../../utils/framerMotionVariants';
+import { childVariants, staggeredCardVariants } from '../../utils/motion';
 
 const PROJECTS_PER_PAGE = 6;
 
