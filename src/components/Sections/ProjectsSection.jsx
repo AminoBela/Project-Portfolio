@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import ProjectCard from '../UI/ProjectCard';
 import ProjectCardSkeleton from '../UI/ProjectCardSkeleton';
 import { useGithubRepos } from '../../hooks/useGithubRepos';

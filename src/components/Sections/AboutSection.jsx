@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import photo from '../../assets/photo-profil.jpg';
 import cvPdf from '../../assets/cv.pdf';
 import '../../styles/components.css';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { sectionVariants, childVariants } from '../../utils/framerMotionVariants';
 
 const languagesData = [

@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'motion/react';
 import { useTheme } from './hooks/useTheme';
 import { useAppLogic } from './hooks/useAppLogic';
 import Navigation from './components/Layout/Navigation';

@@ -1,5 +1,5 @@
 import React, { useMemo, useState, Suspense } from 'react';
-import { motion } from 'framer-motion';
+import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import Button from '../UI/Button';
 import cvPdf from '../../assets/cv.pdf';

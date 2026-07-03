@@ -2,7 +2,7 @@ import { useState, useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { skills } from '../../data/skillsData';
 import SkillBar from '../UI/SkillBar';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence } from 'motion/react';
 import { staggeredCardVariants } from '../../utils/framerMotionVariants';
 
 function TechnologiesSection() {
