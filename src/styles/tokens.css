@@ -1,0 +1,154 @@
+/* ============================================================
+   DESIGN TOKENS — palette quasi-monochrome, un seul accent.
+   Thème sombre par défaut, clair via :root.light.
+   ============================================================ */
+
+:root {
+  /* === CORE === */
+  --bg: #0b0b0d;
+  --bg-raised: #131316;
+  --bg-raised-hover: #19191d;
+  --text: #ededf0;
+  --text-muted: #9b9ba4;
+  --border: #232329;
+  --border-strong: #3a3a44;
+  --accent: #6e7cf0;
+  --accent-strong: #8b96f4;
+  --accent-rgb: 110, 124, 240;
+
+  /* === TYPOGRAPHIE === */
+  --font-sans: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk Variable', var(--font-sans);
+  --font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', monospace;
+
+  /* Échelle fluide */
+  --text-xs: 0.8125rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.125rem, 1rem + 0.5vw, 1.25rem);
+  --text-xl: clamp(1.375rem, 1.2rem + 0.9vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.4rem + 1.6vw, 2.5rem);
+  --text-display: clamp(2.5rem, 1.8rem + 3.5vw, 4.5rem);
+
+  /* === SPACING === */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 1rem;
+  --space-4: 1.5rem;
+  --space-5: 2rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+
+  /* === RADII === */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-full: 999px;
+
+  /* === OMBRES (2 max) === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.25);
+
+  /* === MOTION === */
+  --duration-fast: 150ms;
+  --duration: 300ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* === Z-INDEX === */
+  --z-nav: 1000;
+  --z-modal: 2000;
+}
+
+:root.light {
+  --bg: #fafafa;
+  --bg-raised: #ffffff;
+  --bg-raised-hover: #f2f2f5;
+  --text: #17171b;
+  --text-muted: #5c5c66;
+  --border: #e6e6ea;
+  --border-strong: #c9c9d2;
+  --accent: #4f46e5;
+  --accent-strong: #4338ca;
+  --accent-rgb: 79, 70, 229;
+
+  --shadow-sm: 0 1px 2px rgba(23, 23, 27, 0.06);
+  --shadow-md: 0 8px 24px rgba(23, 23, 27, 0.08);
+}
+
+/* ============================================================
+   ALIASES LEGACY — mappent les anciennes variables vers les
+   nouveaux tokens le temps de la réécriture des sections.
+   À SUPPRIMER en phase finale.
+   ============================================================ */
+
+:root {
+  --accent-hover: var(--accent-strong);
+  --color-text: var(--text);
+  --text-secondary: var(--text-muted);
+  --accent-secondary-rgb: var(--accent-rgb);
+  --grid-pattern-color: transparent;
+
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-danger: #fb7185;
+  --color-info: #38bdf8;
+  --color-neutral: #94a3b8;
+
+  --color-skill-expert: #34d399;
+  --color-skill-expert-rgb: 52, 211, 153;
+  --color-skill-advanced: #38bdf8;
+  --color-skill-advanced-rgb: 56, 189, 248;
+  --color-skill-confirmed: #fbbf24;
+  --color-skill-confirmed-rgb: 251, 191, 36;
+  --color-skill-basic: #94a3b8;
+  --color-skill-basic-rgb: 148, 163, 184;
+
+  --dot-red: #fb7185;
+  --dot-yellow: #fbbf24;
+  --dot-green: #34d399;
+
+  --bg-primary: var(--bg);
+  --bg-secondary: var(--bg-raised);
+
+  --card-bg: var(--bg-raised);
+  --card-bg-hover: var(--bg-raised-hover);
+  --card-border: var(--border);
+  --card-border-top: var(--border);
+  --card-border-hover: var(--border-strong);
+  --card-shadow: var(--shadow-sm);
+  --card-shadow-hover: var(--shadow-md);
+  --card-backdrop: none;
+  --text-highlight: var(--text);
+  --nav-highlight-bg: rgba(var(--accent-rgb), 0.1);
+
+  --nav-bg: color-mix(in srgb, var(--bg) 85%, transparent);
+  --tech-icon-bg: var(--bg-raised);
+  --mobile-menu-overlay: color-mix(in srgb, var(--bg) 90%, transparent);
+  --mobile-menu-bg: var(--bg-raised);
+  --button-text-primary: var(--bg);
+  --cursor-pointer-bg: rgba(var(--accent-rgb), 0.1);
+  --cursor-pointer-border: transparent;
+  --burger-bar-bg: var(--text);
+
+  --filter-saturate: none;
+  --filter-brightness: none;
+
+  --modal-backdrop: rgba(0, 0, 0, 0.55);
+  --code-bg: rgba(var(--accent-rgb), 0.08);
+  --code-color: var(--accent);
+  --pre-bg: var(--bg-raised);
+  --pre-color: inherit;
+  --table-header-bg: rgba(var(--accent-rgb), 0.06);
+  --table-row-even-bg: rgba(255, 255, 255, 0.02);
+  --blockquote-border: var(--accent);
+  --badge-color: var(--text);
+
+  --font-primary: var(--font-sans);
+  --font-heading: var(--font-display);
+  --font-code: var(--font-mono);
+
+  --radius-xl: 20px;
+  --z-cursor: 99999;
+  --z-fixed: var(--z-nav);
+}

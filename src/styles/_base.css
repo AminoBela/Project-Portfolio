@@ -6,60 +6,31 @@
   padding: 0;
 }
 
-/* GPU layer promotion for elements with backdrop-filter */
-[class*="card"],
-[class*="Card"],
-.timeline-card-compact,
-.engagement-card,
-.hobby-card,
-.stat-card,
-.detail-card,
-.about-bio-card,
-.internship-card,
-.contact-card-wrapper,
-.education-card,
-.alternance-card,
-.skill-bar-card {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
-}
-
 html {
-  font-size: 16px;
   scroll-behavior: smooth;
   height: 100%;
-  cursor: none !important;
 }
 
 body {
-  font-family: var(--font-primary);
+  font-family: var(--font-sans);
   font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--color-text);
-  background: var(--bg-primary);
+  color: var(--text);
+  background: var(--bg);
   min-height: 100vh;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  cursor: none !important;
-  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 ::selection {
   background-color: var(--accent);
-  color: var(--bg-primary);
-}
-
-a,
-button,
-[data-cursor="pointer"] {
-  cursor: none !important;
+  color: var(--bg);
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.3s ease;
+  transition: color var(--duration-fast) var(--ease);
 }
 
 ul {
@@ -68,10 +39,24 @@ ul {
 
 button {
   font-family: inherit;
-  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-/* ── Accessibility: keyboard focus ──────────── */
+img,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* Transition douce lors du changement de thème */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease !important;
+}
+
+/* ── Accessibilité : focus clavier ──────────── */
 :focus {
   outline: none;
 }
@@ -79,28 +64,16 @@ button {
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
-  border-radius: 6px;
-  transition: outline-offset 0.15s ease;
+  border-radius: var(--radius-sm);
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline-offset: 4px;
-  box-shadow: 0 0 0 4px rgba(var(--accent-rgb), 0.18);
-}
-
-input:focus-visible,
-textarea:focus-visible {
-  outline-offset: 2px;
-}
-
-/* Skip-link visible only on keyboard focus */
+/* Skip-link visible uniquement au focus clavier */
 .skip-link {
   position: absolute;
   top: -100px;
   left: 1rem;
   background: var(--accent);
-  color: var(--button-text-primary);
+  color: var(--bg);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-sm);
   font-weight: 600;
@@ -112,126 +85,36 @@ textarea:focus-visible {
   top: 1rem;
 }
 
-.cursor-dot,
-.cursor-outline {
-  position: fixed;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  border-radius: 50%;
-  z-index: var(--z-cursor);
+/* ── Scrollbar discrète ─────────────────────── */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
 }
 
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background-color: var(--accent);
-  margin-left: -3px;
-  margin-top: -3px;
-  transition: width 0.2s, height 0.2s, background-color 0.2s;
-  box-shadow: 0 0 8px rgba(var(--accent-rgb), 0.4);
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-.cursor-outline {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(var(--accent-rgb), 0.4);
-  opacity: 0.5;
-  margin-left: -18px;
-  margin-top: -18px;
-  transition: width 0.2s, height 0.2s, opacity 0.2s, transform 0.08s ease-out;
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 4px;
 }
 
-.cursor-dot.is-pointer {
-  width: 10px;
-  height: 10px;
-  margin-left: -5px;
-  margin-top: -5px;
-  background-color: var(--accent);
-  box-shadow: 0 0 12px rgba(var(--accent-rgb), 0.5);
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
-.cursor-outline.is-pointer {
-  width: 50px;
-  height: 50px;
-  margin-left: -25px;
-  margin-top: -25px;
-  background-color: rgba(var(--accent-rgb), 0.08);
-  border-color: var(--accent);
-  opacity: 0.8;
-}
-
-.cursor-dot.is-matrix {
-  background-color: #34d399 !important;
-  z-index: 100000 !important;
-  box-shadow: 0 0 10px #34d399;
-}
-
-.cursor-outline.is-matrix {
-  border-color: #34d399 !important;
-  z-index: 100000 !important;
-  box-shadow: 0 0 20px rgba(52, 211, 153, 0.3);
-}
-
-@media (max-width: 768px) {
-
-  html,
-  body {
-    cursor: auto !important;
-  }
-
-  .cursor-dot,
-  .cursor-outline {
-    display: none !important;
-  }
-}
-
-/* Hide native scrollbars (custom cursor cannot override system cursor on scrollbars) */
-html,
-body {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-html::-webkit-scrollbar,
-body::-webkit-scrollbar {
-  display: none;
-  width: 0;
-  height: 0;
-}
-
-/* Inner scrollable areas (modals, terminal) keep a discreet thumb */
-.modal-body::-webkit-scrollbar,
-.terminal-output::-webkit-scrollbar {
-  width: 6px;
-}
-
-.modal-body::-webkit-scrollbar-thumb,
-.terminal-output::-webkit-scrollbar-thumb {
-  background: rgba(var(--accent-rgb), 0.25);
-  border-radius: 3px;
-}
-
-.modal-body::-webkit-scrollbar-thumb:hover,
-.terminal-output::-webkit-scrollbar-thumb:hover {
-  background: rgba(var(--accent-rgb), 0.45);
-}
-
-
-
-/* --- PERFORMANCE OPTIMIZATIONS --- */
-.defer-rendering {
-  content-visibility: auto;
-  contain-intrinsic-size: 500px;
-}
-
-/* ── Reduced Motion ──────────────────────────── */
+/* ── Reduced Motion ─────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
+
   html {
     scroll-behavior: auto;
   }

@@ -277,11 +277,11 @@
   margin: 1.5rem 0;
   overflow-x: auto;
   font-size: 0.9rem;
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
 }
 
 .markdown-body code {
-  font-family: 'Fira Code', monospace;
+  font-family: var(--font-mono);
   background-color: var(--code-bg);
   color: var(--code-color);
   padding: 0.2em 0.4em;
