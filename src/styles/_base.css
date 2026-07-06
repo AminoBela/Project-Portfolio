@@ -48,6 +48,13 @@ video {
   display: block;
 }
 
+/* Conteneur de mise en page partagé (nav, sections, footer) */
+.site-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+}
+
 /* Transition douce lors du changement de thème */
 html.theme-transition,
 html.theme-transition *,

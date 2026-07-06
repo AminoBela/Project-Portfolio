@@ -17,8 +17,8 @@ export const fr = {
   "home_subtitle_2": "Futur DevOps",
   "home_subtitle_3": "Technicien Infra",
   "home_description": "Étudiant en 3ème année de BUT Informatique, parcours DACS. Passionné par l'automatisation, le déploiement et la sécurisation des infrastructures.",
-  "home_btn_projects": "> Mes Projets",
-  "home_btn_cv": "> Mon CV",
+  "home_btn_projects": "Mes projets",
+  "home_btn_cv": "Mon CV",
 
   "about_available": "Disponible",
   "about_tagline": "Étudiant en BUT Informatique, parcours DACS.",

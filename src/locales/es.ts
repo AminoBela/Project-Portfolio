@@ -19,8 +19,8 @@ export const es = {
   "home_subtitle_2": "Futuro DevOps",
   "home_subtitle_3": "Técnico de Infraestructura",
   "home_description": "Estudiante de 3er año de Informática, especialidad DACS. Apasionado por la automatización, el despliegue y la seguridad de las infraestructuras.",
-  "home_btn_projects": "> Mis Proyectos",
-  "home_btn_cv": "> Mi CV",
+  "home_btn_projects": "Mis proyectos",
+  "home_btn_cv": "Mi CV",
 
   "about_available": "Disponible",
   "about_tagline": "Estudiante de Informática, especialidad DACS.",

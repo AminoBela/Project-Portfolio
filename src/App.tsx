@@ -1,13 +1,13 @@
 import { lazy, Suspense, useCallback, useEffect, useState } from 'react';
+import { MotionConfig } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
-import Navigation from './components/Layout/Navigation';
+import Navigation from './components/layout/Navigation';
+import Hero from './components/sections/Hero';
 import Footer from './components/Layout/Footer';
-import HomeSection from './components/Sections/HomeSection';
 import AboutSection from './components/Sections/AboutSection';
 import ScrollToTopButton from './components/UI/ScrollToTopButton';
-import InternshipBanner from './components/UI/InternshipBanner';
 
 // Lazy load des sections below-the-fold
 const ExperienceEducationSection = lazy(
@@ -18,7 +18,7 @@ const EngagementsSection = lazy(() => import('./components/Sections/EngagementsS
 const HobbiesSection = lazy(() => import('./components/Sections/HobbiesSection'));
 const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
 const ProjectsSection = lazy(() => import('./components/Sections/ProjectsSection'));
-const InternshipModal = lazy(() => import('./components/UI/InternshipModal'));
+const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
 
 const SectionFallback = () => <div style={{ minHeight: '200px' }} />;
 
@@ -28,8 +28,6 @@ const PAGE_TITLES: Record<string, string> = {
   es: 'Amin Belalia | Portafolio',
 };
 
-const BANNER_DISMISSED_KEY = 'banner_dismissed';
-
 function App() {
   const { theme, toggleTheme } = useTheme();
   const { activeSection } = useScrollspy();
@@ -37,9 +35,6 @@ function App() {
 
   const [isLangFading, setIsLangFading] = useState(false);
   const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
-  const [isBannerVisible, setIsBannerVisible] = useState(
-    () => localStorage.getItem(BANNER_DISMISSED_KEY) !== 'true'
-  );
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -62,38 +57,21 @@ function App() {
   const handleOpenInternshipModal = useCallback(() => setIsInternshipModalOpen(true), []);
   const closeInternshipModal = useCallback(() => setIsInternshipModalOpen(false), []);
 
-  const closeBanner = useCallback(() => {
-    setIsBannerVisible(false);
-    localStorage.setItem(BANNER_DISMISSED_KEY, 'true');
-  }, []);
-
-  const bannerHeight = isBannerVisible ? '50px' : '0px';
-
   return (
-    <>
+    <MotionConfig reducedMotion="user">
       <a href="#accueil" className="skip-link">
         Skip to content
       </a>
-
-      <InternshipBanner
-        isVisible={isBannerVisible}
-        onClose={closeBanner}
-        onOpenModal={handleOpenInternshipModal}
-      />
 
       <Navigation
         activeSection={activeSection}
         toggleTheme={toggleTheme}
         theme={theme}
         onLanguageChange={handleLanguageChange}
-        bannerHeight={bannerHeight}
       />
 
-      <main
-        className={isLangFading ? 'lang-fading' : undefined}
-        style={{ paddingTop: bannerHeight }}
-      >
-        <HomeSection />
+      <main className={isLangFading ? 'lang-fading' : undefined}>
+        <Hero onOpenInternshipModal={handleOpenInternshipModal} />
         <AboutSection onOpenInternshipModal={handleOpenInternshipModal} />
         <Suspense fallback={<SectionFallback />}>
           <ExperienceEducationSection />
@@ -121,7 +99,7 @@ function App() {
       <Suspense fallback={null}>
         <InternshipModal isOpen={isInternshipModalOpen} onClose={closeInternshipModal} />
       </Suspense>
-    </>
+    </MotionConfig>
   );
 }
 

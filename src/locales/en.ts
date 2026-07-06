@@ -19,8 +19,8 @@ export const en = {
   "home_subtitle_2": "Future DevOps",
   "home_subtitle_3": "Infrastructure Technician",
   "home_description": "3rd year Computer Science student, DACS path. Passionate about automation, deployment and infrastructure security.",
-  "home_btn_projects": "> My Projects",
-  "home_btn_cv": "> My CV",
+  "home_btn_projects": "My projects",
+  "home_btn_cv": "My CV",
 
   "about_available": "Available",
   "about_tagline": "Computer Science student, DACS path.",
