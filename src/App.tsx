@@ -10,9 +10,7 @@ import Footer from './components/Layout/Footer';
 import ScrollToTopButton from './components/UI/ScrollToTopButton';
 
 // Lazy load des sections below-the-fold
-const ExperienceEducationSection = lazy(
-  () => import('./components/Sections/ExperienceEducationSection')
-);
+const Journey = lazy(() => import('./components/sections/Journey'));
 const SkillsSection = lazy(() => import('./components/Sections/SkillsSection'));
 const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
 const ProjectsSection = lazy(() => import('./components/Sections/ProjectsSection'));
@@ -72,7 +70,7 @@ function App() {
         <Hero onOpenInternshipModal={handleOpenInternshipModal} />
         <About onOpenInternshipModal={handleOpenInternshipModal} />
         <Suspense fallback={<SectionFallback />}>
-          <ExperienceEducationSection />
+          <Journey />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <SkillsSection />

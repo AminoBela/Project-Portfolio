@@ -1,0 +1,227 @@
+.journey__tabs {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  margin-bottom: var(--space-6);
+}
+
+.journey__tabs button {
+  position: relative;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  padding: 0.45rem 1.1rem;
+  border-radius: var(--radius-full);
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.journey__tabs button.is-active {
+  color: var(--text);
+}
+
+.journey__tabs button span {
+  position: relative;
+  z-index: 1;
+}
+
+.journey__tab-pill {
+  position: absolute;
+  inset: 0;
+  background: var(--bg-raised-hover);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+}
+
+/* ── Timeline ───────────────────────────────── */
+.journey__timeline {
+  position: relative;
+  padding-left: var(--space-5);
+}
+
+.journey__rail {
+  position: absolute;
+  left: 5px;
+  top: 6px;
+  bottom: 6px;
+  width: 1.5px;
+  background: var(--border);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.journey__rail-progress {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--accent);
+  transform-origin: top;
+}
+
+.journey__timeline ol {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.journey__item {
+  position: relative;
+}
+
+.journey__node {
+  position: absolute;
+  left: calc(-1 * var(--space-5) + 1px);
+  top: 22px;
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background: var(--bg);
+  border: 1.5px solid var(--border-strong);
+}
+
+.journey__item--current .journey__node {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.journey__item--future .journey__node {
+  border-color: var(--accent);
+}
+
+/* ── Entrée ─────────────────────────────────── */
+.journey__head {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  text-align: left;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3) var(--space-4);
+  color: var(--text);
+  transition:
+    border-color var(--duration-fast) var(--ease),
+    background-color var(--duration-fast) var(--ease);
+}
+
+.journey__head:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-raised-hover);
+}
+
+.journey__logo {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  background: #fff;
+  padding: 3px;
+  flex-shrink: 0;
+}
+
+.journey__head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.journey__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-base);
+}
+
+.journey__org {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+}
+
+.journey__meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.journey__period {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.journey__chevron {
+  color: var(--text-muted);
+  transition: transform var(--duration) var(--ease);
+}
+
+.journey__chevron.is-open {
+  transform: rotate(180deg);
+}
+
+/* ── Détails (expansion inline) ─────────────── */
+.journey__details {
+  overflow: hidden;
+}
+
+.journey__details-inner {
+  padding: var(--space-4) var(--space-4) var(--space-2);
+}
+
+.journey__details-inner p {
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.7;
+  max-width: 70ch;
+}
+
+.journey__details-inner p + p {
+  margin-top: var(--space-2);
+}
+
+.journey__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-3);
+}
+
+.journey__tech li {
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.25rem 0.7rem;
+}
+
+.journey__highlights {
+  margin-top: var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.journey__highlights li {
+  position: relative;
+  padding-left: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.journey__highlights li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+@media (max-width: 640px) {
+  .journey__period {
+    display: none;
+  }
+}

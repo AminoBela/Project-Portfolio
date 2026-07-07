@@ -33,7 +33,8 @@ a {
   transition: color var(--duration-fast) var(--ease);
 }
 
-ul {
+ul,
+ol {
   list-style: none;
 }
 
