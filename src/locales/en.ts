@@ -260,7 +260,7 @@ export const en = {
   "project_tab_overview": "Overview",
   "project_tab_tech": "Stack",
 
-  "contact_title": "Initialize Connection",
+  "contact_title": "Get in touch",
   "contact_status": "Actively Looking — Work-Study (Sept. 2026)",
   "contact_echo": "Ready to join your team.",
   "contact_desc_1": "I am currently looking for a work-study position in ",

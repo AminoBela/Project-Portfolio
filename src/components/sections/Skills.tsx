@@ -26,12 +26,12 @@ const CATEGORIES: ReadonlyArray<{ name: string; labelKey: TranslationKey }> = [
 ];
 
 const VUT_ICONS: Record<string, LucideIcon> = {
-  'fa-solid fa-code': Code,
-  'fa-solid fa-gauge-high': Gauge,
-  'fa-solid fa-server': Server,
-  'fa-solid fa-database': Database,
-  'fa-solid fa-diagram-project': Workflow,
-  'fa-solid fa-users': Users,
+  code: Code,
+  gauge: Gauge,
+  server: Server,
+  database: Database,
+  workflow: Workflow,
+  users: Users,
 };
 
 function getLevelLabel(level: number): TranslationKey {

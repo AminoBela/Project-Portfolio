@@ -256,7 +256,7 @@ export const fr = {
   "project_tab_overview": "Aperçu",
   "project_tab_tech": "Stack",
 
-  "contact_title": "Initialiser la connexion",
+  "contact_title": "Me contacter",
   "contact_status": "Recherche Active — Alternance (Sept. 2026)",
   "contact_echo": "Prêt à rejoindre votre équipe.",
   "contact_desc_1": "Je suis actuellement à la recherche d'une alternance en ",

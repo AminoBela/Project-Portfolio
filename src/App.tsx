@@ -6,13 +6,13 @@ import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
-import Footer from './components/Layout/Footer';
-import ScrollToTopButton from './components/UI/ScrollToTopButton';
+import Footer from './components/layout/Footer';
+import ScrollToTopButton from './components/ui/ScrollToTopButton';
 
 // Lazy load des sections below-the-fold
 const Journey = lazy(() => import('./components/sections/Journey'));
 const Skills = lazy(() => import('./components/sections/Skills'));
-const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
+const Contact = lazy(() => import('./components/sections/Contact'));
 const Projects = lazy(() => import('./components/sections/Projects'));
 const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
 
@@ -79,7 +79,7 @@ function App() {
           <Projects />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
-          <ContactSection />
+          <Contact />
         </Suspense>
       </main>
 

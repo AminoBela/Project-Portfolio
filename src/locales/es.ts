@@ -260,7 +260,7 @@ export const es = {
   "project_tab_overview": "Resumen",
   "project_tab_tech": "Stack",
 
-  "contact_title": "Iniciar Conexión",
+  "contact_title": "Contacto",
   "contact_status": "Búsqueda Activa — Alternancia (Sept. 2026)",
   "contact_echo": "Listo para unirme a su equipo.",
   "contact_desc_1": "Actualmente busco una alternancia en ",

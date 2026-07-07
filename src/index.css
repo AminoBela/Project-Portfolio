@@ -5,5 +5,4 @@
 /* Legacy — disparaît au fil de la réécriture des sections */
 @import './styles/_layout.css';
 @import './styles/_sections.css';
-@import './styles/components.css';
 @import './styles/_light-theme.css';
