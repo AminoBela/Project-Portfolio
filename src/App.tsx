@@ -5,8 +5,8 @@ import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
+import About from './components/sections/About';
 import Footer from './components/Layout/Footer';
-import AboutSection from './components/Sections/AboutSection';
 import ScrollToTopButton from './components/UI/ScrollToTopButton';
 
 // Lazy load des sections below-the-fold
@@ -14,8 +14,6 @@ const ExperienceEducationSection = lazy(
   () => import('./components/Sections/ExperienceEducationSection')
 );
 const SkillsSection = lazy(() => import('./components/Sections/SkillsSection'));
-const EngagementsSection = lazy(() => import('./components/Sections/EngagementsSection'));
-const HobbiesSection = lazy(() => import('./components/Sections/HobbiesSection'));
 const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
 const ProjectsSection = lazy(() => import('./components/Sections/ProjectsSection'));
 const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
@@ -72,21 +70,15 @@ function App() {
 
       <main className={isLangFading ? 'lang-fading' : undefined}>
         <Hero onOpenInternshipModal={handleOpenInternshipModal} />
-        <AboutSection onOpenInternshipModal={handleOpenInternshipModal} />
+        <About onOpenInternshipModal={handleOpenInternshipModal} />
         <Suspense fallback={<SectionFallback />}>
           <ExperienceEducationSection />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <EngagementsSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <SkillsSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <ProjectsSection />
-        </Suspense>
-        <Suspense fallback={<SectionFallback />}>
-          <HobbiesSection />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <ContactSection />

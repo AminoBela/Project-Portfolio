@@ -295,6 +295,7 @@ export const en = {
   "hero_card_focus_value": "Infra · Cybersecurity · DevOps",
   "hero_card_stack_label": "Stack",
 
+  "about_interests_title": "Commitments & interests",
   "engagements_title": "Commitments",
   "engagements_intro": "Beyond my studies, I actively contribute to my school's community and help other students.",
   "engagement_jpo_title": "Open House Days",

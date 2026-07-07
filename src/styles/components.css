@@ -1,10 +1,7 @@
-@import './components/AboutSection.css';
 @import './components/SkillsSection.css';
 @import './components/Timeline.css';
 @import './components/Buttons.css';
 @import './components/ProjectsSection.css';
 @import './components/ContactSection.css';
 @import './components/EducationRoadmap.css';
-@import './components/EngagementsSection.css';
-@import './components/HobbiesSection.css';
 @import './Modal.css';
