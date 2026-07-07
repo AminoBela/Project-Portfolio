@@ -11,7 +11,7 @@ import ScrollToTopButton from './components/UI/ScrollToTopButton';
 
 // Lazy load des sections below-the-fold
 const Journey = lazy(() => import('./components/sections/Journey'));
-const SkillsSection = lazy(() => import('./components/Sections/SkillsSection'));
+const Skills = lazy(() => import('./components/sections/Skills'));
 const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
 const ProjectsSection = lazy(() => import('./components/Sections/ProjectsSection'));
 const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
@@ -73,7 +73,7 @@ function App() {
           <Journey />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
-          <SkillsSection />
+          <Skills />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <ProjectsSection />
