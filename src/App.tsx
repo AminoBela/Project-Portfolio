@@ -13,7 +13,7 @@ import ScrollToTopButton from './components/UI/ScrollToTopButton';
 const Journey = lazy(() => import('./components/sections/Journey'));
 const Skills = lazy(() => import('./components/sections/Skills'));
 const ContactSection = lazy(() => import('./components/Sections/ContactSection'));
-const ProjectsSection = lazy(() => import('./components/Sections/ProjectsSection'));
+const Projects = lazy(() => import('./components/sections/Projects'));
 const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
 
 const SectionFallback = () => <div style={{ minHeight: '200px' }} />;
@@ -76,7 +76,7 @@ function App() {
           <Skills />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
-          <ProjectsSection />
+          <Projects />
         </Suspense>
         <Suspense fallback={<SectionFallback />}>
           <ContactSection />
