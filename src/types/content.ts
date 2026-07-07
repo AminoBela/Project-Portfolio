@@ -7,7 +7,6 @@ export interface Skill {
   level: number;
   icon: string;
   category: string;
-  description: TranslationKey;
 }
 
 export interface VutSkill {
