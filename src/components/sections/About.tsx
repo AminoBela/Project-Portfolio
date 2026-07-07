@@ -20,7 +20,7 @@ import Reveal from '../ui/Reveal';
 import { useInViewCountUp } from '../../hooks/useCountUp';
 import { EASE_OUT } from '../../utils/motion';
 import type { TranslationKey } from '../../types/content';
-import photo from '../../assets/photo-profil.jpg';
+import photo from '../../assets/photo-profil.webp';
 import './About.css';
 
 interface AboutProps {

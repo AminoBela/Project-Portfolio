@@ -15,10 +15,3 @@ kbd {
   font-size: 0.9em;
 }
 
-/* Compat legacy : léger rétrécissement de la racine sur mobile.
-   À supprimer avec les dernières sections legacy. */
-@media (max-width: 768px) {
-  html {
-    font-size: 15px;
-  }
-}

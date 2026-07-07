@@ -18,10 +18,17 @@ export default defineConfig({
     minify: 'esbuild',
     rollupOptions: {
       output: {
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          motion: ['motion'],
-          i18n: ['i18next', 'react-i18next', 'i18next-browser-languagedetector'],
+        manualChunks(id) {
+          if (!id.includes('node_modules')) return undefined;
+          if (/node_modules\/(react|react-dom|scheduler)\//.test(id)) return 'react-vendor';
+          if (/node_modules\/(motion|framer-motion|motion-dom|motion-utils)\//.test(id)) {
+            return 'motion';
+          }
+          if (/node_modules\/(i18next|react-i18next|i18next-browser-languagedetector)\//.test(id)) {
+            return 'i18n';
+          }
+          if (id.includes('node_modules/lucide-react/')) return 'icons';
+          return undefined;
         },
       },
     },

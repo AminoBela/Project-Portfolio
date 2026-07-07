@@ -118,7 +118,7 @@ export default function Navigation({
           <button
             className="site-nav__icon-btn"
             onClick={toggleTheme}
-            aria-label={theme === 'terminal' ? 'Thème clair' : 'Thème sombre'}
+            aria-label={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
           >
             <AnimatePresence mode="popLayout" initial={false}>
               <motion.span
@@ -128,7 +128,7 @@ export default function Navigation({
                 exit={{ opacity: 0, rotate: 90 }}
                 transition={{ duration: 0.2 }}
               >
-                {theme === 'terminal' ? <Sun size={17} /> : <Moon size={17} />}
+                {theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}
               </motion.span>
             </AnimatePresence>
           </button>

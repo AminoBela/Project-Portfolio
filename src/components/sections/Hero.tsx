@@ -12,7 +12,7 @@ interface HeroProps {
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.09, delayChildren: 0.15 } },
+  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
 };
 
 const item: Variants = {

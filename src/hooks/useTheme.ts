@@ -1,17 +1,17 @@
 import { useState, useEffect, useCallback } from 'react';
 
-export type Theme = 'terminal' | 'light';
+export type Theme = 'dark' | 'light';
 
 const STORAGE_KEY = 'portfolioTheme';
 
 export function useTheme() {
   const [theme, setTheme] = useState<Theme>(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    return stored === 'light' ? 'light' : 'terminal';
+    return stored === 'light' ? 'light' : 'dark';
   });
 
   useEffect(() => {
-    document.documentElement.classList.remove('light', 'terminal');
+    document.documentElement.classList.remove('light', 'dark');
     document.documentElement.classList.add(theme);
     localStorage.setItem(STORAGE_KEY, theme);
   }, [theme]);
@@ -23,7 +23,7 @@ export function useTheme() {
       root.classList.add('theme-transition');
       window.setTimeout(() => root.classList.remove('theme-transition'), 450);
     }
-    setTheme((prev) => (prev === 'terminal' ? 'light' : 'terminal'));
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
 
   return { theme, toggleTheme };

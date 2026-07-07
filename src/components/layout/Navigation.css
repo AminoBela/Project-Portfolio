@@ -126,12 +126,15 @@
 }
 
 /* ── Panneau mobile ─────────────────────────── */
+/* position:absolute (et non fixed) : le backdrop-filter du header
+   en fait le bloc conteneur des descendants fixed. */
 .site-nav__panel {
-  position: fixed;
-  inset: 60px 0 0 0;
-  background: color-mix(in srgb, var(--bg) 97%, transparent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: calc(100dvh - 60px);
+  background: var(--bg);
   padding: var(--space-6) clamp(1.25rem, 6vw, 2.5rem);
   overflow-y: auto;
 }

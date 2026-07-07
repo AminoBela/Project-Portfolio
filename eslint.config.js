@@ -19,25 +19,13 @@ export default tseslint.config(
       globals: globals.browser,
     },
   },
-  // Legacy JSX — à supprimer une fois la migration TS terminée
+  // Fichiers de config JS (eslint.config.js…)
   {
-    files: ['**/*.{js,jsx}'],
-    extends: [
-      js.configs.recommended,
-      reactHooks.configs.flat['recommended-latest'],
-      reactRefresh.configs.vite,
-    ],
+    files: ['**/*.js'],
+    extends: [js.configs.recommended],
     languageOptions: {
       ecmaVersion: 2022,
-      globals: globals.browser,
-      parserOptions: {
-        ecmaFeatures: { jsx: true },
-        sourceType: 'module',
-      },
-    },
-    rules: {
-      'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]|^motion$', args: 'none' }],
-      'react-hooks/set-state-in-effect': 'warn',
+      globals: globals.node,
     },
   }
 );
