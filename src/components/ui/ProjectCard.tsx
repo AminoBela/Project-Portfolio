@@ -23,19 +23,27 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
       whileHover={{ y: -3 }}
       transition={{ duration: 0.25 }}
     >
-      {media && (
-        <motion.div
-          className="pcard__media"
-          layoutId={`project-media-${project.id}`}
-          style={{ borderRadius: 10 }}
-        >
+      <motion.div
+        className="pcard__media"
+        layoutId={`project-media-${project.id}`}
+        style={{ borderRadius: 10 }}
+      >
+        {media ? (
           <img
             src={media.type === 'video' ? (media.poster ?? '') : media.url}
             alt=""
             loading="lazy"
           />
-        </motion.div>
-      )}
+        ) : (
+          <span
+            className="pcard__monogram"
+            style={{ color: getLangColor(project.language) }}
+            aria-hidden="true"
+          >
+            {project.name.charAt(0).toUpperCase()}
+          </span>
+        )}
+      </motion.div>
 
       <div className="pcard__body">
         <motion.h3 className="pcard__title" layoutId={`project-title-${project.id}`}>

@@ -160,7 +160,7 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
           <ul className="about__interests-chips">
             {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
               <li key={id}>
-                <Icon size={15} aria-hidden="true" />
+                <Icon size={18} aria-hidden="true" />
                 {t(titleKey)}
               </li>
             ))}
@@ -177,7 +177,7 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
                   >
                     {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
                       <li key={id}>
-                        <Icon size={15} aria-hidden="true" />
+                        <Icon size={18} aria-hidden="true" />
                         {t(titleKey)}
                       </li>
                     ))}

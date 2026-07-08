@@ -55,19 +55,38 @@ function JourneyItem({ entry, isOpen, onToggle }: {
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.35, ease: EASE_OUT }}
+            transition={{ duration: 0.4, ease: EASE_OUT }}
           >
             <div className="journey__details-inner">
-              <p>{t(entry.description)}</p>
-              {entry.details.intro && <p>{t(entry.details.intro)}</p>}
+              <motion.p
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.35, ease: EASE_OUT, delay: 0.1 }}
+              >
+                {t(entry.description)} {entry.details.intro && t(entry.details.intro)}
+              </motion.p>
               <ul className="journey__tech">
-                {entry.details.tech.map((tech) => (
-                  <li key={tech}>{tech}</li>
+                {entry.details.tech.map((tech, i) => (
+                  <motion.li
+                    key={tech}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, ease: EASE_OUT, delay: 0.16 + i * 0.04 }}
+                  >
+                    {tech}
+                  </motion.li>
                 ))}
               </ul>
               <ul className="journey__highlights">
-                {entry.details.highlights.map((highlight) => (
-                  <li key={highlight}>{t(highlight)}</li>
+                {entry.details.highlights.map((highlight, i) => (
+                  <motion.li
+                    key={highlight}
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.35, ease: EASE_OUT, delay: 0.22 + i * 0.07 }}
+                  >
+                    {t(highlight)}
+                  </motion.li>
                 ))}
               </ul>
             </div>

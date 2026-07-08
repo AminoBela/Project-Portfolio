@@ -57,7 +57,7 @@ export default function Skills() {
               transition={{ duration: 0.45, ease: EASE_OUT, delay: (i % 3) * 0.06 }}
             >
               <div className="skills__domain-head">
-                <Icon size={18} aria-hidden="true" />
+                <Icon size={21} aria-hidden="true" />
                 <span className="skills__domain-level">{t(skill.level)}</span>
               </div>
               <h4>{t(skill.name)}</h4>
