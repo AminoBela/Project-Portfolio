@@ -9,6 +9,8 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
+  /* Réserve la gouttière : plus de décalage quand une modale masque le scroll */
+  scrollbar-gutter: stable;
 }
 
 /* Lenis pilote le scroll : on neutralise le smooth natif qui entrerait en conflit */
@@ -110,20 +112,27 @@ html.theme-transition *::after {
   top: 1rem;
 }
 
-/* ── Scrollbar discrète ─────────────────────── */
+/* ── Scrollbar custom ───────────────────────── */
 * {
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: var(--border-strong);
-  border-radius: 4px;
+  border-radius: var(--radius-full);
+  border: 3px solid var(--bg);
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+  background-clip: padding-box;
 }
 
 ::-webkit-scrollbar-track {

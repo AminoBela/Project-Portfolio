@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import { AnimatePresence, motion, useScroll } from 'motion/react';
+import { useState } from 'react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Briefcase, GraduationCap } from 'lucide-react';
 import Section from '../ui/Section';
 import { EASE_OUT } from '../../utils/motion';
 import { educationData, experiencesData } from '../../data/experienceEducationData';
@@ -21,27 +21,37 @@ function JourneyItem({ entry, isOpen, onToggle }: {
   const org = entry.company ?? entry.institution;
 
   return (
-    <motion.li
-      className={`journey__item ${entry.status ? `journey__item--${entry.status}` : ''}`}
-      initial={{ opacity: 0, x: -12 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, margin: '-60px' }}
-      transition={{ duration: 0.45, ease: EASE_OUT }}
-    >
-      <span className="journey__node" aria-hidden="true" />
+    <li className={`journey__item ${isOpen ? 'is-open' : ''}`}>
+      {/* Hairline qui se trace à l'entrée dans le viewport */}
+      <motion.span
+        className="journey__line"
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.9, ease: EASE_OUT }}
+        aria-hidden="true"
+      />
 
       <button className="journey__head" onClick={onToggle} aria-expanded={isOpen}>
-        {entry.logo && <img src={entry.logo} alt="" className="journey__logo" loading="lazy" />}
-        <span className="journey__head-text">
-          <span className="journey__title">{t(entry.title)}</span>
-          <span className="journey__org">
-            {org && t(org)} · {t(entry.location)}
+        <span className="journey__year">
+          {entry.year}
+          {entry.status === 'current' && <span className="journey__live-dot" aria-hidden="true" />}
+        </span>
+
+        <span className="journey__identity">
+          {entry.logo && <img src={entry.logo} alt="" className="journey__logo" loading="lazy" />}
+          <span className="journey__head-text">
+            <span className="journey__title">{t(entry.title)}</span>
+            <span className="journey__org">
+              {org && t(org)} · {t(entry.location)}
+            </span>
           </span>
         </span>
+
         <span className="journey__meta">
           <span className="journey__period">{t(entry.period)}</span>
           <ChevronDown
-            size={16}
+            size={17}
             className={`journey__chevron ${isOpen ? 'is-open' : ''}`}
             aria-hidden="true"
           />
@@ -93,7 +103,7 @@ function JourneyItem({ entry, isOpen, onToggle }: {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.li>
+    </li>
   );
 }
 
@@ -101,12 +111,6 @@ export default function Journey() {
   const { t } = useTranslation();
   const [tab, setTab] = useState<Tab>('experience');
   const [openId, setOpenId] = useState<string | null>(null);
-  const timelineRef = useRef<HTMLDivElement | null>(null);
-
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ['start 0.75', 'end 0.55'],
-  });
 
   const entries = tab === 'experience' ? experiencesData : educationData;
 
@@ -118,7 +122,12 @@ export default function Journey() {
   return (
     <Section id="parcours" title={t('nav_experience')}>
       <div className="journey__tabs" role="tablist" aria-label={t('nav_experience')}>
-        {(['experience', 'education'] as const).map((key) => (
+        {(
+          [
+            { key: 'experience', icon: Briefcase, labelKey: 'experience_title' },
+            { key: 'education', icon: GraduationCap, labelKey: 'education_title' },
+          ] as const
+        ).map(({ key, icon: Icon, labelKey }) => (
           <button
             key={key}
             role="tab"
@@ -133,35 +142,33 @@ export default function Journey() {
                 transition={tabPillSpring}
               />
             )}
-            <span>{t(key === 'experience' ? 'experience_title' : 'education_title')}</span>
+            <span className="journey__tab-label">
+              <Icon size={15} aria-hidden="true" />
+              {t(labelKey)}
+            </span>
           </button>
         ))}
       </div>
 
-      <div className="journey__timeline" ref={timelineRef}>
-        <span className="journey__rail" aria-hidden="true">
-          <motion.span className="journey__rail-progress" style={{ scaleY: scrollYProgress }} />
-        </span>
-
-        <AnimatePresence mode="popLayout" initial={false}>
-          <motion.ol
-            key={tab}
-            initial={{ opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25, ease: EASE_OUT }}
-          >
-            {entries.map((entry) => (
-              <JourneyItem
-                key={entry.id}
-                entry={entry}
-                isOpen={openId === entry.id}
-                onToggle={() => setOpenId(openId === entry.id ? null : entry.id)}
-              />
-            ))}
-          </motion.ol>
-        </AnimatePresence>
-      </div>
+      <AnimatePresence mode="popLayout" initial={false}>
+        <motion.ol
+          key={tab}
+          className="journey__list"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.25, ease: EASE_OUT }}
+        >
+          {entries.map((entry) => (
+            <JourneyItem
+              key={entry.id}
+              entry={entry}
+              isOpen={openId === entry.id}
+              onToggle={() => setOpenId(openId === entry.id ? null : entry.id)}
+            />
+          ))}
+        </motion.ol>
+      </AnimatePresence>
     </Section>
   );
 }

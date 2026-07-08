@@ -3,6 +3,7 @@ import type { TimelineEntry } from '../types/content';
 export const educationData = [
     {
         id: 'cesi',
+        year: '2026',
         type: 'education',
         status: 'future',
         title: 'cesi_title',
@@ -24,6 +25,7 @@ export const educationData = [
     },
     {
         id: 'but',
+        year: '2023',
         type: 'education',
         status: 'current',
         title: 'but_title',
@@ -45,6 +47,7 @@ export const educationData = [
     },
     {
         id: 'polytech',
+        year: '2022',
         type: 'education',
         status: 'past',
         title: 'polytech_title',
@@ -65,6 +68,7 @@ export const educationData = [
     },
     {
         id: 'bac',
+        year: '2019',
         type: 'education',
         status: 'past',
         title: 'bac_title',
@@ -87,6 +91,7 @@ export const educationData = [
 export const experiencesData = [
     {
         id: 'udl',
+        year: '2026',
         type: 'experience',
         status: 'current',
         title: 'udl_title',
@@ -108,6 +113,7 @@ export const experiencesData = [
     },
     {
         id: 'ela',
+        year: '2025',
         type: 'experience',
         title: 'ela_title',
         company: 'ela_company',
@@ -129,6 +135,7 @@ export const experiencesData = [
     },
     {
         id: 'crous',
+        year: '2025',
         type: 'experience',
         title: 'crous_title',
         company: 'crous_company',
@@ -148,6 +155,7 @@ export const experiencesData = [
     },
     {
         id: 'poste',
+        year: '2023',
         type: 'experience',
         title: 'poste_title',
         company: 'poste_company',
@@ -166,6 +174,7 @@ export const experiencesData = [
     },
     {
         id: 'iss',
+        year: '2020',
         type: 'experience',
         title: 'iss_title',
         company: 'iss_company',

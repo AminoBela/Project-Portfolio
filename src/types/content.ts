@@ -26,6 +26,8 @@ export interface TimelineDetails {
 export interface TimelineEntry {
   id: string;
   type: 'education' | 'experience';
+  /** Année de départ, affichée en gros dans la liste (non traduite) */
+  year: string;
   status?: 'current' | 'future' | 'past';
   title: TranslationKey;
   location: TranslationKey;
