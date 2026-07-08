@@ -5,6 +5,7 @@ import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
 import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
+import Statement from './components/sections/Statement';
 import About from './components/sections/About';
 import Footer from './components/layout/Footer';
 import ScrollToTopButton from './components/ui/ScrollToTopButton';
@@ -68,6 +69,7 @@ function App() {
 
       <main className={isLangFading ? 'lang-fading' : undefined}>
         <Hero onOpenInternshipModal={handleOpenInternshipModal} />
+        <Statement />
         <About onOpenInternshipModal={handleOpenInternshipModal} />
         <Suspense fallback={<SectionFallback />}>
           <Journey />

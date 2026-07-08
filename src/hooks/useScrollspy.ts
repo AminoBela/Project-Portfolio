@@ -8,7 +8,7 @@ export function useScrollspy() {
     const observer = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (entry.isIntersecting) {
+          if (entry.isIntersecting && entry.target.id) {
             setActiveSection(entry.target.id);
           }
         }

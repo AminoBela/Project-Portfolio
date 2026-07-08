@@ -204,6 +204,7 @@ export const es = {
   "banner_cta": "Contactarme",
   "banner_close": "Cerrar banner",
   "home_status": "Disponible · Alternancia Sept. 2026",
+  "statement_text": "Diseño infraestructuras fiables, seguras y automatizadas — del servidor al despliegue.",
 
   "about_interests_title": "Compromisos e intereses",
   "engagement_jpo_title": "Jornadas de Puertas Abiertas",

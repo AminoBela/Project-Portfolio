@@ -1,0 +1,18 @@
+.statement {
+  padding: clamp(5rem, 16vh, 10rem) 0;
+}
+
+.statement__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 1.2rem + 3.2vw, 3.5rem);
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+  transform-origin: left center;
+}
+
+.statement__word {
+  display: inline-block;
+  margin-right: 0.28em;
+}

@@ -1,4 +1,11 @@
-import { motion, type Variants } from 'motion/react';
+import { useRef } from 'react';
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type Variants,
+} from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { ArrowDown, ArrowUpRight } from 'lucide-react';
 import Button from '../ui/Button';
@@ -22,39 +29,49 @@ const item: Variants = {
 
 export default function Hero({ onOpenInternshipModal }: HeroProps) {
   const { t } = useTranslation();
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Scroll-out : le contenu rétrécit, remonte et se fond quand on quitte le héro
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
+  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -70]);
+
+  const scrollStyle = prefersReducedMotion ? undefined : { scale, opacity, y };
 
   return (
-    <section id="accueil" className="hero">
-      <motion.div
-        className="site-container hero__inner"
-        variants={container}
-        initial="hidden"
-        animate="visible"
-      >
-        <motion.button className="hero__status" variants={item} onClick={onOpenInternshipModal}>
-          <span className="hero__status-dot" aria-hidden="true" />
-          {t('home_status')}
-        </motion.button>
+    <section id="accueil" className="hero" ref={sectionRef}>
+      <motion.div className="site-container hero__inner" style={scrollStyle}>
+        <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.button className="hero__status" variants={item} onClick={onOpenInternshipModal}>
+            <span className="hero__status-dot" aria-hidden="true" />
+            {t('home_status')}
+          </motion.button>
 
-        <motion.h1 className="hero__title" variants={item}>
-          {t('home_greeting')}
-        </motion.h1>
+          <motion.h1 className="hero__title" variants={item}>
+            {t('home_greeting')}
+          </motion.h1>
 
-        <motion.p className="hero__subtitle" variants={item}>
-          {t('home_subtitle_1')} · {t('home_subtitle_2')}
-        </motion.p>
+          <motion.p className="hero__subtitle" variants={item}>
+            {t('home_subtitle_1')} · {t('home_subtitle_2')}
+          </motion.p>
 
-        <motion.p className="hero__desc" variants={item}>
-          {t('home_description')}
-        </motion.p>
+          <motion.p className="hero__desc" variants={item}>
+            {t('home_description')}
+          </motion.p>
 
-        <motion.div className="hero__actions" variants={item}>
-          <Button variant="primary" href="#projets">
-            {t('home_btn_projects')} <ArrowDown />
-          </Button>
-          <Button href={cvPdf} target="_blank" rel="noopener noreferrer">
-            {t('home_btn_cv')} <ArrowUpRight />
-          </Button>
+          <motion.div className="hero__actions" variants={item}>
+            <Button variant="primary" href="#projets">
+              {t('home_btn_projects')} <ArrowDown />
+            </Button>
+            <Button href={cvPdf} target="_blank" rel="noopener noreferrer">
+              {t('home_btn_cv')} <ArrowUpRight />
+            </Button>
+          </motion.div>
         </motion.div>
       </motion.div>
     </section>

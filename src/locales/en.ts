@@ -204,6 +204,7 @@ export const en = {
   "banner_cta": "Contact Me",
   "banner_close": "Close banner",
   "home_status": "Available · Work-Study Sept. 2026",
+  "statement_text": "I build reliable, secure and automated infrastructure — from the server to the deployment.",
 
   "about_interests_title": "Commitments & interests",
   "engagement_jpo_title": "Open House Days",

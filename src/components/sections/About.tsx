@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   IdCard,
@@ -99,12 +100,23 @@ function Stat({ value, suffix, labelKey }: (typeof STATS)[number]) {
 
 export default function About({ onOpenInternshipModal }: AboutProps) {
   const { t } = useTranslation();
+  const photoRef = useRef<HTMLDivElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Parallaxe discrète sur la photo pendant la traversée de la section
+  const { scrollYProgress } = useScroll({
+    target: photoRef,
+    offset: ['start end', 'end start'],
+  });
+  const photoY = useTransform(scrollYProgress, [0, 1], [24, -24]);
 
   return (
     <Section id="about" title={t('nav_about')}>
       <div className="about__grid">
         <Reveal className="about__photo-col">
-          <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" />
+          <motion.div ref={photoRef} style={prefersReducedMotion ? undefined : { y: photoY }}>
+            <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" />
+          </motion.div>
           <p className="about__availability">
             <span className="about__availability-dot" aria-hidden="true" />
             {t('about_available')} · {t('about_internship_date')}
