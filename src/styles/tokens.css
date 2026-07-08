@@ -61,6 +61,51 @@
   --z-modal: 2000;
 }
 
+/* ── Dérive du fond selon la section active ── */
+body {
+  transition: background-color 1s var(--ease);
+}
+
+body[data-section='about'] {
+  background-color: #0e0d14;
+}
+
+body[data-section='parcours'] {
+  background-color: #0c0f13;
+}
+
+body[data-section='competences'] {
+  background-color: #100e15;
+}
+
+body[data-section='projets'] {
+  background-color: #0d0d10;
+}
+
+body[data-section='contact'] {
+  background-color: #10101a;
+}
+
+:root.light body[data-section='about'] {
+  background-color: #f4f4fb;
+}
+
+:root.light body[data-section='parcours'] {
+  background-color: #f1f6f8;
+}
+
+:root.light body[data-section='competences'] {
+  background-color: #f6f3fb;
+}
+
+:root.light body[data-section='projets'] {
+  background-color: #f6f6f6;
+}
+
+:root.light body[data-section='contact'] {
+  background-color: #eff0fa;
+}
+
 :root.light {
   --bg: #fafafa;
   --bg-raised: #ffffff;

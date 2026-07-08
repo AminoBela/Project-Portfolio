@@ -40,6 +40,11 @@ function App() {
     document.title = PAGE_TITLES[i18n.language] ?? 'Amin Belalia | Portfolio';
   }, [i18n.language]);
 
+  // Le fond de page dérive doucement selon la section traversée
+  useEffect(() => {
+    document.body.dataset.section = activeSection;
+  }, [activeSection]);
+
   // Changement de langue : simple fondu du contenu (~300ms aller-retour)
   const handleLanguageChange = useCallback(
     (lng: string) => {

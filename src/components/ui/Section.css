@@ -1,5 +1,31 @@
 .site-section {
+  position: relative;
   padding: clamp(4.5rem, 12vh, 8.5rem) 0;
+  overflow: hidden;
+}
+
+.site-section__content {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Titre fantôme géant ────────────────────── */
+.site-section__ghost {
+  position: absolute;
+  top: clamp(1.5rem, 4vh, 3rem);
+  left: 0;
+  z-index: 0;
+  font-family: var(--font-display);
+  font-size: clamp(5rem, 3rem + 14vw, 13rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border);
+  opacity: 0.6;
+  pointer-events: none;
+  user-select: none;
 }
 
 .site-section__title {
