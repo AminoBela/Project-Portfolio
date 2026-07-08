@@ -42,4 +42,13 @@
 .btn svg {
   width: 1em;
   height: 1em;
+  transition: transform var(--duration-fast) var(--ease);
+}
+
+.btn:hover .lucide-arrow-up-right {
+  transform: translate(2px, -2px);
+}
+
+.btn:hover .lucide-arrow-down {
+  transform: translateY(3px);
 }

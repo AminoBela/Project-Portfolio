@@ -63,47 +63,47 @@
 
 /* ── Dérive du fond selon la section active ── */
 body {
-  transition: background-color 1s var(--ease);
+  transition: background-color 1.2s var(--ease);
 }
 
 body[data-section='about'] {
-  background-color: #0e0d14;
+  background-color: #12101d;
 }
 
 body[data-section='parcours'] {
-  background-color: #0c0f13;
+  background-color: #0c1219;
 }
 
 body[data-section='competences'] {
-  background-color: #100e15;
+  background-color: #150f1e;
 }
 
 body[data-section='projets'] {
-  background-color: #0d0d10;
+  background-color: #101014;
 }
 
 body[data-section='contact'] {
-  background-color: #10101a;
+  background-color: #131230;
 }
 
 :root.light body[data-section='about'] {
-  background-color: #f4f4fb;
+  background-color: #ecebfb;
 }
 
 :root.light body[data-section='parcours'] {
-  background-color: #f1f6f8;
+  background-color: #e8f1f6;
 }
 
 :root.light body[data-section='competences'] {
-  background-color: #f6f3fb;
+  background-color: #f0e9fb;
 }
 
 :root.light body[data-section='projets'] {
-  background-color: #f6f6f6;
+  background-color: #f1f1f3;
 }
 
 :root.light body[data-section='contact'] {
-  background-color: #eff0fa;
+  background-color: #e4e5fa;
 }
 
 :root.light {

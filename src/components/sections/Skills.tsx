@@ -86,6 +86,14 @@ export default function Skills() {
 
           return (
             <div key={name} className="skills__row">
+              <motion.span
+                className="skills__row-line"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.9, ease: EASE_OUT }}
+                aria-hidden="true"
+              />
               <Reveal>
                 <h4 className="skills__category-name">{t(labelKey)}</h4>
               </Reveal>

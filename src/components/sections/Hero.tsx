@@ -90,6 +90,16 @@ export default function Hero({ onOpenInternshipModal }: HeroProps) {
           </motion.div>
         </motion.div>
       </motion.div>
+
+      <motion.div
+        className="hero__scroll"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.6, duration: 0.8 }}
+        aria-hidden="true"
+      >
+        <span className="hero__scroll-line" />
+      </motion.div>
     </section>
   );
 }

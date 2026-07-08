@@ -85,16 +85,27 @@
 /* ── Technologies : rangées éditoriales ─────── */
 .skills__rows {
   margin-top: var(--space-4);
-  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 .skills__row {
+  position: relative;
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: var(--space-4);
   align-items: start;
   padding: var(--space-4) 0;
-  border-bottom: 1px solid var(--border);
+}
+
+/* Hairline qui se trace à l'entrée dans le viewport */
+.skills__row-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--border);
+  transform-origin: left;
 }
 
 .skills__category-name {

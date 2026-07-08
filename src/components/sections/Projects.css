@@ -42,6 +42,13 @@
   gap: var(--space-3);
 }
 
+/* Le projet le plus récent est mis en vedette */
+@media (min-width: 900px) {
+  .projects__grid > div:first-child {
+    grid-column: span 2;
+  }
+}
+
 .projects__grid > div {
   display: flex;
 }
