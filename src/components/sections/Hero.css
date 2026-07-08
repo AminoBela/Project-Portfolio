@@ -48,10 +48,24 @@
 }
 
 .hero__title {
-  font-size: var(--text-display);
+  font-size: clamp(3.2rem, 1.6rem + 8.5vw, 7.5rem);
   font-weight: 700;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
   margin-top: var(--space-5);
+}
+
+.hero__title-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-right: 0.22em;
+}
+
+.hero__title-word {
+  display: inline-block;
+  will-change: transform;
 }
 
 .hero__subtitle {

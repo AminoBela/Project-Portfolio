@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { EASE_OUT } from '../../utils/motion';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, Copy, Check, ArrowUpRight } from 'lucide-react';
+import { Phone, MapPin, Copy, Check, ArrowUpRight } from 'lucide-react';
 import Section from '../ui/Section';
 import Reveal from '../ui/Reveal';
 import { LinkedInIcon } from '../ui/BrandIcons';
@@ -50,6 +50,20 @@ export default function Contact() {
         </p>
       </Reveal>
 
+      <Reveal delay={0.06} className="contact__hero">
+        <a href={`mailto:${EMAIL}`} className="contact__big-mail">
+          {EMAIL}
+          <ArrowUpRight className="contact__big-mail-arrow" aria-hidden="true" />
+        </a>
+        <button
+          className="contact__copy-btn"
+          onClick={() => copyToClipboard(EMAIL, 'email')}
+          aria-label={t('contact_email_label')}
+        >
+          <CopyIndicator copied={copiedField === 'email'} />
+        </button>
+      </Reveal>
+
       <motion.ul
         className="contact__grid"
         initial="hidden"
@@ -57,25 +71,6 @@ export default function Contact() {
         viewport={{ once: true, margin: '-60px' }}
         variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
       >
-          <motion.li
-            variants={{
-              hidden: { opacity: 0, y: 14 },
-              visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
-            }}
-          >
-            <a
-              href={`mailto:${EMAIL}`}
-              onClick={() => copyToClipboard(EMAIL, 'email')}
-              className="contact__item"
-            >
-              <Mail size={17} aria-hidden="true" />
-              <span className="contact__info">
-                <span className="contact__label">{t('contact_email_label')}</span>
-                <span className="contact__value">{EMAIL}</span>
-              </span>
-              <CopyIndicator copied={copiedField === 'email'} />
-            </a>
-          </motion.li>
           <motion.li
             variants={{
               hidden: { opacity: 0, y: 14 },

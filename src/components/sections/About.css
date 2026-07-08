@@ -197,6 +197,38 @@
   gap: var(--space-2);
 }
 
+/* ── Bandeau défilant ───────────────────────── */
+.about__marquee {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.about__marquee-track {
+  display: flex;
+  gap: var(--space-2);
+  width: max-content;
+  animation: about-marquee 26s linear infinite;
+}
+
+.about__marquee:hover .about__marquee-track {
+  animation-play-state: paused;
+}
+
+.about__interests-chips--marquee {
+  flex-wrap: nowrap;
+}
+
+.about__interests-chips--marquee li {
+  white-space: nowrap;
+}
+
+@keyframes about-marquee {
+  to {
+    transform: translateX(calc(-50% - var(--space-1)));
+  }
+}
+
 .about__interests-chips li {
   display: inline-flex;
   align-items: center;

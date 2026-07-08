@@ -10,7 +10,7 @@ import './Navigation.css';
 interface NavigationProps {
   activeSection: string;
   theme: Theme;
-  toggleTheme: () => void;
+  toggleTheme: (origin?: { x: number; y: number }) => void;
   onLanguageChange: (lng: string) => void;
 }
 
@@ -35,14 +35,20 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isHidden, setIsHidden] = useState(false);
 
   useEffect(() => {
     let ticking = false;
+    let lastY = window.scrollY;
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        setIsScrolled(window.scrollY > 8);
+        const y = window.scrollY;
+        setIsScrolled(y > 8);
+        // La barre s'efface en descendant, réapparaît dès qu'on remonte
+        setIsHidden(y > lastY && y > 140);
+        lastY = y;
         ticking = false;
       });
     };
@@ -66,8 +72,8 @@ export default function Navigation({
     <motion.header
       className={`site-nav ${isScrolled ? 'is-scrolled' : ''}`}
       initial={{ y: -16, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5, ease: EASE_OUT }}
+      animate={{ y: isHidden && !isMenuOpen ? '-100%' : 0, opacity: 1 }}
+      transition={{ duration: 0.35, ease: EASE_OUT }}
     >
       <nav className="site-nav__inner site-container">
         <a href="#accueil" className="site-nav__logo" onClick={() => setIsMenuOpen(false)}>
@@ -117,7 +123,7 @@ export default function Navigation({
 
           <button
             className="site-nav__icon-btn"
-            onClick={toggleTheme}
+            onClick={(e) => toggleTheme({ x: e.clientX, y: e.clientY })}
             aria-label={theme === 'dark' ? 'Thème clair' : 'Thème sombre'}
           >
             <AnimatePresence mode="popLayout" initial={false}>

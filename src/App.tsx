@@ -3,6 +3,7 @@ import { MotionConfig } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
+import { useLenis } from './hooks/useLenis';
 import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
 import Statement from './components/sections/Statement';
@@ -29,6 +30,7 @@ function App() {
   const { theme, toggleTheme } = useTheme();
   const { activeSection } = useScrollspy();
   const { i18n } = useTranslation();
+  useLenis();
 
   const [isLangFading, setIsLangFading] = useState(false);
   const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);

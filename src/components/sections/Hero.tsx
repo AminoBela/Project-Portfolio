@@ -27,6 +27,14 @@ const item: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE_OUT } },
 };
 
+const titleWord: Variants = {
+  hidden: { y: '115%' },
+  visible: (i: number) => ({
+    y: 0,
+    transition: { duration: 0.9, ease: EASE_OUT, delay: 0.15 + i * 0.12 },
+  }),
+};
+
 export default function Hero({ onOpenInternshipModal }: HeroProps) {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -52,9 +60,17 @@ export default function Hero({ onOpenInternshipModal }: HeroProps) {
             {t('home_status')}
           </motion.button>
 
-          <motion.h1 className="hero__title" variants={item}>
-            {t('home_greeting')}
-          </motion.h1>
+          <h1 className="hero__title">
+            {t('home_greeting')
+              .split(' ')
+              .map((word, i) => (
+                <span className="hero__title-mask" key={`${word}-${i}`}>
+                  <motion.span className="hero__title-word" variants={titleWord} custom={i}>
+                    {word}
+                  </motion.span>
+                </span>
+              ))}
+          </h1>
 
           <motion.p className="hero__subtitle" variants={item}>
             {t('home_subtitle_1')} · {t('home_subtitle_2')}

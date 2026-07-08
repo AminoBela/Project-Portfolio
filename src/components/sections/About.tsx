@@ -19,7 +19,6 @@ import {
 import Section from '../ui/Section';
 import Reveal from '../ui/Reveal';
 import { useInViewCountUp } from '../../hooks/useCountUp';
-import { EASE_OUT } from '../../utils/motion';
 import type { TranslationKey } from '../../types/content';
 import photo from '../../assets/photo-profil.webp';
 import './About.css';
@@ -157,20 +156,37 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
         <Reveal>
           <h3 className="about__interests-title">{t('about_interests_title')}</h3>
         </Reveal>
-        <ul className="about__interests-chips">
-          {INTERESTS.map(({ id, icon: Icon, titleKey }, i) => (
-            <motion.li
-              key={id}
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.4, ease: EASE_OUT, delay: i * 0.05 }}
-            >
-              <Icon size={15} aria-hidden="true" />
-              {t(titleKey)}
-            </motion.li>
-          ))}
-        </ul>
+        {prefersReducedMotion ? (
+          <ul className="about__interests-chips">
+            {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
+              <li key={id}>
+                <Icon size={15} aria-hidden="true" />
+                {t(titleKey)}
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <Reveal>
+            <div className="about__marquee">
+              <div className="about__marquee-track">
+                {[0, 1].map((copy) => (
+                  <ul
+                    className="about__interests-chips about__interests-chips--marquee"
+                    key={copy}
+                    aria-hidden={copy === 1 || undefined}
+                  >
+                    {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
+                      <li key={id}>
+                        <Icon size={15} aria-hidden="true" />
+                        {t(titleKey)}
+                      </li>
+                    ))}
+                  </ul>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        )}
       </div>
     </Section>
   );

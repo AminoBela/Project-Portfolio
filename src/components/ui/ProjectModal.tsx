@@ -52,6 +52,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           role="dialog"
           aria-modal="true"
           aria-label={project.name}
+          data-lenis-prevent
           onClick={(e) => e.stopPropagation()}
         >
           <button className="pmodal__close" onClick={onClose} aria-label={t('banner_close')}>
