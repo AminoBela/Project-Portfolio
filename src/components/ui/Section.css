@@ -1,20 +1,19 @@
 .site-section {
-  padding: clamp(4rem, 10vh, 7rem) 0;
+  padding: clamp(4.5rem, 12vh, 8.5rem) 0;
 }
 
 .site-section__title {
-  font-size: var(--text-2xl);
+  font-size: var(--text-3xl);
   margin-bottom: var(--space-6);
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
 }
 
-.site-section__title::before {
-  content: '';
-  width: 1.5rem;
-  height: 2px;
-  background: var(--accent);
-  align-self: center;
-  flex-shrink: 0;
+.site-section__title-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+.site-section__title-text {
+  display: inline-block;
+  will-change: transform;
 }

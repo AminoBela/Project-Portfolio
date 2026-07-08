@@ -214,10 +214,14 @@
 }
 
 .journey__highlights li::before {
-  content: '—';
+  content: '';
   position: absolute;
   left: 0;
-  color: var(--accent);
+  top: 0.65em;
+  width: 10px;
+  height: 1.5px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
 }
 
 @media (max-width: 640px) {

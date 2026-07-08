@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { EASE_OUT } from '../../utils/motion';
 import { useTranslation } from 'react-i18next';
 import { Mail, Phone, MapPin, Copy, Check, ArrowUpRight } from 'lucide-react';
 import Section from '../ui/Section';
@@ -49,9 +50,19 @@ export default function Contact() {
         </p>
       </Reveal>
 
-      <Reveal delay={0.08}>
-        <ul className="contact__grid">
-          <li>
+      <motion.ul
+        className="contact__grid"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: '-60px' }}
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07 } } }}
+      >
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+            }}
+          >
             <a
               href={`mailto:${EMAIL}`}
               onClick={() => copyToClipboard(EMAIL, 'email')}
@@ -64,8 +75,13 @@ export default function Contact() {
               </span>
               <CopyIndicator copied={copiedField === 'email'} />
             </a>
-          </li>
-          <li>
+          </motion.li>
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+            }}
+          >
             <a
               href={`tel:${PHONE_TEL}`}
               onClick={(e) => {
@@ -81,8 +97,13 @@ export default function Contact() {
               </span>
               <CopyIndicator copied={copiedField === 'phone'} />
             </a>
-          </li>
-          <li>
+          </motion.li>
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+            }}
+          >
             <a
               href="https://www.linkedin.com/in/amin-belalia-bendjafar-8b340a227/"
               target="_blank"
@@ -98,8 +119,13 @@ export default function Contact() {
                 <ArrowUpRight size={15} />
               </span>
             </a>
-          </li>
-          <li>
+          </motion.li>
+          <motion.li
+            variants={{
+              hidden: { opacity: 0, y: 14 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+            }}
+          >
             <div className="contact__item contact__item--static">
               <MapPin size={17} aria-hidden="true" />
               <span className="contact__info">
@@ -107,9 +133,8 @@ export default function Contact() {
                 <span className="contact__value">{t('contact_location_value')}</span>
               </span>
             </div>
-          </li>
-        </ul>
-      </Reveal>
+          </motion.li>
+      </motion.ul>
     </Section>
   );
 }

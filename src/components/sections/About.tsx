@@ -49,38 +49,14 @@ const STATS: ReadonlyArray<{ value: number; suffix: string; labelKey: Translatio
   { value: 5, suffix: '', labelKey: 'stats_languages' },
 ];
 
-const INTERESTS: ReadonlyArray<{
-  id: string;
-  icon: LucideIcon;
-  titleKey: TranslationKey;
-  descKey: TranslationKey;
-  meta?: string;
-}> = [
-  {
-    id: 'oriaction',
-    icon: Compass,
-    titleKey: 'engagement_oriaction_title',
-    descKey: 'engagement_oriaction_desc',
-    meta: 'Salon Oriaction · 2025',
-  },
-  {
-    id: 'crous',
-    icon: House,
-    titleKey: 'engagement_crous_title',
-    descKey: 'engagement_crous_desc',
-    meta: 'CROUS Lorraine · 2025 →',
-  },
-  {
-    id: 'jpo',
-    icon: DoorOpen,
-    titleKey: 'engagement_jpo_title',
-    descKey: 'engagement_jpo_desc',
-    meta: 'IUT Nancy-Charlemagne · 2026',
-  },
-  { id: 'motorsport', icon: Flag, titleKey: 'hobby_motorsport', descKey: 'hobby_motorsport_desc' },
-  { id: 'homelab', icon: Server, titleKey: 'hobby_homelab', descKey: 'hobby_homelab_desc' },
-  { id: 'travel', icon: Plane, titleKey: 'hobby_travel', descKey: 'hobby_travel_desc' },
-  { id: 'mechanic', icon: Wrench, titleKey: 'hobby_mechanic', descKey: 'hobby_mechanic_desc' },
+const INTERESTS: ReadonlyArray<{ id: string; icon: LucideIcon; titleKey: TranslationKey }> = [
+  { id: 'oriaction', icon: Compass, titleKey: 'engagement_oriaction_title' },
+  { id: 'crous', icon: House, titleKey: 'engagement_crous_title' },
+  { id: 'jpo', icon: DoorOpen, titleKey: 'engagement_jpo_title' },
+  { id: 'motorsport', icon: Flag, titleKey: 'hobby_motorsport' },
+  { id: 'homelab', icon: Server, titleKey: 'hobby_homelab' },
+  { id: 'travel', icon: Plane, titleKey: 'hobby_travel' },
+  { id: 'mechanic', icon: Wrench, titleKey: 'hobby_mechanic' },
 ];
 
 function Stat({ value, suffix, labelKey }: (typeof STATS)[number]) {
@@ -181,21 +157,17 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
         <Reveal>
           <h3 className="about__interests-title">{t('about_interests_title')}</h3>
         </Reveal>
-        <ul className="about__interests-grid">
-          {INTERESTS.map(({ id, icon: Icon, titleKey, descKey, meta }, i) => (
+        <ul className="about__interests-chips">
+          {INTERESTS.map(({ id, icon: Icon, titleKey }, i) => (
             <motion.li
               key={id}
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.45, ease: EASE_OUT, delay: (i % 4) * 0.06 }}
+              transition={{ duration: 0.4, ease: EASE_OUT, delay: i * 0.05 }}
             >
-              <Icon size={17} aria-hidden="true" />
-              <div>
-                <h4>{t(titleKey)}</h4>
-                <p>{t(descKey)}</p>
-                {meta && <span className="about__interest-meta">{meta}</span>}
-              </div>
+              <Icon size={15} aria-hidden="true" />
+              {t(titleKey)}
             </motion.li>
           ))}
         </ul>

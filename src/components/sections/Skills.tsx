@@ -34,13 +34,6 @@ const VUT_ICONS: Record<string, LucideIcon> = {
   users: Users,
 };
 
-function getLevelLabel(level: number): TranslationKey {
-  if (level >= 85) return 'legend_expert';
-  if (level >= 75) return 'legend_advanced';
-  if (level >= 60) return 'legend_confirmed';
-  return 'legend_progress';
-}
-
 export default function Skills() {
   const { t } = useTranslation();
 
@@ -84,41 +77,42 @@ export default function Skills() {
         <h3 className="skills__subtitle skills__subtitle--spaced">{t('technologies_title')}</h3>
       </Reveal>
 
-      {CATEGORIES.map(({ name, labelKey }) => {
-        const items = skills
-          .filter((skill) => skill.category === name)
-          .sort((a, b) => b.level - a.level);
-        if (items.length === 0) return null;
+      <div className="skills__rows">
+        {CATEGORIES.map(({ name, labelKey }) => {
+          const items = skills
+            .filter((skill) => skill.category === name)
+            .sort((a, b) => b.level - a.level);
+          if (items.length === 0) return null;
 
-        return (
-          <div key={name} className="skills__category">
-            <Reveal>
-              <h4 className="skills__category-name">{t(labelKey)}</h4>
-            </Reveal>
-            <motion.ul
-              className="skills__chips"
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-60px' }}
-              variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.04 } } }}
-            >
-              {items.map((skill) => (
-                <motion.li
-                  key={skill.name}
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE_OUT } },
-                  }}
-                >
-                  <img src={skill.icon} alt="" width={16} height={16} loading="lazy" />
-                  {skill.name}
-                  <span className="skills__chip-level">{t(getLevelLabel(skill.level))}</span>
-                </motion.li>
-              ))}
-            </motion.ul>
-          </div>
-        );
-      })}
+          return (
+            <div key={name} className="skills__row">
+              <Reveal>
+                <h4 className="skills__category-name">{t(labelKey)}</h4>
+              </Reveal>
+              <motion.ul
+                className="skills__chips"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-60px' }}
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.04 } } }}
+              >
+                {items.map((skill) => (
+                  <motion.li
+                    key={skill.name}
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: EASE_OUT } },
+                    }}
+                  >
+                    <img src={skill.icon} alt="" width={16} height={16} loading="lazy" />
+                    {skill.name}
+                  </motion.li>
+                ))}
+              </motion.ul>
+            </div>
+          );
+        })}
+      </div>
     </Section>
   );
 }

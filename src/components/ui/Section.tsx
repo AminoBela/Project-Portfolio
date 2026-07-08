@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react';
-import Reveal from './Reveal';
+import { motion } from 'motion/react';
+import { EASE_OUT } from '../../utils/motion';
 import './Section.css';
 
 interface SectionProps {
@@ -14,9 +15,19 @@ export default function Section({ id, title, children, className = '' }: Section
     <section id={id} className={`site-section ${className}`.trim()}>
       <div className="site-container">
         {title && (
-          <Reveal>
-            <h2 className="site-section__title">{title}</h2>
-          </Reveal>
+          <h2 className="site-section__title">
+            <span className="site-section__title-mask">
+              <motion.span
+                className="site-section__title-text"
+                initial={{ y: '110%' }}
+                whileInView={{ y: 0 }}
+                viewport={{ once: true, margin: '-80px' }}
+                transition={{ duration: 0.7, ease: EASE_OUT }}
+              >
+                {title}
+              </motion.span>
+            </span>
+          </h2>
         )}
         {children}
       </div>
