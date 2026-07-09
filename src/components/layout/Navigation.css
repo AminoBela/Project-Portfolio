@@ -15,18 +15,6 @@
   border-bottom-color: var(--border);
 }
 
-/* Fine ligne de progression de lecture le long de la hairline */
-.site-nav__progress {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 1.5px;
-  background: var(--accent);
-  transform-origin: left;
-  pointer-events: none;
-}
-
 .site-nav__inner {
   display: flex;
   align-items: center;

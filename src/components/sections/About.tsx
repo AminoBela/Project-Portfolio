@@ -19,7 +19,6 @@ import {
 import Section from '../ui/Section';
 import Reveal from '../ui/Reveal';
 import { useInViewCountUp } from '../../hooks/useCountUp';
-import { EASE_OUT } from '../../utils/motion';
 import type { TranslationKey } from '../../types/content';
 import photo from '../../assets/photo-profil.webp';
 import './About.css';
@@ -147,21 +146,8 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
     <Section id="about" title={t('nav_about')}>
       <div className="about__grid">
         <Reveal className="about__photo-col">
-          <motion.div
-            ref={photoRef}
-            className="about__photo-frame"
-            style={prefersReducedMotion ? undefined : { y: photoY }}
-          >
-            <motion.img
-              src={photo}
-              alt="Amin Belalia"
-              className="about__photo"
-              loading="lazy"
-              initial={prefersReducedMotion ? false : { clipPath: 'inset(0 0 100% 0)', scale: 1.15 }}
-              whileInView={{ clipPath: 'inset(0 0 0% 0)', scale: 1 }}
-              viewport={{ once: true, margin: '-80px' }}
-              transition={{ duration: 1, ease: EASE_OUT }}
-            />
+          <motion.div ref={photoRef} style={prefersReducedMotion ? undefined : { y: photoY }}>
+            <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" />
           </motion.div>
           <p className="about__availability">
             <span className="about__availability-dot" aria-hidden="true" />

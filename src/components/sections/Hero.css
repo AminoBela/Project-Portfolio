@@ -6,6 +6,19 @@
   padding-top: 60px;
 }
 
+/* Grille de points discrète, fondue vers les bords */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--border-strong) 1px, transparent 1.5px);
+  background-size: 30px 30px;
+  mask-image: radial-gradient(52rem 34rem at 72% 42%, #000, transparent 72%);
+  -webkit-mask-image: radial-gradient(52rem 34rem at 72% 42%, #000, transparent 72%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 /* Fil de scroll animé en bas du héro */
 .hero__scroll {
   position: absolute;

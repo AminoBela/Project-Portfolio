@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion, useReducedMotion, useScroll } from 'motion/react';
+import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
@@ -35,22 +35,14 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const prefersReducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     let ticking = false;
-    let lastY = window.scrollY;
     const handleScroll = () => {
       if (ticking) return;
       ticking = true;
       requestAnimationFrame(() => {
-        const y = window.scrollY;
-        setIsScrolled(y > 8);
-        // La barre s'efface en descendant, réapparaît dès qu'on remonte
-        setIsHidden(y > lastY && y > 140);
-        lastY = y;
+        setIsScrolled(window.scrollY > 8);
         ticking = false;
       });
     };
@@ -74,7 +66,7 @@ export default function Navigation({
     <motion.header
       className={`site-nav ${isScrolled ? 'is-scrolled' : ''}`}
       initial={{ y: -16, opacity: 0 }}
-      animate={{ y: isHidden && !isMenuOpen ? '-100%' : 0, opacity: 1 }}
+      animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.35, ease: EASE_OUT }}
     >
       <nav className="site-nav__inner site-container">
@@ -165,15 +157,6 @@ export default function Navigation({
           </button>
         </div>
       </nav>
-
-      {/* Progression de lecture le long de la hairline */}
-      {!prefersReducedMotion && (
-        <motion.span
-          className="site-nav__progress"
-          style={{ scaleX: scrollYProgress }}
-          aria-hidden="true"
-        />
-      )}
 
       <AnimatePresence>
         {isMenuOpen && (
