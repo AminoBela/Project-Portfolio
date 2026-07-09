@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Star, GitFork, ArrowUpRight } from 'lucide-react';
 import type { ProjectWithDetails } from '../../types/github';
 import { getProjectMedia, getLangColor } from '../../utils/projectMedia';
+import { MORPH_TRANSITION } from '../../utils/motion';
 import './ProjectCard.css';
 
 interface ProjectCardProps {
@@ -21,12 +22,13 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
       style={{ borderRadius: 16 }}
       onClick={() => onSelect(project.id)}
       whileHover={{ y: -3 }}
-      transition={{ duration: 0.25 }}
+      transition={{ y: { duration: 0.25 }, layout: MORPH_TRANSITION }}
     >
       <motion.div
         className="pcard__media"
         layoutId={`project-media-${project.id}`}
         style={{ borderRadius: 10 }}
+        transition={{ layout: MORPH_TRANSITION }}
       >
         {media ? (
           <img
@@ -46,7 +48,11 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
       </motion.div>
 
       <div className="pcard__body">
-        <motion.h3 className="pcard__title" layoutId={`project-title-${project.id}`}>
+        <motion.h3
+          className="pcard__title"
+          layoutId={`project-title-${project.id}`}
+          transition={{ layout: MORPH_TRANSITION }}
+        >
           {project.name}
         </motion.h3>
 

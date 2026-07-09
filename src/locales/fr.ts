@@ -201,13 +201,20 @@ export const fr = {
 
   "about_interests_title": "Engagements & centres d'intérêt",
   "engagement_jpo_title": "Journées Portes Ouvertes",
+  "engagement_jpo_desc": "Accueil des visiteurs lors des JPO de l'IUT, présentation des formations et démonstrations.",
   "engagement_oriaction_title": "Salon Oriaction",
+  "engagement_oriaction_desc": "Représentation de l'IUT Nancy-Charlemagne au salon Oriaction, échanges avec les lycéens sur les filières informatiques.",
   "engagement_crous_title": "Étudiant Référent Résidence",
+  "engagement_crous_desc": "Accueil et intégration des nouveaux résidents, organisation d'événements au quotidien.",
 
   "hobby_motorsport": "Motorsport",
+  "hobby_motorsport_desc": "F1, rallye et endurance, passionné par la stratégie et la technique.",
   "hobby_homelab": "Homelab",
+  "hobby_homelab_desc": "Serveurs perso, Docker, Proxmox : j'auto-héberge mes services.",
   "hobby_travel": "Voyage",
+  "hobby_travel_desc": "Découvrir de nouvelles cultures et élargir mes horizons.",
   "hobby_mechanic": "Mécanique Auto",
+  "hobby_mechanic_desc": "Entretien et réparation, comprendre comment ça fonctionne.",
 
   "stats_years": "Années d'études",
   "stats_technologies": "Technologies",

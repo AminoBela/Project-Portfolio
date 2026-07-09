@@ -1,0 +1,38 @@
+.site-scrollbar {
+  position: fixed;
+  top: 8px;
+  right: 5px;
+  bottom: 8px;
+  width: 6px;
+  z-index: calc(var(--z-modal) + 10);
+  opacity: 0;
+  transition: opacity 0.35s var(--ease);
+  touch-action: none;
+}
+
+.site-scrollbar.is-visible,
+.site-scrollbar:hover {
+  opacity: 1;
+}
+
+.site-scrollbar.is-idle {
+  display: none;
+}
+
+.site-scrollbar__thumb {
+  width: 100%;
+  border-radius: var(--radius-full);
+  background: color-mix(in srgb, var(--text-muted) 55%, transparent);
+  transition: background-color var(--duration-fast) var(--ease);
+}
+
+.site-scrollbar:hover .site-scrollbar__thumb,
+.site-scrollbar.is-dragging .site-scrollbar__thumb {
+  background: var(--accent);
+}
+
+@media (pointer: coarse) {
+  .site-scrollbar {
+    display: none;
+  }
+}

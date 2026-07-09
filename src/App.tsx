@@ -10,6 +10,7 @@ import Statement from './components/sections/Statement';
 import About from './components/sections/About';
 import Footer from './components/layout/Footer';
 import ScrollToTopButton from './components/ui/ScrollToTopButton';
+import Scrollbar from './components/ui/Scrollbar';
 
 // Lazy load des sections below-the-fold
 const Journey = lazy(() => import('./components/sections/Journey'));
@@ -94,6 +95,7 @@ function App() {
 
       <Footer />
       <ScrollToTopButton />
+      <Scrollbar />
 
       <Suspense fallback={null}>
         <InternshipModal isOpen={isInternshipModalOpen} onClose={closeInternshipModal} />

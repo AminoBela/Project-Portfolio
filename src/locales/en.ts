@@ -204,13 +204,20 @@ export const en = {
 
   "about_interests_title": "Commitments & interests",
   "engagement_jpo_title": "Open House Days",
+  "engagement_jpo_desc": "Welcoming visitors during the IUT open days, presenting programs and demos.",
   "engagement_oriaction_title": "Oriaction Fair",
+  "engagement_oriaction_desc": "Representing the IUT at the Oriaction fair, discussing IT programs with high school students.",
   "engagement_crous_title": "Residence Student Representative",
+  "engagement_crous_desc": "Welcoming and integrating new residents, organizing everyday events.",
 
   "hobby_motorsport": "Motorsport",
+  "hobby_motorsport_desc": "F1, rally and endurance, passionate about strategy and engineering.",
   "hobby_homelab": "Homelab",
+  "hobby_homelab_desc": "Personal servers, Docker, Proxmox: self-hosting my own services.",
   "hobby_travel": "Travel",
+  "hobby_travel_desc": "Discovering new cultures and broadening my horizons.",
   "hobby_mechanic": "Car Mechanics",
+  "hobby_mechanic_desc": "Maintenance and repair, understanding how things work.",
 
   "stats_years": "Years of study",
   "stats_technologies": "Technologies",

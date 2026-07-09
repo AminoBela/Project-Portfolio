@@ -9,8 +9,12 @@
 html {
   scroll-behavior: smooth;
   height: 100%;
-  /* Réserve la gouttière : plus de décalage quand une modale masque le scroll */
-  scrollbar-gutter: stable;
+  /* La barre native est masquée : remplacée par la scrollbar custom (ui/Scrollbar) */
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
 }
 
 /* Lenis pilote le scroll : on neutralise le smooth natif qui entrerait en conflit */
@@ -112,30 +116,31 @@ html.theme-transition *::after {
   top: 1rem;
 }
 
-/* ── Scrollbar custom ───────────────────────── */
-* {
+/* ── Scrollables internes (modales, code) : barre native fine ── */
+.pmodal,
+.dialog-panel,
+pre {
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+.pmodal::-webkit-scrollbar,
+.dialog-panel::-webkit-scrollbar,
+pre::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
-::-webkit-scrollbar-thumb {
+.pmodal::-webkit-scrollbar-thumb,
+.dialog-panel::-webkit-scrollbar-thumb,
+pre::-webkit-scrollbar-thumb {
   background: var(--border-strong);
   border-radius: var(--radius-full);
-  border: 3px solid var(--bg);
-  background-clip: padding-box;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
-  background-clip: padding-box;
-}
-
-::-webkit-scrollbar-track {
+.pmodal::-webkit-scrollbar-track,
+.dialog-panel::-webkit-scrollbar-track,
+pre::-webkit-scrollbar-track {
   background: transparent;
 }
 

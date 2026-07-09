@@ -1,5 +1,6 @@
-import { useRef } from 'react';
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
+import { useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { Trans, useTranslation } from 'react-i18next';
 import {
   IdCard,
@@ -48,15 +49,72 @@ const STATS: ReadonlyArray<{ value: number; suffix: string; labelKey: Translatio
   { value: 5, suffix: '', labelKey: 'stats_languages' },
 ];
 
-const INTERESTS: ReadonlyArray<{ id: string; icon: LucideIcon; titleKey: TranslationKey }> = [
-  { id: 'oriaction', icon: Compass, titleKey: 'engagement_oriaction_title' },
-  { id: 'crous', icon: House, titleKey: 'engagement_crous_title' },
-  { id: 'jpo', icon: DoorOpen, titleKey: 'engagement_jpo_title' },
-  { id: 'motorsport', icon: Flag, titleKey: 'hobby_motorsport' },
-  { id: 'homelab', icon: Server, titleKey: 'hobby_homelab' },
-  { id: 'travel', icon: Plane, titleKey: 'hobby_travel' },
-  { id: 'mechanic', icon: Wrench, titleKey: 'hobby_mechanic' },
+const INTERESTS: ReadonlyArray<{
+  id: string;
+  icon: LucideIcon;
+  titleKey: TranslationKey;
+  descKey: TranslationKey;
+}> = [
+  { id: 'oriaction', icon: Compass, titleKey: 'engagement_oriaction_title', descKey: 'engagement_oriaction_desc' },
+  { id: 'crous', icon: House, titleKey: 'engagement_crous_title', descKey: 'engagement_crous_desc' },
+  { id: 'jpo', icon: DoorOpen, titleKey: 'engagement_jpo_title', descKey: 'engagement_jpo_desc' },
+  { id: 'motorsport', icon: Flag, titleKey: 'hobby_motorsport', descKey: 'hobby_motorsport_desc' },
+  { id: 'homelab', icon: Server, titleKey: 'hobby_homelab', descKey: 'hobby_homelab_desc' },
+  { id: 'travel', icon: Plane, titleKey: 'hobby_travel', descKey: 'hobby_travel_desc' },
+  { id: 'mechanic', icon: Wrench, titleKey: 'hobby_mechanic', descKey: 'hobby_mechanic_desc' },
 ];
+
+/** Pastille d'intérêt avec infobulle au survol/focus (portalisée : jamais rognée par le marquee). */
+function InterestChip({
+  icon: Icon,
+  titleKey,
+  descKey,
+  tabbable = true,
+}: (typeof INTERESTS)[number] & { tabbable?: boolean }) {
+  const { t } = useTranslation();
+  const [tip, setTip] = useState<{ x: number; y: number } | null>(null);
+
+  const show = (e: React.MouseEvent | React.FocusEvent) => {
+    const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+    setTip({ x: rect.left + rect.width / 2, y: rect.top });
+  };
+  const hide = () => setTip(null);
+
+  return (
+    <li>
+      <button
+        type="button"
+        className="about__interest-chip"
+        aria-label={`${t(titleKey)}. ${t(descKey)}`}
+        tabIndex={tabbable ? 0 : -1}
+        onMouseEnter={show}
+        onMouseLeave={hide}
+        onFocus={show}
+        onBlur={hide}
+      >
+        <Icon size={18} aria-hidden="true" />
+        {t(titleKey)}
+      </button>
+      {createPortal(
+        <AnimatePresence>
+          {tip && (
+            <motion.span
+              className="interest-tip"
+              style={{ left: tip.x, top: tip.y }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.18 }}
+            >
+              {t(descKey)}
+            </motion.span>
+          )}
+        </AnimatePresence>,
+        document.body
+      )}
+    </li>
+  );
+}
 
 function Stat({ value, suffix, labelKey }: (typeof STATS)[number]) {
   const { t } = useTranslation();
@@ -158,11 +216,8 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
         </Reveal>
         {prefersReducedMotion ? (
           <ul className="about__interests-chips">
-            {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
-              <li key={id}>
-                <Icon size={18} aria-hidden="true" />
-                {t(titleKey)}
-              </li>
+            {INTERESTS.map((interest) => (
+              <InterestChip key={interest.id} {...interest} />
             ))}
           </ul>
         ) : (
@@ -175,11 +230,8 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
                     key={copy}
                     aria-hidden={copy === 1 || undefined}
                   >
-                    {INTERESTS.map(({ id, icon: Icon, titleKey }) => (
-                      <li key={id}>
-                        <Icon size={18} aria-hidden="true" />
-                        {t(titleKey)}
-                      </li>
+                    {INTERESTS.map((interest) => (
+                      <InterestChip key={interest.id} {...interest} tabbable={copy === 0} />
                     ))}
                   </ul>
                 ))}

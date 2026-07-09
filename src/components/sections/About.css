@@ -200,6 +200,8 @@
 /* ── Bandeau défilant ───────────────────────── */
 .about__marquee {
   overflow: hidden;
+  /* marge interne pour que le lift au survol ne soit pas rogné */
+  padding: 8px 0;
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -211,7 +213,8 @@
   animation: about-marquee 26s linear infinite;
 }
 
-.about__marquee:hover .about__marquee-track {
+.about__marquee:hover .about__marquee-track,
+.about__marquee:focus-within .about__marquee-track {
   animation-play-state: paused;
 }
 
@@ -229,30 +232,51 @@
   }
 }
 
-.about__interests-chips li {
+.about__interest-chip {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
   font-size: var(--text-base);
   font-weight: 500;
+  font-family: inherit;
+  color: var(--text);
   background: var(--bg-raised);
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
   padding: 0.7rem 1.3rem;
   box-shadow: var(--shadow-sm);
+  white-space: nowrap;
   transition:
     border-color var(--duration-fast) var(--ease),
     transform var(--duration-fast) var(--ease);
 }
 
-.about__interests-chips li:hover {
+.about__interest-chip:hover {
   border-color: var(--border-strong);
   transform: translateY(-2px);
 }
 
-.about__interests-chips svg {
+.about__interest-chip svg {
   color: var(--accent);
   flex-shrink: 0;
+}
+
+/* Infobulle portalisée (position fixe, jamais rognée) */
+.interest-tip {
+  position: fixed;
+  z-index: calc(var(--z-modal) + 20);
+  transform: translate(-50%, calc(-100% - 12px));
+  max-width: 270px;
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 0.6rem 0.85rem;
+  font-size: var(--text-xs);
+  color: var(--text-muted);
+  line-height: 1.55;
+  text-align: center;
+  pointer-events: none;
 }
 
 @media (max-width: 760px) {

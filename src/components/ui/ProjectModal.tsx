@@ -1,10 +1,11 @@
-import { lazy, Suspense, useEffect } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { X, Star, GitFork, ExternalLink } from 'lucide-react';
 import Button from './Button';
 import type { ProjectWithDetails } from '../../types/github';
 import { getProjectMedia, getLangColor, formatDate } from '../../utils/projectMedia';
+import { MORPH_TRANSITION } from '../../utils/motion';
 import './ProjectModal.css';
 
 const ReactMarkdown = lazy(() => import('react-markdown'));
@@ -19,6 +20,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const { t, i18n } = useTranslation();
   const media = getProjectMedia(project.name);
   const languages = Object.keys(project.languages);
+
+  // Le README (parsing markdown) n'est monté qu'après le morph pour ne pas le saccader
+  const [morphDone, setMorphDone] = useState(false);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setMorphDone(true), 480);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -49,6 +57,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           className="pmodal"
           layoutId={`project-${project.id}`}
           style={{ borderRadius: 16 }}
+          transition={{ layout: MORPH_TRANSITION }}
           role="dialog"
           aria-modal="true"
           aria-label={project.name}
@@ -64,25 +73,38 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               className="pmodal__media"
               layoutId={`project-media-${project.id}`}
               style={{ borderRadius: 10 }}
+              transition={{ layout: MORPH_TRANSITION }}
             >
-              {media.type === 'video' ? (
-                <video
+              {/* Le poster assure la continuité visuelle du morph, la vidéo fond par-dessus */}
+              <img
+                src={media.type === 'video' ? (media.poster ?? '') : media.url}
+                alt={`Aperçu de ${project.name}`}
+                className="pmodal__media-base"
+              />
+              {media.type === 'video' && (
+                <motion.video
+                  className="pmodal__media-video"
                   src={media.url}
                   poster={media.poster}
-                  preload="none"
+                  preload="metadata"
                   autoPlay
                   loop
                   muted
                   playsInline
                   controls
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1, transition: { delay: 0.5, duration: 0.35 } }}
+                  exit={{ opacity: 0, transition: { duration: 0.08 } }}
                 />
-              ) : (
-                <img src={media.url} alt={`Aperçu de ${project.name}`} />
               )}
             </motion.div>
           )}
 
-          <motion.h2 className="pmodal__title" layoutId={`project-title-${project.id}`}>
+          <motion.h2
+            className="pmodal__title"
+            layoutId={`project-title-${project.id}`}
+            transition={{ layout: MORPH_TRANSITION }}
+          >
             {project.name}
           </motion.h2>
 
@@ -145,9 +167,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
             <h4 className="pmodal__heading">README</h4>
             <div className="pmodal__readme">
-              <Suspense fallback={<p className="pmodal__desc">…</p>}>
-                <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
-              </Suspense>
+              {morphDone ? (
+                <Suspense fallback={<p className="pmodal__desc">…</p>}>
+                  <ReactMarkdown>{project.readmeContent || t('project_no_readme')}</ReactMarkdown>
+                </Suspense>
+              ) : (
+                <p className="pmodal__desc">…</p>
+              )}
             </div>
           </motion.div>
         </motion.div>

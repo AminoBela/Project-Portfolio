@@ -50,6 +50,7 @@
 }
 
 .pmodal__media {
+  position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -62,6 +63,12 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* La vidéo se superpose au poster une fois le morph terminé */
+.pmodal__media-video {
+  position: absolute;
+  inset: 0;
 }
 
 .pmodal__title {
