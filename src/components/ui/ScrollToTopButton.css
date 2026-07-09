@@ -1,0 +1,41 @@
+.scroll-top {
+  position: fixed;
+  right: var(--space-4);
+  bottom: var(--space-4);
+  z-index: var(--z-nav);
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: var(--bg-raised);
+  color: var(--text-muted);
+  box-shadow: var(--shadow-sm);
+  transition: color var(--duration-fast) var(--ease);
+}
+
+.scroll-top:hover {
+  color: var(--text);
+}
+
+.scroll-top__ring {
+  position: absolute;
+  inset: 0;
+  transform: rotate(-90deg);
+}
+
+.scroll-top__track,
+.scroll-top__fill {
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.scroll-top__track {
+  stroke: var(--border);
+}
+
+.scroll-top__fill {
+  stroke: var(--accent);
+  stroke-linecap: round;
+}

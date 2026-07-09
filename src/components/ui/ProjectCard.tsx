@@ -1,0 +1,83 @@
+import { motion } from 'motion/react';
+import { useTranslation } from 'react-i18next';
+import { Star, GitFork, ArrowUpRight } from 'lucide-react';
+import type { ProjectWithDetails } from '../../types/github';
+import { getProjectMedia, getLangColor } from '../../utils/projectMedia';
+import { MORPH_TRANSITION } from '../../utils/motion';
+import './ProjectCard.css';
+
+interface ProjectCardProps {
+  project: ProjectWithDetails;
+  onSelect: (id: number) => void;
+}
+
+export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
+  const { t } = useTranslation();
+  const media = getProjectMedia(project.name);
+
+  return (
+    <motion.article
+      className="pcard"
+      layoutId={`project-${project.id}`}
+      style={{ borderRadius: 16 }}
+      onClick={() => onSelect(project.id)}
+      whileHover={{ y: -3 }}
+      transition={{ y: { duration: 0.25 }, layout: MORPH_TRANSITION }}
+    >
+      <motion.div
+        className="pcard__media"
+        layoutId={`project-media-${project.id}`}
+        style={{ borderRadius: 10 }}
+        transition={{ layout: MORPH_TRANSITION }}
+      >
+        {media ? (
+          <img
+            src={media.type === 'video' ? (media.poster ?? '') : media.url}
+            alt=""
+            loading="lazy"
+          />
+        ) : (
+          <span
+            className="pcard__monogram"
+            style={{ color: getLangColor(project.language) }}
+            aria-hidden="true"
+          >
+            {project.name.charAt(0).toUpperCase()}
+          </span>
+        )}
+      </motion.div>
+
+      <div className="pcard__body">
+        <motion.h3
+          className="pcard__title"
+          layoutId={`project-title-${project.id}`}
+          transition={{ layout: MORPH_TRANSITION }}
+        >
+          {project.name}
+        </motion.h3>
+
+        <p className="pcard__desc">{project.description ?? t('project_no_desc')}</p>
+
+        <footer className="pcard__footer">
+          {project.language && (
+            <span className="pcard__lang">
+              <span
+                className="pcard__lang-dot"
+                style={{ background: getLangColor(project.language) }}
+                aria-hidden="true"
+              />
+              {project.language}
+            </span>
+          )}
+          <span className="pcard__stat">
+            <Star size={13} aria-hidden="true" /> {project.stargazers_count}
+          </span>
+          <span className="pcard__stat">
+            <GitFork size={13} aria-hidden="true" /> {project.forks_count}
+          </span>
+          <ArrowUpRight size={15} className="pcard__arrow" aria-hidden="true" />
+        </footer>
+      </div>
+    </motion.article>
+  );
+}
