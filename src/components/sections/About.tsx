@@ -8,6 +8,8 @@ import {
   MapPin,
   GraduationCap,
   ArrowRight,
+  Clock,
+  Repeat,
   Compass,
   House,
   DoorOpen,
@@ -195,17 +197,34 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
 
       <Reveal>
         <button className="about__cta" onClick={onOpenInternshipModal}>
-          <span className="about__cta-icon">
-            <GraduationCap size={20} />
-          </span>
-          <span className="about__cta-body">
-            <span className="about__cta-title">{t('about_internship_title')}</span>
-            <span className="about__cta-desc">
-              <Trans i18nKey="about_internship_desc" components={{ strong: <strong /> }} />
+          <GraduationCap className="about__cta-watermark" size={180} strokeWidth={1} aria-hidden="true" />
+
+          <span className="about__cta-top">
+            <span className="about__cta-status">
+              <span className="about__cta-status-dot" aria-hidden="true" />
+              {t('about_available')} · {t('about_internship_date')}
+            </span>
+            <span className="about__cta-more">
+              {t('about_internship_more')} <ArrowRight size={15} aria-hidden="true" />
             </span>
           </span>
-          <span className="about__cta-arrow">
-            <ArrowRight size={18} />
+
+          <span className="about__cta-title">{t('about_internship_title')}</span>
+          <span className="about__cta-desc">
+            <Trans i18nKey="about_internship_desc" components={{ strong: <strong /> }} />
+          </span>
+
+          <span className="about__cta-facts">
+            <span>
+              <Clock size={13} aria-hidden="true" /> {t('modal_internship_duration_value')}
+            </span>
+            <span>
+              <Repeat size={13} aria-hidden="true" /> {t('alternance_rhythm_label')}{' '}
+              {t('alternance_rhythm_value')}
+            </span>
+            <span>
+              <MapPin size={13} aria-hidden="true" /> {t('modal_internship_location_value')}
+            </span>
           </span>
         </button>
       </Reveal>

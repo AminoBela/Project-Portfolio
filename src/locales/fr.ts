@@ -21,6 +21,7 @@ export const fr = {
   "about_internship_title": "Recherche d'Alternance",
   "about_internship_desc": "Alternance en <strong>Infrastructures & Cybersécurité des SI</strong>, Mastère pro CESI.",
   "about_internship_date": "Septembre 2026",
+  "about_internship_more": "En savoir plus",
   "about_fact_licence": "Permis B · Véhicule",
   "about_fact_toeic": "Anglais · TOEIC 870",
   "about_fact_mobility": "Lorraine & Alsace",

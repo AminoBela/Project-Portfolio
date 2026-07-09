@@ -23,6 +23,7 @@ export const es = {
   "about_internship_title": "Búsqueda de Alternancia",
   "about_internship_desc": "Alternancia en <strong>Infraestructuras y Ciberseguridad de los SI</strong>, Máster pro CESI.",
   "about_internship_date": "Septiembre 2026",
+  "about_internship_more": "Saber más",
   "about_fact_licence": "Carnet B · Vehículo",
   "about_fact_toeic": "Inglés · TOEIC 870",
   "about_fact_mobility": "Lorena y Alsacia",

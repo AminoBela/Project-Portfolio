@@ -23,6 +23,7 @@ export const en = {
   "about_internship_title": "Work-Study Search",
   "about_internship_desc": "Work-study in <strong>IS Infrastructure & Cybersecurity</strong>, CESI Professional Master's.",
   "about_internship_date": "September 2026",
+  "about_internship_more": "Learn more",
   "about_fact_licence": "Driver's licence · Car",
   "about_fact_toeic": "English · TOEIC 870",
   "about_fact_mobility": "Lorraine & Alsace, FR",
