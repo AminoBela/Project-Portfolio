@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { useTheme } from './hooks/useTheme';
 import { useScrollspy } from './hooks/useScrollspy';
 import { useLenis } from './hooks/useLenis';
+import { useBackgroundShift } from './hooks/useBackgroundShift';
 import Navigation from './components/layout/Navigation';
 import Hero from './components/sections/Hero';
 import Statement from './components/sections/Statement';
@@ -41,10 +42,8 @@ function App() {
     document.title = PAGE_TITLES[i18n.language] ?? 'Amin Belalia | Portfolio';
   }, [i18n.language]);
 
-  // Le fond de page dérive doucement selon la section traversée
-  useEffect(() => {
-    document.body.dataset.section = activeSection;
-  }, [activeSection]);
+  // Le fond de page glisse en continu entre les teintes des sections
+  useBackgroundShift(theme);
 
   // Changement de langue : simple fondu du contenu (~300ms aller-retour)
   const handleLanguageChange = useCallback(
