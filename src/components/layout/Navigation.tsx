@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { AnimatePresence, motion } from 'motion/react';
+import { AnimatePresence, motion, useReducedMotion, useScroll } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
@@ -36,6 +36,8 @@ export default function Navigation({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
 
   useEffect(() => {
     let ticking = false;
@@ -77,14 +79,28 @@ export default function Navigation({
     >
       <nav className="site-nav__inner site-container">
         <a href="#accueil" className="site-nav__logo" onClick={() => setIsMenuOpen(false)}>
-          AB
+          AB<span className="site-nav__logo-dot">.</span>
         </a>
 
-        <ul className="site-nav__links">
+        <motion.ul
+          className="site-nav__links"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.06, delayChildren: 0.15 } },
+          }}
+        >
           {NAV_LINKS.map(({ id, labelKey }) => {
             const isActive = activeSection === id;
             return (
-              <li key={id}>
+              <motion.li
+                key={id}
+                variants={{
+                  hidden: { opacity: 0, y: -10 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_OUT } },
+                }}
+              >
                 <a href={`#${id}`} className={isActive ? 'is-active' : ''}>
                   {t(labelKey)}
                   {isActive && (
@@ -95,10 +111,10 @@ export default function Navigation({
                     />
                   )}
                 </a>
-              </li>
+              </motion.li>
             );
           })}
-        </ul>
+        </motion.ul>
 
         <div className="site-nav__actions">
           <div className="site-nav__langs" role="group" aria-label="Langue">
@@ -149,6 +165,15 @@ export default function Navigation({
           </button>
         </div>
       </nav>
+
+      {/* Progression de lecture le long de la hairline */}
+      {!prefersReducedMotion && (
+        <motion.span
+          className="site-nav__progress"
+          style={{ scaleX: scrollYProgress }}
+          aria-hidden="true"
+        />
+      )}
 
       <AnimatePresence>
         {isMenuOpen && (

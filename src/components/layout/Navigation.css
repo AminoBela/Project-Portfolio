@@ -4,15 +4,27 @@
   left: 0;
   right: 0;
   z-index: var(--z-nav);
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  backdrop-filter: blur(14px) saturate(1.5);
+  -webkit-backdrop-filter: blur(14px) saturate(1.5);
   border-bottom: 1px solid transparent;
   transition: border-color var(--duration) var(--ease);
 }
 
 .site-nav.is-scrolled {
   border-bottom-color: var(--border);
+}
+
+/* Fine ligne de progression de lecture le long de la hairline */
+.site-nav__progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 1.5px;
+  background: var(--accent);
+  transform-origin: left;
+  pointer-events: none;
 }
 
 .site-nav__inner {
@@ -27,8 +39,12 @@
 .site-nav__logo {
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   letter-spacing: -0.02em;
+}
+
+.site-nav__logo-dot {
+  color: var(--accent);
 }
 
 .site-nav__links {

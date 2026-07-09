@@ -6,10 +6,7 @@ import {
   IdCard,
   Languages,
   MapPin,
-  GraduationCap,
-  ArrowRight,
-  Clock,
-  Repeat,
+  ArrowUpRight,
   Compass,
   House,
   DoorOpen,
@@ -22,6 +19,7 @@ import {
 import Section from '../ui/Section';
 import Reveal from '../ui/Reveal';
 import { useInViewCountUp } from '../../hooks/useCountUp';
+import { EASE_OUT } from '../../utils/motion';
 import type { TranslationKey } from '../../types/content';
 import photo from '../../assets/photo-profil.webp';
 import './About.css';
@@ -149,8 +147,21 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
     <Section id="about" title={t('nav_about')}>
       <div className="about__grid">
         <Reveal className="about__photo-col">
-          <motion.div ref={photoRef} style={prefersReducedMotion ? undefined : { y: photoY }}>
-            <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" />
+          <motion.div
+            ref={photoRef}
+            className="about__photo-frame"
+            style={prefersReducedMotion ? undefined : { y: photoY }}
+          >
+            <motion.img
+              src={photo}
+              alt="Amin Belalia"
+              className="about__photo"
+              loading="lazy"
+              initial={prefersReducedMotion ? false : { clipPath: 'inset(0 0 100% 0)', scale: 1.15 }}
+              whileInView={{ clipPath: 'inset(0 0 0% 0)', scale: 1 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 1, ease: EASE_OUT }}
+            />
           </motion.div>
           <p className="about__availability">
             <span className="about__availability-dot" aria-hidden="true" />
@@ -195,39 +206,29 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
         ))}
       </Reveal>
 
-      <Reveal>
-        <button className="about__cta" onClick={onOpenInternshipModal}>
-          <GraduationCap className="about__cta-watermark" size={180} strokeWidth={1} aria-hidden="true" />
-
-          <span className="about__cta-top">
-            <span className="about__cta-status">
-              <span className="about__cta-status-dot" aria-hidden="true" />
-              {t('about_available')} · {t('about_internship_date')}
-            </span>
-            <span className="about__cta-more">
-              {t('about_internship_more')} <ArrowRight size={15} aria-hidden="true" />
-            </span>
-          </span>
-
-          <span className="about__cta-title">{t('about_internship_title')}</span>
-          <span className="about__cta-desc">
+      <div className="about__cta-block">
+        <Reveal>
+          <p className="about__cta-status">
+            <span className="about__cta-status-dot" aria-hidden="true" />
+            {t('about_available')} · {t('about_internship_date')}
+          </p>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <button className="about__cta-link" onClick={onOpenInternshipModal}>
+            {t('about_internship_title')}
+            <ArrowUpRight className="about__cta-link-arrow" aria-hidden="true" />
+          </button>
+        </Reveal>
+        <Reveal delay={0.12}>
+          <p className="about__cta-desc">
             <Trans i18nKey="about_internship_desc" components={{ strong: <strong /> }} />
-          </span>
-
-          <span className="about__cta-facts">
-            <span>
-              <Clock size={13} aria-hidden="true" /> {t('modal_internship_duration_value')}
-            </span>
-            <span>
-              <Repeat size={13} aria-hidden="true" /> {t('alternance_rhythm_label')}{' '}
-              {t('alternance_rhythm_value')}
-            </span>
-            <span>
-              <MapPin size={13} aria-hidden="true" /> {t('modal_internship_location_value')}
-            </span>
-          </span>
-        </button>
-      </Reveal>
+          </p>
+          <p className="about__cta-meta">
+            {t('modal_internship_duration_value')} · {t('alternance_rhythm_label')}{' '}
+            {t('alternance_rhythm_value')} · {t('modal_internship_location_value')}
+          </p>
+        </Reveal>
+      </div>
 
       <div className="about__interests">
         <Reveal>
