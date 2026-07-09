@@ -21,9 +21,14 @@ export function useBackgroundShift(theme: Theme) {
       const stops: string[] = [];
       SECTION_IDS.forEach((id, i) => {
         const el = document.getElementById(id);
-        if (el) {
-          positions.push(el.offsetTop);
-          stops.push(colors[i] ?? colors[colors.length - 1] ?? '#000');
+        if (!el) return;
+        const color = colors[i] ?? colors[colors.length - 1] ?? '#000';
+        positions.push(el.offsetTop);
+        stops.push(color);
+        // Plateau sur le héro : le noir reste pur tant qu'on ne l'a pas quitté
+        if (id === 'accueil') {
+          positions.push(el.offsetTop + el.offsetHeight);
+          stops.push(color);
         }
       });
       mapper = positions.length >= 2 ? transform(positions, stops) : null;

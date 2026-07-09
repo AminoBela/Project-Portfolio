@@ -64,7 +64,7 @@ export default function Navigation({
 
   return (
     <motion.header
-      className={`site-nav ${isScrolled ? 'is-scrolled' : ''}`}
+      className={`site-nav ${isScrolled ? 'is-scrolled' : ''} ${isMenuOpen ? 'is-open' : ''}`}
       initial={{ y: -16, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.35, ease: EASE_OUT }}
