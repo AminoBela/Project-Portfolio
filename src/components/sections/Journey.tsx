@@ -12,6 +12,27 @@ type Tab = 'experience' | 'education';
 
 const tabPillSpring = { type: 'spring', stiffness: 400, damping: 34 } as const;
 
+/** Logo d'entité avec repli monogramme si l'image externe échoue (404). */
+function JourneyLogo({ src, label }: { src: string; label: string }) {
+  const [failed, setFailed] = useState(false);
+  if (failed) {
+    return (
+      <span className="journey__logo journey__logo--fallback" aria-hidden="true">
+        {label.charAt(0).toUpperCase()}
+      </span>
+    );
+  }
+  return (
+    <img
+      src={src}
+      alt=""
+      className="journey__logo"
+      loading="lazy"
+      onError={() => setFailed(true)}
+    />
+  );
+}
+
 function JourneyItem({ entry, isOpen, onToggle }: {
   entry: TimelineEntry;
   isOpen: boolean;
@@ -39,7 +60,7 @@ function JourneyItem({ entry, isOpen, onToggle }: {
         </span>
 
         <span className="journey__identity">
-          {entry.logo && <img src={entry.logo} alt="" className="journey__logo" loading="lazy" />}
+          {entry.logo && <JourneyLogo src={entry.logo} label={t(org ?? entry.title)} />}
           <span className="journey__head-text">
             <span className="journey__title">{t(entry.title)}</span>
             <span className="journey__org">
