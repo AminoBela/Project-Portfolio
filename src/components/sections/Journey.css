@@ -243,6 +243,14 @@
   background: var(--accent);
 }
 
+@media (max-width: 480px) {
+  .journey__tabs button {
+    font-size: var(--text-xs);
+    padding: 0.5rem 0.9rem;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 720px) {
   .journey__head {
     grid-template-columns: 1fr auto;
