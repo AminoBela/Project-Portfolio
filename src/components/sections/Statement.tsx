@@ -34,9 +34,9 @@ export default function Statement() {
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start 0.7', 'end end'],
+    offset: ['start 0.9', 'end 0.45'],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [0.94, 1.05]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.96, 1]);
 
   const words = t('statement_text').split(' ');
 
@@ -51,23 +51,19 @@ export default function Statement() {
   }
 
   return (
-    <section className="statement" aria-label={t('statement_text')} ref={ref}>
-      {/* La section est plus haute que l'écran : le texte reste épinglé
-          pendant que le scroll allume les mots (scrub cinématique) */}
-      <div className="statement__sticky">
-        <div className="site-container">
-          <motion.p className="statement__text" style={{ scale }} aria-hidden="true">
-            {words.map((word, i) => (
-              <Word
-                key={`${word}-${i}`}
-                progress={scrollYProgress}
-                range={[(i / words.length) * 0.85, ((i + 1) / words.length) * 0.85]}
-              >
-                {word}
-              </Word>
-            ))}
-          </motion.p>
-        </div>
+    <section className="statement" aria-label={t('statement_text')}>
+      <div className="site-container" ref={ref}>
+        <motion.p className="statement__text" style={{ scale }} aria-hidden="true">
+          {words.map((word, i) => (
+            <Word
+              key={`${word}-${i}`}
+              progress={scrollYProgress}
+              range={[i / words.length, (i + 1) / words.length]}
+            >
+              {word}
+            </Word>
+          ))}
+        </motion.p>
       </div>
     </section>
   );
