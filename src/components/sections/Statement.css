@@ -1,5 +1,19 @@
 .statement {
-  padding: clamp(5rem, 16vh, 10rem) 0;
+  height: 220vh;
+}
+
+.statement__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* Repli reduced-motion : bloc simple non épinglé */
+.statement > .site-container {
+  padding-top: clamp(5rem, 16vh, 10rem);
+  padding-bottom: clamp(5rem, 16vh, 10rem);
 }
 
 .statement__text {

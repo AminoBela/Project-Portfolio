@@ -45,9 +45,10 @@ export default function Hero({ onOpenInternshipModal }: HeroProps) {
     target: sectionRef,
     offset: ['start start', 'end start'],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.92]);
-  const opacity = useTransform(scrollYProgress, [0, 0.75], [1, 0]);
-  const y = useTransform(scrollYProgress, [0, 1], [0, -70]);
+  // Zoom-through : le contenu grossit vers le visiteur et se fond, comme traversé
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.55]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, 60]);
 
   const scrollStyle = prefersReducedMotion ? undefined : { scale, opacity, y };
 

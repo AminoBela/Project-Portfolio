@@ -1,22 +1,30 @@
-import { motion } from 'motion/react';
+import { useRef } from 'react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Mail } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from '../ui/BrandIcons';
-import { EASE_OUT } from '../../utils/motion';
 import './Footer.css';
 
 export default function Footer() {
   const { t } = useTranslation();
+  const footerRef = useRef<HTMLElement | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Signature scrubbée : zoom + fondu pilotés par l'approche du bas de page
+  const { scrollYProgress } = useScroll({
+    target: footerRef,
+    offset: ['start end', 'end end'],
+  });
+  const scale = useTransform(scrollYProgress, [0, 1], [0.88, 1]);
+  const opacity = useTransform(scrollYProgress, [0, 0.55], [0, 1]);
+  const y = useTransform(scrollYProgress, [0, 1], [48, 0]);
 
   return (
-    <footer className="site-footer">
+    <footer className="site-footer" ref={footerRef}>
       <div className="site-container">
         <motion.p
           className="site-footer__name"
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-40px' }}
-          transition={{ duration: 0.8, ease: EASE_OUT }}
+          style={prefersReducedMotion ? undefined : { scale, opacity, y }}
         >
           Amin Belalia
         </motion.p>
