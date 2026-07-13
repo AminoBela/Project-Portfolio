@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { Sun, Moon, Menu, X } from 'lucide-react';
+import { Sun, Moon, Menu, X, Command } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
 import type { TranslationKey } from '../../types/content';
 import { EASE_OUT } from '../../utils/motion';
@@ -12,6 +12,7 @@ interface NavigationProps {
   theme: Theme;
   toggleTheme: (origin?: { x: number; y: number }) => void;
   onLanguageChange: (lng: string) => void;
+  onOpenPalette: () => void;
 }
 
 const NAV_LINKS: ReadonlyArray<{ id: string; labelKey: TranslationKey }> = [
@@ -31,6 +32,7 @@ export default function Navigation({
   theme,
   toggleTheme,
   onLanguageChange,
+  onOpenPalette,
 }: NavigationProps) {
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -128,6 +130,15 @@ export default function Navigation({
               </button>
             ))}
           </div>
+
+          <button
+            className="site-nav__icon-btn site-nav__palette-btn"
+            onClick={onOpenPalette}
+            aria-label={t('palette_open')}
+            title="Ctrl+K"
+          >
+            <Command size={16} />
+          </button>
 
           <button
             className="site-nav__icon-btn"

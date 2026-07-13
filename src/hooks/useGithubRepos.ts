@@ -5,6 +5,8 @@ import type { GithubRepo, GithubReadme, ProjectWithDetails } from '../types/gith
 const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 const CACHE_KEY = 'github_repos_cache';
 const CACHE_TTL = 24 * 60 * 60 * 1000;
+// Au-delà, le cache est servi mais rafraîchi silencieusement en arrière-plan
+const REFRESH_AFTER = 60 * 60 * 1000;
 const BATCH_SIZE = 5;
 
 const headers: HeadersInit = GITHUB_TOKEN ? { Authorization: `token ${GITHUB_TOKEN}` } : {};
@@ -52,6 +54,15 @@ interface UseGithubReposResult {
   error: string | null;
 }
 
+function getCacheAge(username: string): number | null {
+  try {
+    const time = localStorage.getItem(`${CACHE_KEY}_${username}_time`);
+    return time ? Date.now() - parseInt(time, 10) : null;
+  } catch {
+    return null;
+  }
+}
+
 function getCached(username: string): ProjectWithDetails[] | null {
   if (!username) return null;
   const inMemory = memoryCache.get(username);
@@ -78,8 +89,12 @@ export function useGithubRepos(username: string): UseGithubReposResult {
   }
 
   useEffect(() => {
-    // Cache déjà servi par l'initialisation lazy : rien à fetcher
-    if (!username || memoryCache.has(username)) return;
+    if (!username) return;
+    const hasCache = memoryCache.has(username);
+    const age = getCacheAge(username);
+    // Cache frais : rien à faire. Cache vieilli : refresh silencieux (stale-while-revalidate).
+    if (hasCache && age !== null && age < REFRESH_AFTER) return;
+    const silent = hasCache;
 
     const controller = new AbortController();
     const { signal } = controller;
@@ -126,6 +141,11 @@ export function useGithubRepos(username: string): UseGithubReposResult {
         setProjects(projectsWithDetails);
       } catch (err) {
         if (err instanceof DOMException && err.name === 'AbortError') return;
+        if (silent) {
+          // Refresh d'arrière-plan raté : on garde le cache affiché
+          console.warn('Rafraîchissement GitHub silencieux échoué:', err);
+          return;
+        }
         console.error('Erreur lors de la récupération des repos GitHub:', err);
 
         // Quota atteint : retombe sur un cache expiré s'il existe
@@ -144,7 +164,7 @@ export function useGithubRepos(username: string): UseGithubReposResult {
           );
         }
       } finally {
-        setLoading(false);
+        if (!silent) setLoading(false);
       }
     };
 

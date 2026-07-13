@@ -64,6 +64,12 @@
   padding: var(--space-4);
 }
 
+.projects__more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
 .projects__pagination {
   display: flex;
   justify-content: center;

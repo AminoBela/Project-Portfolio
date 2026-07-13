@@ -12,6 +12,7 @@ import About from './components/sections/About';
 import Footer from './components/layout/Footer';
 import ScrollToTopButton from './components/ui/ScrollToTopButton';
 import Scrollbar from './components/ui/Scrollbar';
+import CommandPalette from './components/ui/CommandPalette';
 
 // Lazy load des sections below-the-fold
 const Journey = lazy(() => import('./components/sections/Journey'));
@@ -36,6 +37,19 @@ function App() {
 
   const [isLangFading, setIsLangFading] = useState(false);
   const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
+  const [isPaletteOpen, setIsPaletteOpen] = useState(false);
+
+  // Raccourci Cmd/Ctrl+K : palette de commandes
+  useEffect(() => {
+    const onKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsPaletteOpen((open) => !open);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = i18n.language;
@@ -72,6 +86,7 @@ function App() {
         toggleTheme={toggleTheme}
         theme={theme}
         onLanguageChange={handleLanguageChange}
+        onOpenPalette={() => setIsPaletteOpen(true)}
       />
 
       <main className={isLangFading ? 'lang-fading' : undefined}>
@@ -95,6 +110,14 @@ function App() {
       <Footer />
       <ScrollToTopButton />
       <Scrollbar />
+
+      <CommandPalette
+        isOpen={isPaletteOpen}
+        onClose={() => setIsPaletteOpen(false)}
+        theme={theme}
+        toggleTheme={toggleTheme}
+        onLanguageChange={handleLanguageChange}
+      />
 
       <Suspense fallback={null}>
         <InternshipModal isOpen={isInternshipModalOpen} onClose={closeInternshipModal} />

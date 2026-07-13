@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
+import { ArrowUpRight } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import Section from '../ui/Section';
 import Reveal from '../ui/Reveal';
+import Button from '../ui/Button';
 import ProjectCard from '../ui/ProjectCard';
 import ProjectModal from '../ui/ProjectModal';
 import { useGithubRepos } from '../../hooks/useGithubRepos';
@@ -126,6 +128,12 @@ export default function Projects() {
               ))}
             </div>
           )}
+
+          <Reveal className="projects__more">
+            <Button href="https://github.com/AminoBela" target="_blank" rel="noopener noreferrer">
+              {t('projects_view_all')} <ArrowUpRight />
+            </Button>
+          </Reveal>
         </>
       )}
 

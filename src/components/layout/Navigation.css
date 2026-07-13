@@ -191,7 +191,8 @@
 }
 
 @media (max-width: 860px) {
-  .site-nav__links {
+  .site-nav__links,
+  .site-nav__palette-btn {
     display: none;
   }
 
