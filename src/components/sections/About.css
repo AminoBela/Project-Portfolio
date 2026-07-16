@@ -113,6 +113,7 @@
   font-size: var(--text-3xl);
   font-weight: 700;
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
 }
 
 .about__stat-label {

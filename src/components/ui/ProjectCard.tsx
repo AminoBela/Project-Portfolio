@@ -35,6 +35,7 @@ export default function ProjectCard({ project, onSelect }: ProjectCardProps) {
             src={media.type === 'video' ? (media.poster ?? '') : media.url}
             alt=""
             loading="lazy"
+            decoding="async"
           />
         ) : (
           <span

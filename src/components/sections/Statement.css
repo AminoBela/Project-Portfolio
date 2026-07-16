@@ -16,3 +16,8 @@
   display: inline-block;
   margin-right: 0.28em;
 }
+
+/* Unique moment d'accent du manifeste : le mot final */
+.statement__word--accent {
+  color: var(--accent);
+}

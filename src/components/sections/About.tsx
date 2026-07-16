@@ -147,7 +147,7 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
       <div className="about__grid">
         <Reveal className="about__photo-col">
           <motion.div ref={photoRef} style={prefersReducedMotion ? undefined : { y: photoY }}>
-            <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" />
+            <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" decoding="async" />
           </motion.div>
           <p className="about__availability">
             <span className="about__availability-dot" aria-hidden="true" />

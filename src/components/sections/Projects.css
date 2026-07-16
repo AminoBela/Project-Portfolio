@@ -47,6 +47,10 @@
   .projects__grid > div:first-child {
     grid-column: span 2;
   }
+
+  .projects__grid > div:first-child .pcard__title {
+    font-size: var(--text-lg);
+  }
 }
 
 .projects__grid > div {

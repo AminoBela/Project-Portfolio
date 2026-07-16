@@ -28,6 +28,7 @@ function JourneyLogo({ src, label }: { src: string; label: string }) {
       alt=""
       className="journey__logo"
       loading="lazy"
+      decoding="async"
       onError={() => setFailed(true)}
     />
   );

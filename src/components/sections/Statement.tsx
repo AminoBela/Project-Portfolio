@@ -13,14 +13,19 @@ function Word({
   children,
   progress,
   range,
+  isLast = false,
 }: {
   children: string;
   progress: MotionValue<number>;
   range: [number, number];
+  isLast?: boolean;
 }) {
   const opacity = useTransform(progress, range, [0.14, 1]);
   return (
-    <motion.span className="statement__word" style={{ opacity }}>
+    <motion.span
+      className={`statement__word${isLast ? ' statement__word--accent' : ''}`}
+      style={{ opacity }}
+    >
       {children}
     </motion.span>
   );
@@ -59,6 +64,7 @@ export default function Statement() {
               key={`${word}-${i}`}
               progress={scrollYProgress}
               range={[i / words.length, (i + 1) / words.length]}
+              isLast={i === words.length - 1}
             >
               {word}
             </Word>

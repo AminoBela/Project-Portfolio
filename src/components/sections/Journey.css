@@ -86,6 +86,7 @@
   font-size: var(--text-xl);
   font-weight: 700;
   letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
   color: var(--text-muted);
   transition: color var(--duration-fast) var(--ease);
 }
@@ -93,6 +94,10 @@
 .journey__item.is-open .journey__year,
 .journey__head:hover .journey__year {
   color: var(--text);
+}
+
+.journey__item.is-open .journey__year {
+  color: var(--accent);
 }
 
 .journey__live-dot {

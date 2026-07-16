@@ -15,3 +15,17 @@ kbd {
   font-size: 0.9em;
 }
 
+
+/* Équilibre des fins de ligne : pas de mot orphelin */
+.site-section__title,
+.statement__text,
+.about__cta-link,
+.site-footer__name {
+  text-wrap: balance;
+}
+
+.hero__desc,
+.about__bio,
+.contact__desc {
+  text-wrap: pretty;
+}
