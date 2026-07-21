@@ -115,12 +115,21 @@ export default function CommandPalette({
     [actions, query]
   );
 
-  // Réinitialisation à l'ouverture + focus
+  // Réinitialisation de l'état à l'ouverture (ajustée pendant le rendu,
+  // évite un setState synchrone dans l'effet)
+  const [wasOpen, setWasOpen] = useState(isOpen);
+  if (isOpen !== wasOpen) {
+    setWasOpen(isOpen);
+    if (isOpen) {
+      setQuery('');
+      setSelected(0);
+      setCopied(false);
+    }
+  }
+
+  // Focus + verrouillage du scroll pendant l'ouverture
   useEffect(() => {
     if (!isOpen) return;
-    setQuery('');
-    setSelected(0);
-    setCopied(false);
     const raf = requestAnimationFrame(() => inputRef.current?.focus());
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';

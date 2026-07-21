@@ -33,12 +33,17 @@ const FACTS: ReadonlyArray<{ icon: LucideIcon; key: TranslationKey }> = [
   { icon: MapPin, key: 'about_fact_mobility' },
 ];
 
-const LANGUAGES_DATA: ReadonlyArray<{ code: string; key: TranslationKey; levelKey: TranslationKey }> = [
-  { code: 'FR', key: 'lang_french', levelKey: 'lang_level_bilingual' },
-  { code: 'ES', key: 'lang_spanish', levelKey: 'lang_level_bilingual' },
-  { code: 'EN', key: 'lang_english', levelKey: 'lang_level_toeic' },
-  { code: 'AR', key: 'lang_arabic', levelKey: 'lang_level_good' },
-  { code: 'VA', key: 'lang_valencian', levelKey: 'lang_level_good' },
+const LANGUAGES_DATA: ReadonlyArray<{
+  key: TranslationKey;
+  levelKey: TranslationKey;
+  /** Niveau sur 5, affiché en points */
+  level: number;
+}> = [
+  { key: 'lang_french', levelKey: 'lang_level_bilingual', level: 5 },
+  { key: 'lang_spanish', levelKey: 'lang_level_bilingual', level: 5 },
+  { key: 'lang_english', levelKey: 'lang_level_toeic', level: 4 },
+  { key: 'lang_arabic', levelKey: 'lang_level_good', level: 3 },
+  { key: 'lang_valencian', levelKey: 'lang_level_good', level: 3 },
 ];
 
 const STATS: ReadonlyArray<{ value: number; suffix: string; labelKey: TranslationKey }> = [
@@ -91,7 +96,7 @@ function InterestChip({
         onFocus={show}
         onBlur={hide}
       >
-        <Icon size={18} aria-hidden="true" />
+        <Icon size={20} aria-hidden="true" />
         {t(titleKey)}
       </button>
       {createPortal(
@@ -174,10 +179,14 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
           </Reveal>
           <Reveal delay={0.15}>
             <ul className="about__langs">
-              {LANGUAGES_DATA.map(({ code, key, levelKey }) => (
-                <li key={code}>
-                  <span className="about__lang-code">{code}</span>
-                  <span>{t(key)}</span>
+              {LANGUAGES_DATA.map(({ key, levelKey, level }) => (
+                <li key={key} aria-label={`${t(key)} : ${t(levelKey)}`}>
+                  <span className="about__lang-name">{t(key)}</span>
+                  <span className="about__lang-dots" aria-hidden="true">
+                    {[1, 2, 3, 4, 5].map((n) => (
+                      <i key={n} className={n <= level ? 'is-on' : ''} />
+                    ))}
+                  </span>
                   <span className="about__lang-level">{t(levelKey)}</span>
                 </li>
               ))}

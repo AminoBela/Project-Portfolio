@@ -70,20 +70,35 @@
   margin-top: var(--space-4);
 }
 
-.about__langs li {
-  display: inline-flex;
-  align-items: baseline;
-  gap: var(--space-2);
-  font-size: var(--text-sm);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  padding: 0.4rem 0.9rem;
+.about__langs {
+  gap: var(--space-2) var(--space-5);
 }
 
-.about__lang-code {
-  font-size: var(--text-xs);
-  font-weight: 700;
-  color: var(--accent);
+.about__langs li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.about__lang-name {
+  font-weight: 500;
+}
+
+.about__lang-dots {
+  display: inline-flex;
+  gap: 3.5px;
+}
+
+.about__lang-dots i {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--border-strong);
+}
+
+.about__lang-dots i.is-on {
+  background: var(--accent);
 }
 
 .about__lang-level {
@@ -245,9 +260,8 @@
 
 .about__marquee-track {
   display: flex;
-  gap: var(--space-2);
   width: max-content;
-  animation: about-marquee 26s linear infinite;
+  animation: about-marquee 30s linear infinite;
 }
 
 .about__marquee:hover .about__marquee-track,
@@ -257,40 +271,52 @@
 
 .about__interests-chips--marquee {
   flex-wrap: nowrap;
+  gap: 0;
 }
 
 .about__interests-chips--marquee li {
+  display: inline-flex;
+  align-items: center;
   white-space: nowrap;
+}
+
+/* Séparateur : point accent entre chaque intérêt (y compris à la couture des copies) */
+.about__interests-chips--marquee li::after {
+  content: '';
+  width: 5px;
+  height: 5px;
+  border-radius: var(--radius-full);
+  background: var(--accent);
+  opacity: 0.7;
+  margin: 0 var(--space-5);
+  flex-shrink: 0;
 }
 
 @keyframes about-marquee {
   to {
-    transform: translateX(calc(-50% - var(--space-1)));
+    transform: translateX(-50%);
   }
 }
 
+/* Ticker typographique : texte display sans boîte */
 .about__interest-chip {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  font-size: var(--text-base);
-  font-weight: 500;
-  font-family: inherit;
-  color: var(--text);
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  padding: 0.7rem 1.3rem;
-  box-shadow: var(--shadow-sm);
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-muted);
+  background: none;
+  border: none;
+  padding: 0.25rem 0;
   white-space: nowrap;
-  transition:
-    border-color var(--duration-fast) var(--ease),
-    transform var(--duration-fast) var(--ease);
+  transition: color var(--duration-fast) var(--ease);
 }
 
 .about__interest-chip:hover {
-  border-color: var(--border-strong);
-  transform: translateY(-2px);
+  color: var(--text);
 }
 
 .about__interest-chip svg {
