@@ -172,9 +172,9 @@ export const en = {
   "project_no_readme": "*No README file found.*",
 
   "contact_title": "Get in touch",
-  "contact_desc_1": "I am currently looking for a work-study position in ",
-  "contact_desc_bold": "IS Infrastructure & Cybersecurity",
-  "contact_desc_2": " for my Professional Master's at CESI Nancy. Based in Lorraine.",
+  "contact_desc_1": "Computer Science student passionate about ",
+  "contact_desc_bold": "IS infrastructure and cybersecurity",
+  "contact_desc_2": ", based in Lorraine. Feel free to reach out.",
   "contact_email_label": "Email",
   "contact_phone_label": "Phone",
   "contact_linkedin_label": "LinkedIn",

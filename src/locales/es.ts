@@ -172,9 +172,9 @@ export const es = {
   "project_no_readme": "*No se encontró archivo README.*",
 
   "contact_title": "Contacto",
-  "contact_desc_1": "Actualmente busco una alternancia en ",
-  "contact_desc_bold": "Infraestructuras y Ciberseguridad de los SI",
-  "contact_desc_2": " para mi Máster pro en CESI Nancy. Con base en Lorena.",
+  "contact_desc_1": "Estudiante de Informática apasionado por ",
+  "contact_desc_bold": "las infraestructuras y la ciberseguridad de los SI",
+  "contact_desc_2": ", con base en Lorena. No dudes en contactarme.",
   "contact_email_label": "Correo",
   "contact_phone_label": "Teléfono",
   "contact_linkedin_label": "LinkedIn",
