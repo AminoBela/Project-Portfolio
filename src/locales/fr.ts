@@ -23,12 +23,8 @@ export const fr = {
   "home_btn_projects": "Mes projets",
   "home_btn_cv": "Mon CV",
 
-  "about_available": "Disponible",
   "about_tagline": "Étudiant en BUT Informatique, parcours DACS.",
   "about_bio_text": "Actuellement en 3ème année de BUT Informatique, parcours DACS (Déploiement d'Applications Communicantes et Sécurisées), je me spécialise dans l'administration système et réseau, la virtualisation et la sécurisation des infrastructures. Mon objectif est de garantir la disponibilité, la performance et la sécurité des applications.",
-  "about_internship_title": "Recherche d'Alternance",
-  "about_internship_desc": "Alternance en <strong>Infrastructures & Cybersécurité des SI</strong>, Mastère pro CESI.",
-  "about_internship_date": "Septembre 2026",
   "about_fact_licence": "Permis B · Véhicule",
   "about_fact_toeic": "Anglais · TOEIC 870",
   "about_fact_mobility": "Lorraine & Alsace",
@@ -40,21 +36,6 @@ export const fr = {
   "lang_level_bilingual": "Bilingue",
   "lang_level_toeic": "TOEIC 870",
   "lang_level_good": "Bon niveau",
-  "modal_internship_badge": "Alternance 2026-2028",
-  "modal_internship_title": "Recherche d'Alternance",
-  "modal_internship_subtitle": "Mastère pro Manager en Infrastructures et Cybersécurité des SI · CESI Nancy",
-  "modal_internship_start": "Début",
-  "modal_internship_duration": "Durée",
-  "modal_internship_duration_value": "2 ans",
-  "modal_internship_location": "Lieu",
-  "modal_internship_location_value": "Nancy / Lorraine",
-  "modal_internship_mobility_title": "À propos de l'alternance",
-  "modal_internship_mobility_desc": "Je recherche une entreprise pour effectuer mon alternance dans le cadre de mon <strong>Mastère pro Manager en Infrastructures et Cybersécurité des SI</strong> au CESI Nancy.<br /><br />Rythme : <strong>3 semaines en entreprise</strong> / <strong>1 semaine en école</strong>.<br />Permis B et véhicule personnel.",
-  "modal_internship_missions_title": "Domaines Recherchés",
-  "modal_internship_mission_1": "Administration système et cybersécurité",
-  "modal_internship_mission_2": "Management des systèmes d'information",
-  "modal_internship_mission_3": "Infrastructure Cloud et DevOps",
-  "modal_internship_mission_4": "Gestion de projets IT et gouvernance SI",
 
   "experience_title": "Expériences Professionnelles",
   "education_title": "Formations",
@@ -68,7 +49,7 @@ export const fr = {
   "crous_title": "Étudiant Référent Résidence CROUS",
   "crous_company": "CROUS Lorraine",
   "crous_location": "Vandoeuvre-lès-Nancy",
-  "crous_period": "Déc. 2025 - Actuel",
+  "crous_period": "Déc. 2025 - Juin 2026",
   "crous_desc": "Responsable de l'accueil, de l'intégration et du soutien des étudiants résidents. Organisation d'événements et gestion des problématiques quotidiennes.",
 
   "udl_title": "Stagiaire Administration Système",
@@ -153,9 +134,6 @@ export const fr = {
   "bac_details_intro": "Obtention du baccalauréat avec de solides spécialisations scientifiques.",
   "bac_details_highlight_1": "Spécialisation poussée en Mathématiques, Physique et Sciences de l'ingénieur.",
 
-  "alternance_rhythm_label": "Rythme",
-  "alternance_rhythm_value": "3/1 sem.",
-
   "skills_vut_title": "Domaines de compétences",
   "skills_vut_intro": "Six domaines structurent ma formation et mon expérience pratique en informatique systèmes & réseaux.",
   "skills_vut_project_button": "Projet",
@@ -202,9 +180,7 @@ export const fr = {
 
   "footer_rights": "Tous droits réservés.",
 
-  "banner_cta": "Me contacter",
   "banner_close": "Fermer la bannière",
-  "home_status": "Disponible · Alternance Sept. 2026",
   "statement_text": "Je conçois des infrastructures fiables, sécurisées et automatisées, du serveur au déploiement.",
 
   "about_interests_title": "Engagements & centres d'intérêt",

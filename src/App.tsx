@@ -19,7 +19,6 @@ const Journey = lazy(() => import('./components/sections/Journey'));
 const Skills = lazy(() => import('./components/sections/Skills'));
 const Contact = lazy(() => import('./components/sections/Contact'));
 const Projects = lazy(() => import('./components/sections/Projects'));
-const InternshipModal = lazy(() => import('./components/ui/InternshipModal'));
 
 const SectionFallback = () => <div style={{ minHeight: '200px' }} />;
 
@@ -36,7 +35,6 @@ function App() {
   useLenis();
 
   const [isLangFading, setIsLangFading] = useState(false);
-  const [isInternshipModalOpen, setIsInternshipModalOpen] = useState(false);
   const [isPaletteOpen, setIsPaletteOpen] = useState(false);
 
   // Raccourci Cmd/Ctrl+K : palette de commandes
@@ -72,9 +70,6 @@ function App() {
     [i18n]
   );
 
-  const handleOpenInternshipModal = useCallback(() => setIsInternshipModalOpen(true), []);
-  const closeInternshipModal = useCallback(() => setIsInternshipModalOpen(false), []);
-
   return (
     <MotionConfig reducedMotion="user">
       <a href="#accueil" className="skip-link">
@@ -90,9 +85,9 @@ function App() {
       />
 
       <main className={isLangFading ? 'lang-fading' : undefined}>
-        <Hero onOpenInternshipModal={handleOpenInternshipModal} />
+        <Hero />
         <Statement />
-        <About onOpenInternshipModal={handleOpenInternshipModal} />
+        <About />
         <Suspense fallback={<SectionFallback />}>
           <Journey />
         </Suspense>
@@ -118,10 +113,6 @@ function App() {
         toggleTheme={toggleTheme}
         onLanguageChange={handleLanguageChange}
       />
-
-      <Suspense fallback={null}>
-        <InternshipModal isOpen={isInternshipModalOpen} onClose={closeInternshipModal} />
-      </Suspense>
     </MotionConfig>
   );
 }

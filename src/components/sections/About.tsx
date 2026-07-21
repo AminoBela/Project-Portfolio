@@ -1,12 +1,11 @@
 import { useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
-import { Trans, useTranslation } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import {
   IdCard,
   Languages,
   MapPin,
-  ArrowUpRight,
   Compass,
   House,
   DoorOpen,
@@ -22,10 +21,6 @@ import { useInViewCountUp } from '../../hooks/useCountUp';
 import type { TranslationKey } from '../../types/content';
 import photo from '../../assets/photo-profil.webp';
 import './About.css';
-
-interface AboutProps {
-  onOpenInternshipModal: () => void;
-}
 
 const FACTS: ReadonlyArray<{ icon: LucideIcon; key: TranslationKey }> = [
   { icon: IdCard, key: 'about_fact_licence' },
@@ -135,7 +130,7 @@ function Stat({ value, suffix, labelKey }: (typeof STATS)[number]) {
   );
 }
 
-export default function About({ onOpenInternshipModal }: AboutProps) {
+export default function About() {
   const { t } = useTranslation();
   const photoRef = useRef<HTMLDivElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -154,10 +149,6 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
           <motion.div ref={photoRef} style={prefersReducedMotion ? undefined : { y: photoY }}>
             <img src={photo} alt="Amin Belalia" className="about__photo" loading="lazy" decoding="async" />
           </motion.div>
-          <p className="about__availability">
-            <span className="about__availability-dot" aria-hidden="true" />
-            {t('about_available')} · {t('about_internship_date')}
-          </p>
         </Reveal>
 
         <div className="about__content">
@@ -200,30 +191,6 @@ export default function About({ onOpenInternshipModal }: AboutProps) {
           <Stat key={stat.labelKey} {...stat} />
         ))}
       </Reveal>
-
-      <div className="about__cta-block">
-        <Reveal>
-          <p className="about__cta-status">
-            <span className="about__cta-status-dot" aria-hidden="true" />
-            {t('about_available')} · {t('about_internship_date')}
-          </p>
-        </Reveal>
-        <Reveal delay={0.06}>
-          <button className="about__cta-link" onClick={onOpenInternshipModal}>
-            {t('about_internship_title')}
-            <ArrowUpRight className="about__cta-link-arrow" aria-hidden="true" />
-          </button>
-        </Reveal>
-        <Reveal delay={0.12}>
-          <p className="about__cta-desc">
-            <Trans i18nKey="about_internship_desc" components={{ strong: <strong /> }} />
-          </p>
-          <p className="about__cta-meta">
-            {t('modal_internship_duration_value')} · {t('alternance_rhythm_label')}{' '}
-            {t('alternance_rhythm_value')} · {t('modal_internship_location_value')}
-          </p>
-        </Reveal>
-      </div>
 
       <div className="about__interests">
         <Reveal>

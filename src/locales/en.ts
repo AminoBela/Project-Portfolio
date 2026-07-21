@@ -25,12 +25,8 @@ export const en = {
   "home_btn_projects": "My projects",
   "home_btn_cv": "My CV",
 
-  "about_available": "Available",
   "about_tagline": "Computer Science student, DACS path.",
   "about_bio_text": "Currently in my 3rd year of a Computer Science degree, specializing in DACS (Deployment of Communicating and Secure Applications), I focus on system and network administration, virtualization, and infrastructure security. My goal is to ensure the availability, performance, and security of applications.",
-  "about_internship_title": "Work-Study Search",
-  "about_internship_desc": "Work-study in <strong>IS Infrastructure & Cybersecurity</strong>, CESI Professional Master's.",
-  "about_internship_date": "September 2026",
   "about_fact_licence": "Driver's licence · Car",
   "about_fact_toeic": "English · TOEIC 870",
   "about_fact_mobility": "Lorraine & Alsace, FR",
@@ -42,21 +38,6 @@ export const en = {
   "lang_level_bilingual": "Bilingual",
   "lang_level_toeic": "TOEIC 870",
   "lang_level_good": "Good level",
-  "modal_internship_badge": "Work-Study 2026-2028",
-  "modal_internship_title": "Work-Study Search",
-  "modal_internship_subtitle": "Professional Master's · Manager in IS Infrastructure & Cybersecurity · CESI Nancy",
-  "modal_internship_start": "Start",
-  "modal_internship_duration": "Duration",
-  "modal_internship_duration_value": "2 years",
-  "modal_internship_location": "Location",
-  "modal_internship_location_value": "Nancy / Lorraine",
-  "modal_internship_mobility_title": "About the Work-Study",
-  "modal_internship_mobility_desc": "I am looking for a company for my work-study as part of my <strong>Professional Master's · Manager in IS Infrastructure & Cybersecurity</strong> at CESI Nancy.<br /><br />Schedule: <strong>3 weeks in company</strong> / <strong>1 week at school</strong>.<br />Driver's license and personal vehicle.",
-  "modal_internship_missions_title": "Target Areas",
-  "modal_internship_mission_1": "System administration and cybersecurity",
-  "modal_internship_mission_2": "Information systems management",
-  "modal_internship_mission_3": "Cloud infrastructure and DevOps",
-  "modal_internship_mission_4": "IT project management and IS governance",
 
   "experience_title": "Work Experience",
   "education_title": "Education",
@@ -70,7 +51,7 @@ export const en = {
   "crous_title": "Student Resident Advisor",
   "crous_company": "CROUS Lorraine",
   "crous_location": "Vandoeuvre-lès-Nancy",
-  "crous_period": "Dec. 2025 - Present",
+  "crous_period": "Dec. 2025 - June 2026",
   "crous_desc": "Responsible for welcoming, integrating, and supporting student residents. Organizing events and managing daily issues.",
 
   "udl_title": "System Administration Intern",
@@ -156,9 +137,6 @@ export const en = {
   "bac_details_intro": "Graduated with a high school diploma with strong scientific specializations.",
   "bac_details_highlight_1": "Advanced specialization in Mathematics, Physics, and Engineering Sciences.",
 
-  "alternance_rhythm_label": "Schedule",
-  "alternance_rhythm_value": "3/1 wk.",
-
   "skills_vut_title": "Competency areas",
   "skills_vut_intro": "Six domains structure my training and hands-on experience in IT systems & networks.",
   "skills_vut_project_button": "Project",
@@ -205,9 +183,7 @@ export const en = {
 
   "footer_rights": "All rights reserved.",
 
-  "banner_cta": "Contact Me",
   "banner_close": "Close banner",
-  "home_status": "Available · Work-Study Sept. 2026",
   "statement_text": "I build reliable, secure and automated infrastructure, from server to deployment.",
 
   "about_interests_title": "Commitments & interests",

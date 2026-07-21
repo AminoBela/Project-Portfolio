@@ -13,10 +13,6 @@ import { EASE_OUT } from '../../utils/motion';
 import cvPdf from '../../assets/cv.pdf';
 import './Hero.css';
 
-interface HeroProps {
-  onOpenInternshipModal: () => void;
-}
-
 const container: Variants = {
   hidden: {},
   visible: { transition: { staggerChildren: 0.07, delayChildren: 0.05 } },
@@ -35,7 +31,7 @@ const titleWord: Variants = {
   }),
 };
 
-export default function Hero({ onOpenInternshipModal }: HeroProps) {
+export default function Hero() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement | null>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -55,11 +51,6 @@ export default function Hero({ onOpenInternshipModal }: HeroProps) {
     <section id="accueil" className="hero" ref={sectionRef}>
       <motion.div className="site-container hero__inner" style={scrollStyle}>
         <motion.div variants={container} initial="hidden" animate="visible">
-          <motion.button className="hero__status" variants={item} onClick={onOpenInternshipModal}>
-            <span className="hero__status-dot" aria-hidden="true" />
-            {t('home_status')}
-          </motion.button>
-
           <h1 className="hero__title">
             {t('home_greeting')
               .split(' ')

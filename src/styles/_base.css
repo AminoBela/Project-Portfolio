@@ -147,28 +147,24 @@ html.theme-transition *::after {
 
 /* ── Scrollables internes (modales, code) : barre native fine ── */
 .pmodal,
-.dialog-panel,
 pre {
   scrollbar-width: thin;
   scrollbar-color: var(--border-strong) transparent;
 }
 
 .pmodal::-webkit-scrollbar,
-.dialog-panel::-webkit-scrollbar,
 pre::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 .pmodal::-webkit-scrollbar-thumb,
-.dialog-panel::-webkit-scrollbar-thumb,
 pre::-webkit-scrollbar-thumb {
   background: var(--border-strong);
   border-radius: var(--radius-full);
 }
 
 .pmodal::-webkit-scrollbar-track,
-.dialog-panel::-webkit-scrollbar-track,
 pre::-webkit-scrollbar-track {
   background: transparent;
 }
