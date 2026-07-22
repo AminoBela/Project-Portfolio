@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X, Command, Star } from 'lucide-react';
@@ -27,13 +28,39 @@ const LANGUAGES = ['fr', 'en', 'es'] as const;
 
 const underlineSpring = { type: 'spring', stiffness: 400, damping: 34 } as const;
 
-/** Clin d'œil discret : deux étoiles façon écusson, réservées au bouton ES. */
-function EsStars() {
-  return (
-    <span className="site-nav__lang-stars" aria-hidden="true">
-      <Star size={7} fill="currentColor" strokeWidth={0} />
-      <Star size={7} fill="currentColor" strokeWidth={0} />
-    </span>
+/** Toast éphémère : célébration au moment où on choisit l'espagnol. */
+function EsCelebration({ show, label }: { show: boolean; label: string }) {
+  return createPortal(
+    <div className="lang-celebration__anchor">
+      <AnimatePresence>
+        {show && (
+          <motion.div
+            className="lang-celebration"
+            role="status"
+            initial={{ opacity: 0, y: -14, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.92 }}
+            transition={{ type: 'spring', stiffness: 320, damping: 24 }}
+          >
+            <motion.span
+              className="lang-celebration__flag"
+              initial={{ rotate: -16 }}
+              animate={{ rotate: [-16, 12, -8, 4, 0] }}
+              transition={{ duration: 0.7, ease: 'easeOut' }}
+              aria-hidden="true"
+            >
+              🇪🇸
+            </motion.span>
+            <span className="lang-celebration__text">{label}</span>
+            <span className="lang-celebration__stars" aria-hidden="true">
+              <Star size={11} fill="currentColor" strokeWidth={0} />
+              <Star size={11} fill="currentColor" strokeWidth={0} />
+            </span>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>,
+    document.body
   );
 }
 
@@ -47,6 +74,7 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [celebrateEs, setCelebrateEs] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -73,6 +101,18 @@ export default function Navigation({
   }, [isMenuOpen]);
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
+
+  // Célébration ponctuelle au moment où l'espagnol est choisi (pas à l'arrivée sur le site)
+  const prevLangRef = useRef(currentLang);
+  useEffect(() => {
+    const prev = prevLangRef.current;
+    prevLangRef.current = currentLang;
+    if (prev !== 'es' && currentLang === 'es') {
+      setCelebrateEs(true);
+      const timer = window.setTimeout(() => setCelebrateEs(false), 2200);
+      return () => window.clearTimeout(timer);
+    }
+  }, [currentLang]);
 
   return (
     <motion.header
@@ -128,7 +168,6 @@ export default function Navigation({
                 className={currentLang === lng ? 'is-active' : ''}
                 onClick={() => onLanguageChange(lng)}
                 aria-pressed={currentLang === lng}
-                title={lng === 'es' ? t('lang_es_badge') : undefined}
               >
                 {currentLang === lng && (
                   <motion.span
@@ -137,7 +176,6 @@ export default function Navigation({
                     transition={underlineSpring}
                   />
                 )}
-                {lng === 'es' && <EsStars />}
                 <span>{lng.toUpperCase()}</span>
               </button>
             ))}
@@ -227,9 +265,7 @@ export default function Navigation({
                   key={lng}
                   className={currentLang === lng ? 'is-active' : ''}
                   onClick={() => onLanguageChange(lng)}
-                  title={lng === 'es' ? t('lang_es_badge') : undefined}
                 >
-                  {lng === 'es' && <EsStars />}
                   {lng.toUpperCase()}
                 </button>
               ))}
@@ -237,6 +273,8 @@ export default function Navigation({
           </motion.div>
         )}
       </AnimatePresence>
+
+      <EsCelebration show={celebrateEs} label={t('lang_es_badge')} />
     </motion.header>
   );
 }

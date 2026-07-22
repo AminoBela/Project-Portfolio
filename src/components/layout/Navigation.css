@@ -85,6 +85,10 @@
 
 .site-nav__langs button {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
   background: none;
   border: none;
   font-size: var(--text-xs);
@@ -112,26 +116,41 @@
   border-radius: var(--radius-full);
 }
 
-/* Clin d'œil : deux étoiles façon écusson au-dessus du bouton ES */
-.site-nav__lang-stars {
-  position: absolute;
-  top: -3px;
+/* ── Célébration ES : toast éphémère, hors flux (n'affecte jamais la nav) ── */
+.lang-celebration__anchor {
+  position: fixed;
+  top: 72px;
   left: 50%;
-  transform: translate(-50%, -100%);
-  z-index: 1;
-  display: flex;
-  gap: 1.5px;
-  color: var(--text-muted);
-  opacity: 0.55;
-  transition:
-    color var(--duration-fast) var(--ease),
-    opacity var(--duration-fast) var(--ease);
+  transform: translateX(-50%);
+  z-index: calc(var(--z-modal) + 30);
+  pointer-events: none;
 }
 
-.site-nav__langs button.is-active .site-nav__lang-stars,
-.site-nav__panel-langs button.is-active .site-nav__lang-stars {
+.lang-celebration {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  padding: 0.6rem 1.15rem;
+  box-shadow: var(--shadow-md);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.lang-celebration__flag {
+  display: inline-block;
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.lang-celebration__stars {
+  display: inline-flex;
+  gap: 2px;
   color: var(--accent);
-  opacity: 1;
 }
 
 .site-nav__icon-btn {
@@ -197,7 +216,10 @@
 }
 
 .site-nav__panel-langs button {
-  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 52px;
   background: none;
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
