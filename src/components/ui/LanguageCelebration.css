@@ -1,3 +1,12 @@
+/* Fond plein écran aux couleurs du drapeau : derrière tout le contenu,
+   pour rester lisible tout en étant très visible */
+.lang-celebration__wash {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+
 .lang-celebration__anchor {
   position: fixed;
   top: 76px;

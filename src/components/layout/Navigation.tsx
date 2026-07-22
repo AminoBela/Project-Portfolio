@@ -66,16 +66,18 @@ export default function Navigation({
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
 
-  // Célébration ponctuelle à chaque changement de langue (jamais à l'arrivée sur le site)
-  const prevLangRef = useRef(currentLang);
+  // Célébration à l'arrivée sur le site, puis à chaque changement de langue
+  const prevLangRef = useRef<string | null>(null);
   useEffect(() => {
     const prev = prevLangRef.current;
     prevLangRef.current = currentLang;
-    if (prev !== currentLang) {
-      setCelebrateLang(currentLang);
-      const timer = window.setTimeout(() => setCelebrateLang(null), 2400);
-      return () => window.clearTimeout(timer);
-    }
+    const delay = prev === null ? 700 : 0; // laisse le héro s'installer au premier chargement
+    const start = window.setTimeout(() => setCelebrateLang(currentLang), delay);
+    const stop = window.setTimeout(() => setCelebrateLang(null), delay + 2400);
+    return () => {
+      window.clearTimeout(start);
+      window.clearTimeout(stop);
+    };
   }, [currentLang]);
 
   return (

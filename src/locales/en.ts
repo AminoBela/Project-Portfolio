@@ -9,7 +9,7 @@ export const en = {
   "nav_contact": "Contact",
   "nav_close_menu": "Close menu",
   "nav_open_menu": "Open menu",
-  "lang_celebration_text": "Welcome!",
+  "lang_celebration_text": "World Cup Champions!",
   "palette_open": "Command palette",
   "palette_placeholder": "Search an action…",
   "palette_empty": "No results",

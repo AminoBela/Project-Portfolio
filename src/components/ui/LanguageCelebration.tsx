@@ -59,7 +59,26 @@ export default function LanguageCelebration({ lang, label }: LanguageCelebration
   );
 
   return createPortal(
-    <div className="lang-celebration__anchor">
+    <>
+      {/* Fond plein écran aux couleurs du drapeau, un bref instant */}
+      <AnimatePresence>
+        {lang && (
+          <motion.div
+            key={`${lang}-wash`}
+            className="lang-celebration__wash"
+            style={{
+              background: `linear-gradient(180deg, ${colors[0]} 0%, ${colors[0]} 25%, ${colors[1]} 25%, ${colors[1]} 75%, ${colors[2]} 75%, ${colors[2]} 100%)`,
+            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.6, 0.6, 0] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2.3, times: [0, 0.18, 0.7, 1], ease: 'easeInOut' }}
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      <div className="lang-celebration__anchor">
       <AnimatePresence>
         {lang && (
           <motion.div
@@ -111,7 +130,8 @@ export default function LanguageCelebration({ lang, label }: LanguageCelebration
           </motion.div>
         )}
       </AnimatePresence>
-    </div>,
+      </div>
+    </>,
     document.body
   );
 }
