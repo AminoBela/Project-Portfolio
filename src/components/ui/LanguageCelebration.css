@@ -29,14 +29,14 @@
   overflow: visible;
 }
 
-/* Fin liseré dégradé aux couleurs du drapeau, autour de la carte */
+/* Fin liseré dégradé aux couleurs du drapeau espagnol, autour de la carte */
 .lang-celebration::before {
   content: '';
   position: absolute;
   inset: -1.5px;
   border-radius: inherit;
   padding: 1.5px;
-  background: linear-gradient(120deg, var(--lc-1), var(--lc-2), var(--lc-3));
+  background: linear-gradient(120deg, #aa151b, #ffc400, #aa151b);
   -webkit-mask:
     linear-gradient(#000 0 0) content-box,
     linear-gradient(#000 0 0);
@@ -76,12 +76,7 @@
   width: 100%;
   min-width: 64px;
   border-radius: var(--radius-full);
-  background: repeating-linear-gradient(
-    -45deg,
-    var(--lc-1) 0 7px,
-    var(--lc-2) 7px 14px,
-    var(--lc-3) 14px 21px
-  );
+  background: repeating-linear-gradient(-45deg, #aa151b 0 7px, #ffc400 7px 14px, #aa151b 14px 21px);
   transform-origin: left center;
 }
 

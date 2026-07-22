@@ -38,7 +38,7 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [celebrateLang, setCelebrateLang] = useState<string | null>(null);
+  const [celebrate, setCelebrate] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -66,14 +66,14 @@ export default function Navigation({
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
 
-  // Célébration à l'arrivée sur le site, puis à chaque changement de langue
+  // Célébration (Espagne, toujours) à l'arrivée sur le site, puis à chaque changement de langue
   const prevLangRef = useRef<string | null>(null);
   useEffect(() => {
     const prev = prevLangRef.current;
     prevLangRef.current = currentLang;
     const delay = prev === null ? 700 : 0; // laisse le héro s'installer au premier chargement
-    const start = window.setTimeout(() => setCelebrateLang(currentLang), delay);
-    const stop = window.setTimeout(() => setCelebrateLang(null), delay + 2400);
+    const start = window.setTimeout(() => setCelebrate(true), delay);
+    const stop = window.setTimeout(() => setCelebrate(false), delay + 2400);
     return () => {
       window.clearTimeout(start);
       window.clearTimeout(stop);
@@ -240,7 +240,7 @@ export default function Navigation({
         )}
       </AnimatePresence>
 
-      <LanguageCelebration lang={celebrateLang} label={t('lang_celebration_text')} />
+      <LanguageCelebration show={celebrate} label={t('lang_celebration_text')} />
     </motion.header>
   );
 }
