@@ -116,43 +116,6 @@
   border-radius: var(--radius-full);
 }
 
-/* ── Célébration ES : toast éphémère, hors flux (n'affecte jamais la nav) ── */
-.lang-celebration__anchor {
-  position: fixed;
-  top: 72px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: calc(var(--z-modal) + 30);
-  pointer-events: none;
-}
-
-.lang-celebration {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  background: var(--bg-raised);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-full);
-  padding: 0.6rem 1.15rem;
-  box-shadow: var(--shadow-md);
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--text);
-  white-space: nowrap;
-}
-
-.lang-celebration__flag {
-  display: inline-block;
-  font-size: 1.2em;
-  line-height: 1;
-}
-
-.lang-celebration__stars {
-  display: inline-flex;
-  gap: 2px;
-  color: var(--accent);
-}
-
 .site-nav__icon-btn {
   display: grid;
   place-items: center;

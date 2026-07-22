@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
 import { Sun, Moon, Menu, X, Command } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
 import type { TranslationKey } from '../../types/content';
 import { EASE_OUT } from '../../utils/motion';
-import LanguageCelebration from '../ui/LanguageCelebration';
 import './Navigation.css';
 
 interface NavigationProps {
@@ -38,7 +37,6 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [celebrate, setCelebrate] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -65,20 +63,6 @@ export default function Navigation({
   }, [isMenuOpen]);
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
-
-  // Célébration (Espagne, toujours) à l'arrivée sur le site, puis à chaque changement de langue
-  const prevLangRef = useRef<string | null>(null);
-  useEffect(() => {
-    const prev = prevLangRef.current;
-    prevLangRef.current = currentLang;
-    const delay = prev === null ? 700 : 0; // laisse le héro s'installer au premier chargement
-    const start = window.setTimeout(() => setCelebrate(true), delay);
-    const stop = window.setTimeout(() => setCelebrate(false), delay + 2400);
-    return () => {
-      window.clearTimeout(start);
-      window.clearTimeout(stop);
-    };
-  }, [currentLang]);
 
   return (
     <motion.header
@@ -239,8 +223,6 @@ export default function Navigation({
           </motion.div>
         )}
       </AnimatePresence>
-
-      <LanguageCelebration show={celebrate} label={t('lang_celebration_text')} />
     </motion.header>
   );
 }

@@ -9,7 +9,6 @@ export const es = {
   "nav_contact": "Contacto",
   "nav_close_menu": "Cerrar menú",
   "nav_open_menu": "Abrir menú",
-  "lang_celebration_text": "¡España, Campeona del Mundo ×2!",
   "palette_open": "Paleta de comandos",
   "palette_placeholder": "Buscar una acción…",
   "palette_empty": "Sin resultados",
