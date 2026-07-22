@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { Sun, Moon, Menu, X, Command, Star } from 'lucide-react';
+import { Sun, Moon, Menu, X, Command } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
 import type { TranslationKey } from '../../types/content';
 import { EASE_OUT } from '../../utils/motion';
+import LanguageCelebration from '../ui/LanguageCelebration';
 import './Navigation.css';
 
 interface NavigationProps {
@@ -28,42 +28,6 @@ const LANGUAGES = ['fr', 'en', 'es'] as const;
 
 const underlineSpring = { type: 'spring', stiffness: 400, damping: 34 } as const;
 
-/** Toast éphémère : célébration au moment où on choisit l'espagnol. */
-function EsCelebration({ show, label }: { show: boolean; label: string }) {
-  return createPortal(
-    <div className="lang-celebration__anchor">
-      <AnimatePresence>
-        {show && (
-          <motion.div
-            className="lang-celebration"
-            role="status"
-            initial={{ opacity: 0, y: -14, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.92 }}
-            transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-          >
-            <motion.span
-              className="lang-celebration__flag"
-              initial={{ rotate: -16 }}
-              animate={{ rotate: [-16, 12, -8, 4, 0] }}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              aria-hidden="true"
-            >
-              🇪🇸
-            </motion.span>
-            <span className="lang-celebration__text">{label}</span>
-            <span className="lang-celebration__stars" aria-hidden="true">
-              <Star size={11} fill="currentColor" strokeWidth={0} />
-              <Star size={11} fill="currentColor" strokeWidth={0} />
-            </span>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>,
-    document.body
-  );
-}
-
 export default function Navigation({
   activeSection,
   theme,
@@ -74,7 +38,7 @@ export default function Navigation({
   const { t, i18n } = useTranslation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [celebrateEs, setCelebrateEs] = useState(false);
+  const [celebrateLang, setCelebrateLang] = useState<string | null>(null);
 
   useEffect(() => {
     let ticking = false;
@@ -102,14 +66,14 @@ export default function Navigation({
 
   const currentLang = i18n.resolvedLanguage ?? i18n.language;
 
-  // Célébration ponctuelle au moment où l'espagnol est choisi (pas à l'arrivée sur le site)
+  // Célébration ponctuelle à chaque changement de langue (jamais à l'arrivée sur le site)
   const prevLangRef = useRef(currentLang);
   useEffect(() => {
     const prev = prevLangRef.current;
     prevLangRef.current = currentLang;
-    if (prev !== 'es' && currentLang === 'es') {
-      setCelebrateEs(true);
-      const timer = window.setTimeout(() => setCelebrateEs(false), 2200);
+    if (prev !== currentLang) {
+      setCelebrateLang(currentLang);
+      const timer = window.setTimeout(() => setCelebrateLang(null), 2400);
       return () => window.clearTimeout(timer);
     }
   }, [currentLang]);
@@ -274,7 +238,7 @@ export default function Navigation({
         )}
       </AnimatePresence>
 
-      <EsCelebration show={celebrateEs} label={t('lang_es_badge')} />
+      <LanguageCelebration lang={celebrateLang} label={t('lang_celebration_text')} />
     </motion.header>
   );
 }

@@ -7,7 +7,7 @@ export const fr = {
   "nav_contact": "Contact",
   "nav_close_menu": "Fermer le menu",
   "nav_open_menu": "Ouvrir le menu",
-  "lang_es_badge": "Championne du monde ×2",
+  "lang_celebration_text": "Bienvenue !",
   "palette_open": "Palette de commandes",
   "palette_placeholder": "Rechercher une action…",
   "palette_empty": "Aucun résultat",
