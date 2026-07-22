@@ -9,6 +9,7 @@ export const en = {
   "nav_contact": "Contact",
   "nav_close_menu": "Close menu",
   "nav_open_menu": "Open menu",
+  "lang_es_badge": "World Cup champions ×2",
   "palette_open": "Command palette",
   "palette_placeholder": "Search an action…",
   "palette_empty": "No results",

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { Sun, Moon, Menu, X, Command } from 'lucide-react';
+import { Sun, Moon, Menu, X, Command, Star } from 'lucide-react';
 import type { Theme } from '../../hooks/useTheme';
 import type { TranslationKey } from '../../types/content';
 import { EASE_OUT } from '../../utils/motion';
@@ -26,6 +26,16 @@ const NAV_LINKS: ReadonlyArray<{ id: string; labelKey: TranslationKey }> = [
 const LANGUAGES = ['fr', 'en', 'es'] as const;
 
 const underlineSpring = { type: 'spring', stiffness: 400, damping: 34 } as const;
+
+/** Clin d'œil discret : deux étoiles façon écusson, réservées au bouton ES. */
+function EsStars() {
+  return (
+    <span className="site-nav__lang-stars" aria-hidden="true">
+      <Star size={7} fill="currentColor" strokeWidth={0} />
+      <Star size={7} fill="currentColor" strokeWidth={0} />
+    </span>
+  );
+}
 
 export default function Navigation({
   activeSection,
@@ -118,6 +128,7 @@ export default function Navigation({
                 className={currentLang === lng ? 'is-active' : ''}
                 onClick={() => onLanguageChange(lng)}
                 aria-pressed={currentLang === lng}
+                title={lng === 'es' ? t('lang_es_badge') : undefined}
               >
                 {currentLang === lng && (
                   <motion.span
@@ -126,6 +137,7 @@ export default function Navigation({
                     transition={underlineSpring}
                   />
                 )}
+                {lng === 'es' && <EsStars />}
                 <span>{lng.toUpperCase()}</span>
               </button>
             ))}
@@ -215,7 +227,9 @@ export default function Navigation({
                   key={lng}
                   className={currentLang === lng ? 'is-active' : ''}
                   onClick={() => onLanguageChange(lng)}
+                  title={lng === 'es' ? t('lang_es_badge') : undefined}
                 >
+                  {lng === 'es' && <EsStars />}
                   {lng.toUpperCase()}
                 </button>
               ))}

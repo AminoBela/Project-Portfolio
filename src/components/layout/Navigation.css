@@ -112,6 +112,28 @@
   border-radius: var(--radius-full);
 }
 
+/* Clin d'œil : deux étoiles façon écusson au-dessus du bouton ES */
+.site-nav__lang-stars {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  z-index: 1;
+  display: flex;
+  gap: 1.5px;
+  color: var(--text-muted);
+  opacity: 0.55;
+  transition:
+    color var(--duration-fast) var(--ease),
+    opacity var(--duration-fast) var(--ease);
+}
+
+.site-nav__langs button.is-active .site-nav__lang-stars,
+.site-nav__panel-langs button.is-active .site-nav__lang-stars {
+  color: var(--accent);
+  opacity: 1;
+}
+
 .site-nav__icon-btn {
   display: grid;
   place-items: center;
@@ -175,6 +197,7 @@
 }
 
 .site-nav__panel-langs button {
+  position: relative;
   background: none;
   border: 1px solid var(--border);
   border-radius: var(--radius-full);
