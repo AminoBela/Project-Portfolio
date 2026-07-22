@@ -23,13 +23,11 @@ export const es = {
   "home_subtitle_2": "Futuro DevOps",
   "home_description": "Estudiante de 3er año de Informática, especialidad DACS. Apasionado por la automatización, el despliegue y la seguridad de las infraestructuras.",
   "home_btn_projects": "Mis proyectos",
-  "home_btn_cv": "Mi CV",
 
   "about_tagline": "Estudiante de Informática, especialidad DACS.",
   "about_bio_text": "Actualmente en mi 3er año de un grado en Informática, especializándome en DACS (Despliegue de Aplicaciones Comunicantes y Seguras), me centro en la administración de sistemas y redes, la virtualización y la seguridad de infraestructuras. Mi objetivo es garantizar la disponibilidad, el rendimiento y la seguridad de las aplicaciones.",
   "about_fact_licence": "Carnet B · Vehículo",
   "about_fact_toeic": "Inglés · TOEIC 870",
-  "about_fact_mobility": "Lorena y Alsacia",
   "lang_french": "Francés",
   "lang_english": "Inglés",
   "lang_spanish": "Español",
@@ -174,12 +172,9 @@ export const es = {
   "contact_title": "Contacto",
   "contact_desc_1": "Estudiante de Informática apasionado por ",
   "contact_desc_bold": "las infraestructuras y la ciberseguridad de los SI",
-  "contact_desc_2": ", con base en Lorena. No dudes en contactarme.",
+  "contact_desc_2": ". No dudes en contactarme.",
   "contact_email_label": "Correo",
-  "contact_phone_label": "Teléfono",
   "contact_linkedin_label": "LinkedIn",
-  "contact_location_label": "Ubicación",
-  "contact_location_value": "Lorena & Alsacia, FR",
 
   "footer_rights": "Todos los derechos reservados.",
 

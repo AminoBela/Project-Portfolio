@@ -7,10 +7,9 @@ import {
   type Variants,
 } from 'motion/react';
 import { useTranslation } from 'react-i18next';
-import { ArrowDown, ArrowUpRight } from 'lucide-react';
+import { ArrowDown } from 'lucide-react';
 import Button from '../ui/Button';
 import { EASE_OUT } from '../../utils/motion';
-import cvPdf from '../../assets/cv.pdf';
 import './Hero.css';
 
 const container: Variants = {
@@ -74,9 +73,6 @@ export default function Hero() {
           <motion.div className="hero__actions" variants={item}>
             <Button variant="primary" href="#projets">
               {t('home_btn_projects')} <ArrowDown />
-            </Button>
-            <Button href={cvPdf} target="_blank" rel="noopener noreferrer">
-              {t('home_btn_cv')} <ArrowUpRight />
             </Button>
           </motion.div>
         </motion.div>

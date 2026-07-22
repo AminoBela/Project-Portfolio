@@ -21,13 +21,11 @@ export const fr = {
   "home_subtitle_2": "Futur DevOps",
   "home_description": "Étudiant en 3ème année de BUT Informatique, parcours DACS. Passionné par l'automatisation, le déploiement et la sécurisation des infrastructures.",
   "home_btn_projects": "Mes projets",
-  "home_btn_cv": "Mon CV",
 
   "about_tagline": "Étudiant en BUT Informatique, parcours DACS.",
   "about_bio_text": "Actuellement en 3ème année de BUT Informatique, parcours DACS (Déploiement d'Applications Communicantes et Sécurisées), je me spécialise dans l'administration système et réseau, la virtualisation et la sécurisation des infrastructures. Mon objectif est de garantir la disponibilité, la performance et la sécurité des applications.",
   "about_fact_licence": "Permis B · Véhicule",
   "about_fact_toeic": "Anglais · TOEIC 870",
-  "about_fact_mobility": "Lorraine & Alsace",
   "lang_french": "Français",
   "lang_english": "Anglais",
   "lang_spanish": "Espagnol",
@@ -171,12 +169,9 @@ export const fr = {
   "contact_title": "Me contacter",
   "contact_desc_1": "Étudiant en informatique passionné par ",
   "contact_desc_bold": "les infrastructures et la cybersécurité des SI",
-  "contact_desc_2": ", basé en Lorraine. N'hésitez pas à me contacter.",
+  "contact_desc_2": ". N'hésitez pas à me contacter.",
   "contact_email_label": "Email",
-  "contact_phone_label": "Téléphone",
   "contact_linkedin_label": "LinkedIn",
-  "contact_location_label": "Localisation",
-  "contact_location_value": "Lorraine & Alsace",
 
   "footer_rights": "Tous droits réservés.",
 

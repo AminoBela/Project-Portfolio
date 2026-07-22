@@ -9,7 +9,6 @@ import {
   Layers,
   FolderGit2,
   Mail,
-  FileText,
   Sun,
   Moon,
   Languages,
@@ -21,7 +20,6 @@ import {
 import { GitHubIcon, LinkedInIcon } from './BrandIcons';
 import { EASE_OUT } from '../../utils/motion';
 import type { Theme } from '../../hooks/useTheme';
-import cvPdf from '../../assets/cv.pdf';
 import './CommandPalette.css';
 
 const EMAIL = 'abelaliabendjafar@gmail.com';
@@ -69,7 +67,6 @@ export default function CommandPalette({
       { id: 'competences', label: t('nav_skills'), icon: Layers, run: go('competences') },
       { id: 'projets', label: t('nav_projects'), icon: FolderGit2, run: go('projets') },
       { id: 'contact', label: t('nav_contact'), icon: Mail, run: go('contact') },
-      { id: 'cv', label: t('home_btn_cv'), icon: FileText, external: true, run: open(cvPdf) },
       {
         id: 'theme',
         label: theme === 'dark' ? t('palette_theme_light') : t('palette_theme_dark'),

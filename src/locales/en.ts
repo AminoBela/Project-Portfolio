@@ -23,13 +23,11 @@ export const en = {
   "home_subtitle_2": "Future DevOps",
   "home_description": "3rd year Computer Science student, DACS path. Passionate about automation, deployment and infrastructure security.",
   "home_btn_projects": "My projects",
-  "home_btn_cv": "My CV",
 
   "about_tagline": "Computer Science student, DACS path.",
   "about_bio_text": "Currently in my 3rd year of a Computer Science degree, specializing in DACS (Deployment of Communicating and Secure Applications), I focus on system and network administration, virtualization, and infrastructure security. My goal is to ensure the availability, performance, and security of applications.",
   "about_fact_licence": "Driver's licence · Car",
   "about_fact_toeic": "English · TOEIC 870",
-  "about_fact_mobility": "Lorraine & Alsace, FR",
   "lang_french": "French",
   "lang_english": "English",
   "lang_spanish": "Spanish",
@@ -174,12 +172,9 @@ export const en = {
   "contact_title": "Get in touch",
   "contact_desc_1": "Computer Science student passionate about ",
   "contact_desc_bold": "IS infrastructure and cybersecurity",
-  "contact_desc_2": ", based in Lorraine. Feel free to reach out.",
+  "contact_desc_2": ". Feel free to reach out.",
   "contact_email_label": "Email",
-  "contact_phone_label": "Phone",
   "contact_linkedin_label": "LinkedIn",
-  "contact_location_label": "Location",
-  "contact_location_value": "Lorraine & Alsace, FR",
 
   "footer_rights": "All rights reserved.",
 

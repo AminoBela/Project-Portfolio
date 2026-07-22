@@ -5,7 +5,6 @@ import { useTranslation } from 'react-i18next';
 import {
   IdCard,
   Languages,
-  MapPin,
   Compass,
   House,
   DoorOpen,
@@ -25,7 +24,6 @@ import './About.css';
 const FACTS: ReadonlyArray<{ icon: LucideIcon; key: TranslationKey }> = [
   { icon: IdCard, key: 'about_fact_licence' },
   { icon: Languages, key: 'about_fact_toeic' },
-  { icon: MapPin, key: 'about_fact_mobility' },
 ];
 
 const LANGUAGES_DATA: ReadonlyArray<{
